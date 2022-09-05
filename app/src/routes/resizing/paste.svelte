@@ -43,7 +43,7 @@
 						}
 					};
 
-					reader.readAsDataURL(blob);
+					reader.readAsDataURL(blob as File);
 				} else {
 					console.log(
 						'Got paste event with DataTransferItem kind %s and type %s',

@@ -5,13 +5,15 @@
 
 <div class="image-background">
 	<Navbar />
-	<div class="hero h-screen">
-		<div class="hero-content text-center">
-			<div class="bg-base-200 p-40 rounded-3xl opacity-90">
-				<slot />
-			</div>
-		</div>
+	<div class="bg-base-content h-screen">
+		<slot />
 	</div>
+	<!-- <div class="hero h-screen"> -->
+	<!-- <div class="hero-content text-center"> -->
+	<!-- <div class="bg-base-200 p-40 rounded-3xl opacity-90"> -->
+	<!-- </div> -->
+	<!-- </div> -->
+	<!-- </div> -->
 </div>
 
 <style>
