@@ -1,0 +1,63 @@
+{
+	"name": "@kelp_digital/sveltekit-adapter-macula",
+	"version": "0.1.0",
+	"description": "Build SPA and static websites with prerendering for Macula so you can host them on any IPFS node",
+	"author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
+	"keywords": [
+		"macula",
+		"sveltekit"
+	],
+	"license": "Apache-2",
+	"licenseFile": "./LICENSE",
+	"types": "lib/index.d.ts",
+	"module": "lib/index.js",
+	"type": "module",
+	"exports": {
+		".": {
+			"default": "./lib/index.js",
+			"import": "./lib/index.js",
+			"types": "./lib/index.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "NODE_ENV=production heft test --clean && echo '{\"type\":\"module\"}' > ./lib/package.json",
+		"start": "heft start --clean",
+		"watch": "heft build --clean --watch",
+		"lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+		"lint": "prettier --check * --ignore-path .gitignore",
+		"format": "pnpm lint -- --write"
+	},
+	"dependencies": {
+		"ramda": "0.28.0"
+	},
+	"devDependencies": {
+		"@sveltejs/kit": "1.0.0-next.431",
+		"@types/node": "18.7.13",
+		"@types/ramda": "0.28.14",
+		"prettier": "2.5.1",
+		"typescript": "4.6.4",
+		"@rushstack/heft-node-rig": "1.9.7",
+		"@microsoft/api-extractor": "7.28.0",
+		"@rushstack/eslint-config": "2.6.0",
+		"@rushstack/heft": "0.45.6",
+		"@types/heft-jest": "1.0.2",
+		"eslint": "8.17.0",
+		"eslint-plugin-simple-import-sort": "7.0.0",
+		"eslint-plugin-unused-imports": "2.0.0",
+		"@rushstack/heft-webpack5-plugin": "0.5.13",
+		"@types/webpack-env": "1.16.3",
+		"@rushstack/heft-jest-plugin": "0.3.6"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.com/kelp_digital/oss.git",
+		"directory": "tools/sveltekit-adapter-macula"
+	},
+	"bugs": {
+		"url": "https://gitlab.com/kelp_digital/oss/issues"
+	},
+	"homepage": "https://gitlab.com/kelp_digital/oss/-/tree/tools/sveltekit-adapter-macula#readme",
+	"engines": {
+		"node": ">=14.0.0"
+	}
+}

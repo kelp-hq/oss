@@ -1,0 +1,41 @@
+image: docker.io/woss/gitpod-workspace:gitpod_workspace-full_2022-05-08-14-31-53
+tasks:
+  - name: prep-env
+    init: |
+      pnpm env use --global 18.4.0
+      node $GITPOD_REPO_ROOT/common/scripts/install-run-rush.js update
+      node $GITPOD_REPO_ROOT/common/scripts/install-run-rush.js build
+      exit
+  - name: Start mongodb container
+    command: bash $GITPOD_REPO_ROOT/.devops/gitpod/start-cmd.sh && exit
+
+ports:
+  - port: 27017 # mongo
+    onOpen: ignore
+  - port: 3000 # macula
+    onOpen: ignore
+    visibility: public
+  - port: 5001 # ipfs api
+    onOpen: ignore
+  - port: 8080 # ipfs gateway
+    onOpen: ignore
+  - port: 4001 # ipfs swarm
+    onOpen: ignore
+  - port: 4226 # sccache server
+    onOpen: ignore
+  - port: 6379 # redis server
+    onOpen: ignore
+vscode:
+  extensions:
+    - PKief.material-icon-theme
+    - esbenp.prettier-vscode
+    - donjayamanne.githistory
+    - eamodio.gitlens
+    - dbaeumer.vscode-eslint
+    - foxundermoon.shell-format
+    - streetsidesoftware.code-spell-checker
+    - mhutchie.git-graph
+    - vscode-icons-team.vscode-icons
+    - ms-azuretools.vscode-docker
+    - redhat.vscode-yaml
+    - wmaurer.change-case

@@ -1,0 +1,534 @@
+// DO NOT ADD COMMENTS IN THIS FILE.  They will be lost when the Rush tool resaves it.
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
+  "packages": [
+    {
+      "name": "@anagolay/api",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@anagolay/create_cid_from_buffer",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@anagolay/types",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@anagolay/utils",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@anagolay/workflow_compute_cidv1",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@anagolay/workflow_compute_cidv1_from_bytes",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@anagolay/workflow_compute_cidv1_from_bytes_new_version",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@anagolay/workflow_compute_cidv1_version2",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@fastify/cors",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@fastify/reply-from",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@fontsource/fira-mono",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@kelp_digital/sveltekit-adapter-macula",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@microsoft/api-extractor",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "@playwright/test",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/api",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/api-augment",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/extension-dapp",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/extension-inject",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/keyring",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@polkadot/types",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/types-codec",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@polkadot/util",
+      "allowedCategories": [ "production", "website" ]
+    },
+    {
+      "name": "@polkadot/util-crypto",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@rushstack/eslint-config",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@rushstack/heft",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@rushstack/heft-jest-plugin",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@rushstack/heft-node-rig",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@rushstack/heft-web-rig",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@rushstack/heft-webpack5-plugin",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@sentry/node",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@sentry/tracing",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "@sentry/types",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@sinclair/typebox",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@sveltejs/adapter-auto",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@sveltejs/adapter-static",
+      "allowedCategories": [ "tools", "website" ]
+    },
+    {
+      "name": "@sveltejs/kit",
+      "allowedCategories": [ "tools", "website" ]
+    },
+    {
+      "name": "@sveltejs/package",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@sveltejs/vite-plugin-svelte",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@tailwindcss/forms",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@tailwindcss/line-clamp",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@tailwindcss/typography",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@tsconfig/svelte",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@typescript-eslint/eslint-plugin",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@typescript-eslint/parser",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "agenda",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "apidoc",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "autoprefixer",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "axios",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "byte-size",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "clui",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "commander",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "compression",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "cors",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "daisyui",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "dotenv-cli",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "drawflow",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "electron",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "env-cmd",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "eslint",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "eslint-config-prettier",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "eslint-plugin-simple-import-sort",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "eslint-plugin-svelte3",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "eslint-plugin-unused-imports",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "express",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "fast-json-stringify",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fast-printf",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "fast-proxy",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "fastify",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fastify-cors",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fastify-http-proxy",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fastify-oas",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fastify-plugin",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "fastify-tsconfig",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "file-type",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "glob",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "handlebars",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "helmet",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "http-proxy",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "http-proxy-middleware",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "husky",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "identicon.js",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "inquirer",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "ipfs-core-types",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "ipfs-http-client",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "ipfs-utils",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "it-all",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "it-glob",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "level",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "mime-types",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "mongodb",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "multiaddr",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "multiformats",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "nanoid",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "node-fetch",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "nodemon",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "pino",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "pino-pretty",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "pino-sentry-transport",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "pkg",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "postcss",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "prettier",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "prettier-plugin-svelte",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "pretty-quick",
+      "allowedCategories": [ "tools" ]
+    },
+    {
+      "name": "ramda",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "redis",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "remeda",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "sharp",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "simple-git",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "slug",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "socket.io",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "socket.io-client",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "svelte",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "svelte-check",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "svelte-material-icons",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "svelte-preprocess",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "sveltejs-adapter-ipfs",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "tailwindcss",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "tar",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "ts-loader",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "ts-node",
+      "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "tslib",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "typescript",
+      "allowedCategories": [ "production", "tools", "website" ]
+    },
+    {
+      "name": "undici",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "vite",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "vite-plugin-iso-import",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "vite-plugin-top-level-await",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "vite-plugin-wasm",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "webpack",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "webpack-cli",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "webpack-node-externals",
+      "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "wf_cid_from_array",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "yaml",
+      "allowedCategories": [ "tools" ]
+    }
+  ]
+}

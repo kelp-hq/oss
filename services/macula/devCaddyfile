@@ -1,0 +1,57 @@
+{
+	debug
+	email daniel@woss.io
+	log {
+		output file /var/logs/caddy.log
+		level DEBUG
+	}
+}
+# localhost
+
+# reverse_proxy 127.0.0.1:3000
+
+localhost {
+	respond / "Hi, thanks for stopping by. Please leave :)"
+}
+
+macula.api.localhost {
+	rewrite * /ipfs_api/{labels.2}{uri}
+	reverse_proxy http://127.0.0.1:3000
+	log {
+		output file /var/logs/localhost.macula-clear.log
+		level INFO
+	}
+}
+
+# *.on.an.net {
+# 	rewrite * /{labels.3}{uri}
+# 	reverse_proxy localhost:3000
+# }
+# The placeholders {labels.*} are the segments of the hostname separated by the dots, 0-indexed from the right. So 0 is net, 1 is an, 2 is on and 3 is whatever your hash is.
+
+# So you’re performing a rewrite to prepend that bit from the domain to the path, and adding {uri} to preserve the rest of the URI (path + query).
+
+
+*.sub.localhost {
+	#  URI will always add a last / as a part of the redirect! very useful fr the /dir -> /dir/ redirects 
+	rewrite * /hosting/withSubdomain/{labels.2}{uri}
+
+	reverse_proxy http://127.0.0.1:3000
+	# encode zstd gzip
+	log {
+		output file /var/logs/localhost.sub.log
+		level INFO
+	}
+}
+
+*.on.localhost {
+	#  URI will always add a last / as a part of the redirect! very useful fr the /dir -> /dir/ redirects 
+	rewrite * /hosting/withIpfs/{labels.2}{uri}
+
+	reverse_proxy http://127.0.0.1:3000
+
+	log {
+		output file /var/logs/localhost.on.log
+		level INFO
+	}
+}

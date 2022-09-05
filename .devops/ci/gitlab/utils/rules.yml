@@ -1,0 +1,39 @@
+.patterns-macula-dev: &patterns-macula-dev
+  - .devops/docker/prod/macula.dockerfile
+  - kelp/macula/src/**/*
+
+.build-image:rules:macula-non-latest:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *patterns-macula-dev
+      when: manual
+
+.patterns-websocket-service-dev: &patterns-websocket-service-dev
+  - .devops/docker/prod/ws-server.dockerfile
+  - services/ws-server/src/**/*
+
+.build-image:rules:websocket-service-non-latest:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *patterns-websocket-service-dev
+      when: manual
+
+.patterns-ipfs-api-auth-proxy-dev: &patterns-ipfs-api-auth-proxy-dev
+  - .devops/docker/prod/ipfs-api-auth-proxy.dockerfile
+  - services/ipfs-api-auth-proxy/src/**/*
+
+.build-image:rules:ipfs-api-auth-proxy-non-latest:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *patterns-ipfs-api-auth-proxy-dev
+      when: manual
+
+.patterns-publish-service-dev: &patterns-publish-service-dev
+  - .devops/docker/prod/publish.dockerfile
+  - services/publish/src/**/*
+
+.build-image:rules:publish-service-non-latest:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes: *patterns-publish-service-dev
+      when: manual

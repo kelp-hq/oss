@@ -1,0 +1,16 @@
+{
+  "extends": "./node_modules/@rushstack/heft-node-rig/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "types": ["heft-jest", "node"],
+    "typeRoots": ["@types", "./node_modules/@types"]
+    // "experimentalDecorators": true
+    // "lib": [
+    //   "es2020"
+    // ],
+    // "module": "ES2022",
+    // "moduleResolution": "node",
+    // "target": "es2022",
+  },
+  "exclude": ["*.test.ts"]
+}

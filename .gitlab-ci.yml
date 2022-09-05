@@ -1,0 +1,38 @@
+# image: docker.io/anagolay/base-rust:1-stable-x86_64-unknown-linux-gnu-bullseye
+
+default:
+  image: docker.io/node:18.4.0-bullseye
+
+  # services:
+  #   - postgres:14
+  #   - redis:latest
+stages:
+  - lint
+  - test
+  - build-images
+  - publish-packages
+
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  paths:
+    - common/temp
+    - .pnpm-store
+    - app/.svelte-kit
+
+### workflows control when to create the PIPELINE, not jobs
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" ## this is the same as $CI_MERGE_REQUEST_IID
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+variables:
+  NODE_ENV: 'test'
+
+include:
+  - local: .devops/ci/gitlab/**/*.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/License-Scanning.gitlab-ci.yml
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml

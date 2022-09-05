@@ -1,0 +1,23 @@
+.base-image-build-with-latest:
+  extends: .use-kaniko-with-latest
+
+# this will use the kaniko without the latest tag. use this for dev purposes and quick staging
+.base-image-build:
+  extends: .use-kaniko
+
+build-macula-image:
+  when: manual
+  extends:
+    - .base-image-build
+    # - .build-image:rules:macula-non-latest
+  stage: build-images
+  needs: []
+  variables:
+    IMAGE_DOCKERFILE_PATH: '${CI_PROJECT_DIR}/.devops/docker/prod/macula.dockerfile'
+    IMAGE_NAME: '${CI_REGISTRY}/${CI_PROJECT_PATH}/macula:${CI_COMMIT_SHORT_SHA}'
+    # IMAGE_NAME_LATEST: '${CI_REGISTRY}/${CI_PROJECT_PATH}/macula:latest'
+  script:
+    - set -e
+    - echo $IMAGE_NAME
+    # docs  https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#reference-tags
+    - !reference [.base-image-build, script]

@@ -1,0 +1,72 @@
+version: '3'
+services:
+  macula:
+    image: docker.io/anagolay/macula:5ead5e1
+    container_name: macula
+    restart: unless-stopped
+    networks:
+      - macula_ipfs
+      # - caddy
+    labels:
+      caddy: 'macula.kelp.digital'
+      caddy.reverse_proxy: '{{upstreams 3000}}'
+    environment:
+      - IPFS_GATEWAY_URL=http://ipfs:8080
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - REDIS_URL=redis://redisCache
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+    links:
+      - ipfs
+      - redisCache
+    depends_on:
+      ipfs:
+        # condition: service_healthy
+        condition: service_started
+      redisCache:
+        condition: service_started
+    # ports:
+    #   - 3000:3000
+  ipfs:
+    image: ipfs/go-ipfs:latest
+    container_name: macula_ipfs
+    restart: unless-stopped
+    networks:
+      - macula_ipfs
+    environment:
+      - IPFS_PROFILE=server
+      - IPFS_PATH=/data/ipfs
+    healthcheck:
+      test: ['CMD-SHELL', 'ipfs dag stat /ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn || exit 1']
+      interval: 30s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    ports:
+      - 4001:4001/tcp
+      - 4001:4001/udp
+    volumes:
+      - ipfs_data:/data/ipfs
+      - ipfs_fuse:/ipfs
+      - ipns_fuse:/ipns
+    command: daemon --enable-namesys-pubsub
+  redisCache:
+    image: docker.io/redis:alpine
+    networks:
+      - macula_ipfs
+    command: redis-server
+    volumes:
+      - redis_data:/var/lib/redis
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    ports:
+      - 6379:6379
+networks:
+  macula_ipfs:
+    driver: bridge
+  # caddy:
+  #   external: true
+volumes:
+  ipfs_data: {}
+  ipfs_fuse: {}
+  ipns_fuse: {}
+  redis_data: {}

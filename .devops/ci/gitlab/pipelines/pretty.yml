@@ -1,0 +1,12 @@
+is-it-pretty:
+  extends:
+    - .install-pnpm-and-node
+  stage: lint
+  script:
+    - set -e
+
+    - echo 'Installing rush...'
+    - node common/scripts/install-run-rush.js install
+
+    - echo 'Is our code pretty?'
+    - node common/scripts/install-run-rush.js prettier:check
