@@ -17,7 +17,7 @@
    * and then specify those projects in the "additionalProjectsToInclude" list.
    */
   "deploymentProjectNames": [
-    // "@kelp_digital/macula"
+    "@kelp_digital/macula"
   ],
   /**
    * When deploying a local Rush project, the package.json "devDependencies" are normally excluded.

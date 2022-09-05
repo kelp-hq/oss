@@ -8,21 +8,23 @@ services:
       - macula_ipfs
       # - caddy
     labels:
-      caddy: 'macula.kelp.digital'
+      caddy: 'macula.link'
       caddy.reverse_proxy: '{{upstreams 3000}}'
     environment:
       - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
-      - REDIS_URL=redis://redisCache
+      - REDIS_URL=redis://redis
       - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=
     links:
       - ipfs
-      - redisCache
+      - redis
+      - mongodb
     depends_on:
       ipfs:
         # condition: service_healthy
         condition: service_started
-      redisCache:
+      redis:
         condition: service_started
     # ports:
     #   - 3000:3000
@@ -36,7 +38,11 @@ services:
       - IPFS_PROFILE=server
       - IPFS_PATH=/data/ipfs
     healthcheck:
-      test: ['CMD-SHELL', 'ipfs dag stat /ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn || exit 1']
+      test:
+        [
+          'CMD-SHELL',
+          'ipfs dag stat /ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn || exit 1'
+        ]
       interval: 30s
       timeout: 3s
       retries: 5
@@ -49,7 +55,7 @@ services:
       - ipfs_fuse:/ipfs
       - ipns_fuse:/ipns
     command: daemon --enable-namesys-pubsub
-  redisCache:
+  redis:
     image: docker.io/redis:alpine
     networks:
       - macula_ipfs
@@ -60,6 +66,16 @@ services:
       - REDIS_REPLICATION_MODE=master
     ports:
       - 6379:6379
+  mongodb:
+    image: docker.io/mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - 27017:27017
 networks:
   macula_ipfs:
     driver: bridge
