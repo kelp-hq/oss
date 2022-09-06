@@ -15,12 +15,17 @@ x-macula-dependson:
     mongodb:
       condition: service_started
 x-macula:
+  # image: registry.gitlab.com/kelp_digital/oss/macula:d48f7379
   &macula
-  image: registry.gitlab.com/kelp_digital/oss/macula:d48f7379
+  image: docker.io/node:18.4.0-bullseye
   restart: unless-stopped
+  working_dir: /app
+  volumes:
+    - ../../:/app
   networks:
     - macula
     - caddy
+  command: bash startMacula.sh
 ####################
 ####################
 ####################
@@ -37,7 +42,7 @@ services:
       caddy.rewrite: "* /hosting/withSubdomain/{labels.2}{uri}}"
       caddy.reverse_proxy.to: "{{upstreams 3000}}"
       caddy.tls.dns: "hetzner ${HETZNER_TOKEN}"
-      caddy.log: ""
+      # caddy.log: ""
       caddy.log.output: "file /var/logs/macula/subdomain.log"
       caddy.log.level: "DEBUG"
     environment:
@@ -49,7 +54,7 @@ services:
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
 
   ipfs:
-    image: ipfs/go-ipfs:latest
+    image: ipfs/kubo:latest
     restart: unless-stopped
     networks:
       - macula
@@ -87,10 +92,12 @@ services:
       - 6379:6379
   mongodb:
     image: docker.io/mongo:latest
+    networks:
+      - macula
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=123456
-      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+      # - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     volumes:
       - mongodb_data:/data/db
     ports:

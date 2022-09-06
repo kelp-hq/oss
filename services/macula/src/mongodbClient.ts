@@ -19,9 +19,10 @@ export async function setupMongoDB(): Promise<MongoClient> {
   mongoClient = new MongoClient(
     getEnv('MONGODB_CONNSTRING_WITH_DB', `mongodb://admin:123456@127.0.0.1:27017/${dbName}?authSource=admin`)
   );
+
   await mongoClient.connect();
 
-  dbConnection = mongoClient.db(dbName);
+  dbConnection = mongoClient.db(getEnv('MONGODB_DATABASE_NAME', dbName));
   /**
    * now we will call all the plugins that we know to set up themselves
    */

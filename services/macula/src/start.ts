@@ -125,14 +125,17 @@ app.get('/favicon.ico', async (req: Request, res: Response) => {
 });
 
 if (includes('image_processing', enabledRoutes)) {
+  log.trace('Enabling route: image_processing');
   app.use(maculaRouter);
 }
 
 if (includes('hosting', enabledRoutes)) {
+  log.trace('Enabling route: hosting');
   app.use(hostingRouter);
 }
 
 if (includes('ipfs_api', enabledRoutes)) {
+  log.trace('Enabling route: ipfs_api');
   app.use(ipfsApiRouter);
 }
 
