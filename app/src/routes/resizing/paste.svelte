@@ -23,19 +23,24 @@
 					reader.onloadstart = (event) => {
 						console.log('onloadstart');
 					};
+
 					reader.onloadend = (event) => {
 						console.log('onloadend');
 					};
+
 					reader.onerror = (event) => {
 						console.log('onerror');
 					};
+
 					reader.onabort = (event) => {
 						console.log('onabort');
 					};
+
 					reader.onload = (event) => {
 						// console.log(event.target.result); // data url!
 						src = event.target?.result as string;
 					};
+
 					//https://developer.mozilla.org/en-US/docs/Web/API/FileReader/progress_event
 					reader.onprogress = (event) => {
 						if (event.lengthComputable) {

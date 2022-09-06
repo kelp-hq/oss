@@ -1,39 +1,58 @@
+x-macula-links:
+  &macula_links
+  links:
+    - ipfs
+    - redis
+    - mongodb
+x-macula-dependson:
+  &macula_dependson
+  depends_on:
+    ipfs:
+      # condition: service_healthy
+      condition: service_started
+    redis:
+      condition: service_started
+    mongodb:
+      condition: service_started
+x-macula:
+  &macula
+  image: registry.gitlab.com/kelp_digital/oss/macula:d48f7379
+  restart: unless-stopped
+  networks:
+    - macula
+    - caddy
+####################
+####################
+####################
+####################
+####################
 version: '3'
 services:
-  macula:
-    image: docker.io/anagolay/macula:5ead5e1
-    container_name: macula
-    restart: unless-stopped
-    networks:
-      - macula_ipfs
-      # - caddy
+  maculaSubdomainHosting:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_dependson
     labels:
-      caddy: 'macula.link'
-      caddy.reverse_proxy: '{{upstreams 3000}}'
+      caddy: "*.macula.link"
+      caddy.rewrite: "* /hosting/withSubdomain/{labels.2}{uri}}"
+      caddy.reverse_proxy.to: "{{upstreams 3000}}"
+      caddy.tls.dns: "hetzner ${HETZNER_TOKEN}"
+      caddy.log: ""
+      caddy.log.output: "file /var/logs/macula/subdomain.log"
+      caddy.log.level: "DEBUG"
     environment:
+      - MACULA_ENABLED_ROUTES=["hosting"]
       - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
       - REDIS_URL=redis://redis
       - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
-      - MONGODB_CONNSTRING_WITH_DB=
-    links:
-      - ipfs
-      - redis
-      - mongodb
-    depends_on:
-      ipfs:
-        # condition: service_healthy
-        condition: service_started
-      redis:
-        condition: service_started
-    # ports:
-    #   - 3000:3000
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+
   ipfs:
     image: ipfs/go-ipfs:latest
-    container_name: macula_ipfs
     restart: unless-stopped
     networks:
-      - macula_ipfs
+      - macula
     environment:
       - IPFS_PROFILE=server
       - IPFS_PATH=/data/ipfs
@@ -58,7 +77,7 @@ services:
   redis:
     image: docker.io/redis:alpine
     networks:
-      - macula_ipfs
+      - macula
     command: redis-server
     volumes:
       - redis_data:/var/lib/redis
@@ -77,12 +96,13 @@ services:
     ports:
       - 27017:27017
 networks:
-  macula_ipfs:
+  macula:
     driver: bridge
-  # caddy:
-  #   external: true
+  caddy:
+    external: true
 volumes:
   ipfs_data: {}
   ipfs_fuse: {}
   ipns_fuse: {}
   redis_data: {}
+  mongodb_data: {}

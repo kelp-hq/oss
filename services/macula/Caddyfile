@@ -51,7 +51,7 @@ ipf.api.macula.link {
 	reverse_proxy http://127.0.0.1:3000
 	# encode zstd gzip
 	log {
-		output file /var/logs/macula.link.sub.log
+		output file /var/logs/macula/subdomain.log
 		level INFO
 	}
 }

@@ -14,6 +14,7 @@ import cors from 'cors';
 import express, { json, NextFunction, Request, Response } from 'express';
 import { type Express } from 'express';
 import helmet from 'helmet';
+import { includes } from 'ramda';
 
 import { ipfsGateway, port } from './config';
 import { setupMongoDB } from './mongodbClient';
@@ -23,8 +24,14 @@ import { maculaRouter } from './plugins/macula';
 import { createProxy } from './proxyServer';
 import { createRedisInstance } from './redisClient';
 import { initSentry, sentry } from './sentry';
+import { getEnv } from './utils/env';
 import { log } from './utils/logger';
 import { StrategyValidationError } from './web3-auth-handler/errors';
+
+const enabledRoutes = JSON.parse(
+  getEnv('MACULA_ENABLED_ROUTES', '["hosting","image_processing","ipfs_api"]')
+);
+
 /**
  * Express app
  */
@@ -117,9 +124,17 @@ app.get('/favicon.ico', async (req: Request, res: Response) => {
     .send(anagolayFavicon.data);
 });
 
-app.use(maculaRouter);
-app.use(hostingRouter);
-app.use(ipfsApiRouter);
+if (includes('image_processing', enabledRoutes)) {
+  app.use(maculaRouter);
+}
+
+if (includes('hosting', enabledRoutes)) {
+  app.use(hostingRouter);
+}
+
+if (includes('ipfs_api', enabledRoutes)) {
+  app.use(ipfsApiRouter);
+}
 
 // The error handler must be before any other error middleware and after all controllers
 app.use(sentry.Handlers.errorHandler());
