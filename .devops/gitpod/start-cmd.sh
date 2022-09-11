@@ -13,7 +13,7 @@ bash $GITPOD_REPO_ROOT/.devops/gitpod/prep-doppler.sh
 cd $PROJECT_ROOT
 
 
-docker-compose up -d ipfs db redis
+docker-compose up -d ipfs mongodb redis
 
 # give ipfs 5 secs to start
 sleep 5
