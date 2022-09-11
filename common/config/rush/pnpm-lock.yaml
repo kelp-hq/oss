@@ -31,9 +31,12 @@ importers:
       eslint-plugin-simple-import-sort: 7.0.0
       eslint-plugin-svelte3: 4.0.0
       eslint-plugin-unused-imports: 2.0.0
+      exifreader: ~4.5.1
       identicon.js: ~2.3.3
+      ipfs-http-client: 56.0.0
       multiformats: 9.6.4
       nanoid: 3.3.2
+      node-fetch: 3.2.6
       postcss: 8.4.16
       prettier: 2.5.1
       prettier-plugin-svelte: 2.7.0
@@ -48,7 +51,7 @@ importers:
       vite-plugin-iso-import: 0.1.3
       vite-plugin-top-level-await: 1.1.1
       vite-plugin-wasm: 2.1.0
-      wf_cid_from_array: https://ipfs.anagolay.network/ipfs/bafybeiejjtmrd5dbxye7bmcdcc3hdbyy6ub43bvjzi5gyxtr5bdjbculiu
+      wf_cidv1_from_array: https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma
     dependencies:
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
@@ -57,8 +60,11 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      exifreader: 4.5.1
+      ipfs-http-client: 56.0.0_node-fetch@3.2.6
+      node-fetch: 3.2.6
       ramda: 0.28.0
-      wf_cid_from_array: '@ipfs.anagolay.network/ipfs/bafybeiejjtmrd5dbxye7bmcdcc3hdbyy6ub43bvjzi5gyxtr5bdjbculiu'
+      wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
       '@kelp_digital/sveltekit-adapter-macula': link:../tools/sveltekit-adapter-macula
       '@playwright/test': 1.25.0
@@ -3247,6 +3253,13 @@ packages:
       webpack-cli: 4.9.2_webpack@5.68.0
     dev: true
 
+  /@xmldom/xmldom/0.7.5:
+    resolution: {integrity: sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==}
+    engines: {node: '>=10.0.0'}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /@xtuc/ieee754/1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
     dev: true
@@ -5249,6 +5262,13 @@ packages:
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
     dev: true
+
+  /exifreader/4.5.1:
+    resolution: {integrity: sha512-TYWL3TLhvPipgFZgaInomFj9ZR80hpq3BypCtSAWNOYVZ59N8oZtHir0kVOUqdOTqmfUhmZDdHn7gfhG/5F3WQ==}
+    requiresBuild: true
+    optionalDependencies:
+      '@xmldom/xmldom': 0.7.5
+    dev: false
 
   /exit/0.1.2:
     resolution: {integrity: sha512-Zk/eNKV2zbjpKzrsQ+n1G6poVbErQxJ0LBOJXaKZ1EViLzH+hrLu9cdXI4zw9dBQJslwBEpbQ2P1oS7nDxs6jQ==}
@@ -10191,15 +10211,15 @@ packages:
       commander: 2.20.3
     dev: true
 
-  '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy':
-    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy}
-    name: workflow_compute_cidv1_from_bytes
+  '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma':
+    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma}
+    name: wf_cidv1_from_array
     version: 0.0.1
     dev: false
 
-  '@ipfs.anagolay.network/ipfs/bafybeiejjtmrd5dbxye7bmcdcc3hdbyy6ub43bvjzi5gyxtr5bdjbculiu':
-    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeiejjtmrd5dbxye7bmcdcc3hdbyy6ub43bvjzi5gyxtr5bdjbculiu}
-    name: wf_cid_from_array
+  '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy':
+    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy}
+    name: workflow_compute_cidv1_from_bytes
     version: 0.0.1
     dev: false
 

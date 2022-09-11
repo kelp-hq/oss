@@ -52,33 +52,36 @@
 			<img class=" rounded-full" alt="Identicon" src="data:image/png;base64,{identiconImage}" />
 		</label>
 	</div>
-	<ul
-		tabindex="0"
-		class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box"
-	>
-		{#each $polkadotAccounts.injectedAccounts as account}
-			<li class="bg-base-300 m-2">
-				<button
-					class="flex flex-col justify-start items-start {equals(
-						account.address,
-						$polkadotAccounts.selectedAccount
-					) && 'btn-active'}"
-					on:click={() => {
-						$polkadotAccounts.selectedAccount = account.address;
-					}}
-				>
-					<!-- <label class="label cursor-pointer hover:bg-gray-900 p-4"> -->
-					<span class="text-lg">{account.meta.name}</span>
-					<span class="text-xs">{account.address}</span>
-					<!-- <input
+
+	{#if !isEmpty($polkadotAccounts.injectedAccounts)}
+		<ul
+			tabindex="0"
+			class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box"
+		>
+			{#each $polkadotAccounts.injectedAccounts as account}
+				<li class="bg-base-300 m-2">
+					<button
+						class="flex flex-col justify-start items-start {equals(
+							account.address,
+							$polkadotAccounts.selectedAccount
+						) && 'btn-active'}"
+						on:click={() => {
+							$polkadotAccounts.selectedAccount = account.address;
+						}}
+					>
+						<!-- <label class="label cursor-pointer hover:bg-gray-900 p-4"> -->
+						<span class="text-lg">{account.meta.name}</span>
+						<span class="text-xs">{account.address}</span>
+						<!-- <input
 							type="radio"
 							name={account.address}
 							value={account.address}
 							class="radio radio-primary hover:bg-violet-600 active:bg-violet-700 outline-dashed" -->
-					<!-- /> -->
-					<!-- </label> -->
-				</button>
-			</li>
-		{/each}
-	</ul>
+						<!-- /> -->
+						<!-- </label> -->
+					</button>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>

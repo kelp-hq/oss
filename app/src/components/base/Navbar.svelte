@@ -9,6 +9,7 @@
 		<ul class="menu menu-horizontal p-0">
 			<li><a href="/hosting">Hosting</a></li>
 			<li><a href="/resizing">Resizing</a></li>
+			<li><a href="/drive">Drive</a></li>
 		</ul>
 	</div>
 	<div class="navbar-center">

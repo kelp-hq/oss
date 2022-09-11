@@ -255,6 +255,10 @@
       "allowedCategories": [ "production", "tools", "website" ]
     },
     {
+      "name": "exifreader",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "express",
       "allowedCategories": [ "production", "tools" ]
     },
@@ -336,7 +340,7 @@
     },
     {
       "name": "ipfs-http-client",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "tools", "website" ]
     },
     {
       "name": "ipfs-utils",
@@ -376,7 +380,7 @@
     },
     {
       "name": "node-fetch",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "tools", "website" ]
     },
     {
       "name": "nodemon",
@@ -524,6 +528,10 @@
     },
     {
       "name": "wf_cid_from_array",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "wf_cidv1_from_array",
       "allowedCategories": [ "website" ]
     },
     {

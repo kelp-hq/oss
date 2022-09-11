@@ -23,6 +23,7 @@ const config: UserConfig = {
 			},
 			plugins: []
 		}
+		// exclude: ['electron-fetch']
 		// exclude: ['ipfs-http-client', 'electron-fetch']
 	},
 	build: {
