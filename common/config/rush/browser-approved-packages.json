@@ -503,6 +503,10 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "vite-plugin-externals",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "vite-plugin-iso-import",
       "allowedCategories": [ "website" ]
     },

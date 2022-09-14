@@ -1,51 +1,34 @@
 {
-  "name": "@kelp_digital/ipfs-cli",
-  "description": "ipfs-cli",
+  "name": "@kelp_digital/ipfs-api-client",
+  "description": "Opinionated package for interacting with the IPFS http api using Axios in browser and node.",
   "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
   "version": "0.0.1",
-  "bin": {
-    "ipfsCli": "dist/ipfsCli.js"
-  },
   "keywords": [
     "ipfs",
     "auth",
-    "gateway",
-    "anagolay"
+    "client",
+    "http"
   ],
-  "license": "GPL3",
-  "type": "commonjs",
+  "license": "AGPL3",
+  "type": "module",
   "licenseFile": "./LICENSE",
-  "main": "./lib/start.js",
-  "types": "./lib/ipfs-cli.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/ipfs-api-client.d.ts",
   "scripts": {
-    "build:bin": "pkg --compress Brotli  --targets node17-linux ./dist/ipfsCli.js --out-path binaries",
-    "build:all": "pnpm build && pnpm build:bin",
-    "build": "pnpm build:prod",
-    "build:prod": "NODE_ENV=production heft test --clean",
-    "start": "heft start --clean",
+    "build": "heft build --clean",
     "watch": "heft build --clean --watch",
-    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "serve": "node ./lib/start.js",
-    "link:bin": "sudo ln -sf $PWD/dist/ipfsCli.js /usr/local/bin/ipfsCli-dev && sudo chmod +x /usr/local/bin/ipfsCli-dev",
-    "rm:bin": "sudo rm -f /usr/local/bin/ipfsCli-dev",
-    "build:dev": "pnpm build && pnpm rm:bin && pnpm link:bin"
+    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@anagolay/utils": "0.0.1",
-    "ipfs-http-client": "56.0.0",
     "pino": "8.0.0",
-    "commander": "9.2.0",
     "ramda": "0.28.0",
-    "clui": "0.3.6",
     "byte-size": "8.1.0",
     "it-all": "1.0.6",
     "@sentry/node": "7.6.0",
     "@sentry/tracing": "7.6.0",
-    "inquirer": "9.0.2",
     "yaml": "2.1.1",
-    "undici": "5.6.1",
-    "ipfs-core-types": "0.11.1",
-    "node-fetch": "3.2.6"
+    "axios": "0.27.2"
   },
   "devDependencies": {
     "tslib": "2.4.0",

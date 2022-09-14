@@ -1,0 +1,8 @@
+{
+  "extends": "./node_modules/@rushstack/heft-node-rig/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "types": ["heft-jest", "node", "webpack-env"],
+    "module": "ESNext"
+  }
+}
