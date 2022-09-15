@@ -1,5 +1,7 @@
 <script lang="ts">
-	import PasteImage from '$lib/drive/PasteImage.svelte';
+	import PasteImage from '$lib/actions/paste/PasteImage.svelte';
 </script>
 
-<PasteImage />
+<div class="px-6">
+	<PasteImage />
+</div>

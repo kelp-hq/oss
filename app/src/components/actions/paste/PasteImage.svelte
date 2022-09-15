@@ -6,13 +6,22 @@
 	import { isNil } from 'ramda';
 
 	import { onMount } from 'svelte';
-	import { calculateCid } from '../../utils/helpers';
+	import { calculateCid } from '../../../utils/helpers';
 
 	import { pasteImageStore } from './store';
 	import ExifReader from 'exifreader';
 
 	import { isEmpty } from 'ramda';
-	import { addFileViaContent } from './utils';
+
+	import * as PixJs from 'piexifjs';
+	import { replace } from 'ramda';
+	import { convert } from '../../../utils/pngToJpg';
+
+	import { Buffer as BufferPolyfill } from 'buffer';
+	declare var Buffer: typeof BufferPolyfill;
+	globalThis.Buffer = BufferPolyfill;
+
+	console.log('buffer', Buffer.from('foo', 'hex'));
 
 	let loadingBlob: boolean = false;
 
@@ -22,11 +31,21 @@
 		var uint8View = new Uint8Array($pasteImageStore.imageBuffer);
 		const cid = await calculateCid(uint8View);
 
-		const ipfsUpload = await addFileViaContent(uint8View, {});
 		console.log('cid', cid);
-		console.log('ipfs-c dis', ipfsUpload);
 	}
 
+	async function showMetadata() {
+		const imageBuffer = await (await fetch($pasteImageStore.src)).arrayBuffer();
+		$pasteImageStore.imageBuffer = imageBuffer;
+
+		const tags = ExifReader.load(imageBuffer);
+		console.log('ExifREader [tags]', tags);
+
+		const imageJpeg = await convert(new Uint8Array(imageBuffer));
+
+		const pixTags = PixJs.load(imageJpeg);
+		console.log('piexifjs [tags]', pixTags);
+	}
 	onMount(() => {
 		// https://w3c.github.io/clipboard-apis/#clipboard-event-api
 		document.addEventListener('paste', (event) => {
@@ -64,11 +83,6 @@
 						// console.log(event.target.result); // data url!
 						const src = event.target?.result as string;
 						$pasteImageStore.src = src;
-						const imageBuffer = await (await fetch(src)).arrayBuffer();
-						$pasteImageStore.imageBuffer = imageBuffer;
-
-						const tags = ExifReader.load(imageBuffer);
-						console.log('tags', tags);
 					};
 					//https://developer.mozilla.org/en-US/docs/Web/API/FileReader/progress_event
 					reader.onprogress = (event) => {
@@ -122,6 +136,9 @@
 			</div>
 			<div class="w-full flex justify-between mt-4">
 				<button class="btn btn-ghost btn-outline normal-case">Cancel</button>
+				<button class="btn btn-ghost btn-outline normal-case" on:click={showMetadata}
+					>Show metadata</button
+				>
 				<button
 					class="btn btn-primary"
 					disabled={isEmpty($pasteImageStore.src)}

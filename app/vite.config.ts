@@ -1,15 +1,25 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 
-import type { UserConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import { isoImport } from 'vite-plugin-iso-import';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 import { resolve } from 'path';
 
 const config: UserConfig = {
 	logLevel: 'info',
-	plugins: [isoImport(), sveltekit(), wasm(), topLevelAwait()],
+	plugins: [
+		isoImport(),
+		sveltekit(),
+		wasm(),
+		topLevelAwait(),
+		viteExternalsPlugin({
+			electron: 'electron'
+			// lazy: ['React', 'lazy']
+		})
+	],
 	resolve: {
 		alias: {
 			$src: resolve('./src')
@@ -54,4 +64,19 @@ const config: UserConfig = {
 	// },
 };
 
-export default config;
+export default defineConfig((opts) => {
+	console.log(opts);
+
+	const { command, mode, ssrBuild } = opts;
+	if (command === 'serve') {
+		return {
+			// dev specific config
+		};
+	} else {
+		// command === 'build'
+		// return {
+		//   // build specific config
+		// }
+		return config;
+	}
+});

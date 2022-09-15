@@ -5,7 +5,8 @@
 
 <!-- <div> -->
 <Navbar />
-<div class="bg-base-200 min-h-screen container mx-auto px-4">
+<!-- <div class="bg-base-200 min-h-screen container mx-auto px-4"> -->
+<div class="bg-base-200 min-h-screen">
 	<slot />
 </div>
 <!-- <div class="hero h-screen"> -->

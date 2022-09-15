@@ -47,6 +47,10 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "@kelp_digital/ipfs-api-client",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "@kelp_digital/sveltekit-adapter-macula",
       "allowedCategories": [ "website" ]
     },
@@ -129,6 +133,10 @@
     {
       "name": "@sentry/types",
       "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "@silvia-odwyer/photon",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "@sinclair/typebox",
@@ -355,6 +363,10 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
+      "name": "jpeg-js",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "level",
       "allowedCategories": [ "production" ]
     },
@@ -387,6 +399,10 @@
       "allowedCategories": [ "production" ]
     },
     {
+      "name": "piexifjs",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "pino",
       "allowedCategories": [ "production", "tools" ]
     },
@@ -401,6 +417,10 @@
     {
       "name": "pkg",
       "allowedCategories": [ "production", "tools" ]
+    },
+    {
+      "name": "png-js",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "postcss",

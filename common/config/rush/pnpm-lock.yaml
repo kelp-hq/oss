@@ -7,6 +7,7 @@ importers:
 
   ../../app:
     specifiers:
+      '@kelp_digital/ipfs-api-client': workspace:*
       '@kelp_digital/sveltekit-adapter-macula': workspace:*
       '@playwright/test': 1.25.0
       '@polkadot/api': 9.2.2
@@ -16,6 +17,7 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      '@silvia-odwyer/photon': ~0.3.11
       '@sveltejs/adapter-static': 1.0.0-next.41
       '@sveltejs/kit': 1.0.0-next.431
       '@sveltejs/package': 1.0.0-next.3
@@ -31,12 +33,14 @@ importers:
       eslint-plugin-simple-import-sort: 7.0.0
       eslint-plugin-svelte3: 4.0.0
       eslint-plugin-unused-imports: 2.0.0
-      exifreader: ~4.5.1
+      exifreader: 4.5.1
       identicon.js: ~2.3.3
-      ipfs-http-client: 56.0.0
+      jpeg-js: ~0.4.4
       multiformats: 9.6.4
       nanoid: 3.3.2
       node-fetch: 3.2.6
+      piexifjs: 1.0.6
+      png-js: ~1.0.0
       postcss: 8.4.16
       prettier: 2.5.1
       prettier-plugin-svelte: 2.7.0
@@ -61,12 +65,16 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      '@silvia-odwyer/photon': 0.3.11
       exifreader: 4.5.1
-      ipfs-http-client: 56.0.0_node-fetch@3.2.6
+      jpeg-js: 0.4.4
       node-fetch: 3.2.6
+      piexifjs: 1.0.6
+      png-js: 1.0.0
       ramda: 0.28.0
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
+      '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
       '@kelp_digital/sveltekit-adapter-macula': link:../tools/sveltekit-adapter-macula
       '@playwright/test': 1.25.0
       '@sveltejs/adapter-static': 1.0.0-next.41
@@ -2268,6 +2276,10 @@ packages:
     dependencies:
       '@sentry/types': 7.6.0
       tslib: 1.14.1
+    dev: false
+
+  /@silvia-odwyer/photon/0.3.11:
+    resolution: {integrity: sha512-KOpEdNzgstCOax65eyVLiBE4NzSK+GWSFsFPNqb9NmARJJyG5FP6Qygehdw+K/6+roXCf+4Sovd74LbWxWU+kQ==}
     dev: false
 
   /@sinonjs/commons/1.8.3:
@@ -7048,6 +7060,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /jpeg-js/0.4.4:
+    resolution: {integrity: sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg==}
+    dev: false
+
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: true
@@ -7988,6 +8004,10 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
+  /piexifjs/1.0.6:
+    resolution: {integrity: sha512-0wVyH0cKohzBQ5Gi2V1BuxYpxWfxF3cSqfFXfPIpl5tl9XLS5z4ogqhUCD20AbHi0h9aJkqXNJnkVev6gwh2ag==}
+    dev: false
+
   /pify/2.3.0:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
@@ -8102,6 +8122,10 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dev: true
+
+  /png-js/1.0.0:
+    resolution: {integrity: sha512-k+YsbhpA9e+EFfKjTCH3VW6aoKlyNYI6NYdTfDL4CIvFnvsuO84ttonmZE7rc+v23SLTH8XX+5w/Ak9v0xGY4g==}
+    dev: false
 
   /portfinder/1.0.32:
     resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
