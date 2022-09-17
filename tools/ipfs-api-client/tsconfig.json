@@ -3,6 +3,8 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "types": ["heft-jest", "node", "webpack-env"],
-    "module": "ESNext"
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node"
   }
 }

@@ -68,15 +68,15 @@ export default defineConfig((opts) => {
 	console.log(opts);
 
 	const { command, mode, ssrBuild } = opts;
-	if (command === 'serve') {
-		return {
-			// dev specific config
-		};
-	} else {
-		// command === 'build'
-		// return {
-		//   // build specific config
-		// }
-		return config;
-	}
+	// if (command === 'serve') {
+	// 	return {
+	// 		// dev specific config
+	// 	};
+	// } else {
+	// 	// command === 'build'
+	// 	// return {
+	// 	//   // build specific config
+	// 	// }
+	// }
+	return config;
 });

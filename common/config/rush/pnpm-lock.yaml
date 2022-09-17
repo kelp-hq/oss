@@ -23,6 +23,7 @@ importers:
       '@sveltejs/package': 1.0.0-next.3
       '@tailwindcss/typography': 0.5.7
       '@types/identicon.js': ~2.3.1
+      '@types/pngjs': ~6.0.1
       '@types/ramda': 0.28.14
       '@typescript-eslint/eslint-plugin': 5.27.0
       '@typescript-eslint/parser': 5.27.0
@@ -41,6 +42,7 @@ importers:
       node-fetch: 3.2.6
       piexifjs: 1.0.6
       png-js: ~1.0.0
+      pngjs: ~6.0.0
       postcss: 8.4.16
       prettier: 2.5.1
       prettier-plugin-svelte: 2.7.0
@@ -49,6 +51,7 @@ importers:
       svelte-check: 2.9.0
       svelte-preprocess: 4.10.7
       tailwindcss: 3.1.8
+      theme-change: ~2.2.0
       tslib: 2.4.0
       typescript: 4.6.4
       vite: 3.0.4
@@ -71,7 +74,9 @@ importers:
       node-fetch: 3.2.6
       piexifjs: 1.0.6
       png-js: 1.0.0
+      pngjs: 6.0.0
       ramda: 0.28.0
+      theme-change: 2.2.0
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
       '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
@@ -82,6 +87,7 @@ importers:
       '@sveltejs/package': 1.0.0-next.3_44tpknnzfvmcy3kcedasq2aj2i
       '@tailwindcss/typography': 0.5.7_tailwindcss@3.1.8
       '@types/identicon.js': 2.3.1
+      '@types/pngjs': 6.0.1
       '@types/ramda': 0.28.14
       '@typescript-eslint/eslint-plugin': 5.27.0_bmkwjfsdzl3qsmmksash2s7t5q
       '@typescript-eslint/parser': 5.27.0_pm7osnb22e4oktq33hptgspr5i
@@ -114,6 +120,7 @@ importers:
     specifiers:
       '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
       '@anagolay/utils': 0.0.1
+      '@kelp_digital/ipfs-api-client': workspace:*
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -166,6 +173,7 @@ importers:
     dependencies:
       '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
       '@anagolay/utils': 0.0.1
+      '@kelp_digital/ipfs-api-client': link:../../tools/ipfs-api-client
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
@@ -2827,6 +2835,12 @@ packages:
 
   /@types/node/18.7.13:
     resolution: {integrity: sha512-46yIhxSe5xEaJZXWdIBP7GU4HDTG8/eo0qd9atdiL+lFpA03y8KS+lkTN834TWJj5767GbWv4n/P6efyTFt1Dw==}
+
+  /@types/pngjs/6.0.1:
+    resolution: {integrity: sha512-J39njbdW1U/6YyVXvC9+1iflZghP8jgRf2ndYghdJb5xL49LYDB+1EuAxfbuJ2IBbWIL3AjHPQhgaTxT3YaYeg==}
+    dependencies:
+      '@types/node': 18.7.13
+    dev: true
 
   /@types/prettier/2.6.0:
     resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}
@@ -8127,6 +8141,11 @@ packages:
     resolution: {integrity: sha512-k+YsbhpA9e+EFfKjTCH3VW6aoKlyNYI6NYdTfDL4CIvFnvsuO84ttonmZE7rc+v23SLTH8XX+5w/Ak9v0xGY4g==}
     dev: false
 
+  /pngjs/6.0.0:
+    resolution: {integrity: sha512-TRzzuFRRmEoSW/p1KVAmiOgPco2Irlah+bGFCeNfJXxxYGwSw7YwAOAcd7X28K/m5bjBWKsC29KyoMfHbypayg==}
+    engines: {node: '>=12.13.0'}
+    dev: false
+
   /portfinder/1.0.32:
     resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
     engines: {node: '>= 0.12.0'}
@@ -9426,6 +9445,10 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
     dev: true
+
+  /theme-change/2.2.0:
+    resolution: {integrity: sha512-vvgZEEfmH3yZGq2bWHyzs2AOG1SRfNnCvWbEnPzGpdvvCmAWtOsEdg4H6k/OMapegG+LEQvQ76tQoN9B+FT7rg==}
+    dev: false
 
   /thread-stream/1.0.0:
     resolution: {integrity: sha512-2Sw29jWubQWOcVa7MhLHJ51wjksUD/GHN4Fy3hP9w9DYTujifoZGSKBl54CMLRXWoD5h2pD707kY3fAdzhcwAg==}

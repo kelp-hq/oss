@@ -48,7 +48,7 @@
     },
     {
       "name": "@kelp_digital/ipfs-api-client",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production", "website" ]
     },
     {
       "name": "@kelp_digital/sveltekit-adapter-macula",
@@ -423,6 +423,10 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "pngjs",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "postcss",
       "allowedCategories": [ "website" ]
     },
@@ -497,6 +501,10 @@
     {
       "name": "tar",
       "allowedCategories": [ "production" ]
+    },
+    {
+      "name": "theme-change",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "ts-loader",

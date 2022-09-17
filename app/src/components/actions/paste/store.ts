@@ -1,11 +1,12 @@
 import { get, writable } from 'svelte/store';
-
 export interface IPasteStoreInterface {
 	src: string;
 	imageBuffer: ArrayBuffer;
 	title?: string;
 	description?: string;
 	encrypt: boolean;
+	height: number;
+	width: number;
 }
 
 function PasteImageStoreFn() {
@@ -14,7 +15,9 @@ function PasteImageStoreFn() {
 		imageBuffer: new Uint8Array(),
 		title: undefined,
 		description: undefined,
-		encrypt: false
+		encrypt: false,
+		width: 0,
+		height: 0
 	};
 	const { update, subscribe, set } = writable<IPasteStoreInterface>(defaultState);
 	return {

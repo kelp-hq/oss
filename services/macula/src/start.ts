@@ -1,4 +1,4 @@
-// Copyright (c) Kelp Digital OY. All rights reserved. For more info on license see `LICENSE` file.
+// Copyright (c) Kelp Digital OU. All rights reserved. For more info on license see `LICENSE` file.
 
 /**
  * Macula is the on-the-fly image processing service on top of IPFS
@@ -7,6 +7,9 @@
  */
 
 /* eslint-disable @rushstack/typedef-var */
+import { add } from '@kelp_digital/ipfs-api-client';
+
+console.log('ipfs', add);
 
 import axios from 'axios';
 import compression from 'compression';
@@ -25,6 +28,7 @@ import { createProxy } from './proxyServer';
 import { createRedisInstance } from './redisClient';
 import { initSentry, sentry } from './sentry';
 import { getEnv } from './utils/env';
+import { logRouterRoutes } from './utils/expressHelpers';
 import { log } from './utils/logger';
 import { StrategyValidationError } from './web3-auth-handler/errors';
 
@@ -125,17 +129,20 @@ app.get('/favicon.ico', async (req: Request, res: Response) => {
 });
 
 if (includes('image_processing', enabledRoutes)) {
-  log.trace('Enabling route: image_processing');
+  log.trace('Enabling image_processing with these endpoints:');
+  logRouterRoutes(maculaRouter);
   app.use(maculaRouter);
 }
 
 if (includes('hosting', enabledRoutes)) {
-  log.trace('Enabling route: hosting');
+  log.trace('Enabling hosting with these endpoints:');
+  logRouterRoutes(hostingRouter);
   app.use(hostingRouter);
 }
 
 if (includes('ipfs_api', enabledRoutes)) {
-  log.trace('Enabling route: ipfs_api');
+  log.trace('Enabling ipfs_api with these endpoints');
+  logRouterRoutes(ipfsApiRouter);
   app.use(ipfsApiRouter);
 }
 

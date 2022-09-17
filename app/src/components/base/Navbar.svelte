@@ -1,5 +1,6 @@
 <script>
 	import AccountSelect from '../polkadotAccounts/AccountSelect.svelte';
+	import ThemeChange from './ThemeChange.svelte';
 </script>
 
 <div class="navbar bg-base-100">
@@ -12,10 +13,9 @@
 			<li><a href="/drive">Drive</a></li>
 		</ul>
 	</div>
-	<div class="navbar-center">
-		<!-- something here  -->
-	</div>
+	<div class="navbar-center" />
 	<div class="navbar-end">
+		<ThemeChange />
 		<AccountSelect />
 	</div>
 </div>

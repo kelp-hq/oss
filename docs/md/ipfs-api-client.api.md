@@ -4,6 +4,9 @@
 
 ```ts
 
+// @public
+export function add(): void;
+
 // (No @packageDocumentation comment for this package)
 
 ```

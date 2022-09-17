@@ -1,3 +1,9 @@
+<script>
+	import { add } from '@kelp_digital/ipfs-api-client';
+
+	console.log('ipfs', add);
+</script>
+
 <div class="hero min-h-screen">
 	<div class="hero-content text-center">
 		<div class="max-w-md">
