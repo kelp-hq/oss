@@ -14,7 +14,7 @@
 		</ul>
 	</div>
 	<div class="navbar-center" />
-	<div class="navbar-end">
+	<div class="navbar-end gap-2">
 		<ThemeChange />
 		<AccountSelect />
 	</div>

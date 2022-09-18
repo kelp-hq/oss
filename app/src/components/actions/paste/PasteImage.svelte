@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Spinner from '$lib/base/Spinner.svelte';
-	import { fade } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
 
 	import { isNil } from 'ramda';
 
@@ -11,7 +9,7 @@
 	import { pasteImageStore } from './store';
 	import ExifReader from 'exifreader';
 
-	import Pix from 'piexifjs';
+	import { type IExifElement, TagValues, dump as pixDump, insert as pixInsert } from 'exif-library';
 
 	import { isEmpty } from 'ramda';
 	import { polkadotAccounts } from '$lib/polkadotAccounts/store';
@@ -39,6 +37,10 @@
 	}
 
 	async function showMetadata() {
+		if (isEmpty($polkadotAccounts.selectedAccount)) {
+			throw new Error('select the account');
+		}
+
 		let utf8Decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
 		let utf8Encoder = new TextEncoder(); // default 'utf-8' or 'utf8'
 
@@ -54,35 +56,43 @@
 		// console.log('buffer', buffer);
 		// const base64Canvas = canvasElement.toDataURL("image/jpeg").split(';base64,')[1];
 		const base64Canvas = canvasElement.toDataURL('image/jpeg');
-		var zeroth = {};
 
-		var exif = {};
-		// exif[Pix.ImageIFD.XPTitle] = new Array(new TextEncoder().encode('adsadas'));
-		zeroth[Pix.ImageIFD.XPTitle] = [...utf8Encoder.encode($pasteImageStore.title)];
-		zeroth[Pix.ImageIFD.ImageDescription] = $pasteImageStore.description;
-		zeroth[Pix.ImageIFD.XPComment] = [...utf8Encoder.encode('comment')];
-		zeroth[Pix.ImageIFD.Copyright] = `urn:substrate:${$polkadotAccounts.selectedAccount}`;
-		zeroth[Pix.ImageIFD.Software] = 'Macula Screenshot';
-		exif[Pix.ExifIFD.DateTimeOriginal] = new Date().toUTCString();
+		console.log(utf8Encoder.encode($pasteImageStore.title), $pasteImageStore.title);
 
-		var exifObj = { '0th': zeroth, Exif: exif };
+		const zeroth: IExifElement = {
+			[TagValues.ImageIFD.XPTitle]: [...utf8Encoder.encode($pasteImageStore.title)],
+			[TagValues.ImageIFD.ImageDescription]: $pasteImageStore.description,
+			[TagValues.ImageIFD.Copyright]: `urn:substrate:${$polkadotAccounts.selectedAccount}`,
+			[TagValues.ImageIFD.Software]: 'Macula Screenshot'
+		};
 
-		var exifStr = Pix.dump(exifObj);
-		var inserted = Pix.insert(exifStr, base64Canvas);
+		const exif: IExifElement = {
+			[TagValues.ExifIFD.DateTimeOriginal]: new Date().toUTCString()
+		};
 
-		// const pp = Pix.load(inserted);
-		// console.log('pp', pp, inserted);
+		// zeroth[Pix.TagValues.ImageIFD.XPComment] = [...utf8Encoder.encode('comment')];
+
+		const exifObj = { '0th': zeroth, Exif: exif };
+
+		const exifStr = pixDump(exifObj);
+		const inserted = pixInsert(exifStr, base64Canvas);
+
+		console.log('exif size %s bytes', exifStr.length);
 
 		const imageBufferInserted = await (await fetch(inserted)).arrayBuffer();
+
+		console.log('image size %s bytes', imageBufferInserted.byteLength);
+
 		const tagsInserted = ExifReader.load(imageBufferInserted);
-		console.log(
-			'ExifREader [tags]',
-			tagsInserted,
-			utf8Decoder.decode(new Uint8Array(tagsInserted.XPTitle.value as any)),
-			tagsInserted.ImageDescription?.value[0],
-			utf8Decoder.decode(new Uint8Array(tagsInserted.XPComment.value as any)),
-			tagsInserted.Copyright?.value[0]
-		);
+
+		// console.log(
+		// 	'ExifREader [tags]',
+		// 	tagsInserted,
+		// 	utf8Decoder.decode(new Uint8Array(tagsInserted.XPTitle.value as any)),
+		// 	tagsInserted.ImageDescription?.value[0],
+		// 	// utf8Decoder.decode(new Uint8Array(tagsInserted.XPComment.value as any)),
+		// 	tagsInserted.Copyright?.value[0]
+		// );
 	}
 	function isSizedEvent(e: any): e is SizedEvent {
 		return e && e.width !== undefined && e.height !== undefined;
@@ -182,7 +192,7 @@
 		{/if}
 		<div class="flex flex-row gap-6">
 			<div class="w-2/3 min-h-24">
-				<div class="h-full flex flex-col items-center justify-center rounded-md">
+				<div class="h-full rounded-md">
 					<!-- IMAGE IS HERE  -->
 					<!-- {#if $pasteImageStore.src && !loadingBlob}
 						<img class="rounded-md" alt="Pasted content" src={$pasteImageStore.src} />
