@@ -12,7 +12,7 @@
 	import { type IExifElement, TagValues, dump as pixDump, insert as pixInsert } from 'exif-library';
 
 	import { isEmpty } from 'ramda';
-	import { polkadotAccounts } from '$lib/polkadotAccounts/store';
+	import { polkadotAccountsStore } from '$lib/polkadotAccounts/store';
 
 	let loadingBlob: boolean = false;
 
@@ -37,7 +37,7 @@
 	}
 
 	async function showMetadata() {
-		if (isEmpty($polkadotAccounts.selectedAccount)) {
+		if (isEmpty($polkadotAccountsStore.selectedAccount)) {
 			throw new Error('select the account');
 		}
 
@@ -48,29 +48,21 @@
 		$pasteImageStore.imageBuffer = imageBuffer;
 
 		const tags = ExifReader.load(imageBuffer);
-		console.log('ExifREader [tags]', tags);
-
-		// var imageData = ctx.getImageData(0, 0, $pasteImageStore.width, $pasteImageStore.height);
-		// var buffer = imageData.data.buffer; // ArrayBuffer
-
-		// console.log('buffer', buffer);
-		// const base64Canvas = canvasElement.toDataURL("image/jpeg").split(';base64,')[1];
 		const base64Canvas = canvasElement.toDataURL('image/jpeg');
 
-		console.log(utf8Encoder.encode($pasteImageStore.title), $pasteImageStore.title);
-
 		const zeroth: IExifElement = {
-			[TagValues.ImageIFD.XPTitle]: [...utf8Encoder.encode($pasteImageStore.title)],
 			[TagValues.ImageIFD.ImageDescription]: $pasteImageStore.description,
-			[TagValues.ImageIFD.Copyright]: `urn:substrate:${$polkadotAccounts.selectedAccount}`,
+			[TagValues.ImageIFD.Copyright]: `urn:substrate:${$polkadotAccountsStore.selectedAccount}`,
 			[TagValues.ImageIFD.Software]: 'Macula Screenshot'
 		};
+
+		if (!isEmpty($pasteImageStore.title)) {
+			zeroth[TagValues.ImageIFD.XPTitle] = [...utf8Encoder.encode($pasteImageStore.title)];
+		}
 
 		const exif: IExifElement = {
 			[TagValues.ExifIFD.DateTimeOriginal]: new Date().toUTCString()
 		};
-
-		// zeroth[Pix.TagValues.ImageIFD.XPComment] = [...utf8Encoder.encode('comment')];
 
 		const exifObj = { '0th': zeroth, Exif: exif };
 
@@ -93,9 +85,6 @@
 		// 	// utf8Decoder.decode(new Uint8Array(tagsInserted.XPComment.value as any)),
 		// 	tagsInserted.Copyright?.value[0]
 		// );
-	}
-	function isSizedEvent(e: any): e is SizedEvent {
-		return e && e.width !== undefined && e.height !== undefined;
 	}
 
 	onMount(() => {
@@ -191,7 +180,7 @@
 			<Spinner />
 		{/if}
 		<div class="flex flex-row gap-6">
-			<div class="w-2/3 min-h-24">
+			<div class="w-2/3  min-h-fit">
 				<div class="h-full rounded-md">
 					<!-- IMAGE IS HERE  -->
 					<!-- {#if $pasteImageStore.src && !loadingBlob}
@@ -220,10 +209,10 @@
 						class="w-full h-72 textarea text-xl focus:outline-0"
 						bind:value={$pasteImageStore.description}
 					/>
-					<label class="label cursor-pointer w-full">
+					<!-- <label class="label cursor-pointer w-full">
 						<span class="label-text">Encrypt</span>
 						<input type="checkbox" class="toggle" bind:checked={encrypt} />
-					</label>
+					</label> -->
 				</div>
 			</div>
 		</div>

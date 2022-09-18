@@ -263,6 +263,10 @@
       "allowedCategories": [ "production", "tools", "website" ]
     },
     {
+      "name": "exif-library",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "exifreader",
       "allowedCategories": [ "website" ]
     },
