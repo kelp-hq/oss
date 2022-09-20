@@ -82,7 +82,8 @@ app.use(json());
  */
 app.use(compression());
 
-app.use(express.urlencoded({ extended: true }));
+/// enabling this breaks file upload
+// app.use(express.urlencoded({ extended: true }));
 
 /**
  * Catch All route, useful for debugging

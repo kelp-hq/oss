@@ -1,8 +1,8 @@
-import type { AxiosInstance } from 'axios';
+import type { AxiosError, AxiosInstance } from 'axios';
 import axios from 'axios';
 import { Request, Response, Router } from 'express';
 import http from 'http';
-import Server from 'http-proxy';
+import type Server from 'http-proxy';
 import httpProxy from 'http-proxy';
 import https from 'https';
 import { replace } from 'ramda';
@@ -26,18 +26,6 @@ export const axiosGatewayProxyInstance: AxiosInstance = axios.create({
   }
 });
 
-const proxy: Server = httpProxy.createProxyServer({});
-
-export const axiosApiProxyInstance: AxiosInstance = axios.create({
-  // httpAgent: new http.Agent({ keepAlive: true }),
-  // httpsAgent: new https.Agent({ keepAlive: true }),
-  proxy: {
-    host: '127.0.0.1',
-    port: 5001,
-    protocol: 'http:'
-  }
-});
-
 // for some reason this is used in the whole app
 
 ipfsApiRouter
@@ -46,76 +34,75 @@ ipfsApiRouter
   .post(async (req: Request, res: Response) => {
     req.url = replace('ipfs_api', 'api', req.url);
     console.log('Proxying API %s', ipfsApiURL + req.url);
-    // if this doesn't work use other proxy
-    // try {
-    proxy.on('proxyReq', (proxyReq) => {
+
+    try {
+      // if this doesn't work use other proxy
+
+      const proxy: Server = httpProxy.createProxyServer({});
+      // proxy.on('proxyReq', (proxyReq) => {
+      // console.log('sa');
       // console.log(proxyReq);
-    });
-    proxy.on('proxyRes', (proxyRes) => {
-      proxyRes.headers['X-Powered-By'] = `Macula/v${version}`;
-    });
+      // });
+      proxy.on('proxyRes', (proxyRes) => {
+        proxyRes.headers['X-Powered-By'] = `macula/${version}`;
+        proxyRes.headers.Server = `macula/${version}`;
+        proxyRes.headers['x-ipfs-version'] = proxyRes.headers.server;
+      });
 
-    proxy.web(req, res, { target: ipfsApiURL }, (error) => {
-      console.log(req.body);
+      proxy.web(req, res, { target: ipfsApiURL }, (error) => {
+        console.log(req.body);
 
-      console.error(error);
-      res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(
-        JSON.stringify({
-          Error: error.message
-        })
-      );
-    });
+        console.error(error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(
+          JSON.stringify({
+            Error: error.message
+          })
+        );
+      });
 
-    // const { headers, data, status } = await axiosApiProxyInstance({
-    //   method: 'post',
-    //   url: ipfsApiURL + ipfsApiPath,
-    //   onUploadProgress: (progressEvent: unknown) => {
-    //     console.log('progressEvent', progressEvent);
-    //   },
-    //   onDownloadProgress: (progressEvent: unknown) => {
-    //     console.log('onDownloadProgress', progressEvent);
-    //   },
-    //   proxy: {
-    //     host: '127.0.0.1',
-    //     port: 5001,
-    //     protocol: 'http'
-    //   }
-    // });
+      /// maybe this will help https://github.com/axios/axios/issues/3971#issuecomment-1159556428
+      // const { headers, data, status } = await axiosApiProxyInstance({
+      //   method: 'post',
+      //   url: req.url,
+      //   // responseType: 'stream',
+      //   proxy: {
+      //     host: '127.0.0.1',
+      //     port: 5001,
+      //     protocol: 'http'
+      //   }
+      // });
 
-    // res
-    //   .status(status)
-    //   .header({
-    //     ...headers,
-    //     'x-powered-by': 'macula/0.7.0',
-    //     server: 'macula/0.7.0',
-    //     'x-ipfs-version': headers.server
-    //   })
-    //   .send(data);
-    // } catch (error) {
-    //   if (error.isAxiosError) {
-    //     const e = error as AxiosError;
-    //     const message = e.message;
-    //     const status = e.response?.status as number;
+      // data.on('data', (data: any) => {
+      //   console.log('stream data', data);
+      // });
 
-    //     res.status(status).json({ message });
-    //   } else {
-    //     console.error(error);
+      // data.on('end', () => {
+      //   console.log('stream done');
+      // });
+      // data.pipe(res);
+      // res
+      //   .status(status)
+      //   .header({
+      //     ...headers,
+      //     'x-powered-by': 'macula/0.7.0',
+      //     server: `Macula/v${version}`,
+      //     'x-ipfs-version': headers.server
+      //   })
+      //   .send(data);
+    } catch (error) {
+      if (error.isAxiosError) {
+        const e = error as AxiosError;
+        console.log(e);
 
-    //     res.status(500).send({ message: error.message });
-    //   }
-    // }
+        const message = [e.message, e.response?.data];
+        const status = e.response?.status as number;
 
-    // const proxy = httpProxy.createProxyServer();
-    // proxy.web(req, res, { target: ipfsApiURL }, (error) => {
-    //   console.log(req.body);
+        res.status(status).json({ messages: message });
+      } else {
+        console.error(error);
 
-    //   console.error(error);
-    //   res.writeHead(500, { 'Content-Type': 'application/json' });
-    //   res.end(
-    //     JSON.stringify({
-    //       Error: error.message
-    //     })
-    //   );
-    // });
+        res.status(500).send({ message: error.message });
+      }
+    }
   });

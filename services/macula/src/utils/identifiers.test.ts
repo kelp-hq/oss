@@ -1,6 +1,6 @@
 import { makeUniqueFileNameBasedOnURLAndSearchParams } from './identifiers';
 
-describe('', () => {
+describe('Identifiers test suite', () => {
   it('should calculate filename based on the path and search params', () => {
     expect(
       makeUniqueFileNameBasedOnURLAndSearchParams(
