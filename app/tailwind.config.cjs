@@ -1,11 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+/** @type {import('tailwindcss').Config} */ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-	theme: {
-		container: {
-			center: true
-		}
-	},
+	theme: { container: { center: true } },
 	plugins: [require('@tailwindcss/typography'), require('daisyui')],
 	daisyui: {
 		styled: true,
@@ -50,15 +45,15 @@ module.exports = {
 			'winter',
 			{
 				macula: {
-					primary: '#2B2D42',
-					secondary: '#6366f1',
-					accent: '#FF7287',
-					neutral: '#8D99AE',
-					'base-100': '#111827',
-					info: '#EDF2F4',
-					success: '#4ade80',
-					warning: '#f59e0b',
-					error: '#b91c1c'
+					primary: '#6366F1',
+					secondary: '#FF7287',
+					accent: '#5CA4AA',
+					neutral: '#2B2D42',
+					'base-100': '#24252B',
+					info: '#F07887',
+					success: '#5BC884',
+					warning: '#E7A532',
+					error: '#B93832'
 				}
 			}
 		]

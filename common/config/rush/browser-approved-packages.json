@@ -200,7 +200,7 @@
     },
     {
       "name": "axios",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "tools", "website" ]
     },
     {
       "name": "byte-size",
@@ -388,7 +388,7 @@
     },
     {
       "name": "multiformats",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "tools", "website" ]
     },
     {
       "name": "nanoid",
@@ -480,7 +480,7 @@
     },
     {
       "name": "svelte",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "tools", "website" ]
     },
     {
       "name": "svelte-check",
@@ -492,6 +492,10 @@
     },
     {
       "name": "svelte-preprocess",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "svelte-seo",
       "allowedCategories": [ "website" ]
     },
     {
@@ -532,7 +536,7 @@
     },
     {
       "name": "vite",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "tools", "website" ]
     },
     {
       "name": "vite-plugin-externals",

@@ -12,8 +12,26 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
+	"type": "module",
+	"dependencies": {
+		"wf_cidv1_from_array": "https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma",
+		"ramda": "0.28.0",
+		"node-fetch": "3.2.6",
+		"@polkadot/extension-inject": "0.44.5",
+		"@polkadot/extension-dapp": "0.44.5",
+		"@polkadot/api": "9.2.2",
+		"@polkadot/types": "9.2.2",
+		"@polkadot/api-augment": "8.14.1",
+		"@polkadot/util": "10.1.7",
+		"@polkadot/types-codec": "9.2.2",
+		"exifreader": "4.5.1",
+		"@silvia-odwyer/photon": "0.3.11",
+		"piexifjs": "1.0.6",
+		"theme-change": "2.2.0",
+		"exif-library": "2.0.0-alpha.0",
+		"axios": "~0.27.2"
+	},
 	"devDependencies": {
-		"@kelp_digital/sveltekit-adapter-macula": "workspace:*",
 		"@kelp_digital/ipfs-api-client": "workspace:*",
 		"@playwright/test": "1.25.2",
 		"eslint-plugin-simple-import-sort": "8.0.0",
@@ -47,24 +65,7 @@
 		"identicon.js": "2.3.3",
 		"@types/identicon.js": "2.3.1",
 		"@sveltejs/adapter-static": "1.0.0-next.43",
-		"vite-plugin-externals": "0.5.1"
-	},
-	"type": "module",
-	"dependencies": {
-		"wf_cidv1_from_array": "https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma",
-		"ramda": "0.28.0",
-		"node-fetch": "3.2.6",
-		"@polkadot/extension-inject": "0.44.5",
-		"@polkadot/extension-dapp": "0.44.5",
-		"@polkadot/api": "9.2.2",
-		"@polkadot/types": "9.2.2",
-		"@polkadot/api-augment": "8.14.1",
-		"@polkadot/util": "10.1.7",
-		"@polkadot/types-codec": "9.2.2",
-		"exifreader": "4.5.1",
-		"@silvia-odwyer/photon": "0.3.11",
-		"piexifjs": "1.0.6",
-		"theme-change": "2.2.0",
-		"exif-library": "2.0.0-alpha.0"
+		"vite-plugin-externals": "0.5.1",
+		"svelte-seo": "1.4.1"
 	}
 }

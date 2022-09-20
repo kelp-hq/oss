@@ -126,7 +126,7 @@ export interface IUploadParamsSingleFile extends IUploadParams {
  */
 export async function uploadViaAdd(params: IUploadParamsSingleFile): Promise<IIpfsResponse> {
   const { filePath, ipfs, ipfsPath, opts } = params;
-
+  console.log('uploadViaAdd');
   const ipfsFile = await ipfs.add(
     {
       path: ipfsPath,

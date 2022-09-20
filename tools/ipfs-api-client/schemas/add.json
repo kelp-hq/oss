@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "description": "Add the item to the ipfs"
+  },
+  "properties": {},
+  "optionalProperties": {
+    "quiet": {
+      "metadata": {
+        "description": "Write minimal output. Required: no."
+      },
+      "type": "boolean"
+    },
+    "quieter": {
+      "metadata": {
+        "description": "Write only final hash. Required: no."
+      },
+      "type": "boolean"
+    },
+    "silent": {
+      "metadata": {
+        "description": "Write no output. Required: no."
+      },
+      "type": "boolean"
+    },
+    "progress": {
+      "metadata": {
+        "description": "Stream progress data. Required: no."
+      },
+      "type": "boolean"
+    },
+    "trickle": {
+      "metadata": {
+        "description": "Use trickle-dag format for dag generation. Required: no."
+      },
+      "type": "boolean"
+    },
+    "only-hash": {
+      "metadata": {
+        "description": "Only chunk and hash - do not write to disk. Required: no."
+      },
+      "type": "boolean"
+    },
+    "wrap-with-directory": {
+      "metadata": {
+        "description": "Wrap files with a directory object. Required: no."
+      },
+      "type": "boolean"
+    },
+    "chunker": {
+      "metadata": {
+        "description": "Chunking algorithm, size-[bytes], rabin-[min]-[avg]-[max] or buzhash. Default: size-262144. Required: no."
+      },
+      "type": "string"
+    },
+    "pin": {
+      "metadata": {
+        "description": "Pin this object when adding. Default: true. Required: no."
+      },
+      "type": "boolean"
+    },
+
+    "raw-leaves": {
+      "metadata": {
+        "description": "Use raw blocks for leaf nodes. Required: no."
+      },
+      "type": "boolean"
+    },
+    "nocopy": {
+      "metadata": {
+        "description": "Add the file using filestore. Implies raw-leaves. (experimental). Required: no."
+      },
+      "type": "boolean"
+    },
+    "fscache": {
+      "metadata": {
+        "description": "Check the filestore for pre-existing blocks. (experimental). Required: no."
+      },
+      "type": "boolean"
+    },
+    "cid-version": {
+      "metadata": {
+        "description": "CID version. Defaults to 0 unless an option that depends on CIDv1 is passed."
+      },
+      "type": "int8"
+    },
+    "hash": {
+      "metadata": {
+        "description": "Hash function to use. Implies CIDv1 if not sha2-256. (experimental). Default: sha2-256. Required: no."
+      },
+      "type": "string"
+    },
+    "inline": {
+      "metadata": {
+        "description": "Inline small blocks into CIDs. (experimental). Required: no."
+      },
+      "type": "boolean"
+    },
+    "inline-limit": {
+      "metadata": {
+        "description": "Maximum block size to inline. (experimental). Default: 32. Required: no."
+      },
+      "type": "int8"
+    }
+  }
+}

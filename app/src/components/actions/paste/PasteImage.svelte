@@ -1,39 +1,48 @@
 <script lang="ts">
 	import Spinner from '$lib/base/Spinner.svelte';
+	import { add, createHttpClient } from '@kelp_digital/ipfs-api-client';
 
 	import { isNil } from 'ramda';
 
 	import { onMount } from 'svelte';
 	import { calculateCid } from '../../../utils/helpers';
 
-	import { pasteImageStore } from './store';
+	// import { create } from 'ipfs-http-client';
+
 	import ExifReader from 'exifreader';
+	import { pasteImageStore } from './store';
 
-	import { type IExifElement, TagValues, dump as pixDump, insert as pixInsert } from 'exif-library';
+	import { dump as pixDump, insert as pixInsert, TagValues, type IExifElement } from 'exif-library';
 
-	import { isEmpty } from 'ramda';
 	import { polkadotAccountsStore } from '$lib/polkadotAccounts/store';
+	import { isEmpty } from 'ramda';
 
 	let loadingBlob: boolean = false;
 
-	let encrypt: boolean = false;
+	// let encrypt: boolean = false;
 	/**
 	 * WE keep our image here
 	 */
 	let canvasElement: HTMLCanvasElement;
 
+	/**
+	 * Canvas context
+	 */
 	let ctx: CanvasRenderingContext2D;
 
-	interface SizedEvent {
-		width: number;
-		height: number;
-	}
+	async function uploadImage() {
+		const ipfsInstance = await createHttpClient({
+			axiosOpts: {
+				baseURL: 'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0'
+			}
+		});
 
-	async function uploadBlob() {
 		var uint8View = new Uint8Array($pasteImageStore.imageBuffer);
 		const cid = await calculateCid(uint8View);
 
-		console.log('cid', cid);
+		console.log('wf-cid', cid);
+		const addedCid = await add({ ipfs: ipfsInstance, content: uint8View });
+		console.log('addedCid', addedCid);
 	}
 
 	async function showMetadata() {
@@ -41,7 +50,7 @@
 			throw new Error('select the account');
 		}
 
-		let utf8Decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
+		// let utf8Decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
 		let utf8Encoder = new TextEncoder(); // default 'utf-8' or 'utf8'
 
 		const imageBuffer = await (await fetch($pasteImageStore.src)).arrayBuffer();
@@ -72,6 +81,9 @@
 		console.log('exif size %s bytes', exifStr.length);
 
 		const imageBufferInserted = await (await fetch(inserted)).arrayBuffer();
+
+		// this is the jpeg bytes
+		$pasteImageStore.imageBuffer = imageBufferInserted;
 
 		console.log('image size %s bytes', imageBufferInserted.byteLength);
 
@@ -200,7 +212,7 @@
 					<button
 						class="btn btn-primary"
 						disabled={isEmpty($pasteImageStore.src)}
-						on:click={uploadBlob}>Upload</button
+						on:click={uploadImage}>Upload</button
 					>
 				</div>
 				<div class="w-full flex flex-col gap-4 items-center form-control">

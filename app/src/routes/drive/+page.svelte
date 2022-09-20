@@ -2,6 +2,6 @@
 	import PasteImage from '$lib/actions/paste/PasteImage.svelte';
 </script>
 
-<div class="px-6">
+<div>
 	<PasteImage />
 </div>

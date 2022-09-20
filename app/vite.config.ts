@@ -10,16 +10,7 @@ import { resolve } from 'path';
 
 const config: UserConfig = {
 	logLevel: 'info',
-	plugins: [
-		isoImport(),
-		sveltekit(),
-		wasm(),
-		topLevelAwait(),
-		viteExternalsPlugin({
-			electron: 'electron'
-			// lazy: ['React', 'lazy']
-		})
-	],
+	plugins: [isoImport(), sveltekit(), wasm(), topLevelAwait()],
 	resolve: {
 		alias: {
 			$src: resolve('./src')
@@ -30,18 +21,19 @@ const config: UserConfig = {
 			target: 'es2020',
 			define: {
 				global: 'globalThis'
-			},
-			plugins: []
+			}
+			// plugins: []
 		}
+		// include: ['axios']
 		// exclude: ['electron-fetch']
 		// exclude: ['ipfs-http-client', 'electron-fetch']
 	},
 	build: {
 		// warn on chunks above 1MB
-		chunkSizeWarningLimit: 1024,
-		rollupOptions: {
-			plugins: []
-		}
+		chunkSizeWarningLimit: 1024
+		// rollupOptions: {
+		// 	plugins: []
+		// }
 	},
 	server: {
 		fs: {
@@ -65,8 +57,6 @@ const config: UserConfig = {
 };
 
 export default defineConfig((opts) => {
-	console.log(opts);
-
 	const { command, mode, ssrBuild } = opts;
 	// if (command === 'serve') {
 	// 	return {

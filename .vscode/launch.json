@@ -13,12 +13,13 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Jest tests",
-      "program": "${workspaceFolder}/node_modules/@rushstack/heft/lib/start.js",
-      "cwd": "${workspaceFolder}",
-      "args": ["--debug", "test", "--clean"],
-      "console": "integratedTerminal",
-      "sourceMaps": true
+      "name": "Debug the ipfsCli",
+      "env": {
+        "AN_IPFS_API_URL": "https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0"
+      },
+      "program": "${workspaceFolder}/tools/ipfs-cli/lib/start.js",
+      "args": ["add", "${workspaceFolder}/rush.json"],
+      "console": "integratedTerminal"
     }
   ]
 }

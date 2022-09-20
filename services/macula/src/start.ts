@@ -7,9 +7,6 @@
  */
 
 /* eslint-disable @rushstack/typedef-var */
-import { add } from '@kelp_digital/ipfs-api-client';
-
-console.log('ipfs', add);
 
 import axios from 'axios';
 import compression from 'compression';
@@ -69,7 +66,11 @@ app.use(
 /**
  * Cors, set up here restrictions
  */
-app.use(cors());
+app.use(
+  cors({
+    origin: '*'
+  })
+);
 
 /**
  * So we can use the json in the requests
@@ -80,6 +81,8 @@ app.use(json());
  * use this for now then see https://github.com/Alorel/shrink-ray or write your own Botli compression plugin
  */
 app.use(compression());
+
+app.use(express.urlencoded({ extended: true }));
 
 /**
  * Catch All route, useful for debugging

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Adapter, Builder } from '@sveltejs/kit';
+import type { Adapter, Builder } from '@sveltejs/kit';
 import { equals, isEmpty, isNil } from 'ramda';
 
 import { write } from './utils.js';
@@ -20,109 +20,109 @@ interface IAnagolayAdapterOptions {
  * An interface for the routes
  * @internal
  */
-interface IRoute {
-	src: string;
-	headers?: Record<string, any>;
-	status?: 307 | 308;
-}
+// interface IRoute {
+// 	src: string;
+// 	headers?: Record<string, any>;
+// 	status?: 307 | 308;
+// }
 /**
  * The keys correspond to the `trailingSlash` sveltekit config
  * @internal
  */
-interface IRoutes {
-	always: IRoute[];
-	never: IRoute[];
-	ignore: IRoute[];
-}
+// interface IRoutes {
+// 	always: IRoute[];
+// 	never: IRoute[];
+// 	ignore: IRoute[];
+// }
 
 /**
  * Shamelessly taken from sveltekit vercel adapter. It makes a lot of sense and why re-invent the wheel
  */
 // rules for clean URLs and trailing slash handling,
 // generated with @vercel/routing-utils
-const redirects: IRoutes = {
-	always: [
-		{
-			/**
-			 * redir only
-			 * ```
-			 * /dir/index -> /dir/
-			 * /dir/index/ -> /dir/
-			 * ```
-			 */
-			src: '^/(?:(.+)/)?index(?:\\.html)?/?$', // https://regex101.com/r/OgOahm/1
-			headers: {
-				Location: '/$1/'
-			},
-			status: 308
-		},
-		{
-			src: '^/(.*)\\.html/?$', // https://regex101.com/r/OUMx3x/1
-			headers: {
-				Location: '/$1/'
-			},
-			status: 308
-		},
-		{
-			src: '^/\\.well-known(?:/.*)?$' // matches `/\.well-known`
-		},
-		{
-			src: '^/((?:[^/]+/)*[^/\\.]+)$', // match `/features/feature-a` will redirect to `/features/feature-a/`
-			headers: {
-				Location: '/$1/'
-			},
-			status: 308
-		},
-		{
-			// '^/((?:[^/]+/)*[^/\\.]+)$'
-			// '^/((?:[^/]+/)*[^/]+\\.\\w+)/$'
-			src: '^/((?:[^/]+/)*[^/]+\\.\\w+)/$',
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		}
-	],
-	never: [
-		{
-			src: '^/(?:(.+)/)?index(?:\\.html)?/?$',
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		},
-		{
-			src: '^/(.*)\\.html/?$',
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		},
-		{
-			src: '^/(.*)/$', // match `/dir/dir/`
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		}
-	],
-	ignore: [
-		{
-			src: '^/(?:(.+)/)?index(?:\\.html)?/?$',
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		},
-		{
-			src: '^/(.*)\\.html/?$',
-			headers: {
-				Location: '/$1'
-			},
-			status: 308
-		}
-	]
-};
+// const redirects: IRoutes = {
+// 	always: [
+// 		{
+// 			/**
+// 			 * redir only
+// 			 * ```
+// 			 * /dir/index -> /dir/
+// 			 * /dir/index/ -> /dir/
+// 			 * ```
+// 			 */
+// 			src: '^/(?:(.+)/)?index(?:\\.html)?/?$', // https://regex101.com/r/OgOahm/1
+// 			headers: {
+// 				Location: '/$1/'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			src: '^/(.*)\\.html/?$', // https://regex101.com/r/OUMx3x/1
+// 			headers: {
+// 				Location: '/$1/'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			src: '^/\\.well-known(?:/.*)?$' // matches `/\.well-known`
+// 		},
+// 		{
+// 			src: '^/((?:[^/]+/)*[^/\\.]+)$', // match `/features/feature-a` will redirect to `/features/feature-a/`
+// 			headers: {
+// 				Location: '/$1/'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			// '^/((?:[^/]+/)*[^/\\.]+)$'
+// 			// '^/((?:[^/]+/)*[^/]+\\.\\w+)/$'
+// 			src: '^/((?:[^/]+/)*[^/]+\\.\\w+)/$',
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		}
+// 	],
+// 	never: [
+// 		{
+// 			src: '^/(?:(.+)/)?index(?:\\.html)?/?$',
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			src: '^/(.*)\\.html/?$',
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			src: '^/(.*)/$', // match `/dir/dir/`
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		}
+// 	],
+// 	ignore: [
+// 		{
+// 			src: '^/(?:(.+)/)?index(?:\\.html)?/?$',
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		},
+// 		{
+// 			src: '^/(.*)\\.html/?$',
+// 			headers: {
+// 				Location: '/$1'
+// 			},
+// 			status: 308
+// 		}
+// 	]
+// };
 
 /**
  * Macula adapter
@@ -137,7 +137,7 @@ export default function (incomingOption: IAnagolayAdapterOptions): Adapter {
 			const { account, appType, fallback, subdomain, precompress } = incomingOption;
 
 			if (isNil(account) || isEmpty(account)) {
-				builder.log.error('account must be set to any subtrate based account');
+				builder.log.error('account must be set to any substrate based account');
 				return;
 			}
 			const kitConfig = builder.config.kit;
@@ -162,18 +162,7 @@ export default function (incomingOption: IAnagolayAdapterOptions): Adapter {
 					);
 					return;
 				}
-				if (!equals(kitConfig.prerender.default, true)) {
-					builder.log.error(
-						'prerender.default is not set to true. Static sites MUST  prerender all pages'
-					);
-					return;
-				}
 			} else if (equals(appType, 'spa')) {
-				if (equals(kitConfig.prerender.default, true)) {
-					builder.log.warn(
-						`prerender.default is set to true. You might check your code for pages you don't want to prerender.`
-					);
-				}
 				if (isNil(fallback)) {
 					fallbackInternal = 'index.html';
 				}
@@ -193,7 +182,7 @@ export default function (incomingOption: IAnagolayAdapterOptions): Adapter {
 			}));
 
 			const routes = [
-				...redirects[builder.config.kit.trailingSlash], // << not using this for the time being. brings complexity
+				// ...redirects[builder.config.kit.trailingSlash], // << not using this for the time being. brings complexity
 				...prerenderedRedirects,
 				{
 					src: `/${builder.config.kit.appDir}/immutable/.+`,

@@ -30,18 +30,20 @@
     "watch": "heft build --clean --watch",
     "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx"
   },
+  "peerDependencies": {
+    "axios": "0.27.2"
+  },
   "dependencies": {
-    "@anagolay/utils": "0.0.1",
-    "pino": "8.0.0",
     "ramda": "0.28.0",
     "byte-size": "8.1.0",
     "it-all": "1.0.6",
     "@sentry/node": "7.6.0",
     "@sentry/tracing": "7.6.0",
-    "yaml": "2.1.1",
-    "axios": "0.27.2"
+    "it-glob": "1.0.2",
+    "multiformats": "9.8.1"
   },
   "devDependencies": {
+    "axios": "0.27.2",
     "tslib": "2.4.0",
     "typescript": "4.6.4",
     "@rushstack/heft-node-rig": "1.9.7",

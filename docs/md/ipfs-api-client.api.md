@@ -4,8 +4,36 @@
 
 ```ts
 
+import { AxiosInstance } from 'axios';
+import { AxiosRequestConfig } from 'axios';
+
 // @public
-export function add(): void;
+export function add(options: IAddOptions): Promise<void>;
+
+// @public (undocumented)
+export let axiosInstance: AxiosInstance;
+
+// Warning: (ae-forgotten-export) The symbol "IClientOptions" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function createHttpClient(options?: IClientOptions): Promise<AxiosInstance>;
+
+// @public
+export const defaultApiUrl: string;
+
+// @public (undocumented)
+export interface IAddOptions extends IGenericIpfsOptions {
+    // (undocumented)
+    content: Uint8Array;
+    // (undocumented)
+    qs?: any;
+}
+
+// @public
+export interface IGenericIpfsOptions {
+    // (undocumented)
+    ipfs: AxiosInstance;
+}
 
 // (No @packageDocumentation comment for this package)
 

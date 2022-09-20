@@ -175,15 +175,29 @@
         {
           "kind": "Function",
           "canonicalReference": "@kelp_digital/ipfs-api-client!add:function(1)",
-          "docComment": "/**\n * Add file\n */\n",
+          "docComment": "/**\n * Add file to the IFS (immutable file system)\n *\n * @param options - {@link IAddOptions}\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function add(): "
+              "text": "export declare function add(options: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IAddOptions",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!IAddOptions:interface"
             },
             {
               "kind": "Content",
-              "text": "void"
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<void>"
             },
             {
               "kind": "Content",
@@ -191,13 +205,257 @@
             }
           ],
           "returnTypeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
+            "startIndex": 3,
+            "endIndex": 5
           },
           "releaseTag": "Public",
           "overloadIndex": 1,
-          "parameters": [],
+          "parameters": [
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            }
+          ],
           "name": "add"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@kelp_digital/ipfs-api-client!axiosInstance:var",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "axiosInstance: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AxiosInstance",
+              "canonicalReference": "axios!AxiosInstance:interface"
+            }
+          ],
+          "isReadonly": false,
+          "releaseTag": "Public",
+          "name": "axiosInstance",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@kelp_digital/ipfs-api-client!createHttpClient:function(1)",
+          "docComment": "/**\n * Create Axios instance\n *\n * @param options - \n *\n * @returns \n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function createHttpClient(options?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "IClientOptions",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!~IClientOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "AxiosInstance",
+              "canonicalReference": "axios!AxiosInstance:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 3,
+            "endIndex": 7
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "createHttpClient"
+        },
+        {
+          "kind": "Variable",
+          "canonicalReference": "@kelp_digital/ipfs-api-client!defaultApiUrl:var",
+          "docComment": "/**\n * Default api url `'http://127.0.0.1:5001/api/v0'`\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "defaultApiUrl: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            }
+          ],
+          "isReadonly": true,
+          "releaseTag": "Public",
+          "name": "defaultApiUrl",
+          "variableTypeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/ipfs-api-client!IAddOptions:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IAddOptions extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "IGenericIpfsOptions",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!IGenericIpfsOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IAddOptions",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!IAddOptions#content:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "content: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "content",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!IAddOptions#qs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "qs?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "qs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 2
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/ipfs-api-client!IGenericIpfsOptions:interface",
+          "docComment": "/**\n * Generic ipfs options that are used everywhere\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IGenericIpfsOptions "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IGenericIpfsOptions",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/ipfs-api-client!IGenericIpfsOptions#ipfs:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "ipfs: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "AxiosInstance",
+                  "canonicalReference": "axios!AxiosInstance:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "ipfs",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
         }
       ]
     }

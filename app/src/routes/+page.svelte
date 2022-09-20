@@ -1,7 +1,7 @@
 <script>
-	import { add } from '@kelp_digital/ipfs-api-client';
+	import { onMount } from 'svelte';
 
-	console.log('ipfs', add);
+	onMount(async () => {});
 </script>
 
 <div class="hero min-h-screen">
