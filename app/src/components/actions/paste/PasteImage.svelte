@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Spinner from '$lib/base/Spinner.svelte';
-	import { add, createHttpClient } from '@kelp_digital/ipfs-api-client';
-
+	import fetch from 'cross-fetch';
+	import slug from 'slug';
 	import { isNil } from 'ramda';
 
 	import { onMount } from 'svelte';
@@ -31,21 +31,25 @@
 	let ctx: CanvasRenderingContext2D;
 
 	async function uploadImage() {
-		const ipfsInstance = await createHttpClient({
-			axiosOpts: {
-				baseURL: 'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0'
-			}
+		const baseUrl =
+			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=true';
+		await convertImage();
+
+		const formData = new FormData();
+
+		// formData.append('file', new Blob([$pasteImageStore.imageBuffer]), `screenshot-${cid}.jpg`);
+		formData.append('file', new Blob([$pasteImageStore.imageBuffer]));
+
+		const res = await fetch(baseUrl, {
+			method: 'POST',
+			body: formData
 		});
+		const addedCid = await res.json();
 
-		var uint8View = new Uint8Array($pasteImageStore.imageBuffer);
-		const cid = await calculateCid(uint8View);
-
-		console.log('wf-cid', cid);
-		const addedCid = await add({ ipfs: ipfsInstance, content: uint8View });
-		console.log('addedCid', addedCid);
+		console.log('addedCid', addedCid.Hash);
 	}
 
-	async function showMetadata() {
+	async function convertImage() {
 		if (isEmpty($polkadotAccountsStore.selectedAccount)) {
 			throw new Error('select the account');
 		}
@@ -56,18 +60,24 @@
 		const imageBuffer = await (await fetch($pasteImageStore.src)).arrayBuffer();
 		$pasteImageStore.imageBuffer = imageBuffer;
 
-		const tags = ExifReader.load(imageBuffer);
 		const base64Canvas = canvasElement.toDataURL('image/jpeg');
 
 		const zeroth: IExifElement = {
-			[TagValues.ImageIFD.ImageDescription]: $pasteImageStore.description,
+			// [TagValues.ImageIFD.XPAuthor]: [
+			// 	...utf8Encoder.encode(`urn:substrate:${$polkadotAccountsStore.selectedAccount}`)
+			// ],
 			[TagValues.ImageIFD.Copyright]: `urn:substrate:${$polkadotAccountsStore.selectedAccount}`,
 			[TagValues.ImageIFD.Software]: 'Macula Screenshot'
+			// [TagValues.ImageIFD.XPComment]: [...utf8Encoder.encode('')]
 		};
+		zeroth[TagValues.ImageIFD.ImageDescription] = $pasteImageStore.description;
 
-		if (!isEmpty($pasteImageStore.title)) {
-			zeroth[TagValues.ImageIFD.XPTitle] = [...utf8Encoder.encode($pasteImageStore.title)];
-		}
+		//// this doesn't work
+		// check it here https://ipfs.anagolay.network/ipfs/QmdnJPZ9ExEvPPPX1WENnQ9hC9Ts5JZLrswBd5ndxY2G6h?filename=issue%20with%20the%20exif-readerfor%20macula.png
+		// if (!isEmpty($pasteImageStore.title)) {
+		// zeroth[TagValues.ImageIFD.XPSubject] = [...utf8Encoder.encode('$pasteImageStore.title')];
+		// zeroth[TagValues.ImageIFD.XPSubject] = [...utf8Encoder.encode('titleee ✅⚒️🌶️🏗️😆😆')];
+		// }
 
 		const exif: IExifElement = {
 			[TagValues.ExifIFD.DateTimeOriginal]: new Date().toUTCString()
@@ -88,6 +98,7 @@
 		console.log('image size %s bytes', imageBufferInserted.byteLength);
 
 		const tagsInserted = ExifReader.load(imageBufferInserted);
+		console.log('last tags', tagsInserted);
 
 		// console.log(
 		// 	'ExifREader [tags]',
@@ -207,7 +218,7 @@
 					<button class="btn btn-outline normal-case btn-accent">Cancel</button>
 					<button
 						class="btn btn-ghost btn-outline normal-case btn-secondary"
-						on:click={showMetadata}>Show metadata</button
+						on:click={convertImage}>Show metadata</button
 					>
 					<button
 						class="btn btn-primary"
