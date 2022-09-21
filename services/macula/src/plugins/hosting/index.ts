@@ -9,11 +9,11 @@ import { dissoc, isEmpty, isNil, last, mergeRight } from 'ramda';
 
 import { ipfsApiURL, ipfsGateway } from '../../config';
 import { getDB } from '../../mongodbClient';
+import { axiosApiProxyInstance } from '../../proxyServer';
 import { redisClient } from '../../redisClient';
 import { sentry } from '../../sentry';
 import { log } from '../../utils/logger';
 import { auth } from '../../web3-auth-handler/authMiddleware';
-import { axiosApiProxyInstance } from '../ipfsApi';
 import {
   collectionSubdomains,
   findLastModificationDateForHosting,

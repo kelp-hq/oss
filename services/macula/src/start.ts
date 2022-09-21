@@ -90,6 +90,8 @@ app.use(compression());
  */
 app.get('*', (req: Request, res: Response, next: NextFunction) => {
   log.debug('[Route] is %s', req.url);
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
 

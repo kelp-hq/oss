@@ -1,5 +1,8 @@
+import axios, { AxiosInstance } from 'axios';
 import type { Request, Response } from 'express';
+import http from 'http';
 import httpProxy, { ServerOptions } from 'http-proxy';
+import https from 'https';
 
 import { version } from './config';
 import { sentry } from './sentry';
@@ -57,3 +60,13 @@ export async function createProxy(
   ipfsProxyTransaction?.setStatus('ok');
   ipfsProxyTransaction?.finish();
 }
+
+export const axiosApiProxyInstance: AxiosInstance = axios.create({
+  httpAgent: new http.Agent({ keepAlive: true }),
+  httpsAgent: new https.Agent({ keepAlive: true }),
+  proxy: {
+    host: '127.0.0.1',
+    port: 5001,
+    protocol: 'http'
+  }
+});

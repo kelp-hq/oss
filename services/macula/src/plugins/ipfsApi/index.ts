@@ -39,10 +39,9 @@ ipfsApiRouter
       // if this doesn't work use other proxy
 
       const proxy: Server = httpProxy.createProxyServer({});
-      // proxy.on('proxyReq', (proxyReq) => {
-      // console.log('sa');
-      // console.log(proxyReq);
-      // });
+      proxy.on('proxyReq', (proxyReq) => {
+        console.log(proxyReq.getHeaders()['content-type']);
+      });
       proxy.on('proxyRes', (proxyRes) => {
         proxyRes.headers['X-Powered-By'] = `macula/${version}`;
         proxyRes.headers.Server = `macula/${version}`;
