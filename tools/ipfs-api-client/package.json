@@ -40,7 +40,9 @@
     "@sentry/node": "7.6.0",
     "@sentry/tracing": "7.6.0",
     "it-glob": "1.0.2",
-    "multiformats": "9.8.1"
+    "multiformats": "9.8.1",
+    "cross-fetch": "~3.1.5",
+    "debug": "~4.3.4"
   },
   "devDependencies": {
     "axios": "0.27.2",

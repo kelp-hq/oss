@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-
+// import fetch from 'cross-fetch';
 /**
  * Default api url `'http://127.0.0.1:5001/api/v0'`
  */
@@ -35,7 +35,6 @@ export async function createHttpClient(
   const { axiosOpts } = options;
 
   const instance = axios.create({
-    timeout: 1000,
     ...axiosOpts
   });
 

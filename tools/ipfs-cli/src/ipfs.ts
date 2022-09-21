@@ -119,9 +119,7 @@ export interface IUploadParamsSingleFile extends IUploadParams {
 
 /**
  * Upload the file
- * @param ipfsPath -
- * @param filePath -
- * @param opts -
+ * @param params - {@link IUploadParamsSingleFile}
  * @returns
  */
 export async function uploadViaAdd(params: IUploadParamsSingleFile): Promise<IIpfsResponse> {

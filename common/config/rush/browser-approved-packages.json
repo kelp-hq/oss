@@ -223,6 +223,10 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
+      "name": "cross-fetch",
+      "allowedCategories": [ "tools", "website" ]
+    },
+    {
       "name": "daisyui",
       "allowedCategories": [ "website" ]
     },

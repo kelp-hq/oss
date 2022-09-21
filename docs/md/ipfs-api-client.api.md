@@ -7,9 +7,6 @@
 import { AxiosInstance } from 'axios';
 import { AxiosRequestConfig } from 'axios';
 
-// @public
-export function add(options: IAddOptions): Promise<void>;
-
 // @public (undocumented)
 export let axiosInstance: AxiosInstance;
 
@@ -20,14 +17,6 @@ export function createHttpClient(options?: IClientOptions): Promise<AxiosInstanc
 
 // @public
 export const defaultApiUrl: string;
-
-// @public (undocumented)
-export interface IAddOptions extends IGenericIpfsOptions {
-    // (undocumented)
-    content: Uint8Array;
-    // (undocumented)
-    qs?: any;
-}
 
 // @public
 export interface IGenericIpfsOptions {
