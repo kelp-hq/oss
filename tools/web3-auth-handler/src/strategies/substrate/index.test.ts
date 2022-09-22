@@ -2,7 +2,7 @@ import Keyring from '@polkadot/keyring';
 import { stringToU8a } from '@polkadot/util';
 import { cryptoWaitReady, signatureVerify } from '@polkadot/util-crypto';
 
-import { createTokenPayloadForSigning as encodeTokenPayload, ISubstratePayload } from './substrate';
+import { createTokenPayloadForSigning as encodeTokenPayload, ISubstratePayload } from '.';
 
 describe('Substrate', () => {
   beforeEach(async (): Promise<void> => {

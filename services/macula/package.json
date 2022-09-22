@@ -27,6 +27,7 @@
   "dependencies": {
     "@anagolay/create_cid_from_buffer": "https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy",
     "@kelp_digital/ipfs-api-client": "workspace:*",
+    "@kelp_digital/web3-auth-handler": "workspace:*",
     "@anagolay/utils": "0.0.1",
     "axios": "0.27.2",
     "cors": "2.8.5",

@@ -1,6 +1,6 @@
 {
-  "name": "@kelp_digital/ipfs-api-client",
-  "description": "Opinionated package for interacting with the IPFS http api using Axios in browser and node.",
+  "name": "@kelp_digital/web3-auth-handler",
+  "description": "Opinionated web3 authentication and authorization method, highly inspired by jwt",
   "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
   "version": "0.0.1",
   "keywords": [
@@ -13,7 +13,7 @@
   "type": "module",
   "licenseFile": "./LICENSE",
   "main": "./lib_cjs/index.js",
-  "types": "./lib/ipfs-api-client.d.ts",
+  "types": "./lib/web3-auth-handler.d.ts",
   "exports": {
     ".": {
       "require": "./lib_cjs/index.js",
@@ -35,17 +35,16 @@
   },
   "dependencies": {
     "ramda": "0.28.0",
-    "byte-size": "8.1.0",
-    "it-all": "1.0.6",
     "@sentry/node": "7.6.0",
     "@sentry/tracing": "7.6.0",
-    "it-glob": "1.0.2",
-    "multiformats": "9.8.1",
-    "cross-fetch": "~3.1.5",
-    "debug": "4.3.4"
+    "debug": "4.3.4",
+    "@polkadot/util-crypto": "10.1.7",
+    "@polkadot/util": "10.1.7",
+    "@polkadot/keyring": "10.1.7",
+    "express": "4.18.1",
+    "@anagolay/utils": "0.0.1"
   },
   "devDependencies": {
-    "axios": "0.27.2",
     "tslib": "2.4.0",
     "typescript": "4.6.4",
     "@rushstack/heft-node-rig": "1.9.7",
@@ -57,20 +56,10 @@
     "eslint": "8.17.0",
     "eslint-plugin-simple-import-sort": "7.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "env-cmd": "10.1.0",
-    "@types/inquirer": "8.2.0",
-    "@types/clui": "0.3.1",
-    "@rushstack/heft-webpack5-plugin": "0.5.13",
     "webpack-node-externals": "3.0.0",
-    "@types/webpack-env": "1.16.3",
-    "webpack": "5.68.0",
-    "ts-loader": "9.2.6",
-    "pino-pretty": "8.0.0",
+    "@types/express": "4.17.13",
     "prettier": "2.5.1",
-    "webpack-cli": "4.9.2",
-    "pkg": "5.6.0",
     "@types/ramda": "0.28.14",
-    "@rushstack/heft-jest-plugin": "0.3.6",
-    "@types/byte-size": "8.1.0"
+    "@rushstack/heft-jest-plugin": "0.3.6"
   }
 }

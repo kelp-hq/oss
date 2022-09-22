@@ -1,9 +1,9 @@
 import { hexToU8a, stringToHex } from '@polkadot/util';
 import { signatureVerify } from '@polkadot/util-crypto';
 
+import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
 import { encode } from '../../utils/base64url';
-import { IAuthStrategy, IBaseStrategy } from '../authMiddleware';
-import { StrategyValidationError } from '../errors';
+import { StrategyValidationError } from '../../utils/errors';
 
 export interface ISubstratePayload {
   /**

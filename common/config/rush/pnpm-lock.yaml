@@ -123,6 +123,7 @@ importers:
       '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': workspace:*
+      '@kelp_digital/web3-auth-handler': workspace:*
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -176,6 +177,7 @@ importers:
       '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': link:../../tools/ipfs-api-client
+      '@kelp_digital/web3-auth-handler': link:../../tools/web3-auth-handler
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
@@ -247,7 +249,7 @@ importers:
       axios: 0.27.2
       byte-size: 8.1.0
       cross-fetch: ~3.1.5
-      debug: ~4.3.4
+      debug: 4.3.4
       env-cmd: 10.1.0
       eslint: 8.17.0
       eslint-plugin-simple-import-sort: 7.0.0
@@ -424,6 +426,61 @@ importers:
       typescript: 4.6.4
       vite: 3.1.2
 
+  ../../tools/web3-auth-handler:
+    specifiers:
+      '@anagolay/utils': 0.0.1
+      '@microsoft/api-extractor': 7.28.0
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      '@rushstack/eslint-config': 2.6.0
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6
+      '@rushstack/heft-node-rig': 1.9.7
+      '@sentry/node': 7.6.0
+      '@sentry/tracing': 7.6.0
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.14
+      debug: 4.3.4
+      eslint: 8.17.0
+      eslint-plugin-simple-import-sort: 7.0.0
+      eslint-plugin-unused-imports: 2.0.0
+      express: 4.18.1
+      prettier: 2.5.1
+      ramda: 0.28.0
+      tslib: 2.4.0
+      typescript: 4.6.4
+      webpack-node-externals: 3.0.0
+    dependencies:
+      '@anagolay/utils': 0.0.1
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      '@sentry/node': 7.6.0
+      '@sentry/tracing': 7.6.0
+      debug: 4.3.4
+      express: 4.18.1
+      ramda: 0.28.0
+    devDependencies:
+      '@microsoft/api-extractor': 7.28.0
+      '@rushstack/eslint-config': 2.6.0_pm7osnb22e4oktq33hptgspr5i
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6_@rushstack+heft@0.45.6
+      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.14
+      eslint: 8.17.0
+      eslint-plugin-simple-import-sort: 7.0.0_eslint@8.17.0
+      eslint-plugin-unused-imports: 2.0.0_eslint@8.17.0
+      prettier: 2.5.1
+      tslib: 2.4.0
+      typescript: 4.6.4
+      webpack-node-externals: 3.0.0
+
 packages:
 
   /@ampproject/remapping/2.2.0:
@@ -508,7 +565,7 @@ packages:
       '@babel/compat-data': 7.17.7
       '@babel/core': 7.17.9
       '@babel/helper-validator-option': 7.16.7
-      browserslist: 4.20.3
+      browserslist: 4.21.3
       semver: 6.3.0
     dev: true
 
@@ -808,23 +865,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@eslint/eslintrc/1.3.0:
-    resolution: {integrity: sha512-UWW0TMTmk2d7hLcWD1/e2g5HDM/HQ3csaLSqXCfqwh4uNDuNqlaKWXmEsL4Cs41Z0KnILNvwbHAah3C2yt06kw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      ajv: 6.12.6
-      debug: 4.3.4
-      espree: 9.3.2
-      globals: 13.15.0
-      ignore: 5.2.0
-      import-fresh: 3.3.0
-      js-yaml: 4.1.0
-      minimatch: 3.1.2
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
 
   /@eslint/eslintrc/1.3.2:
     resolution: {integrity: sha512-AXYd23w1S/bv3fTs3Lz0vjiYemS08jWkI3hYyS9I1ry+0f+Yjs1wm+sU0BS8qDOPrBIkp4qHYC16I8uVtpLajQ==}
@@ -3438,14 +3478,6 @@ packages:
       acorn: 8.7.1
     dev: true
 
-  /acorn-jsx/5.3.2_acorn@8.7.1:
-    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.7.1
-    dev: true
-
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -3899,18 +3931,6 @@ packages:
     resolution: {integrity: sha512-+12sHB+Br8HIh6VAMVEG5r3UXCyESIgDW7kzk3BjIXa43DVqVwL7GC5TW3jeh+72dtcH99pPVpw0X8i0jt+/kw==}
     dev: false
 
-  /browserslist/4.20.3:
-    resolution: {integrity: sha512-NBhymBQl1zM0Y5dQT/O+xiLP9/rzOIQdKM/eMJBAq7yBgaB6krIYLGejrwVYnSHZdqjscB1SPuAjHwxjvN6Wdg==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-    dependencies:
-      caniuse-lite: 1.0.30001332
-      electron-to-chromium: 1.4.123
-      escalade: 3.1.1
-      node-releases: 2.0.3
-      picocolors: 1.0.0
-    dev: true
-
   /browserslist/4.21.3:
     resolution: {integrity: sha512-898rgRXLAyRkM1GryrrBHGkqA5hlpkV5MhtZwg9QXeiyLUYs2k00Un05aX5l2/yJIOObYKOpS2JNo8nJDE7fWQ==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -4010,10 +4030,6 @@ packages:
   /camelcase/6.3.0:
     resolution: {integrity: sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==}
     engines: {node: '>=10'}
-    dev: true
-
-  /caniuse-lite/1.0.30001332:
-    resolution: {integrity: sha512-10T30NYOEQtN6C11YGg411yebhvpnC6Z102+B95eAsN0oB6KUs01ivE8u+G6FMIRtIrVlYXhL+LUwQ3/hXwDWw==}
     dev: true
 
   /caniuse-lite/1.0.30001388:
@@ -4712,10 +4728,6 @@ packages:
       encoding: 0.1.13
     dev: false
 
-  /electron-to-chromium/1.4.123:
-    resolution: {integrity: sha512-0pHGE53WkYoFbsgwYcVKEpWa6jbzlvkohIEA2CUoZ9b5KC+w/zlMiQHvW/4IBcOh7YoEFqRNavgTk02TBoUTUw==}
-    dev: true
-
   /electron-to-chromium/1.4.240:
     resolution: {integrity: sha512-r20dUOtZ4vUPTqAajDGonIM1uas5tf85Up+wPdtNBNvBSqGCfkpvMVvQ1T8YJzPV9/Y9g3FbUDcXb94Rafycow==}
     dev: true
@@ -5295,7 +5307,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint/eslintrc': 1.3.0
+      '@eslint/eslintrc': 1.3.2
       '@humanwhocodes/config-array': 0.9.5
       ajv: 6.12.6
       chalk: 4.1.2
@@ -5306,7 +5318,7 @@ packages:
       eslint-scope: 7.1.1
       eslint-utils: 3.0.0_eslint@8.17.0
       eslint-visitor-keys: 3.3.0
-      espree: 9.3.2
+      espree: 9.4.0
       esquery: 1.4.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
@@ -5387,7 +5399,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint/eslintrc': 1.3.0
+      '@eslint/eslintrc': 1.3.2
       '@humanwhocodes/config-array': 0.9.5
       ajv: 6.12.6
       chalk: 4.1.2
@@ -5398,7 +5410,7 @@ packages:
       eslint-scope: 7.1.1
       eslint-utils: 3.0.0_eslint@8.7.0
       eslint-visitor-keys: 3.3.0
-      espree: 9.3.2
+      espree: 9.4.0
       esquery: 1.4.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
@@ -5424,15 +5436,6 @@ packages:
       v8-compile-cache: 2.3.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /espree/9.3.2:
-    resolution: {integrity: sha512-D211tC7ZwouTIuY5x9XnS0E9sWNChB7IYKX/Xp5eQj3nFXhqmiUDB9q27y76oFl8jTg3pXcQx/bpxMfs3CIZbA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      acorn: 8.7.1
-      acorn-jsx: 5.3.2_acorn@8.7.1
-      eslint-visitor-keys: 3.3.0
     dev: true
 
   /espree/9.4.0:
@@ -7094,7 +7097,7 @@ packages:
       jest-pnp-resolver: 1.2.2_jest-resolve@27.4.6
       jest-util: 27.5.1
       jest-validate: 27.5.1
-      resolve: 1.22.0
+      resolve: 1.22.1
       resolve.exports: 1.1.0
       slash: 3.0.0
     dev: true
@@ -7110,7 +7113,7 @@ packages:
       jest-pnp-resolver: 1.2.2_jest-resolve@27.5.1
       jest-util: 27.5.1
       jest-validate: 27.5.1
-      resolve: 1.22.0
+      resolve: 1.22.1
       resolve.exports: 1.1.0
       slash: 3.0.0
     dev: true
@@ -7333,7 +7336,7 @@ packages:
         optional: true
     dependencies:
       abab: 2.0.6
-      acorn: 8.7.1
+      acorn: 8.8.0
       acorn-globals: 6.0.0
       cssom: 0.4.4
       cssstyle: 2.3.0
@@ -7937,10 +7940,6 @@ packages:
 
   /node-int64/0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
-    dev: true
-
-  /node-releases/2.0.3:
-    resolution: {integrity: sha512-maHFz6OLqYxz+VQyCAtA3PTX4UP/53pa05fyDNc9CwjvJ0yEh6+xBwKsgCxMNhS8taUKBFYxfuiaD9U/55iFaw==}
     dev: true
 
   /node-releases/2.0.6:

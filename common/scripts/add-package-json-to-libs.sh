@@ -13,4 +13,7 @@ cp "$PKG_CJS" "$GITPOD_REPO_ROOT/tools/ipfs-cli/lib/package.json"
 # cp "$PKG_MODULE" "$GITPOD_REPO_ROOT/tools/utils/lib/package.json"
 # cp "$PKG_CJS" "$GITPOD_REPO_ROOT/tools/utils/lib_cjs/package.json"
 
+cp "$PKG_MODULE" "$GITPOD_REPO_ROOT/tools/web3-auth-handler/lib/package.json"
+cp "$PKG_CJS" "$GITPOD_REPO_ROOT/tools/web3-auth-handler/lib_cjs/package.json"
+
 cp "$PKG_MODULE" "$GITPOD_REPO_ROOT/tools/sveltekit-adapter-macula/lib/package.json"

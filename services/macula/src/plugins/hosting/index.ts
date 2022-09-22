@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
+import { auth } from '@kelp_digital/web3-auth-handler';
 import { captureException, startTransaction } from '@sentry/node';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';
@@ -13,7 +14,6 @@ import { axiosApiProxyInstance } from '../../proxyServer';
 import { redisClient } from '../../redisClient';
 import { sentry } from '../../sentry';
 import { log } from '../../utils/logger';
-import { auth } from '../../web3-auth-handler/authMiddleware';
 import {
   collectionSubdomains,
   findLastModificationDateForHosting,

@@ -1,9 +1,9 @@
 import { isTrue } from '@anagolay/utils';
 import { includes, isEmpty, isNil } from 'ramda';
 
+import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
 import { getEnv } from '../../utils/env';
-import { IAuthStrategy, IBaseStrategy } from '../authMiddleware';
-import { StrategyValidationError } from '../errors';
+import { StrategyValidationError } from '../../utils/errors';
 
 export interface IApiKeyPayload {
   key: string;
@@ -12,7 +12,7 @@ export interface IApiKeyStructure extends IBaseStrategy<IApiKeyPayload> {
   strategy: IAuthStrategy.apiKey;
 }
 
-export function validate(token: IApiKeyStructure): void {
+export function validate(token: IApiKeyStructure): IApiKeyPayload {
   const ENABLE_API_KEY_SUPPORT = getEnv('ENABLE_API_KEY_SUPPORT', false);
 
   if (!isNil(ENABLE_API_KEY_SUPPORT) && !isEmpty(ENABLE_API_KEY_SUPPORT) && isTrue(ENABLE_API_KEY_SUPPORT)) {
@@ -30,4 +30,6 @@ export function validate(token: IApiKeyStructure): void {
   } else {
     console.warn('API SUPPORT IS DISABLED, BE CAREFUL NOT TO EXPOSE THIS TO THE PUBLIC!');
   }
+
+  return token.payload;
 }

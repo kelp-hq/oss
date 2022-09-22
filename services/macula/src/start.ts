@@ -8,6 +8,7 @@
 
 /* eslint-disable @rushstack/typedef-var */
 
+import { StrategyValidationError } from '@kelp_digital/web3-auth-handler';
 import axios from 'axios';
 import compression from 'compression';
 import cors from 'cors';
@@ -27,7 +28,6 @@ import { initSentry, sentry } from './sentry';
 import { getEnv } from './utils/env';
 import { logRouterRoutes } from './utils/expressHelpers';
 import { log } from './utils/logger';
-import { StrategyValidationError } from './web3-auth-handler/errors';
 
 const enabledRoutes = JSON.parse(
   getEnv('MACULA_ENABLED_ROUTES', '["hosting","image_processing","ipfs_api"]')

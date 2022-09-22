@@ -4,24 +4,24 @@
 
 ```ts
 
-import { AxiosInstance } from 'axios';
-import { AxiosRequestConfig } from 'axios';
-
-// @public (undocumented)
-export let axiosInstance: AxiosInstance;
-
-// Warning: (ae-forgotten-export) The symbol "IClientOptions" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function createHttpClient(options?: IClientOptions): Promise<AxiosInstance>;
+export function create(options: IHttpClient): Promise<IClientHttpIpfs>;
 
 // @public
 export const defaultApiUrl: string;
 
-// @public
-export interface IGenericIpfsOptions {
+// @public (undocumented)
+export interface IClientHttpIpfs {
+    // Warning: (ae-forgotten-export) The symbol "Add" needs to be exported by the entry point index.d.ts
+    //
     // (undocumented)
-    ipfs: AxiosInstance;
+    add: (options: Add) => {};
+}
+
+// @public (undocumented)
+export interface IHttpClient {
+    // (undocumented)
+    url: string;
 }
 
 // (No @packageDocumentation comment for this package)

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 import { isNil, map, split, trim } from 'ramda';
 
+import { IApiKeyStructure, validate as validateApiKey } from '../strategies/apiKey';
+import { ISubstrateDecodedStructure, validate as validateSubstrate } from '../strategies/substrate';
 import { decode } from '../utils/base64url';
-import { IApiKeyStructure, validate as validateApiKey } from './strategies/apiKey';
-import { ISubstrateDecodedStructure, validate as validateSubstrate } from './strategies/substrate';
 
 export enum IAuthStrategy {
   'apiKey' = 'apiKey',

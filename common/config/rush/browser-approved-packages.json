@@ -55,6 +55,10 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "@kelp_digital/web3-auth-handler",
+      "allowedCategories": [ "production" ]
+    },
+    {
       "name": "@microsoft/api-extractor",
       "allowedCategories": [ "production", "tools", "website" ]
     },
@@ -80,7 +84,7 @@
     },
     {
       "name": "@polkadot/keyring",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "@polkadot/types",
@@ -92,11 +96,11 @@
     },
     {
       "name": "@polkadot/util",
-      "allowedCategories": [ "production", "website" ]
+      "allowedCategories": [ "production", "tools", "website" ]
     },
     {
       "name": "@polkadot/util-crypto",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "@rushstack/eslint-config",
@@ -229,6 +233,10 @@
     {
       "name": "daisyui",
       "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "debug",
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "dotenv-cli",

@@ -1,45 +1,27 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-// import fetch from 'cross-fetch';
+import add from './add';
+import { createHttp } from './http';
+import { Add } from './interfaces/add';
+
 /**
  * Default api url `'http://127.0.0.1:5001/api/v0'`
  */
 export const defaultApiUrl: string = 'http://127.0.0.1:5001/api/v0';
 
-/**
- * Generic ipfs options that are used everywhere
- */
-export interface IGenericIpfsOptions {
-  ipfs: AxiosInstance;
+export interface IHttpClient {
+  url: string;
+}
+export interface IClientHttpIpfs {
+  add: (options: Add) => {};
 }
 
-export let axiosInstance: AxiosInstance;
-
 /**
- * Fully qualified url where to have the api. Default  `http://127.0.0.1:5001/api/v0`
- */
-interface IClientOptions {
-  axiosOpts: AxiosRequestConfig;
-}
-/**
- * Create Axios instance
+ * Create Fetch instance for IPFS
  * @param options -
  * @returns
  */
-export async function createHttpClient(
-  options: IClientOptions = {
-    axiosOpts: {
-      baseURL: defaultApiUrl
-    }
-  }
-): Promise<AxiosInstance> {
-  const { axiosOpts } = options;
-
-  const instance = axios.create({
-    ...axiosOpts
-  });
-
-  if (!axiosInstance) {
-    axiosInstance = instance;
-  }
-  return instance;
+export async function create(options: IHttpClient): Promise<IClientHttpIpfs> {
+  const client = createHttp(options);
+  return {
+    add: (options) => add(client, options)
+  };
 }

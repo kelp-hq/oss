@@ -443,6 +443,12 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@kelp_digital/web3-auth-handler",
+      "projectFolder": "tools/web3-auth-handler",
+      "reviewCategory": "tools",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@kelp_digital/macula_app",
       "projectFolder": "app",
       "reviewCategory": "website"
