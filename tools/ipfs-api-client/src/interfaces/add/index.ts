@@ -2,7 +2,9 @@
 
 /**
  * Add the item to the ipfs
+ * @public
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface Add {
   /**
    * Chunking algorithm, size-[bytes], rabin-[min]-[avg]-[max] or buzhash.

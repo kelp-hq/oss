@@ -175,7 +175,7 @@
         {
           "kind": "Function",
           "canonicalReference": "@kelp_digital/ipfs-api-client!create:function(1)",
-          "docComment": "/**\n * Create Fetch instance for IPFS\n *\n * @param options - \n *\n * @returns \n */\n",
+          "docComment": "/**\n * Create Fetch instance for IPFS\n *\n * @param options - \n *\n * @returns \n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -234,7 +234,7 @@
         {
           "kind": "Variable",
           "canonicalReference": "@kelp_digital/ipfs-api-client!defaultApiUrl:var",
-          "docComment": "/**\n * Default api url `'http://127.0.0.1:5001/api/v0'`\n */\n",
+          "docComment": "/**\n * Default api url `'http://127.0.0.1:5001/api/v0'`\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -256,7 +256,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@kelp_digital/ipfs-api-client!IClientHttpIpfs:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -309,7 +309,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@kelp_digital/ipfs-api-client!IHttpClient:interface",
-          "docComment": "",
+          "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

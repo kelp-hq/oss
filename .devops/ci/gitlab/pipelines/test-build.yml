@@ -6,4 +6,4 @@ test-code:
   script:
     - !reference [.rush:install, script]
     # - !reference [.rush:change-verify, script]
-    - !reference [.rush:rebuild, script]
+    - !reference [.rush:build, script]

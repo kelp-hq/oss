@@ -1,3 +1,4 @@
+import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-auth-handler';
 import type { AxiosError, AxiosInstance } from 'axios';
 import axios from 'axios';
 import { Request, Response, Router } from 'express';
@@ -30,7 +31,7 @@ export const axiosGatewayProxyInstance: AxiosInstance = axios.create({
 
 ipfsApiRouter
   .route('/ipfs_api/v0/*')
-  // .all(auth)
+  .all(expressWeb3AuthMiddleware)
   .post(async (req: Request, res: Response) => {
     req.url = replace('ipfs_api', 'api', req.url);
     console.log('Proxying API %s', ipfsApiURL + req.url);

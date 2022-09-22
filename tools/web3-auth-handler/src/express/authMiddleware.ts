@@ -37,7 +37,11 @@ export interface IBaseStrategy<T> {
  * @param next - Express Next function
  * @public
  */
-export async function auth(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function expressWeb3AuthMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
   const authorization = req.get('authorization');
   if (isNil(authorization)) {
     return next('Authorization header is empty. That cannot be.');

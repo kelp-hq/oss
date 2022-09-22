@@ -17,9 +17,6 @@ declare namespace apiKeyStrategy {
 }
 
 // @public
-export function auth(req: Request, res: Response, next: NextFunction): Promise<void>;
-
-// @public
 function createTokenPayloadForSigning(payload: ISubstratePayload): string;
 
 // @public
@@ -30,6 +27,9 @@ export function encode(d: string, safe?: boolean): string;
 
 // @public
 function encodeToken(d: ISubstrateDecodedStructure): string;
+
+// @public
+export function expressWeb3AuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void>;
 
 // @public (undocumented)
 interface IApiKeyPayload {

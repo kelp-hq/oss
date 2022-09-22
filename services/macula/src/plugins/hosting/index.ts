@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
-import { auth } from '@kelp_digital/web3-auth-handler';
+import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-auth-handler';
 import { captureException, startTransaction } from '@sentry/node';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';
@@ -326,7 +326,7 @@ hostingRouter
 hostingRouter
   .route('/hosting/api/addSubdomain')
   .all(validateBodyForAddApi)
-  .all(auth)
+  .all(expressWeb3AuthMiddleware)
   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a wewbsite, fetch the macula.json'
@@ -430,7 +430,7 @@ export interface IWerbsiteAddCidBody {
 hostingRouter
   .route('/hosting/api/addCid')
   .all(validateBodyForAddApi)
-  .all(auth)
+  .all(expressWeb3AuthMiddleware)
   .post(async (req: Request<never, never, IWerbsiteAddCidBody>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a website',
