@@ -8,6 +8,14 @@ import { NextFunction } from 'express';
 import { Request } from 'express';
 import { Response } from 'express';
 
+declare namespace apiKeyStrategy {
+    export {
+        validateApiKey,
+        IApiKeyPayload,
+        IApiKeyStructure
+    }
+}
+
 // @public
 export function auth(req: Request, res: Response, next: NextFunction): Promise<void>;
 
@@ -17,20 +25,11 @@ function createTokenPayloadForSigning(payload: ISubstratePayload): string;
 // @public
 export function decode(d: string, safe?: boolean): string;
 
-// @public (undocumented)
-const _default: {
-    apiKeyStrategy: typeof apiKeyStrategy;
-    substrateStrategy: typeof substrateStrategy;
-};
-
 // @public
 export function encode(d: string, safe?: boolean): string;
 
 // @public
 function encodeToken(d: ISubstrateDecodedStructure): string;
-
-// @public
-export function getEnv<T>(name: string, defaultValue?: T): any;
 
 // @public (undocumented)
 interface IApiKeyPayload {
@@ -85,7 +84,8 @@ interface ISubstratePayload {
 
 declare namespace strategies {
     export {
-        _default as default
+        apiKeyStrategy,
+        substrateStrategy
     }
 }
 export { strategies }
@@ -96,16 +96,22 @@ export class StrategyValidationError extends Error {
     status: number;
 }
 
-// @public (undocumented)
-function validate(token: IApiKeyStructure): void;
+declare namespace substrateStrategy {
+    export {
+        validateSubstrate,
+        createTokenPayloadForSigning,
+        encodeToken,
+        ISubstratePayload,
+        ISubstrateDecodedStructure,
+        ISubstrateEncodedStructure
+    }
+}
 
 // @public
-function validate_2(token: ISubstrateDecodedStructure): ISubstratePayload;
+function validateApiKey(token: IApiKeyStructure): IApiKeyPayload;
 
-// Warnings were encountered during analysis:
-//
-// src/strategies/index.ts:4:5 - (ae-forgotten-export) The symbol "apiKeyStrategy" needs to be exported by the entry point index.d.ts
-// src/strategies/index.ts:5:5 - (ae-forgotten-export) The symbol "substrateStrategy" needs to be exported by the entry point index.d.ts
+// @public
+function validateSubstrate(token: ISubstrateDecodedStructure): ISubstratePayload;
 
 // (No @packageDocumentation comment for this package)
 

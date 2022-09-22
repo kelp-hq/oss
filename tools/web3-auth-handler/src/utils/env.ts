@@ -1,3 +1,4 @@
+//
 import { includes, isEmpty, isNil } from 'ramda';
 
 const shouldParse: string[] = ['ALLOWED_REFERRERS'];
@@ -7,6 +8,7 @@ const shouldParse: string[] = ['ALLOWED_REFERRERS'];
  * @param name -
  * @param defaultValue -
  * @returns
+ * @public
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getEnv<T>(name: string, defaultValue?: T): any {

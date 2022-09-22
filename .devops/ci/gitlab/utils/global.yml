@@ -55,4 +55,4 @@
     - !reference [.rush:install, script]
     - set -e
     - echo 'Building ...'
-    - node common/scripts/install-run-rush.js rebuild --verbose
+    - node common/scripts/install-run-rush.js rebuild --verbose --debug

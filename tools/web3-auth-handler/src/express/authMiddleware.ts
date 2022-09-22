@@ -1,14 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 import { isNil, map, split, trim } from 'ramda';
 
-import { IApiKeyStructure, validate as validateApiKey } from '../strategies/apiKey';
-import { ISubstrateDecodedStructure, validate as validateSubstrate } from '../strategies/substrate';
+import { IApiKeyStructure, validateApiKey } from '../strategies/apiKey';
+import { ISubstrateDecodedStructure, validateSubstrate } from '../strategies/substrate';
 import { decode } from '../utils/base64url';
 
+/**
+ * @public
+ */
 export enum IAuthStrategy {
   'apiKey' = 'apiKey',
   'substrate' = 'sub'
 }
+/**
+ * @public
+ */
 export interface IBaseStrategy<T> {
   /**
    * resolving strategy
@@ -29,6 +35,7 @@ export interface IBaseStrategy<T> {
  * @param req - Express Request
  * @param res - Express Response
  * @param next - Express Next function
+ * @public
  */
 export async function auth(req: Request, res: Response, next: NextFunction): Promise<void> {
   const authorization = req.get('authorization');

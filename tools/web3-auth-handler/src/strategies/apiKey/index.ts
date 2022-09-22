@@ -5,14 +5,26 @@ import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
 import { getEnv } from '../../utils/env';
 import { StrategyValidationError } from '../../utils/errors';
 
+/**
+ * @public
+ */
 export interface IApiKeyPayload {
   key: string;
 }
+/**
+ * @public
+ */
 export interface IApiKeyStructure extends IBaseStrategy<IApiKeyPayload> {
   strategy: IAuthStrategy.apiKey;
 }
 
-export function validate(token: IApiKeyStructure): IApiKeyPayload {
+/**
+ * API-key validate
+ * @param token -
+ * @returns
+ * @public
+ */
+export function validateApiKey(token: IApiKeyStructure): IApiKeyPayload {
   const ENABLE_API_KEY_SUPPORT = getEnv('ENABLE_API_KEY_SUPPORT', false);
 
   if (!isNil(ENABLE_API_KEY_SUPPORT) && !isEmpty(ENABLE_API_KEY_SUPPORT) && isTrue(ENABLE_API_KEY_SUPPORT)) {

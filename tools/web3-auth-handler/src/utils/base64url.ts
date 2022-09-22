@@ -7,6 +7,7 @@
  * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The "URL and Filename safe" Base 64 Alphabet
  * @param d - Any kind of string data
  * @returns
+ * @public
  */
 export function encode(d: string, safe: boolean = true): string {
   let encoded: string;
@@ -27,6 +28,7 @@ export function encode(d: string, safe: boolean = true): string {
  * Decode the base64Url encoded string
  * @param d - base64 url encoded
  * @returns
+ * @public
  */
 export function decode(d: string, safe: boolean = true): string {
   let decoded: string;

@@ -1,4 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
+
+/**
+ * @public
+ */
 export class StrategyValidationError extends Error {
   /**
    * HTTP status code

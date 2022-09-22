@@ -5,6 +5,9 @@ import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
 import { encode } from '../../utils/base64url';
 import { StrategyValidationError } from '../../utils/errors';
 
+/**
+ * @public
+ */
 export interface ISubstratePayload {
   /**
    * to which network this account belongs to.
@@ -37,11 +40,17 @@ export interface ISubstratePayload {
   ttl: number;
 }
 
+/**
+ * @public
+ */
 export interface ISubstrateDecodedStructure extends IBaseStrategy<ISubstratePayload> {
   strategy: IAuthStrategy.substrate;
   sig: string;
 }
 
+/**
+ * @public
+ */
 export interface ISubstrateEncodedStructure extends IBaseStrategy<string> {
   strategy: IAuthStrategy.substrate;
   sig: string;
@@ -50,8 +59,9 @@ export interface ISubstrateEncodedStructure extends IBaseStrategy<string> {
 /**
  * Validate the token and its signature
  * @param token -
+ * @public
  */
-export function validate(token: ISubstrateDecodedStructure): ISubstratePayload {
+export function validateSubstrate(token: ISubstrateDecodedStructure): ISubstratePayload {
   const { sig, payload } = token;
 
   const message = createTokenPayloadForSigning(payload);
@@ -67,6 +77,7 @@ export function validate(token: ISubstrateDecodedStructure): ISubstratePayload {
  * HEX encode the payload for signing. Serialization is done via `JSON.stringify`
  * @param payload - Payload
  * @returns hex string starting with `0x`
+ * @public
  */
 export function createTokenPayloadForSigning(payload: ISubstratePayload): string {
   const p = stringToHex(JSON.stringify(payload));
@@ -77,6 +88,7 @@ export function createTokenPayloadForSigning(payload: ISubstratePayload): string
  * Encode the token structure to base64 which is used as the part of the Authorization header
  * @param d - Real token structure with the sig. This is as you would use it in the TS
  * @returns
+ * @public
  */
 export function encodeToken(d: ISubstrateDecodedStructure): string {
   const p = JSON.stringify(d);
