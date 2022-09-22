@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Spinner from '$lib/base/Spinner.svelte';
 	import fetch from 'cross-fetch';
-	import slug from 'slug';
 	import { isNil } from 'ramda';
-	import type { ISubstrateDecodedStructure } from '@kelp_digital/web3-auth-handler';
+	import type { ISubstrateDecodedStructure } from '@kelp_digital/web3-api-auth';
 
 	import { onMount } from 'svelte';
 
@@ -30,8 +29,10 @@
 	let ctx: CanvasRenderingContext2D;
 
 	async function uploadImage() {
+		await convertImage();
+
 		const { createTokenPayloadForSigning, IAuthStrategy } = await import(
-			'@kelp_digital/web3-auth-handler'
+			'@kelp_digital/web3-api-auth'
 		);
 
 		const tokenPayload = {
@@ -49,12 +50,9 @@
 			strategy: IAuthStrategy.substrate
 		};
 		const token = stringToHex(JSON.stringify(t));
-		console.log('token', token);
 
 		const baseUrl =
 			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false';
-
-		await convertImage();
 
 		const formData = new FormData();
 

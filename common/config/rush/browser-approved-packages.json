@@ -3,68 +3,24 @@
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
   "packages": [
     {
-      "name": "@anagolay/api",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@anagolay/create_cid_from_buffer",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "@anagolay/types",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "@anagolay/utils",
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "@anagolay/workflow_compute_cidv1",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@anagolay/workflow_compute_cidv1_from_bytes",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "@anagolay/workflow_compute_cidv1_from_bytes_new_version",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@anagolay/workflow_compute_cidv1_version2",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fastify/cors",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fastify/reply-from",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fontsource/fira-mono",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@kelp_digital/ipfs-api-client",
       "allowedCategories": [ "production", "website" ]
-    },
-    {
-      "name": "@kelp_digital/sveltekit-adapter-macula",
-      "allowedCategories": [ "website" ]
     },
     {
       "name": "@kelp_digital/web3-api-auth",
       "allowedCategories": [ "production", "website" ]
     },
     {
-      "name": "@kelp_digital/web3-auth-handler",
-      "allowedCategories": [ "production", "website" ]
-    },
-    {
       "name": "@microsoft/api-extractor",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "@playwright/test",
@@ -123,12 +79,8 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "@rushstack/heft-web-rig",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "@rushstack/heft-webpack5-plugin",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "@sentry/node",
@@ -147,16 +99,8 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "@sinclair/typebox",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@sveltejs/adapter-auto",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@sveltejs/adapter-static",
-      "allowedCategories": [ "tools", "website" ]
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "@sveltejs/kit",
@@ -167,23 +111,7 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "@sveltejs/vite-plugin-svelte",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tailwindcss/forms",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tailwindcss/line-clamp",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@tailwindcss/typography",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tsconfig/svelte",
       "allowedCategories": [ "website" ]
     },
     {
@@ -195,14 +123,6 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "agenda",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "apidoc",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "autoprefixer",
       "allowedCategories": [ "website" ]
     },
@@ -212,15 +132,15 @@
     },
     {
       "name": "byte-size",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "clui",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "commander",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "compression",
@@ -228,7 +148,7 @@
     },
     {
       "name": "cors",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "cross-fetch",
@@ -241,18 +161,6 @@
     {
       "name": "debug",
       "allowedCategories": [ "tools" ]
-    },
-    {
-      "name": "dotenv-cli",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "drawflow",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "electron",
-      "allowedCategories": [ "production" ]
     },
     {
       "name": "env-cmd",
@@ -291,51 +199,11 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "fast-json-stringify",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "fast-printf",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "fast-proxy",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "fastify",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-cors",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-http-proxy",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-oas",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-plugin",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-tsconfig",
       "allowedCategories": [ "production" ]
     },
     {
       "name": "file-type",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "glob",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "handlebars",
       "allowedCategories": [ "production" ]
     },
     {
@@ -344,15 +212,7 @@
     },
     {
       "name": "http-proxy",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "http-proxy-middleware",
       "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "husky",
-      "allowedCategories": [ "tools" ]
     },
     {
       "name": "identicon.js",
@@ -368,11 +228,7 @@
     },
     {
       "name": "ipfs-http-client",
-      "allowedCategories": [ "production", "tools", "website" ]
-    },
-    {
-      "name": "ipfs-utils",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "tools" ]
     },
     {
       "name": "it-all",
@@ -380,19 +236,11 @@
     },
     {
       "name": "it-glob",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "jpeg-js",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "level",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "mime-types",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production" ]
     },
     {
       "name": "mongodb",
@@ -415,10 +263,6 @@
       "allowedCategories": [ "production", "tools", "website" ]
     },
     {
-      "name": "nodemon",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "piexifjs",
       "allowedCategories": [ "website" ]
     },
@@ -431,20 +275,8 @@
       "allowedCategories": [ "production", "tools" ]
     },
     {
-      "name": "pino-sentry-transport",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "pkg",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "png-js",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "pngjs",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "postcss",
@@ -459,10 +291,6 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "pretty-quick",
-      "allowedCategories": [ "tools" ]
-    },
-    {
       "name": "ramda",
       "allowedCategories": [ "production", "tools", "website" ]
     },
@@ -471,28 +299,12 @@
       "allowedCategories": [ "production" ]
     },
     {
-      "name": "remeda",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "sharp",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "simple-git",
       "allowedCategories": [ "production" ]
     },
     {
       "name": "slug",
-      "allowedCategories": [ "production", "tools", "website" ]
-    },
-    {
-      "name": "socket.io",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "socket.io-client",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production", "website" ]
     },
     {
       "name": "svelte",
@@ -500,10 +312,6 @@
     },
     {
       "name": "svelte-check",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "svelte-material-icons",
       "allowedCategories": [ "website" ]
     },
     {
@@ -515,16 +323,8 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "sveltejs-adapter-ipfs",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "tailwindcss",
       "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "tar",
-      "allowedCategories": [ "production" ]
     },
     {
       "name": "theme-change",
@@ -532,15 +332,11 @@
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "ts-node",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "tslib",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "tools", "website" ]
     },
     {
       "name": "typescript",
@@ -572,19 +368,15 @@
     },
     {
       "name": "webpack",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "webpack-cli",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "webpack-node-externals",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "wf_cid_from_array",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "wf_cidv1_from_array",
