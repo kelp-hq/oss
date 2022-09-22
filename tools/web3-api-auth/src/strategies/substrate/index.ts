@@ -1,5 +1,5 @@
-import { hexToU8a, stringToHex } from '@polkadot/util';
-import { signatureVerify } from '@polkadot/util-crypto';
+import { stringToHex, u8aToHex } from '@polkadot/util';
+import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto';
 
 import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
 import { encode } from '../../utils/base64url';
@@ -61,12 +61,15 @@ export interface ISubstrateEncodedStructure extends IBaseStrategy<string> {
  * @param token -
  * @public
  */
-export function validateSubstrate(token: ISubstrateDecodedStructure): ISubstratePayload {
+export async function validateSubstrate(token: ISubstrateDecodedStructure): Promise<ISubstratePayload> {
   const { sig, payload } = token;
+  await cryptoWaitReady();
 
-  const message = createTokenPayloadForSigning(payload);
-
-  if (!signatureVerify(message, hexToU8a(sig), payload.account).isValid) {
+  const signedMessage = createTokenPayloadForSigning(payload);
+  const publicKey = decodeAddress(payload.account);
+  const hexPublicKey = u8aToHex(publicKey);
+  const verifyResult = signatureVerify(signedMessage, sig, hexPublicKey);
+  if (!verifyResult.isValid) {
     throw new StrategyValidationError('Bad signature.', 401);
   }
 

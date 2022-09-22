@@ -14,7 +14,7 @@ cp "$PKG_CJS" "$PROJECT_ROOT/tools/ipfs-cli/lib/package.json"
 # cp "$PKG_MODULE" "$PROJECT_ROOT/tools/utils/lib/package.json"
 # cp "$PKG_CJS" "$PROJECT_ROOT/tools/utils/lib_cjs/package.json"
 
-cp "$PKG_MODULE" "$PROJECT_ROOT/tools/web3-auth-handler/lib/package.json"
-cp "$PKG_CJS" "$PROJECT_ROOT/tools/web3-auth-handler/lib_cjs/package.json"
+cp "$PKG_MODULE" "$PROJECT_ROOT/tools/web3-api-auth/lib/package.json"
+cp "$PKG_CJS" "$PROJECT_ROOT/tools/web3-api-auth/lib_cjs/package.json"
 
 cp "$PKG_MODULE" "$PROJECT_ROOT/tools/sveltekit-adapter-macula/lib/package.json"

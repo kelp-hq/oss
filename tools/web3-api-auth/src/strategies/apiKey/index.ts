@@ -1,4 +1,3 @@
-import { isTrue } from '@anagolay/utils';
 import { includes, isEmpty, isNil } from 'ramda';
 
 import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
@@ -25,9 +24,9 @@ export interface IApiKeyStructure extends IBaseStrategy<IApiKeyPayload> {
  * @public
  */
 export function validateApiKey(token: IApiKeyStructure): IApiKeyPayload {
-  const ENABLE_API_KEY_SUPPORT = getEnv('ENABLE_API_KEY_SUPPORT', false);
+  const ENABLE_API_KEY_SUPPORT = getEnv<boolean>('ENABLE_API_KEY_SUPPORT', false);
 
-  if (!isNil(ENABLE_API_KEY_SUPPORT) && !isEmpty(ENABLE_API_KEY_SUPPORT) && isTrue(ENABLE_API_KEY_SUPPORT)) {
+  if (!isNil(ENABLE_API_KEY_SUPPORT) && !isEmpty(ENABLE_API_KEY_SUPPORT) && ENABLE_API_KEY_SUPPORT) {
     const allowedApiKeys = getEnv('ALLOWED_API_KEYS', '[]');
 
     const apiKeyFromHeader = token.payload.key;

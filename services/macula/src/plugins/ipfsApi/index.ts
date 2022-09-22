@@ -1,11 +1,8 @@
-import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-auth-handler';
-import type { AxiosError, AxiosInstance } from 'axios';
-import axios from 'axios';
+import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth';
+import type { AxiosError } from 'axios';
 import { Request, Response, Router } from 'express';
-import http from 'http';
 import type Server from 'http-proxy';
 import httpProxy from 'http-proxy';
-import https from 'https';
 import { replace } from 'ramda';
 
 import { ipfsApiURL, version } from '../../config';
@@ -15,16 +12,6 @@ import { ipfsApiURL, version } from '../../config';
  */
 export const ipfsApiRouter: Router = Router({
   caseSensitive: true
-});
-
-export const axiosGatewayProxyInstance: AxiosInstance = axios.create({
-  httpAgent: new http.Agent({ keepAlive: true }),
-  httpsAgent: new https.Agent({ keepAlive: true }),
-  proxy: {
-    host: '127.0.0.1',
-    port: 8080,
-    protocol: 'http'
-  }
 });
 
 // for some reason this is used in the whole app
@@ -40,9 +27,9 @@ ipfsApiRouter
       // if this doesn't work use other proxy
 
       const proxy: Server = httpProxy.createProxyServer({});
-      proxy.on('proxyReq', (proxyReq) => {
-        console.log(proxyReq.getHeaders()['content-type']);
-      });
+      // proxy.on('proxyReq', (proxyReq) => {
+      // console.log(proxyReq.getHeaders()['content-type']);
+      // });
       proxy.on('proxyRes', (proxyRes) => {
         proxyRes.headers['X-Powered-By'] = `macula/${version}`;
         proxyRes.headers.Server = `macula/${version}`;

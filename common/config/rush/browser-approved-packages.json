@@ -55,8 +55,12 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "@kelp_digital/web3-api-auth",
+      "allowedCategories": [ "production", "website" ]
+    },
+    {
       "name": "@kelp_digital/web3-auth-handler",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "website" ]
     },
     {
       "name": "@microsoft/api-extractor",

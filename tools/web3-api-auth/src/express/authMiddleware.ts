@@ -1,9 +1,9 @@
+import { hexToString } from '@polkadot/util';
 import { NextFunction, Request, Response } from 'express';
 import { isNil, map, split, trim } from 'ramda';
 
 import { IApiKeyStructure, validateApiKey } from '../strategies/apiKey';
 import { ISubstrateDecodedStructure, validateSubstrate } from '../strategies/substrate';
-import { decode } from '../utils/base64url';
 
 /**
  * @public
@@ -46,9 +46,11 @@ export async function expressWeb3AuthMiddleware(
   if (isNil(authorization)) {
     return next('Authorization header is empty. That cannot be.');
   }
-
+  // ignore the Bearer
   const [, token] = map(trim, split(' ', authorization));
-  const decodedToken = decode(token);
+
+  // our token is always in the 0x hex
+  const decodedToken = hexToString(token);
   const parsedToken = JSON.parse(decodedToken);
 
   switch (parsedToken.strategy) {

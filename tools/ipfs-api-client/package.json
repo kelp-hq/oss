@@ -37,14 +37,12 @@
     "ramda": "0.28.0",
     "byte-size": "8.1.0",
     "it-all": "1.0.6",
-    "@sentry/node": "7.6.0",
-    "@sentry/tracing": "7.6.0",
     "it-glob": "1.0.2",
-    "multiformats": "9.8.1",
     "cross-fetch": "~3.1.5",
     "debug": "4.3.4"
   },
   "devDependencies": {
+    "multiformats": "9.8.1",
     "axios": "0.27.2",
     "tslib": "2.4.0",
     "typescript": "4.6.4",

@@ -8,6 +8,7 @@ importers:
   ../../app:
     specifiers:
       '@kelp_digital/ipfs-api-client': workspace:*
+      '@kelp_digital/web3-api-auth': workspace:*
       '@playwright/test': 1.25.2
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
@@ -23,12 +24,12 @@ importers:
       '@tailwindcss/typography': 0.5.7
       '@types/identicon.js': 2.3.1
       '@types/ramda': 0.28.15
-      '@types/slug': ~5.0.3
+      '@types/slug': 5.0.3
       '@typescript-eslint/eslint-plugin': 5.37.0
       '@typescript-eslint/parser': 5.37.0
       autoprefixer: 10.4.8
       axios: 0.27.2
-      cross-fetch: ~3.1.5
+      cross-fetch: 3.1.5
       daisyui: 2.24.0
       eslint: 8.23.1
       eslint-config-prettier: 8.5.0
@@ -46,7 +47,7 @@ importers:
       prettier: 2.7.1
       prettier-plugin-svelte: 2.7.0
       ramda: 0.28.0
-      slug: ~8.0.0
+      slug: 8.0.0
       svelte: 3.50.1
       svelte-check: 2.9.0
       svelte-preprocess: 4.10.7
@@ -62,6 +63,8 @@ importers:
       vite-plugin-wasm: 2.1.0
       wf_cidv1_from_array: https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma
     dependencies:
+      '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
+      '@kelp_digital/web3-api-auth': link:../tools/web3-api-auth
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
       '@polkadot/extension-dapp': 0.44.5_@polkadot+api@9.2.2
@@ -81,7 +84,6 @@ importers:
       theme-change: 2.2.0
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
-      '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
       '@playwright/test': 1.25.2
       '@sveltejs/adapter-static': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.484_svelte@3.50.1+vite@3.1.2
@@ -123,7 +125,7 @@ importers:
       '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': workspace:*
-      '@kelp_digital/web3-auth-handler': workspace:*
+      '@kelp_digital/web3-api-auth': workspace:*
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -177,7 +179,7 @@ importers:
       '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': link:../../tools/ipfs-api-client
-      '@kelp_digital/web3-auth-handler': link:../../tools/web3-auth-handler
+      '@kelp_digital/web3-api-auth': link:../../tools/web3-api-auth
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
@@ -237,8 +239,6 @@ importers:
       '@rushstack/heft-jest-plugin': 0.3.6
       '@rushstack/heft-node-rig': 1.9.7
       '@rushstack/heft-webpack5-plugin': 0.5.13
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
       '@types/byte-size': 8.1.0
       '@types/clui': 0.3.1
       '@types/heft-jest': 1.0.2
@@ -268,14 +268,11 @@ importers:
       webpack-cli: 4.9.2
       webpack-node-externals: 3.0.0
     dependencies:
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
       byte-size: 8.1.0
       cross-fetch: 3.1.5
       debug: 4.3.4
       it-all: 1.0.6
       it-glob: 1.0.2
-      multiformats: 9.8.1
       ramda: 0.28.0
     devDependencies:
       '@microsoft/api-extractor': 7.28.0
@@ -296,6 +293,7 @@ importers:
       eslint: 8.17.0
       eslint-plugin-simple-import-sort: 7.0.0_eslint@8.17.0
       eslint-plugin-unused-imports: 2.0.0_eslint@8.17.0
+      multiformats: 9.8.1
       pino-pretty: 8.0.0
       pkg: 5.6.0
       prettier: 2.5.1
@@ -426,9 +424,8 @@ importers:
       typescript: 4.6.4
       vite: 3.1.2
 
-  ../../tools/web3-auth-handler:
+  ../../tools/web3-api-auth:
     specifiers:
-      '@anagolay/utils': 0.0.1
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -444,18 +441,15 @@ importers:
       eslint: 8.17.0
       eslint-plugin-simple-import-sort: 7.0.0
       eslint-plugin-unused-imports: 2.0.0
-      express: 4.18.1
       prettier: 2.5.1
       ramda: 0.28.0
       tslib: 2.4.0
       typescript: 4.6.4
       webpack-node-externals: 3.0.0
     dependencies:
-      '@anagolay/utils': 0.0.1
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
-      express: 4.18.1
       ramda: 0.28.0
     devDependencies:
       '@microsoft/api-extractor': 7.28.0

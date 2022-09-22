@@ -30,11 +30,12 @@
 		"theme-change": "2.2.0",
 		"exif-library": "2.0.0-alpha.0",
 		"axios": "0.27.2",
-		"cross-fetch": "~3.1.5",
-		"slug": "~8.0.0"
+		"cross-fetch": "3.1.5",
+		"slug": "8.0.0",
+		"@kelp_digital/web3-api-auth": "workspace:*",
+		"@kelp_digital/ipfs-api-client": "workspace:*"
 	},
 	"devDependencies": {
-		"@kelp_digital/ipfs-api-client": "workspace:*",
 		"@playwright/test": "1.25.2",
 		"eslint-plugin-simple-import-sort": "8.0.0",
 		"eslint-plugin-unused-imports": "2.0.0",
@@ -69,6 +70,6 @@
 		"@sveltejs/adapter-static": "1.0.0-next.43",
 		"vite-plugin-externals": "0.5.1",
 		"svelte-seo": "1.4.1",
-		"@types/slug": "~5.0.3"
+		"@types/slug": "5.0.3"
 	}
 }

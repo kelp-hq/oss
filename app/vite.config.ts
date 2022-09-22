@@ -24,8 +24,8 @@ const config: UserConfig = {
 			}
 			// plugins: []
 		}
-		// include: ['axios']
-		// exclude: ['electron-fetch']
+		// include: ['@anagolay/utils']
+		// exclude: ['@polkadot/wasm-crypto-wasm', '@polkadot/*']
 		// exclude: ['ipfs-http-client', 'electron-fetch']
 	},
 	build: {

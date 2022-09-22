@@ -43,7 +43,7 @@
 </script>
 
 <div class="dropdown dropdown-end">
-	<div class="w-full flex items-center gap-2">
+	<div class="w-full flex items-center gap-2 ">
 		<div>
 			{truncateAddress($polkadotAccountsStore.selectedAccount) || 'Select account'}
 		</div>
@@ -54,7 +54,10 @@
 	</div>
 
 	{#if !isEmpty($polkadotAccountsStore.injectedAccounts)}
-		<ul tabindex="0" class="mt-3 p-2 shadow-lg drop-shadow-lg menu menu-compact dropdown-content">
+		<ul
+			tabindex="0"
+			class="bg-base-100 mt-3 p-2 shadow-lg drop-shadow-lg menu menu-compact dropdown-content"
+		>
 			{#each $polkadotAccountsStore.injectedAccounts as account}
 				<li>
 					<span

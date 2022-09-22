@@ -11,7 +11,7 @@ const shouldParse: string[] = ['ALLOWED_REFERRERS'];
  * @public
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getEnv<T>(name: string, defaultValue?: T): any {
+export function getEnv<T>(name: string, defaultValue?: T): T {
   let envVar: T;
 
   if (isNil(process.env[name]) || isEmpty(process.env[name])) {

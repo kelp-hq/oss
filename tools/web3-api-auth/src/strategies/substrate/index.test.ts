@@ -2,7 +2,7 @@ import Keyring from '@polkadot/keyring';
 import { stringToU8a } from '@polkadot/util';
 import { cryptoWaitReady, signatureVerify } from '@polkadot/util-crypto';
 
-import { createTokenPayloadForSigning as encodeTokenPayload, ISubstratePayload } from '.';
+import { createTokenPayloadForSigning, ISubstratePayload } from '.';
 
 describe('Substrate', () => {
   beforeEach(async (): Promise<void> => {
@@ -31,7 +31,7 @@ describe('Substrate', () => {
         account: alice.address,
         ttl
       };
-      const p = encodeTokenPayload(d);
+      const p = createTokenPayloadForSigning(d);
 
       const signature = alice.sign(p);
       // const isValid = alice.verify(p, signature, alice.publicKey);

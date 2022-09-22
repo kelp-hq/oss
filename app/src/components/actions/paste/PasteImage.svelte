@@ -3,19 +3,18 @@
 	import fetch from 'cross-fetch';
 	import slug from 'slug';
 	import { isNil } from 'ramda';
+	import type { ISubstrateDecodedStructure } from '@kelp_digital/web3-auth-handler';
 
 	import { onMount } from 'svelte';
-	import { calculateCid } from '../../../utils/helpers';
-
-	// import { create } from 'ipfs-http-client';
 
 	import ExifReader from 'exifreader';
 	import { pasteImageStore } from './store';
 
 	import { dump as pixDump, insert as pixInsert, TagValues, type IExifElement } from 'exif-library';
 
-	import { polkadotAccountsStore } from '$lib/polkadotAccounts/store';
+	import { polkadotAccountsStore, signViaExtension } from '$lib/polkadotAccounts/store';
 	import { isEmpty } from 'ramda';
+	import { stringToHex } from '@polkadot/util';
 
 	let loadingBlob: boolean = false;
 
@@ -31,31 +30,59 @@
 	let ctx: CanvasRenderingContext2D;
 
 	async function uploadImage() {
+		const { createTokenPayloadForSigning, IAuthStrategy } = await import(
+			'@kelp_digital/web3-auth-handler'
+		);
+
+		const tokenPayload = {
+			account: $polkadotAccountsStore.selectedAccount,
+			network: 'anagolay',
+			prefix: 42,
+			ttl: 6000
+		};
+
+		const hexPayload = createTokenPayloadForSigning(tokenPayload);
+		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, hexPayload);
+		const t: ISubstrateDecodedStructure = {
+			sig,
+			payload: tokenPayload,
+			strategy: IAuthStrategy.substrate
+		};
+		const token = stringToHex(JSON.stringify(t));
+		console.log('token', token);
+
 		const baseUrl =
-			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=true';
+			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false';
+
 		await convertImage();
 
 		const formData = new FormData();
 
-		// formData.append('file', new Blob([$pasteImageStore.imageBuffer]), `screenshot-${cid}.jpg`);
-		formData.append('file', new Blob([$pasteImageStore.imageBuffer]));
+		formData.append('file', new Blob([$pasteImageStore.imageBuffer]), 'screenshot-1.jpg');
 
 		const res = await fetch(baseUrl, {
 			method: 'POST',
-			body: formData
+			body: formData,
+			headers: {
+				authorization: `Bearer ${token}`
+			}
 		});
 		const addedCid = await res.json();
 
 		console.log('addedCid', addedCid.Hash);
+		alert(addedCid.Hash);
 	}
-
+	/**
+	 * this is not deterministic, maybe the metadata is messing it up
+	 * it is currently used just to have the metadata
+	 */
 	async function convertImage() {
 		if (isEmpty($polkadotAccountsStore.selectedAccount)) {
 			throw new Error('select the account');
 		}
 
 		// let utf8Decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
-		let utf8Encoder = new TextEncoder(); // default 'utf-8' or 'utf8'
+		// let utf8Encoder = new TextEncoder(); // default 'utf-8' or 'utf8'
 
 		const imageBuffer = await (await fetch($pasteImageStore.src)).arrayBuffer();
 		$pasteImageStore.imageBuffer = imageBuffer;
