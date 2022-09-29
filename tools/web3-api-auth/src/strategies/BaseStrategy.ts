@@ -127,12 +127,11 @@ export abstract class BaseStrategy<P> {
     }
 
     const encodedStrategy = encode(this.strategy as unknown as string);
-
     const encodedPayload = encode(JSON.stringify(this.payload));
-    const encodedSignature = encode(sig);
+    const encodedSignature = encode(JSON.stringify(sig));
 
     const parts = [encodedStrategy, encodedPayload, encodedSignature];
-
+    console.log('parts', parts);
     return join('.', parts);
   }
 

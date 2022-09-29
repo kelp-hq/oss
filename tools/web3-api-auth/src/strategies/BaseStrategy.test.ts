@@ -10,7 +10,7 @@ describe('[BaseStrategy] Test case', () => {
     class ImplClass extends BaseStrategy<{ name: string; age: number }> {
       public constructor(payload?: { name: string; age: number }) {
         super(payload);
-        this.strategy = IAuthStrategy.apiKey;
+        this.strategy = IAuthStrategy.substrate;
       }
       public async validate(): Promise<{ name: string; age: number }> {
         return { name: 'string', age: 2 };
@@ -28,7 +28,7 @@ describe('[BaseStrategy] Test case', () => {
     };
     expect(t.payload).toBeDefined();
 
-    const token = 'YXBpS2V5.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.c2ln';
+    const token = 'c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.c2ln';
     expect(await t.make('sig')).toBe(token);
   });
 });

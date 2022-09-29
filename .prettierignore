@@ -96,6 +96,6 @@ dist
 lib
 
 # Prettier reformats code blocks inside Markdown, which affects rendered output
-*.md
+# *.md
 
 .pnpm-store
