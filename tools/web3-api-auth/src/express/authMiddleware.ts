@@ -1,34 +1,9 @@
-import { hexToString } from '@polkadot/util';
+/* eslint-disable require-atomic-updates */
 import { NextFunction, Request, Response } from 'express';
 import { isNil, map, split, trim } from 'ramda';
 
-import { IApiKeyStructure, validateApiKey } from '../strategies/apiKey';
-import { ISubstrateDecodedStructure, validateSubstrate } from '../strategies/substrate';
-
-/**
- * @public
- */
-export enum IAuthStrategy {
-  'apiKey' = 'apiKey',
-  'substrate' = 'sub'
-}
-/**
- * @public
- */
-export interface IBaseStrategy<T> {
-  /**
-   * resolving strategy
-   */
-  strategy: IAuthStrategy;
-  /**
-   * What you send
-   */
-  payload: T;
-  /**
-   * Signature. How you obtain this depends on the strategy
-   */
-  sig?: string;
-}
+import { BaseStrategy } from '../strategies/BaseStrategy';
+import { SubstrateStrategy } from '../strategies/substrate';
 
 /**
  * Authentication Middleware.
@@ -49,18 +24,18 @@ export async function expressWeb3AuthMiddleware(
   // ignore the Bearer
   const [, token] = map(trim, split(' ', authorization));
 
-  // our token is always in the 0x hex
-  const decodedToken = hexToString(token);
-  const parsedToken = JSON.parse(decodedToken);
+  const {
+    parsed: { strategy }
+  } = await BaseStrategy.parseToken(token);
 
-  switch (parsedToken.strategy) {
-    default:
-    case 'apiKey':
-      req.user = validateApiKey(parsedToken as IApiKeyStructure);
-      break;
+  switch (strategy) {
     case 'sub':
-      req.user = validateSubstrate(parsedToken as ISubstrateDecodedStructure);
+      const t = new SubstrateStrategy();
+      const user = await t.validate(token);
+      req.user = user;
       break;
+    default:
+      console.log('The strategy is not implemented, continue with next middleware ...');
   }
 
   next();

@@ -6,7 +6,8 @@
  * @remarks
  * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The "URL and Filename safe" Base 64 Alphabet
  * @param d - Any kind of string data
- * @returns
+ * @param safe - Tell encoder that we are decoding base64Url save payload. This is default behavior.
+ * @returns Encoded string or fails with the error if it cannot find `atob` or `Buffer`
  * @public
  */
 export function encode(d: string, safe: boolean = true): string {
@@ -18,6 +19,7 @@ export function encode(d: string, safe: boolean = true): string {
   } else {
     throw new Error('Failed to determine the platform specific encoder');
   }
+
   if (safe) {
     return encoded.replace(/\+/g, '-').replace(/\//g, '_');
   } else {
@@ -25,9 +27,12 @@ export function encode(d: string, safe: boolean = true): string {
   }
 }
 /**
- * Decode the base64Url encoded string
- * @param d - base64 url encoded
- * @returns
+ * Decode the base64Url encoded string to a decoded string.
+ * @remarks
+ * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The "URL and Filename safe" Base 64 Alphabet
+ * @param d - encoded payload
+ * @param safe - Tell decoder that we are decoding base64Url save payload. This is default behavior.
+ * @returns Decoded string or fails with the error if it cannot find `atob` or `Buffer`
  * @public
  */
 export function decode(d: string, safe: boolean = true): string {

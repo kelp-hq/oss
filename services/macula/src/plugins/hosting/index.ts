@@ -9,6 +9,7 @@ import https from 'https';
 import { dissoc, isEmpty, isNil, last, mergeRight } from 'ramda';
 
 import { ipfsApiURL, ipfsGateway } from '../../config';
+import { apiKeyMiddleware } from '../../middlewares/apiKey';
 import { getDB } from '../../mongodbClient';
 import { axiosApiProxyInstance } from '../../proxyServer';
 import { redisClient } from '../../redisClient';
@@ -327,6 +328,7 @@ hostingRouter
   .route('/hosting/api/addSubdomain')
   .all(validateBodyForAddApi)
   .all(expressWeb3AuthMiddleware)
+  .all(apiKeyMiddleware)
   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a wewbsite, fetch the macula.json'

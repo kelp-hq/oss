@@ -9,70 +9,26 @@ import { Request } from 'express';
 import { Response } from 'express';
 
 // @public
-export function createTokenPayloadForSigning(payload: ISubstratePayload): string;
-
-// @public
 export function decode(d: string, safe?: boolean): string;
 
 // @public
 export function encode(d: string, safe?: boolean): string;
 
 // @public
-export function encodeToken(d: ISubstrateDecodedStructure): string;
-
-// @public
 export function expressWeb3AuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void>;
-
-// @public (undocumented)
-export interface IApiKeyPayload {
-    // (undocumented)
-    key: string;
-}
-
-// @public (undocumented)
-export interface IApiKeyStructure extends IBaseStrategy<IApiKeyPayload> {
-    // (undocumented)
-    strategy: IAuthStrategy.apiKey;
-}
-
-// @public (undocumented)
-export enum IAuthStrategy {
-    // (undocumented)
-    'apiKey' = "apiKey",
-    // (undocumented)
-    'substrate' = "sub"
-}
-
-// @public (undocumented)
-export interface IBaseStrategy<T> {
-    payload: T;
-    sig?: string;
-    strategy: IAuthStrategy;
-}
-
-// @public (undocumented)
-export interface ISubstrateDecodedStructure extends IBaseStrategy<ISubstratePayload> {
-    // (undocumented)
-    sig: string;
-    // (undocumented)
-    strategy: IAuthStrategy.substrate;
-}
-
-// @public (undocumented)
-export interface ISubstrateEncodedStructure extends IBaseStrategy<string> {
-    // (undocumented)
-    sig: string;
-    // (undocumented)
-    strategy: IAuthStrategy.substrate;
-}
 
 // @public (undocumented)
 export interface ISubstratePayload {
     account: string;
+    exp: number;
     network: string;
     prefix: number;
-    ttl: number;
 }
+
+// Warning: (ae-forgotten-export) The symbol "ITokenStructure" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+export type ISubstrateTokenStructure = ITokenStructure<ISubstratePayload>;
 
 // @public (undocumented)
 export class StrategyValidationError extends Error {
@@ -80,11 +36,14 @@ export class StrategyValidationError extends Error {
     status: number;
 }
 
+// Warning: (ae-forgotten-export) The symbol "BaseStrategy" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function validateApiKey(token: IApiKeyStructure): IApiKeyPayload;
-
-// @public
-export function validateSubstrate(token: ISubstrateDecodedStructure): Promise<ISubstratePayload>;
+export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
+    constructor(payload?: ISubstratePayload);
+    // (undocumented)
+    validate(token: string): Promise<ISubstratePayload>;
+}
 
 // (No @packageDocumentation comment for this package)
 

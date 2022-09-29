@@ -2,7 +2,6 @@
 	import Spinner from '$lib/base/Spinner.svelte';
 	import fetch from 'cross-fetch';
 	import { isNil } from 'ramda';
-	import type { ISubstrateDecodedStructure } from '@kelp_digital/web3-api-auth';
 
 	import { onMount } from 'svelte';
 
@@ -14,6 +13,7 @@
 	import { polkadotAccountsStore, signViaExtension } from '$lib/polkadotAccounts/store';
 	import { isEmpty } from 'ramda';
 	import { stringToHex } from '@polkadot/util';
+	import type { ISubstratePayload } from '@kelp_digital/web3-api-auth';
 
 	let loadingBlob: boolean = false;
 
@@ -31,25 +31,18 @@
 	async function uploadImage() {
 		await convertImage();
 
-		const { createTokenPayloadForSigning, IAuthStrategy } = await import(
-			'@kelp_digital/web3-api-auth'
-		);
+		const { SubstrateStrategy } = await import('@kelp_digital/web3-api-auth');
 
-		const tokenPayload = {
+		const tokenPayload: ISubstratePayload = {
 			account: $polkadotAccountsStore.selectedAccount,
 			network: 'anagolay',
 			prefix: 42,
-			ttl: 6000
+			exp: 6000
 		};
 
-		const hexPayload = createTokenPayloadForSigning(tokenPayload);
-		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, hexPayload);
-		const t: ISubstrateDecodedStructure = {
-			sig,
-			payload: tokenPayload,
-			strategy: IAuthStrategy.substrate
-		};
-		const token = stringToHex(JSON.stringify(t));
+		const t = new SubstrateStrategy(tokenPayload);
+		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, await t.encode());
+		const tokenWithHeader = await t.makeWithHeader(sig);
 
 		const baseUrl =
 			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false';
@@ -62,7 +55,7 @@
 			method: 'POST',
 			body: formData,
 			headers: {
-				authorization: `Bearer ${token}`
+				...tokenWithHeader
 			}
 		});
 		const addedCid = await res.json();

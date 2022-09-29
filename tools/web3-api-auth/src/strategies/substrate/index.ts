@@ -1,9 +1,9 @@
-import { stringToHex, u8aToHex } from '@polkadot/util';
+import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto';
 
-import { IAuthStrategy, IBaseStrategy } from '../../express/authMiddleware';
-import { encode } from '../../utils/base64url';
 import { StrategyValidationError } from '../../utils/errors';
+import { BaseStrategy, ITokenStructure } from '../BaseStrategy';
+import { IAuthStrategy } from '../strategies';
 
 /**
  * @public
@@ -28,72 +28,65 @@ export interface ISubstratePayload {
    */
   account: string;
   /**
-   * TTL or TimeToLive in seconds. This is basically expiration of the token. Fater this time the token is not valid and MUST be rejected.
+   * exp or TimeToLive in seconds. This is basically expiration of the token. After this time the token is not valid and MUST be rejected.
    *
    * @remarks
    * Use this snippet to add 5 mins to the current date making the token available within 5 minutes
    * ```js
    * const now = new Date();
-   * const ttl = now.setMinutes(now.getMinutes() + 5);
+   * const exp = now.setMinutes(now.getMinutes() + 5);
    * ```
    */
-  ttl: number;
+  exp: number;
 }
 
 /**
+ *
  * @public
  */
-export interface ISubstrateDecodedStructure extends IBaseStrategy<ISubstratePayload> {
-  strategy: IAuthStrategy.substrate;
-  sig: string;
-}
+export type ISubstrateTokenStructure = ITokenStructure<ISubstratePayload>;
 
 /**
+
+ * You can pass the payload in to the constructor or later set it via setter
+ * Example
+ * ```ts
+ * const tokenPayload = {
+ *    account: 'just-normal-substrate-based-address',
+ *    network: 'anagolay',
+ *    prefix: 42,
+ *    exp: 6000
+	*	};
+ * const t = new SubstrateStrategy(tokenPayload);
+ * // or 
+ * const t =  new SubstrateStrategy();
+ * t.payload = tokenPayload;
+ * ```
  * @public
  */
-export interface ISubstrateEncodedStructure extends IBaseStrategy<string> {
-  strategy: IAuthStrategy.substrate;
-  sig: string;
-}
-
-/**
- * Validate the token and its signature
- * @param token -
- * @public
- */
-export async function validateSubstrate(token: ISubstrateDecodedStructure): Promise<ISubstratePayload> {
-  const { sig, payload } = token;
-  await cryptoWaitReady();
-
-  const signedMessage = createTokenPayloadForSigning(payload);
-  const publicKey = decodeAddress(payload.account);
-  const hexPublicKey = u8aToHex(publicKey);
-  const verifyResult = signatureVerify(signedMessage, sig, hexPublicKey);
-  if (!verifyResult.isValid) {
-    throw new StrategyValidationError('Bad signature.', 401);
+export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
+  public constructor(payload?: ISubstratePayload) {
+    super(payload);
+    this.strategy = IAuthStrategy.substrate;
   }
 
-  return payload;
-}
+  public async validate(token: string): Promise<ISubstratePayload> {
+    const {
+      parsed: { payload: decodedPayload, sig },
+      original: { payload }
+    } = await SubstrateStrategy.parseToken<ISubstratePayload>(token);
 
-/**
- * HEX encode the payload for signing. Serialization is done via `JSON.stringify`
- * @param payload - Payload
- * @returns hex string starting with `0x`
- * @public
- */
-export function createTokenPayloadForSigning(payload: ISubstratePayload): string {
-  const p = stringToHex(JSON.stringify(payload));
-  return p;
-}
+    await cryptoWaitReady();
 
-/**
- * Encode the token structure to base64 which is used as the part of the Authorization header
- * @param d - Real token structure with the sig. This is as you would use it in the TS
- * @returns
- * @public
- */
-export function encodeToken(d: ISubstrateDecodedStructure): string {
-  const p = JSON.stringify(d);
-  return encode(p);
+    const publicKey = decodeAddress(decodedPayload.account);
+    const hexPublicKey = u8aToHex(publicKey);
+
+    const verifyResult = signatureVerify(payload, sig, hexPublicKey);
+
+    if (!verifyResult.isValid) {
+      throw new StrategyValidationError('Bad signature.', 401);
+    }
+
+    return decodedPayload;
+  }
 }

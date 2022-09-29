@@ -6,6 +6,7 @@ import httpProxy from 'http-proxy';
 import { replace } from 'ramda';
 
 import { ipfsApiURL, version } from '../../config';
+import { apiKeyMiddleware } from '../../middlewares/apiKey';
 
 /**
  * API router
@@ -19,6 +20,7 @@ export const ipfsApiRouter: Router = Router({
 ipfsApiRouter
   .route('/ipfs_api/v0/*')
   .all(expressWeb3AuthMiddleware)
+  .all(apiKeyMiddleware)
   .post(async (req: Request, res: Response) => {
     req.url = replace('ipfs_api', 'api', req.url);
     console.log('Proxying API %s', ipfsApiURL + req.url);
