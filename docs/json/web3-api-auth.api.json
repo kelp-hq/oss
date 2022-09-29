@@ -420,11 +420,11 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload#exp:member",
-              "docComment": "/**\n * exp or TimeToLive in seconds. This is basically expiration of the token. After this time the token is not valid and MUST be rejected.\n *\n * @remarks\n *\n * Use this snippet to add 5 mins to the current date making the token available within 5 minutes\n * ```js\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 5);\n * ```\n *\n */\n",
+              "docComment": "/**\n * exp or TimeToLive in milliseconds. This is basically expiration of the token. After this time the token is not valid and MUST be rejected.\n *\n * @remarks\n *\n * Use this snippet to add 7 mins to the current date making the token available within 7 minutes\n * ```js\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 7); // this returns the ms\n * ```\n *\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "exp: "
+                  "text": "exp?: "
                 },
                 {
                   "kind": "Content",
@@ -436,7 +436,7 @@
                 }
               ],
               "isReadonly": false,
-              "isOptional": false,
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "exp",
               "propertyTypeTokenRange": {
@@ -500,45 +500,6 @@
             }
           ],
           "extendsTokenRanges": []
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@kelp_digital/web3-api-auth!ISubstrateTokenStructure:type",
-          "docComment": "/**\n * @public\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare type ISubstrateTokenStructure = "
-            },
-            {
-              "kind": "Reference",
-              "text": "ITokenStructure",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ITokenStructure:interface"
-            },
-            {
-              "kind": "Content",
-              "text": "<"
-            },
-            {
-              "kind": "Reference",
-              "text": "ISubstratePayload",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ">"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ISubstrateTokenStructure",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 5
-          }
         },
         {
           "kind": "Class",
@@ -650,7 +611,7 @@
         {
           "kind": "Class",
           "canonicalReference": "@kelp_digital/web3-api-auth!SubstrateStrategy:class",
-          "docComment": "/**\n * You can pass the payload in to the constructor or later set it via setter Example\n * ```ts\n * const tokenPayload = {\n *    account: 'just-normal-substrate-based-address',\n *    network: 'anagolay',\n *    prefix: 42,\n *    exp: 6000\n * \t};\n * const t = new SubstrateStrategy(tokenPayload);\n * // or\n * const t =  new SubstrateStrategy();\n * t.payload = tokenPayload;\n * ```\n *\n * @public\n */\n",
+          "docComment": "/**\n * You can pass the payload in to the constructor or later set it via setter Example\n * ```ts\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 5);\n * const tokenPayload = {\n *    account: 'just-normal-substrate-based-address',\n *    network: 'anagolay',\n *    prefix: 42,\n *    exp // optional, but if present then the token will not be accepted if now() is larger than this field\n * \t};\n * const t = new SubstrateStrategy(tokenPayload);\n * // or\n * const t =  new SubstrateStrategy();\n * t.payload = tokenPayload;\n * ```\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

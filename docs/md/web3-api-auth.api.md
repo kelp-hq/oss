@@ -20,15 +20,10 @@ export function expressWeb3AuthMiddleware(req: Request, res: Response, next: Nex
 // @public (undocumented)
 export interface ISubstratePayload {
     account: string;
-    exp: number;
+    exp?: number;
     network: string;
     prefix: number;
 }
-
-// Warning: (ae-forgotten-export) The symbol "ITokenStructure" needs to be exported by the entry point index.d.ts
-//
-// @public (undocumented)
-export type ISubstrateTokenStructure = ITokenStructure<ISubstratePayload>;
 
 // @public (undocumented)
 export class StrategyValidationError extends Error {

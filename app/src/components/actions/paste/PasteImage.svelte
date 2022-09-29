@@ -44,14 +44,14 @@
 		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, await t.encode());
 		const tokenWithHeader = await t.makeWithHeader(sig);
 
-		const baseUrl =
-			'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false';
+		const baseUrl = 'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu67.gitpod.io';
+		const url = `${baseUrl}/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false`;
 
 		const formData = new FormData();
 
 		formData.append('file', new Blob([$pasteImageStore.imageBuffer]), 'screenshot-1.jpg');
 
-		const res = await fetch(baseUrl, {
+		const res = await fetch(url, {
 			method: 'POST',
 			body: formData,
 			headers: {
@@ -59,8 +59,6 @@
 			}
 		});
 		const addedCid = await res.json();
-
-		console.log('addedCid', addedCid.Hash);
 		alert(addedCid.Hash);
 	}
 	/**

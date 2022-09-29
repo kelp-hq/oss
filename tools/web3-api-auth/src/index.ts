@@ -1,4 +1,3 @@
-export * from './express/authHeader';
 export * from './express/authMiddleware';
 export * from './strategies';
 export * from './utils/base64url';
