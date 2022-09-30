@@ -61,7 +61,7 @@ function replace(filePath, outFilePath, options) {
       const resolvedPath = resolveImportPath(filePath, importPath, options);
 
       if (resolvedPath) {
-        console.debug('\t', importPath, resolvedPath);
+        // console.debug('\t', importPath, resolvedPath);
         return `${action} ${imported} from '${resolvedPath}';`;
       }
 
@@ -80,7 +80,7 @@ async function run(srcDir, options = defaultOptions) {
 
   for await (const entry of walk(srcDir)) {
     if (sourceFileFilter(entry)) {
-      console.debug(entry);
+      // console.debug(entry);
       replace(entry, entry, options);
     }
   }

@@ -4,6 +4,8 @@
     - [Strategy](#strategy)
     - [Payload](#payload)
     - [Signature](#signature)
+    - [Putting all together](#putting-all-together)
+- [How to create new Strategy?](#how-to-create-new-strategy)
   - [Implemented strategies:](#implemented-strategies)
   - [Implemented middleware for:](#implemented-middleware-for)
 
@@ -36,15 +38,29 @@ When combined the WAAT looks like this.
 
 ### Strategy
 
-This is the first part. Consider this as a routing rule that will know how to call a specific Strategy. A list of potential values is part of the `IAuthStrategy enum` located [here](./src/strategies/strategies.ts#L5). The value is encoded using the [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts#L129).
+This is the first part. Consider this as a routing rule that will know how to call a specific Strategy. A list of potential values is part of the `IAuthStrategy enum` located [here](./src/strategies/strategies.ts). The value is encoded using the [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts).
 
 ### Payload
 
-This is the second part. This is Strategy specific. Every implemented strategy has complete control what is the structure and what are the required and optional keys. Some strategies can decide to have the payload as an array some can have it structured like [SubstrateStrategy](./src/strategies/substrate/index.ts#L12). To produce the correct value the native object is serialized using the `JSON.stringify` it's encoded using the [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts#L130).
+This is the second part. This is Strategy specific. Every implemented strategy has complete control what is the structure and what are the required and optional keys. Some strategies can decide to have the payload as an array some can have it structured like [SubstrateStrategy](./src/strategies/substrate/index.ts). To produce the correct value the native object is serialized using the `JSON.stringify` it's encoded using the [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts).
 
 ### Signature
 
-This is the third and the last part. This is Strategy specific. Every implemented strategy has complete control over how to generate the signature and what is the decoded representation. For example, the SubstrateStrategy will require that the decoded signature is a hex string starting with `0x`. Since the base implementation doesn't know what is the underlying signature structure, it will **ALWAYS** serialize the value using the `JSON.stringify` and then as usual encode it using [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts#L131). We have thought to implement it in a different way where we would require the signature to be string but then the implementations would get quite complex and the automatic decoding is not possible and the decoding should be left to the implementor. In this way we decode then parse and we will always get to the correct output.
+This is the third and the last part. This is Strategy specific. Every implemented strategy has complete control over how to generate the signature and what is the decoded representation. For example, the SubstrateStrategy will require that the decoded signature is a hex string starting with `0x`. Each Strategy must implement the [`encodeSignature`](./src/strategies/BaseStrategy.ts) method which will be called before serialization that is done using `JSON.stringify` and then as usual encode it using [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts).
+
+### Putting all together
+
+The output is the base64Url encoded strings separated by a dot that can be safely passed over the network, and since the encoding is URL-safe, the WAAT can be sent via the links, GET API calls, or as a part of the callback request ( authorization server ).
+
+Here is what the final WAAT looks like:
+
+```
+c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI=
+```
+
+# How to create new Strategy?
+
+---
 
 Yup, the WAATs are similar to JWTs but built for web3 to be lightweight and modular.
 

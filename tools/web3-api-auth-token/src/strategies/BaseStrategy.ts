@@ -27,11 +27,13 @@ export interface ITokenStructure<P> {
 /**
  * Encoded token, this is what it's sent over the wire
  * This is just a wrapper so we can clearly read that the return is the Token
+ * @public
  */
 export type IToken = string;
 
 /**
  * Token with the Authorization header
+ * @public
  */
 export interface ITokenHeader {
   authorization: string;
@@ -41,6 +43,7 @@ export interface ITokenHeader {
  * Parsed token output
  * @typeParam  P - is the payload type
  * @returns the token structure and original, unparsed and not decoded values
+ * @public
  */
 export interface IParsedToken<P> {
   parsed: ITokenStructure<P>;
@@ -63,6 +66,7 @@ export interface IParsedToken<P> {
  * const t =  new ImplementedStrategy();
  * t.payload = {iss:'me', aud:'you'};
  * ```
+ * @public
  */
 
 export abstract class BaseStrategy<P> {
