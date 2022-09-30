@@ -116,8 +116,6 @@ export abstract class BaseStrategy<P> {
   /**
    * Implementations can override this method to suit their needs when they need to encode the signature.
    * @param rawSig - RAW Signature
-   * @typeParam T - What is the type of the RAW signature
-   * @typeParam R - The Return type
    * @returns the R type. This return value is serialized then encoded
    */
   public abstract encodeSignature(rawSig: unknown): Promise<unknown>;
