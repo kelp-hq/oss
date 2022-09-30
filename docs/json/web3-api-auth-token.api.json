@@ -1156,7 +1156,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader:interface",
-          "docComment": "/**\n * Token with the Authorization header\n *\n * @public\n */\n",
+          "docComment": "/**\n * Token with the Authorization header\n *\n * @remarks\n *\n * Follow the RFC https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -1169,12 +1169,12 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader#authorization:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader#Authorization:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "authorization: "
+                  "text": "Authorization: "
                 },
                 {
                   "kind": "Content",
@@ -1188,7 +1188,7 @@
               "isReadonly": false,
               "isOptional": false,
               "releaseTag": "Public",
-              "name": "authorization",
+              "name": "Authorization",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

@@ -67,7 +67,7 @@ export type IToken = string;
 // @public
 export interface ITokenHeader {
   // (undocumented)
-  authorization: string;
+  Authorization: string;
 }
 
 // @public

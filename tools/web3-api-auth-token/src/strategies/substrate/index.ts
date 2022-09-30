@@ -3,8 +3,8 @@ import { HexString } from '@polkadot/util/types';
 import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto';
 import { isEmpty, isNil } from 'ramda';
 
-import { StrategyValidationError } from '../../utils/errors';
 import { BaseStrategy } from '../BaseStrategy';
+import { StrategyValidationError } from '../errors';
 import { IAuthStrategy } from '../strategies';
 
 /**

@@ -1,15 +1,21 @@
+# web3-api-auth-token (WAAT)
+
 - [web3-api-auth-token (WAAT)](#web3-api-auth-token-waat)
+- [WAAT?](#waat)
   - [Why should I use WAAT?](#why-should-i-use-waat)
   - [What is the Web3 API Auth Token structure?](#what-is-the-web3-api-auth-token-structure)
     - [Strategy](#strategy)
     - [Payload](#payload)
     - [Signature](#signature)
     - [Putting all together](#putting-all-together)
-- [How to create new Strategy?](#how-to-create-new-strategy)
+  - [How does WAAT work?](#how-does-waat-work)
+  - [Why we should use WAAT?](#why-we-should-use-waat)
+  - [This sounds like JWT, is it?](#this-sounds-like-jwt-is-it)
+- [How to create a new Strategy?](#how-to-create-a-new-strategy)
   - [Implemented strategies:](#implemented-strategies)
   - [Implemented middleware for:](#implemented-middleware-for)
 
-# web3-api-auth-token (WAAT)
+# WAAT?
 
 Web3 API Auth Token (**WAAT**) defines a compact and self-contained way for securely transmitting information between the parties as a base64Url encoded JSON object. the information can be verified and trusted because it is digitally signed and the signature provided as a part of the token. WAAT is completely agnostic about the way the Strategies validate the payload. Because of this design approach, the WAAT is also agnostic about the RAW type of the signature and encourages the best practices for each Strategy.
 
@@ -58,7 +64,52 @@ Here is what the final WAAT looks like:
 c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI=
 ```
 
-# How to create new Strategy?
+## How does WAAT work?
+
+The closest comparison to WAAT is JWT. A user obtains JWT via the authentication scheme, usually having entered username and password. If the server that issued the JWT goes down, applications cannot be used and existing not-expired JWTs cannot be re-issued which generally leads to big problems and a apps downtime. With Web3 API Auth Token, there is no central server that is issuing the token. The WAAT is generated when needed and signed using the wallet. This way the private information is never accessed and as long as the wallet is accessible the WAAT will be produced.
+
+Whenever the user wants to access WAAT protected API route or a resource, the user agent needs to send the WAAT, typically in the [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) header using the [`Bearer`](https://datatracker.ietf.org/doc/html/rfc6750) schema.
+
+The content of the header should look like this:
+
+```
+Authorization: Bearer <WAAT>
+```
+
+The servers need to implement the middleware to check and validate this header. For example, this package includes the middleware for express located [here](./src/express/authMiddleware.ts). The middleware is not long or complex. Its purpose is to `route` the request to a specific strategy based on the [first part](#strategy) and wait until two scenarios are fulfilled.
+
+1. Token is valid
+2. No error is thrown
+
+If errors are thrown, developers can catch them and send the correct response to the end user. The provided Express middleware will throw the `StrategyValidationError` which contains the correct HTTP header for each error, making it very easy to work with and helping developers to focus on building their app and not thinking about potential HTTP codes.
+
+## Why we should use WAAT?
+
+It's compact, self-issued, self-contained, tamper-proof, a web-native structure that contains the signature for integrity checks which are based on PKI, especially the Strategy implementation PKI.
+
+## This sounds like JWT, is it?
+
+No, it is not. It is similar, but not the same. JWT generally requires an issuer that parties trust. This is standard JWT flow:
+
+```mermaid
+graph TD
+    A[Application -- Client] -->|1| B(JWT Authorization Server)
+    B --> |2| A
+    A --> |3| C(Your API -- Resource Server)
+```
+
+And this is how WAAT works:
+
+```mermaid
+graph TD
+    A[Application -- Client] -->|1| B(Wallet)
+    B -->|2| A
+    A --> |3| C(Your API -- Resource Server)
+```
+
+You might say that the change is small, by only watching the diagram, then yes, but architecturally it is a big deal. Replacing a centralized server with the decentralized and sell-governed component is that is always Strategy specific is the base for truly decentralized tokens.
+
+# How to create a new Strategy?
 
 ---
 

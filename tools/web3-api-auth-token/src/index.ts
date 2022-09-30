@@ -7,5 +7,5 @@
  */
 export * from './express/authMiddleware';
 export * from './strategies';
+export * from './strategies/errors';
 export * from './utils/base64url';
-export * from './utils/errors';

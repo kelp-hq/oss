@@ -35,7 +35,7 @@ export async function expressWeb3AuthMiddleware(
       req.user = user;
       break;
     default:
-      console.log('The strategy is not implemented, continue with next middleware ...');
+      console.log(`The strategy is not implemented {${strategy}}, continue with next middleware ...`);
   }
 
   next();

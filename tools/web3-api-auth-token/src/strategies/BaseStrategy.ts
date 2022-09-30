@@ -33,10 +33,11 @@ export type IToken = string;
 
 /**
  * Token with the Authorization header
+ * @remarks Follow the RFC https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization
  * @public
  */
 export interface ITokenHeader {
-  authorization: string;
+  Authorization: string;
 }
 
 /**
@@ -154,7 +155,7 @@ export abstract class BaseStrategy<P> {
    * @public
    */
   public async makeWithHeader<T>(sig: T): Promise<ITokenHeader> {
-    return { authorization: `Bearer ${await this.make<T>(sig)}` };
+    return { Authorization: `Bearer ${await this.make<T>(sig)}` };
   }
 
   /**
