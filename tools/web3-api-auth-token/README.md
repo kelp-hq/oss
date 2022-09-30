@@ -1,4 +1,4 @@
-- [web3-api-auth-token-token (WAAT)](#web3-api-auth-token-token-waat)
+- [web3-api-auth-token (WAAT)](#web3-api-auth-token-waat)
   - [Why should I use WAAT?](#why-should-i-use-waat)
   - [What is the Web3 API Auth Token structure?](#what-is-the-web3-api-auth-token-structure)
     - [Strategy](#strategy)
@@ -9,7 +9,7 @@
   - [Implemented strategies:](#implemented-strategies)
   - [Implemented middleware for:](#implemented-middleware-for)
 
-# web3-api-auth-token-token (WAAT)
+# web3-api-auth-token (WAAT)
 
 Web3 API Auth Token (**WAAT**) defines a compact and self-contained way for securely transmitting information between the parties as a base64Url encoded JSON object. the information can be verified and trusted because it is digitally signed and the signature provided as a part of the token. WAAT is completely agnostic about the way the Strategies validate the payload. Because of this design approach, the WAAT is also agnostic about the RAW type of the signature and encourages the best practices for each Strategy.
 
