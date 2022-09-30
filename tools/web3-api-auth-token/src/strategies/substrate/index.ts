@@ -1,4 +1,5 @@
 import { u8aToHex } from '@polkadot/util';
+import { HexString } from '@polkadot/util/types';
 import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto';
 import { isEmpty, isNil } from 'ramda';
 
@@ -67,6 +68,10 @@ export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
     this.strategy = IAuthStrategy.substrate;
   }
 
+  public encodeSignature(rawSig: Uint8Array): Promise<HexString> {
+    return new Promise((resolve) => resolve(u8aToHex(rawSig)));
+  }
+
   public async validate(token: string): Promise<ISubstratePayload> {
     const {
       parsed: { payload: decodedPayload, sig },
@@ -75,11 +80,13 @@ export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
 
     // let's check is token expired
     const { exp } = decodedPayload;
-    const nowDate = new Date();
-    const now = nowDate.getTime() / 1000;
 
-    if (!isNil(exp) && !isEmpty(exp) && now >= exp) {
-      throw new StrategyValidationError('Token Expired.', 401);
+    if (!isNil(exp) && !isEmpty(exp)) {
+      const nowDate = new Date();
+      const now = nowDate.getTime() / 1000;
+      if (now >= exp) {
+        throw new StrategyValidationError('Token Expired.', 401);
+      }
     }
 
     const publicKey = decodeAddress(decodedPayload.account);

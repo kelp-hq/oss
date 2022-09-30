@@ -114,11 +114,21 @@ export abstract class BaseStrategy<P> {
   }
 
   /**
+   * Implementations can override this method to suit their needs when they need to encode the signature.
+   * @param rawSig - RAW Signature
+   * @typeParam T - What is the type of the RAW signature
+   * @typeParam R - The Return type
+   * @returns the R type. This return value is serialized then encoded
+   */
+  public abstract encodeSignature(rawSig: unknown): Promise<unknown>;
+
+  /**
    * Make the token, combine the `encodedStrategy.encodedPayload.encodedPayloadSignature`. All parts are base64Url encoded.
-   * @param sig - Payload Signature as string
+   * @param sig - Payload Signature as generic `T`
+   * @typeParam T - This generic is more for code understanding and future implementations. It doesn't have any impact. We suggest setting is regardless.
    * @returns the token as a string in the correct format `x.xx.xxx`
    */
-  public async make(sig: string): Promise<string> {
+  public async make<T>(sig: T): Promise<string> {
     if (isNil(this.strategy)) {
       throw new Error(`Did you forget to set the strategy?`);
     }
@@ -128,27 +138,28 @@ export abstract class BaseStrategy<P> {
 
     const encodedStrategy = encode(this.strategy as unknown as string);
     const encodedPayload = encode(JSON.stringify(this.payload));
-    const encodedSignature = encode(JSON.stringify(sig));
+    const encodedSignature = encode(JSON.stringify(await this.encodeSignature(sig))); // for strings this produces `"\"my-string\""`
 
     const parts = [encodedStrategy, encodedPayload, encodedSignature];
-    console.log('parts', parts);
     return join('.', parts);
   }
 
   /**
    * Encode the payload with the encode() then return the common authorization bearer object
    * @param sig - Payload Signature as string
-   * @returns `{authorization: 'Bearer ${this.encode()}'}`
+   * @typeParam T - This generic is more for code understanding and future implementations. It doesn't have any impact. We suggest setting is regardless.
+   * @returns `{authorization: 'Bearer c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI='}`
    * @public
    */
-  public async makeWithHeader(sig: string): Promise<ITokenHeader> {
-    return { authorization: `Bearer ${await this.make(sig)}` };
+  public async makeWithHeader<T>(sig: T): Promise<ITokenHeader> {
+    return { authorization: `Bearer ${await this.make<T>(sig)}` };
   }
 
   /**
    *
    * @param token - Incoming token string in a `x.xx.xxx` format
-   * @returns
+   * @typeParam P - The payload type
+   * @returns the Parsed token structure where the `parsed` is of the {@link ITokenStructure} with the `P` generic type
    */
   public static async parseToken<P>(token: IToken): Promise<IParsedToken<P>> {
     const tokenChunks = split('.')(trim(token));
@@ -162,7 +173,7 @@ export abstract class BaseStrategy<P> {
 
     const strategy: IAuthStrategy = decode(s) as IAuthStrategy;
     const payload: P = JSON.parse(decode(p));
-    const signature = decode(sig);
+    const signature = JSON.parse(decode(sig));
 
     return {
       parsed: {

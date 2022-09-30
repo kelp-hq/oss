@@ -1,3 +1,12 @@
+- [web3-api-auth-token-token (WAAT)](#web3-api-auth-token-token-waat)
+  - [Why should I use WAAT?](#why-should-i-use-waat)
+  - [What is the Web3 API Auth Token structure?](#what-is-the-web3-api-auth-token-structure)
+    - [Strategy](#strategy)
+    - [Payload](#payload)
+    - [Signature](#signature)
+  - [Implemented strategies:](#implemented-strategies)
+  - [Implemented middleware for:](#implemented-middleware-for)
+
 # web3-api-auth-token-token (WAAT)
 
 Web3 API Auth Token (**WAAT**) defines a compact and self-contained way for securely transmitting information between the parties as a base64Url encoded JSON object. the information can be verified and trusted because it is digitally signed and the signature provided as a part of the token. WAAT is completely agnostic about the way the Strategies validate the payload. Because of this design approach, the WAAT is also agnostic about the RAW type of the signature and encourages the best practices for each Strategy.
@@ -35,7 +44,7 @@ This is the second part. This is Strategy specific. Every implemented strategy h
 
 ### Signature
 
-This is the third and the last part. This is Strategy specific. Every implemented strategy has complete control over how to generate the signature and what is the decoded representation. For example, the SubstrateStrategy will require that the decoded signature is a hex string starting with `0x`. Since this must
+This is the third and the last part. This is Strategy specific. Every implemented strategy has complete control over how to generate the signature and what is the decoded representation. For example, the SubstrateStrategy will require that the decoded signature is a hex string starting with `0x`. Since the base implementation doesn't know what is the underlying signature structure, it will **ALWAYS** serialize the value using the `JSON.stringify` and then as usual encode it using [base64Url](./src/utils/base64url.ts). Check the implementation [here](./src/strategies/BaseStrategy.ts#L131). We have thought to implement it in a different way where we would require the signature to be string but then the implementations would get quite complex and the automatic decoding is not possible and the decoding should be left to the implementor. In this way we decode then parse and we will always get to the correct output.
 
 Yup, the WAATs are similar to JWTs but built for web3 to be lightweight and modular.
 
