@@ -1,6 +1,6 @@
 import { IHostingRequestContext } from '../../plugins/hosting';
-import { IBaseStrategy } from '../../web3-api-auth/authMiddleware';
-import { IApiKeyPayload, IApiKeyStructure } from '../../web3-api-auth/strategies/apiKey';
+import { IBaseStrategy } from '../../web3-api-auth-token/authMiddleware';
+import { IApiKeyPayload, IApiKeyStructure } from '../../web3-api-auth-token/strategies/apiKey';
 
 declare global {
   namespace Express {

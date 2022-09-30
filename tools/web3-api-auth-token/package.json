@@ -1,5 +1,5 @@
 {
-  "name": "@kelp_digital/web3-api-auth",
+  "name": "@kelp_digital/web3-api-auth-token",
   "description": "Opinionated web3 authentication and authorization method, highly inspired by jwt",
   "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
   "version": "0.0.1",
@@ -13,7 +13,7 @@
   "type": "module",
   "licenseFile": "./LICENSE",
   "main": "./lib_cjs/index.js",
-  "types": "./lib/web3-api-auth.d.ts",
+  "types": "./lib/web3-api-auth-token.d.ts",
   "exports": {
     ".": {
       "require": "./lib_cjs/index.js",

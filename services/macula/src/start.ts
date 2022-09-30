@@ -8,7 +8,7 @@
 
 /* eslint-disable @rushstack/typedef-var */
 
-import { StrategyValidationError } from '@kelp_digital/web3-api-auth';
+import { StrategyValidationError } from '@kelp_digital/web3-api-auth-token';
 import axios from 'axios';
 import compression from 'compression';
 import cors from 'cors';

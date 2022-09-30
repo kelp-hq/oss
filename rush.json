@@ -443,8 +443,8 @@
       "shouldPublish": true
     },
     {
-      "packageName": "@kelp_digital/web3-api-auth",
-      "projectFolder": "tools/web3-api-auth",
+      "packageName": "@kelp_digital/web3-api-auth-token",
+      "projectFolder": "tools/web3-api-auth-token",
       "reviewCategory": "tools",
       "shouldPublish": true
     },

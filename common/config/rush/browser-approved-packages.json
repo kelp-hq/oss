@@ -19,6 +19,10 @@
       "allowedCategories": [ "production", "website" ]
     },
     {
+      "name": "@kelp_digital/web3-api-auth-token",
+      "allowedCategories": [ "production", "website" ]
+    },
+    {
       "name": "@microsoft/api-extractor",
       "allowedCategories": [ "production", "tools" ]
     },

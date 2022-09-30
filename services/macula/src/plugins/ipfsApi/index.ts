@@ -1,4 +1,4 @@
-import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth';
+import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
 import type { AxiosError } from 'axios';
 import { Request, Response, Router } from 'express';
 import type Server from 'http-proxy';

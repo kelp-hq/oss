@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
-import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth';
+import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
 import { captureException, startTransaction } from '@sentry/node';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';

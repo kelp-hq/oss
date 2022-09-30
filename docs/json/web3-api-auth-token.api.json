@@ -161,20 +161,20 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "@kelp_digital/web3-api-auth!",
+  "canonicalReference": "@kelp_digital/web3-api-auth-token!",
   "docComment": "",
-  "name": "@kelp_digital/web3-api-auth",
+  "name": "@kelp_digital/web3-api-auth-token",
   "preserveMemberOrder": false,
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "@kelp_digital/web3-api-auth!",
+      "canonicalReference": "@kelp_digital/web3-api-auth-token!",
       "name": "",
       "preserveMemberOrder": false,
       "members": [
         {
           "kind": "Function",
-          "canonicalReference": "@kelp_digital/web3-api-auth!decode:function(1)",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!decode:function(1)",
           "docComment": "/**\n * Decode the base64Url encoded string to a decoded string.\n *\n * @remarks\n *\n * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The \"URL and Filename safe\" Base 64 Alphabet\n *\n * @param d - encoded payload\n *\n * @param safe - Tell decoder that we are decoding base64Url save payload. This is default behavior.\n *\n * @returns Decoded string or fails with the error if it cannot find `atob` or `Buffer`\n *\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -234,7 +234,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@kelp_digital/web3-api-auth!encode:function(1)",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!encode:function(1)",
           "docComment": "/**\n * Encode the string to Base64 URL safe\n *\n * @remarks\n *\n * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The \"URL and Filename safe\" Base 64 Alphabet\n *\n * @param d - Any kind of string data\n *\n * @param safe - Tell encoder that we are decoding base64Url save payload. This is default behavior.\n *\n * @returns Encoded string or fails with the error if it cannot find `atob` or `Buffer`\n *\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -294,7 +294,7 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@kelp_digital/web3-api-auth!expressWeb3AuthMiddleware:function(1)",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!expressWeb3AuthMiddleware:function(1)",
           "docComment": "/**\n * Authentication Middleware.\n *\n * @param req - Express Request\n *\n * @param res - Express Response\n *\n * @param next - Express Next function\n *\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -378,7 +378,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload:interface",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface",
           "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -392,7 +392,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload#account:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#account:member",
               "docComment": "/**\n * Public address in valid SS58 format\n */\n",
               "excerptTokens": [
                 {
@@ -419,7 +419,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload#exp:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#exp:member",
               "docComment": "/**\n * exp or TimeToLive in milliseconds. This is basically expiration of the token. After this time the token is not valid and MUST be rejected.\n *\n * @remarks\n *\n * Use this snippet to add 7 mins to the current date making the token available within 7 minutes\n * ```js\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 7); // this returns the ms\n * ```\n *\n */\n",
               "excerptTokens": [
                 {
@@ -446,7 +446,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload#network:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#network:member",
               "docComment": "/**\n * to which network this account belongs to.\n *\n * @remarks\n *\n * This value will not be modified, it is up to you to add this correctly.\n */\n",
               "excerptTokens": [
                 {
@@ -473,7 +473,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload#prefix:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#prefix:member",
               "docComment": "/**\n * SS58 prefix\n *\n * @remarks\n *\n * Full list here https://github.com/paritytech/ss58-registry/blob/main/ss58-registry.json\n *\n * The validation process will not verify the validity of the prefix\n */\n",
               "excerptTokens": [
                 {
@@ -503,7 +503,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "@kelp_digital/web3-api-auth!StrategyValidationError:class",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError:class",
           "docComment": "/**\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -526,7 +526,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "@kelp_digital/web3-api-auth!StrategyValidationError:constructor(1)",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError:constructor(1)",
               "docComment": "/**\n * Constructs a new instance of the `StrategyValidationError` class\n */\n",
               "excerptTokens": [
                 {
@@ -574,7 +574,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@kelp_digital/web3-api-auth!StrategyValidationError#status:member",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError#status:member",
               "docComment": "/**\n * HTTP status code\n */\n",
               "excerptTokens": [
                 {
@@ -610,7 +610,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "@kelp_digital/web3-api-auth!SubstrateStrategy:class",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy:class",
           "docComment": "/**\n * You can pass the payload in to the constructor or later set it via setter Example\n * ```ts\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 5);\n * const tokenPayload = {\n *    account: 'just-normal-substrate-based-address',\n *    network: 'anagolay',\n *    prefix: 42,\n *    exp // optional, but if present then the token will not be accepted if now() is larger than this field\n * \t};\n * const t = new SubstrateStrategy(tokenPayload);\n * // or\n * const t =  new SubstrateStrategy();\n * t.payload = tokenPayload;\n * ```\n *\n * @public\n */\n",
           "excerptTokens": [
             {
@@ -620,7 +620,7 @@
             {
               "kind": "Reference",
               "text": "BaseStrategy",
-              "canonicalReference": "@kelp_digital/web3-api-auth!BaseStrategy:class"
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy:class"
             },
             {
               "kind": "Content",
@@ -629,7 +629,7 @@
             {
               "kind": "Reference",
               "text": "ISubstratePayload",
-              "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload:interface"
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
             },
             {
               "kind": "Content",
@@ -642,7 +642,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "@kelp_digital/web3-api-auth!SubstrateStrategy:constructor(1)",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy:constructor(1)",
               "docComment": "/**\n * Constructs a new instance of the `SubstrateStrategy` class\n */\n",
               "excerptTokens": [
                 {
@@ -652,7 +652,7 @@
                 {
                   "kind": "Reference",
                   "text": "ISubstratePayload",
-                  "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload:interface"
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
                 },
                 {
                   "kind": "Content",
@@ -675,7 +675,7 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "@kelp_digital/web3-api-auth!SubstrateStrategy#validate:member(1)",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy#validate:member(1)",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -702,7 +702,7 @@
                 {
                   "kind": "Reference",
                   "text": "ISubstratePayload",
-                  "canonicalReference": "@kelp_digital/web3-api-auth!ISubstratePayload:interface"
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
                 },
                 {
                   "kind": "Content",

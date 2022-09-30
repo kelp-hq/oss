@@ -13,7 +13,7 @@
 	import { polkadotAccountsStore, signViaExtension } from '$lib/polkadotAccounts/store';
 	import { isEmpty } from 'ramda';
 	import { stringToHex } from '@polkadot/util';
-	import type { ISubstratePayload } from '@kelp_digital/web3-api-auth';
+	import type { ISubstratePayload } from '@kelp_digital/web3-api-auth-token';
 
 	let loadingBlob: boolean = false;
 
@@ -31,7 +31,7 @@
 	async function uploadImage() {
 		await convertImage();
 
-		const { SubstrateStrategy } = await import('@kelp_digital/web3-api-auth');
+		const { SubstrateStrategy } = await import('@kelp_digital/web3-api-auth-token');
 
 		const tokenPayload: ISubstratePayload = {
 			account: $polkadotAccountsStore.selectedAccount,

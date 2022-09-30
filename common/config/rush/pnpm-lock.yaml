@@ -8,7 +8,7 @@ importers:
   ../../app:
     specifiers:
       '@kelp_digital/ipfs-api-client': workspace:*
-      '@kelp_digital/web3-api-auth': workspace:*
+      '@kelp_digital/web3-api-auth-token': workspace:*
       '@playwright/test': 1.25.2
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
@@ -64,7 +64,7 @@ importers:
       wf_cidv1_from_array: https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma
     dependencies:
       '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
-      '@kelp_digital/web3-api-auth': link:../tools/web3-api-auth
+      '@kelp_digital/web3-api-auth-token': link:../tools/web3-api-auth-token
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
       '@polkadot/extension-dapp': 0.44.5_@polkadot+api@9.2.2
@@ -125,7 +125,7 @@ importers:
       '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': workspace:*
-      '@kelp_digital/web3-api-auth': workspace:*
+      '@kelp_digital/web3-api-auth-token': workspace:*
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -179,7 +179,7 @@ importers:
       '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': link:../../tools/ipfs-api-client
-      '@kelp_digital/web3-api-auth': link:../../tools/web3-api-auth
+      '@kelp_digital/web3-api-auth-token': link:../../tools/web3-api-auth-token
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
@@ -424,7 +424,7 @@ importers:
       typescript: 4.6.4
       vite: 3.1.2
 
-  ../../tools/web3-api-auth:
+  ../../tools/web3-api-auth-token:
     specifiers:
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
