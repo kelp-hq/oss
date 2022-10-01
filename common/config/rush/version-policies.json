@@ -99,7 +99,7 @@
   //   // "includeEmailInChangeFile": true
   // }
   {
-    "policyName": "kelpTools",
+    "policyName": "unstable",
     "definitionName": "individualVersion",
     "lockedMajor": 0
   }
