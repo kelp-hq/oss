@@ -272,7 +272,7 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote master branch.
      */
-    "urls": ["https://github.com/kelp-hq/oss"],
+    "urls": ["https://gitlab.com/kelp_digital/oss"],
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"
@@ -428,19 +428,19 @@
       "packageName": "@kelp_digital/ipfs-cli",
       "projectFolder": "tools/ipfs-cli",
       "reviewCategory": "tools",
-      "shouldPublish": true
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/ipfs-api-client",
       "projectFolder": "tools/ipfs-api-client",
       "reviewCategory": "tools",
-      "shouldPublish": true
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
       "projectFolder": "tools/sveltekit-adapter-macula",
       "reviewCategory": "tools",
-      "shouldPublish": true
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
