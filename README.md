@@ -1,3 +1,12 @@
+---
+title: Kelp Digital Open Source Packages
+tags:
+  - kelp
+  - open source
+  - macula
+  - ipfs
+---
+
 # Kelp Digital Open Source Packages
 
 **!!!! IMPORTANT !!!!**
@@ -13,7 +22,7 @@ This repo contains the OSS from [Kelp Digital](https://kelp.digital):
 Important files:
 
 - [README.md](./tools/web3-api-auth-token/README.md)
-- [GPLv3 LICENSE](./tools/web3-api-auth-token/LICENSE)
+- [AGPLv3 LICENSE](./tools/web3-api-auth-token/LICENSE)
 
 Web3 API Auth Token (**WAAT**) defines a compact and self-contained way for securely transmitting information between the parties as a base64Url encoded JSON object. the information can be verified and trusted because it is digitally signed and the signature provided as a part of the token. WAAT is completely agnostic about the way the Strategies validate the payload. Because of this design approach, the WAAT is also agnostic about the RAW type of the signature and encourages the best practices for each Strategy.
 
@@ -29,8 +38,8 @@ The Macula is a missing layer for IPFS with built-in features like API authentic
 🏗️ The current set of features:
 
 - Authenticated APIs using
-  - API key strategy
-  - web3 substrate-based account via Polkadot.js browser extension
+  - API key
+  - Web3 API Auth Token or [WAAT](#web3-api-auth-token--waat)
 - Access to IPFS native API on `macula.link/ipfs_api/`
 - IPFS gateway served on `macula.link/ipfs/CID`
 - Website hosting with CID or a subdomain
@@ -56,6 +65,15 @@ Important files:
 
 Custom-built CLI that can be used with the Macula authentication scheme to upload files directly to the IPFS without using the remote pinning service. It's using the HTTP API as defined in the IPFS documentation. Besides uploading the files, the Macula CLI is used to publish the websites to the Macula service register the subdomains and add the website version to it.
 
+## IPFS HTTP API client
+
+Important files:
+
+- [README.md](./tools/ipfs-api-client/README.md)
+- [AGPLv3 LICENSE](./tools/ipfs-api-client/LICENSE)
+
+Isomorphic and lightweight HTTP client for any IPFS node that comes without all the nonsense that the official package contains. This will ONLY expose the endpoints.
+
 ## **sveltekit adapter for macula**
 
 Important files:
@@ -70,4 +88,4 @@ As you can see that some of the statically built websites you can already use wi
 
 ## About us
 
-Kelp Digital is a company that is building next-generation software for content creators in the web3 ecosystem. Check us out on [kelp.digital](https://kelp.digital] and connect with us on [Twitter](https://twitter.com/kelp_digital) and on [Discord](https://discordapp.com/invite/fanBk5deyq)
+Kelp Digital is a company that is building next-generation software for content creators in the web3 ecosystem. Check us out on [kelp.digital](https://kelp.digital) and connect with us on [Twitter](https://twitter.com/kelp_digital) and [Discord](https://discordapp.com/invite/fanBk5deyq)](https://discordapp.com/invite/fanBk5deyq)
