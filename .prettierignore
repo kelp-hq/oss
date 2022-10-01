@@ -94,8 +94,7 @@ shrinkwrap.json
 # Build outputs
 dist
 lib
-
-# Prettier reformats code blocks inside Markdown, which affects rendered output
-# *.md
-
 .pnpm-store
+
+# do not format the md in docs, breaks the build
+docs/md/*.md
