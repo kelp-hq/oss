@@ -9,11 +9,13 @@
     - [Signature](#signature)
     - [Putting all together](#putting-all-together)
   - [How does WAAT work?](#how-does-waat-work)
+    - [Token Validity](#token-validity)
   - [Why we should use WAAT?](#why-we-should-use-waat)
   - [This sounds like JWT, is it?](#this-sounds-like-jwt-is-it)
 - [How to create a new Strategy?](#how-to-create-a-new-strategy)
-  - [Implemented strategies:](#implemented-strategies)
-  - [Implemented middleware for:](#implemented-middleware-for)
+- [Roadmap](#roadmap)
+  - [Strategies](#strategies)
+  - [Middleware](#middleware)
 
 # WAAT?
 
@@ -66,7 +68,7 @@ c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI=
 
 ## How does WAAT work?
 
-The closest comparison to WAAT is JWT. A user obtains JWT via the authentication scheme, usually having entered username and password. If the server that issued the JWT goes down, applications cannot be used and existing not-expired JWTs cannot be re-issued which generally leads to big problems and a apps downtime. With Web3 API Auth Token, there is no central server that is issuing the token. The WAAT is generated when needed and signed using the wallet. This way the private information is never accessed and as long as the wallet is accessible the WAAT will be produced.
+The closest comparison to WAAT is JWT. A user obtains JWT via the authentication scheme, usually having entered username and password. If the server that issued the JWT goes down, applications cannot be used and existing not-expired JWTs cannot be re-issued which generally leads to big problems and an app's downtime. With Web3 API Auth Token, there is no central server that is issuing the token. The WAAT is generated when needed and signed using the wallet. This way the private information is never accessed and as long as the wallet is accessible the WAAT will be produced.
 
 Whenever the user wants to access WAAT protected API route or a resource, the user agent needs to send the WAAT, typically in the [`Authorization`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) header using the [`Bearer`](https://datatracker.ietf.org/doc/html/rfc6750) schema.
 
@@ -76,12 +78,19 @@ The content of the header should look like this:
 Authorization: Bearer <WAAT>
 ```
 
-The servers need to implement the middleware to check and validate this header. For example, this package includes the middleware for express located [here](./src/express/authMiddleware.ts). The middleware is not long or complex. Its purpose is to `route` the request to a specific strategy based on the [first part](#strategy) and wait until two scenarios are fulfilled.
+The servers need to implement the middleware to check and validate this header. For example, this package includes the middleware for express located [here](./src/middleware/expressV4AuthMiddleware.ts). The middleware is not long or complex. Its purpose is to `route` the request to a specific strategy based on the [first part](#strategy) and wait until two scenarios are fulfilled.
 
 1. Token is valid
 2. No error is thrown
 
 If errors are thrown, developers can catch them and send the correct response to the end user. The provided Express middleware will throw the `StrategyValidationError` which contains the correct HTTP header for each error, making it very easy to work with and helping developers to focus on building their app and not thinking about potential HTTP codes.
+
+### Token Validity
+
+Each strategy determines what is considered to be a valid token. For example, the SubstrateStrategy considers a valid token to pass two checks in this order:
+
+1. `exp` value is in the future
+2. `sig` value is valid
 
 ## Why we should use WAAT?
 
@@ -89,7 +98,20 @@ It's compact, self-issued, self-contained, tamper-proof, a web-native structure 
 
 ## This sounds like JWT, is it?
 
-No, it is not. It is similar, but not the same. JWT generally requires an issuer that parties trust. This is standard JWT flow:
+No, it's similar. JWT and WAAT share these similarities:
+
+- token consists of three parts
+- parts are base64Url encoded
+- URL-safe
+- parts are combined with the dot `.` character
+- stateless
+- as compact as possible
+- signed
+- encrypted
+
+Beyond these similarities, the approach is completely different. Read [this](#what-is-the-web3-api-auth-token-structure) to learn more.
+
+JWT generally requires an issuer that parties trust. This is standard JWT flow:
 
 ```mermaid
 graph TD
@@ -107,32 +129,54 @@ graph TD
     A --> |3| C(Your API -- Resource Server)
 ```
 
-You might say that the change is small, by only watching the diagram, then yes, but architecturally it is a big deal. Replacing a centralized server with the decentralized and sell-governed component is that is always Strategy specific is the base for truly decentralized tokens.
+You might say that the change is small, by only watching the diagram, then yes, but architecturally it is a big deal. Replacing a centralized server with a decentralized and self-governed component that is always Strategy specific, is the base for truly decentralized tokens.
 
 # How to create a new Strategy?
 
+To create a new auth strategy you need to follow a few steps:
+
+1. make a PR
+2. create a folder in [`./src/strategies`](./src/strategies) and name it. If the name is more than one word use snake-case
+3. two files `index.ts` and `index.test.ts`
+4. implement the new strategy by extending the `BaseStrategy` class and implement abstract methods
+5. write tests for the new code. this will usually be writing a test for `validate` and `encodeSignature` methods
+6. add the strategy to all middleware
+7. ask for review
+
+Do not forget to document the new interfaces and implemented methods. We are using [api-extractor](https://api-extractor.com/pages/overview/intro/) to create documentation json and md files. This also means you need to document it using the [TSDoc](https://tsdoc.org/) syntax.
+
+**Undocumented and untested code will not be accepted!!**
+
+The complete tutorial is in progress, in the meantime check how SubstrateStrategy is [implemented](./src/strategies/substrate/index.ts) and most importantly how it is used [in tests](./src/strategies/substrate/index.test.ts).
+
 ---
 
-Yup, the WAATs are similar to JWTs but built for web3 to be lightweight and modular.
+# Roadmap
 
----
+If you wish to propose the strategy join, please join our [discord](https://discordapp.com/invite/fanBk5deyq) and write in the `#general` channel. For now, it is like this because we want to minimize the sources to maintain. 🙌
 
-## Implemented strategies:
+Icon legend:
 
-| Done | Name                              | Strategy                                    |
-| ---- | --------------------------------- | ------------------------------------------- |
-| ✅   | [substrate](https://substrate.io) | [code is here](./src/strategies/substrate/) |
-| -    | near                              | -                                           |
-| -    | solana                            | -                                           |
-| -    | ethereum                          | -                                           |
-| -    | avalanche                         | -                                           |
-| -    | elrond                            | -                                           |
-| -    | aptos                             | -                                           |
+- ✅ - this is done, has tests, reviewed and published
+- 📃 - this is planned, no work is started
+- ⌛ - in progress. There is an MR/PR for this
+- ⏳ - done but not reviewed
+- no icon - it is not planned for the near future. waiting for community requests
 
-## Implemented middleware for:
+## Strategies
 
-- [x] express [middleware](./src/express/authMiddleware.ts)
+| Status | Name                              | Code                                        |
+| ------ | --------------------------------- | ------------------------------------------- |
+| ✅     | [substrate](https://substrate.io) | [code is here](./src/strategies/substrate/) |
+| 📃     | ethereum                          | -                                           |
+| -      | near                              | -                                           |
+| -      | solana                            | -                                           |
+| -      | avalanche                         | -                                           |
+| -      | elrond                            | -                                           |
+| -      | aptos                             | -                                           |
 
-Planned features:
+## Middleware
 
-- [ ] encrypted WAAT
+| Status | Name                                 | Code                                                      |
+| ------ | ------------------------------------ | --------------------------------------------------------- |
+| ✅     | [express v4](https://expressjs.com/) | [middleware](./src/middleware/expressV4AuthMiddleware.ts) |

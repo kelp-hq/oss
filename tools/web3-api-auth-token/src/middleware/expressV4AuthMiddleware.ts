@@ -12,7 +12,7 @@ import { SubstrateStrategy } from '../strategies/substrate';
  * @param next - Express Next function
  * @public
  */
-export async function expressWeb3AuthMiddleware(
+export async function expressV4AuthMiddleware(
   req: Request,
   res: Response,
   next: NextFunction
@@ -40,3 +40,5 @@ export async function expressWeb3AuthMiddleware(
 
   next();
 }
+
+export default expressV4AuthMiddleware;

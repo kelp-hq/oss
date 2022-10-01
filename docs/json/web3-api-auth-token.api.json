@@ -795,12 +795,12 @@
         },
         {
           "kind": "Function",
-          "canonicalReference": "@kelp_digital/web3-api-auth-token!expressWeb3AuthMiddleware:function(1)",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!expressV4AuthMiddleware:function(1)",
           "docComment": "/**\n * Authentication Middleware.\n *\n * @param req - Express Request\n *\n * @param res - Express Response\n *\n * @param next - Express Next function\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare function expressWeb3AuthMiddleware(req: "
+              "text": "export declare function expressV4AuthMiddleware(req: "
             },
             {
               "kind": "Reference",
@@ -875,12 +875,12 @@
               "isOptional": false
             }
           ],
-          "name": "expressWeb3AuthMiddleware"
+          "name": "expressV4AuthMiddleware"
         },
         {
           "kind": "Enum",
           "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum",
-          "docComment": "/**\n * Possible Strategies\n *\n * @public\n */\n",
+          "docComment": "/**\n * Possible Strategies. The enum values should be kept max 4 characters. There is no limitation but less is better.\n *\n * @public\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -894,7 +894,7 @@
             {
               "kind": "EnumMember",
               "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy.substrate:member",
-              "docComment": "",
+              "docComment": "/**\n * Substrate strategy.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",

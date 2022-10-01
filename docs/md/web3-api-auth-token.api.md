@@ -33,11 +33,10 @@ export function decode(d: string, safe?: boolean): string;
 export function encode(d: string, safe?: boolean): string;
 
 // @public
-export function expressWeb3AuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void>;
+export function expressV4AuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void>;
 
 // @public
 export enum IAuthStrategy {
-  // (undocumented)
   'substrate' = 'sub'
 }
 

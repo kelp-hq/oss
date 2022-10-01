@@ -35,7 +35,17 @@
   "eslint.useESLintClass": true,
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.letterSpacing": 1,
-  "cSpell.words": ["Anagolay", "Fastify", "gpgsign", "IPFSHTTP", "pino", "rehosted", "sveltekit", "WAAT"],
+  "cSpell.words": [
+    "Anagolay",
+    "Fastify",
+    "gpgsign",
+    "IPFSHTTP",
+    "pino",
+    "rehosted",
+    "Roadmap",
+    "sveltekit",
+    "WAAT"
+  ],
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#36c2bb",
     "titleBar.activeForeground": "#192222"

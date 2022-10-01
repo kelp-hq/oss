@@ -5,7 +5,7 @@
  *
  * @packageDocumentation
  */
-export * from './express/authMiddleware';
+export * from './middleware/expressV4AuthMiddleware';
 export * from './strategies';
 export * from './strategies/errors';
 export * from './utils/base64url';

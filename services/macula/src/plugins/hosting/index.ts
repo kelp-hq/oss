@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
-import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
+import { expressV4AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
 import { captureException, startTransaction } from '@sentry/node';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';
@@ -327,7 +327,7 @@ hostingRouter
 hostingRouter
   .route('/hosting/api/addSubdomain')
   .all(validateBodyForAddApi)
-  .all(expressWeb3AuthMiddleware)
+  .all(expressV4AuthMiddleware)
   .all(apiKeyMiddleware)
   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
     const tx = startTransaction({
@@ -432,7 +432,7 @@ export interface IWerbsiteAddCidBody {
 hostingRouter
   .route('/hosting/api/addCid')
   .all(validateBodyForAddApi)
-  .all(expressWeb3AuthMiddleware)
+  .all(expressV4AuthMiddleware)
   .post(async (req: Request<never, never, IWerbsiteAddCidBody>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a website',

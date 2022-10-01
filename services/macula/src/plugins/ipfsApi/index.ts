@@ -1,4 +1,4 @@
-import { expressWeb3AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
+import { expressV4AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
 import type { AxiosError } from 'axios';
 import { Request, Response, Router } from 'express';
 import type Server from 'http-proxy';
@@ -19,7 +19,7 @@ export const ipfsApiRouter: Router = Router({
 
 ipfsApiRouter
   .route('/ipfs_api/v0/*')
-  .all(expressWeb3AuthMiddleware)
+  .all(expressV4AuthMiddleware)
   .all(apiKeyMiddleware)
   .post(async (req: Request, res: Response) => {
     req.url = replace('ipfs_api', 'api', req.url);
