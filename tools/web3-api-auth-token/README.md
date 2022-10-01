@@ -153,7 +153,7 @@ The complete tutorial is in progress, in the meantime check how SubstrateStrateg
 
 # Roadmap
 
-If you wish to propose the strategy join, please join our [discord](https://discordapp.com/invite/fanBk5deyq) and write in the `#general` channel. For now, it is like this because we want to minimize the sources to maintain. 🙌
+If you wish to propose the strategy, please join our [discord](https://discordapp.com/invite/fanBk5deyq) and write in the `#general` channel. For now, it's like this because we want to minimize the sources to maintain. 🙌
 
 Icon legend:
 
