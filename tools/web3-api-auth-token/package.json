@@ -1,13 +1,14 @@
 {
   "name": "@kelp_digital/web3-api-auth-token",
-  "description": "Opinionated web3 authentication and authorization method, highly inspired by jwt",
-  "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
+  "description": "Authorization and authentication scheme for APIs that protect the assets behind web3 accounts.",
+  "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
   "version": "0.0.1",
   "keywords": [
-    "ipfs",
-    "auth",
-    "client",
-    "http"
+    "kelp",
+    "web3",
+    "api",
+    "authorization",
+    "authentication"
   ],
   "license": "AGPL3",
   "type": "module",

@@ -1,7 +1,7 @@
 {
   "name": "@kelp_digital/ipfs-cli",
   "description": "ipfs-cli",
-  "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
+  "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
   "version": "0.0.1",
   "bin": {
     "ipfsCli": "dist/ipfsCli.js"
