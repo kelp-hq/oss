@@ -12,15 +12,15 @@
   "license": "AGPL3",
   "type": "module",
   "licenseFile": "./LICENSE",
-  "main": "./lib_cjs/index.js",
+  "main": "./lib-cjs/index.js",
   "types": "./lib/ipfs-api-client.d.ts",
   "exports": {
     ".": {
-      "require": "./lib_cjs/index.js",
+      "require": "./lib-cjs/index.js",
       "import": "./lib/index.js"
     },
     "./*": {
-      "require": "./lib_cjs/*.js",
+      "require": "./lib-cjs/*.js",
       "import": "./lib/*.js"
     }
   },

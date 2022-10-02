@@ -2,7 +2,7 @@
   "operationSettings": [
     {
       "operationName": "build",
-      "outputFolderNames": ["lib", "lib_cjs", "dist"]
+      "outputFolderNames": ["lib", "lib-cjs"]
     }
   ]
 }

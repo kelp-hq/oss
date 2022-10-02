@@ -12,23 +12,23 @@
   "license": "AGPL3",
   "type": "module",
   "licenseFile": "./LICENSE",
-  "main": "./lib_cjs/index.js",
+  "main": "./lib-cjs/index.js",
   "types": "./lib/web3-api-auth-token.d.ts",
   "exports": {
     ".": {
-      "require": "./lib_cjs/index.js",
+      "require": "./lib-cjs/index.js",
       "import": "./lib/index.js"
     },
     "./*": {
-      "require": "./lib_cjs/*.js",
+      "require": "./lib-cjs/*.js",
       "import": "./lib/*.js"
     },
     "./substrate": {
-      "require": "./lib_cjs/strategies/substrate/*.js",
+      "require": "./lib-cjs/strategies/substrate/*.js",
       "import": "./lib/strategies/substrate/*.js"
     },
     "./apiKey": {
-      "require": "./lib_cjs/strategies/apiKey/*.js",
+      "require": "./lib-cjs/strategies/apiKey/*.js",
       "import": "./lib/strategies/apiKey/*.js"
     }
   },
