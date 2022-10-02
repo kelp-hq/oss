@@ -199,9 +199,10 @@
     //    */
     "reviewCategories": [
       // Some example categories:
-      "website", // projects that ship to production
-      "production", // projects that ship to production
-      "tools", // non-shipping projects that are part of the developer toolchain
+      "service", // deployable service
+      "website", // deployable app or a website
+      "tools", // developer tool chain packages like CLIs etc ...
+      "libraries", // published as a package
       "prototypes" // experiments that should mostly be ignored by the review process
     ],
     //
@@ -421,39 +422,33 @@
     {
       "packageName": "@kelp_digital/macula",
       "projectFolder": "services/macula",
-      "reviewCategory": "production",
-      "shouldPublish": false
+      "reviewCategory": "service"
     },
     {
       "packageName": "@kelp_digital/ipfs-cli",
       "projectFolder": "tools/ipfs-cli",
-      "reviewCategory": "tools",
-      "shouldPublish": false
+      "reviewCategory": "tools"
     },
     {
       "packageName": "@kelp_digital/ipfs-api-client",
       "projectFolder": "tools/ipfs-api-client",
-      "reviewCategory": "tools",
-      "shouldPublish": false
+      "reviewCategory": "libraries"
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
       "projectFolder": "tools/sveltekit-adapter-macula",
-      "reviewCategory": "tools",
-      "shouldPublish": false
+      "reviewCategory": "libraries"
     },
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
       "projectFolder": "tools/web3-api-auth-token",
-      "reviewCategory": "tools",
-      "shouldPublish": true,
+      "reviewCategory": "libraries",
       "versionPolicyName": "unstable"
     },
     {
       "packageName": "@kelp_digital/macula_app",
       "projectFolder": "app",
       "reviewCategory": "website"
-      // "shouldPublish": true
     }
   ]
 }

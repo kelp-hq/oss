@@ -31,7 +31,7 @@
     {
       "name": "prettier:fix",
       "commandKind": "global",
-      "summary": "Used by the gitlab ci.",
+      "summary": "Used by the developers",
       "safeForSimultaneousRushProcesses": true,
       "autoinstallerName": "rush-prettier",
       // This will invoke common/autoinstallers/rush-prettier/node_modules/.bin/pretty-quick

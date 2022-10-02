@@ -49,7 +49,7 @@
     - !reference [.rush:install, script]
     - set -e
     - echo 'Checking for missing change logs...'
-    - node common/scripts/install-run-rush.js change -v
+    - node common/scripts/install-run-rush.js change --verify
 
 .rush:rebuild:
   script:
