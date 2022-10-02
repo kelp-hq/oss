@@ -62,5 +62,8 @@
     "**dist": true
   },
   "zenMode.hideTabs": false,
-  "zenMode.fullScreen": false
+  "zenMode.fullScreen": false,
+  "gitlens.views.repositories.branches.layout": "tree",
+  "git.autofetch": true,
+  "scm.defaultViewMode": "tree"
 }
