@@ -16,8 +16,18 @@ All services have:
 
 ## Committing and creating changelogs
 
-It is not
+```sh
+# write what is the change, and what is the proposed version change
+rush change
+```
 
 ## Publishing
 
-Publishing will not happen if there are no changefiles
+the changelog is needed.
+
+# Very useful commands:
+
+```sh
+# remove local tags that do not exist on the remote
+git fetch --prune --prune-tags
+```
