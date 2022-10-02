@@ -443,8 +443,8 @@
       "packageName": "@kelp_digital/web3-api-auth-token",
       "projectFolder": "tools/web3-api-auth-token",
       "reviewCategory": "libraries",
-      // "versionPolicyName": "unstable",
-      "shouldPublish": true
+      "versionPolicyName": "unstable"
+      // "shouldPublish": true
     },
     {
       "packageName": "@kelp_digital/macula_app",
