@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# rush change
+# # --target-branch origin/$(git rev-parse --abbrev-ref HEAD)
+
+# exit 0
+
 rush publish \
   --apply \
   --publish \

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@kelp_digital/web3-api-auth-token",
+      "comment": "asdas",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@kelp_digital/web3-api-auth-token"
+}
