@@ -7,13 +7,16 @@ pnpm env use --global 18.4.0
 
 pnpm add --global @microsoft/rush
 
-ln -fs $GITPOD_REPO_ROOT/.devops/gitpod/.bash_aliases $HOME/.bash_aliases
-bash $GITPOD_REPO_ROOT/.devops/gitpod/prep-doppler.sh
+ln -fs "$GITPOD_REPO_ROOT"/.devops/gitpod/.bash_aliases "$HOME"/.bash_aliases
+bash "$GITPOD_REPO_ROOT"/.devops/gitpod/prep-doppler.sh
 
-cd $PROJECT_ROOT
+cd "$PROJECT_ROOT" || exit
 
+wget https://github.com/jsontypedef/json-typedef-codegen/releases/download/v0.4.1/x86_64-unknown-linux-musl.zip
+unzip -o x86_64-unknown-linux-musl.zip -d ../bin/
+rm -f x86_64-unknown-linux-musl.zip
 
-docker-compose up -d ipfs db redis
+docker-compose up -d ipfs mongodb redis
 
 # give ipfs 5 secs to start
 sleep 5

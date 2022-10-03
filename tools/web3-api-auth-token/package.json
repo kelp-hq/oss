@@ -1,0 +1,70 @@
+{
+  "name": "@kelp_digital/web3-api-auth-token",
+  "description": "Authorization and authentication scheme for APIs that protect the assets behind web3 accounts.",
+  "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
+  "version": "0.0.1",
+  "keywords": [
+    "kelp",
+    "web3",
+    "api",
+    "authorization",
+    "authentication"
+  ],
+  "license": "AGPL3",
+  "type": "module",
+  "licenseFile": "./LICENSE",
+  "main": "./lib-cjs/index.js",
+  "types": "./lib/web3-api-auth-token.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib-cjs/index.js",
+      "import": "./lib/index.js"
+    },
+    "./*": {
+      "require": "./lib-cjs/*.js",
+      "import": "./lib/*.js"
+    },
+    "./substrate": {
+      "require": "./lib-cjs/strategies/substrate/*.js",
+      "import": "./lib/strategies/substrate/*.js"
+    },
+    "./apiKey": {
+      "require": "./lib-cjs/strategies/apiKey/*.js",
+      "import": "./lib/strategies/apiKey/*.js"
+    }
+  },
+  "scripts": {
+    "build": "heft build --clean && pnpm fix-lib",
+    "fix-lib": "node ./config/add-js-to-esm.js",
+    "test:watch": "heft test --clean --watch",
+    "watch": "heft build --clean --watch",
+    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx"
+  },
+  "dependencies": {
+    "ramda": "0.28.0",
+    "@polkadot/util-crypto": "10.1.7",
+    "@polkadot/util": "10.1.7",
+    "@polkadot/keyring": "10.1.7"
+  },
+  "peerDependencies": {
+    "express": "4.18.1"
+  },
+  "devDependencies": {
+    "tslib": "2.4.0",
+    "typescript": "4.6.4",
+    "@rushstack/heft-node-rig": "1.9.7",
+    "@microsoft/api-extractor": "7.28.0",
+    "@rushstack/eslint-config": "2.6.0",
+    "@rushstack/heft": "0.45.6",
+    "@types/heft-jest": "1.0.2",
+    "@types/node": "18.7.13",
+    "eslint": "8.23.1",
+    "eslint-plugin-simple-import-sort": "8.0.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "webpack-node-externals": "3.0.0",
+    "@types/express": "4.17.13",
+    "prettier": "2.7.1",
+    "@types/ramda": "0.28.15",
+    "@rushstack/heft-jest-plugin": "0.3.6"
+  }
+}

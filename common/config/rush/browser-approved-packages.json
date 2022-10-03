@@ -3,56 +3,28 @@
   "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/approved-packages.schema.json",
   "packages": [
     {
-      "name": "@anagolay/api",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@anagolay/create_cid_from_buffer",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "@anagolay/types",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "@anagolay/utils",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
-      "name": "@anagolay/workflow_compute_cidv1",
-      "allowedCategories": [ "production" ]
+      "name": "@kelp_digital/ipfs-api-client",
+      "allowedCategories": [ "production", "service", "website" ]
     },
     {
-      "name": "@anagolay/workflow_compute_cidv1_from_bytes",
-      "allowedCategories": [ "production", "tools" ]
+      "name": "@kelp_digital/web3-api-auth",
+      "allowedCategories": [ "production", "website" ]
     },
     {
-      "name": "@anagolay/workflow_compute_cidv1_from_bytes_new_version",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@anagolay/workflow_compute_cidv1_version2",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fastify/cors",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fastify/reply-from",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@fontsource/fira-mono",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@kelp_digital/sveltekit-adapter-macula",
-      "allowedCategories": [ "website" ]
+      "name": "@kelp_digital/web3-api-auth-token",
+      "allowedCategories": [ "production", "service", "website" ]
     },
     {
       "name": "@microsoft/api-extractor",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@playwright/test",
@@ -76,7 +48,7 @@
     },
     {
       "name": "@polkadot/keyring",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@polkadot/types",
@@ -88,86 +60,62 @@
     },
     {
       "name": "@polkadot/util",
-      "allowedCategories": [ "production", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "@polkadot/util-crypto",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@rushstack/eslint-config",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@rushstack/heft",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@rushstack/heft-jest-plugin",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@rushstack/heft-node-rig",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "@rushstack/heft-web-rig",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "@rushstack/heft-webpack5-plugin",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "@sentry/node",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "@sentry/tracing",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "@sentry/types",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
-      "name": "@sinclair/typebox",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "@sveltejs/adapter-auto",
+      "name": "@silvia-odwyer/photon",
       "allowedCategories": [ "website" ]
     },
     {
       "name": "@sveltejs/adapter-static",
-      "allowedCategories": [ "tools", "website" ]
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "@sveltejs/kit",
-      "allowedCategories": [ "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "website" ]
     },
     {
       "name": "@sveltejs/package",
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "@sveltejs/vite-plugin-svelte",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tailwindcss/forms",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tailwindcss/line-clamp",
-      "allowedCategories": [ "website" ]
-    },
-    {
       "name": "@tailwindcss/typography",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "@tsconfig/svelte",
       "allowedCategories": [ "website" ]
     },
     {
@@ -179,64 +127,52 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "agenda",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "apidoc",
-      "allowedCategories": [ "production" ]
-    },
-    {
       "name": "autoprefixer",
       "allowedCategories": [ "website" ]
     },
     {
       "name": "axios",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "byte-size",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "clui",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "commander",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "compression",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "cors",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service" ]
+    },
+    {
+      "name": "cross-fetch",
+      "allowedCategories": [ "libraries", "tools", "website" ]
     },
     {
       "name": "daisyui",
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "dotenv-cli",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "drawflow",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "electron",
-      "allowedCategories": [ "production" ]
+      "name": "debug",
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "env-cmd",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "eslint",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "eslint-config-prettier",
@@ -244,7 +180,7 @@
     },
     {
       "name": "eslint-plugin-simple-import-sort",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "eslint-plugin-svelte3",
@@ -252,75 +188,35 @@
     },
     {
       "name": "eslint-plugin-unused-imports",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+    },
+    {
+      "name": "exif-library",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "exifreader",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "express",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "fast-json-stringify",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "fast-printf",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "fast-proxy",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "fastify",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-cors",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-http-proxy",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-oas",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-plugin",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "fastify-tsconfig",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "file-type",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "glob",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "handlebars",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "helmet",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "http-proxy",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "http-proxy-middleware",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "husky",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "identicon.js",
@@ -332,43 +228,35 @@
     },
     {
       "name": "ipfs-core-types",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "ipfs-http-client",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "ipfs-utils",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "it-all",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "it-glob",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "level",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "mime-types",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "mongodb",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "multiaddr",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "multiformats",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "libraries", "tools", "website" ]
     },
     {
       "name": "nanoid",
@@ -376,27 +264,23 @@
     },
     {
       "name": "node-fetch",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools", "website" ]
     },
     {
-      "name": "nodemon",
-      "allowedCategories": [ "production" ]
+      "name": "piexifjs",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "pino",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "pino-pretty",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "pino-sentry-transport",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
       "name": "pkg",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "postcss",
@@ -404,58 +288,34 @@
     },
     {
       "name": "prettier",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "prettier-plugin-svelte",
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "pretty-quick",
-      "allowedCategories": [ "tools" ]
-    },
-    {
       "name": "ramda",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "redis",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "remeda",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "sharp",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "simple-git",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "production", "service" ]
     },
     {
       "name": "slug",
-      "allowedCategories": [ "production", "tools", "website" ]
-    },
-    {
-      "name": "socket.io",
-      "allowedCategories": [ "production" ]
-    },
-    {
-      "name": "socket.io-client",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "production", "service", "website" ]
     },
     {
       "name": "svelte",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "libraries", "tools", "website" ]
     },
     {
       "name": "svelte-check",
-      "allowedCategories": [ "website" ]
-    },
-    {
-      "name": "svelte-material-icons",
       "allowedCategories": [ "website" ]
     },
     {
@@ -463,7 +323,7 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "sveltejs-adapter-ipfs",
+      "name": "svelte-seo",
       "allowedCategories": [ "website" ]
     },
     {
@@ -471,31 +331,31 @@
       "allowedCategories": [ "website" ]
     },
     {
-      "name": "tar",
-      "allowedCategories": [ "production" ]
+      "name": "theme-change",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "production", "tools" ]
-    },
-    {
-      "name": "ts-node",
-      "allowedCategories": [ "production" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "tslib",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "website" ]
     },
     {
       "name": "typescript",
-      "allowedCategories": [ "production", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "undici",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "vite",
+      "allowedCategories": [ "libraries", "tools", "website" ]
+    },
+    {
+      "name": "vite-plugin-externals",
       "allowedCategories": [ "website" ]
     },
     {
@@ -512,18 +372,18 @@
     },
     {
       "name": "webpack",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "webpack-cli",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
       "name": "webpack-node-externals",
-      "allowedCategories": [ "production", "tools" ]
+      "allowedCategories": [ "libraries", "tools" ]
     },
     {
-      "name": "wf_cid_from_array",
+      "name": "wf_cidv1_from_array",
       "allowedCategories": [ "website" ]
     },
     {

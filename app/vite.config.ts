@@ -1,9 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 
-import type { UserConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import { isoImport } from 'vite-plugin-iso-import';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 import { resolve } from 'path';
 
@@ -20,17 +21,19 @@ const config: UserConfig = {
 			target: 'es2020',
 			define: {
 				global: 'globalThis'
-			},
-			plugins: []
+			}
+			// plugins: []
 		}
+		// include: ['@anagolay/utils']
+		// exclude: ['@polkadot/wasm-crypto-wasm', '@polkadot/*']
 		// exclude: ['ipfs-http-client', 'electron-fetch']
 	},
 	build: {
 		// warn on chunks above 1MB
-		chunkSizeWarningLimit: 1024,
-		rollupOptions: {
-			plugins: []
-		}
+		chunkSizeWarningLimit: 1024
+		// rollupOptions: {
+		// 	plugins: []
+		// }
 	},
 	server: {
 		fs: {
@@ -53,4 +56,17 @@ const config: UserConfig = {
 	// },
 };
 
-export default config;
+export default defineConfig((opts) => {
+	const { command, mode, ssrBuild } = opts;
+	// if (command === 'serve') {
+	// 	return {
+	// 		// dev specific config
+	// 	};
+	// } else {
+	// 	// command === 'build'
+	// 	// return {
+	// 	//   // build specific config
+	// 	// }
+	// }
+	return config;
+});

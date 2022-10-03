@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
+import { expressV4AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
 import { captureException, startTransaction } from '@sentry/node';
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';
@@ -8,12 +9,12 @@ import https from 'https';
 import { dissoc, isEmpty, isNil, last, mergeRight } from 'ramda';
 
 import { ipfsApiURL, ipfsGateway } from '../../config';
+import { apiKeyMiddleware } from '../../middlewares/apiKey';
 import { getDB } from '../../mongodbClient';
+import { axiosApiProxyInstance } from '../../proxyServer';
 import { redisClient } from '../../redisClient';
 import { sentry } from '../../sentry';
 import { log } from '../../utils/logger';
-import { auth } from '../../web3-auth-handler/authMiddleware';
-import { axiosApiProxyInstance } from '../ipfsApi';
 import {
   collectionSubdomains,
   findLastModificationDateForHosting,
@@ -326,7 +327,8 @@ hostingRouter
 hostingRouter
   .route('/hosting/api/addSubdomain')
   .all(validateBodyForAddApi)
-  .all(auth)
+  .all(expressV4AuthMiddleware)
+  .all(apiKeyMiddleware)
   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a wewbsite, fetch the macula.json'
@@ -430,7 +432,7 @@ export interface IWerbsiteAddCidBody {
 hostingRouter
   .route('/hosting/api/addCid')
   .all(validateBodyForAddApi)
-  .all(auth)
+  .all(expressV4AuthMiddleware)
   .post(async (req: Request<never, never, IWerbsiteAddCidBody>, res: Response) => {
     const tx = startTransaction({
       name: 'Register IPFS cid as a website',

@@ -1,1 +1,1 @@
-<div>i am resizing page</div>
+<div>macula resizing</div>

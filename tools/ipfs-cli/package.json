@@ -1,7 +1,7 @@
 {
   "name": "@kelp_digital/ipfs-cli",
   "description": "ipfs-cli",
-  "author": "did:substrate:GHm6gp6khjcxQvnbnSsHdYejsFK1nNVxcGyGAsbDfsymtLr",
+  "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
   "version": "0.0.1",
   "bin": {
     "ipfsCli": "dist/ipfsCli.js"
@@ -41,8 +41,8 @@
     "it-all": "1.0.6",
     "@sentry/node": "7.6.0",
     "@sentry/tracing": "7.6.0",
-    "inquirer": "~9.0.2",
-    "yaml": "~2.1.1",
+    "inquirer": "9.0.2",
+    "yaml": "2.1.1",
     "undici": "5.6.1",
     "ipfs-core-types": "0.11.1",
     "node-fetch": "3.2.6"
@@ -56,8 +56,8 @@
     "@rushstack/heft": "0.45.6",
     "@types/heft-jest": "1.0.2",
     "@types/node": "18.7.13",
-    "eslint": "8.17.0",
-    "eslint-plugin-simple-import-sort": "7.0.0",
+    "eslint": "8.23.1",
+    "eslint-plugin-simple-import-sort": "8.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
     "env-cmd": "10.1.0",
     "@types/inquirer": "8.2.0",
@@ -68,10 +68,10 @@
     "webpack": "5.68.0",
     "ts-loader": "9.2.6",
     "pino-pretty": "8.0.0",
-    "prettier": "2.5.1",
+    "prettier": "2.7.1",
     "webpack-cli": "4.9.2",
     "pkg": "5.6.0",
-    "@types/ramda": "0.28.14",
+    "@types/ramda": "0.28.15",
     "@rushstack/heft-jest-plugin": "0.3.6",
     "@types/byte-size": "8.1.0"
   }

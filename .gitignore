@@ -81,3 +81,4 @@ ipfs_upload/
 .rush
 deployment/
 .macula
+lib-cjs/

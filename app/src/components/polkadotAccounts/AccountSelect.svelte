@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { polkadotAccounts } from './store';
+	import { polkadotAccountsStore } from './store';
 	import Dropdown from './views/Dropdown.svelte';
 
 	onMount(async () => {
@@ -9,7 +9,7 @@
 
 		await web3Enable('macula');
 		// set to the storage
-		$polkadotAccounts.injectedAccounts = await web3Accounts();
+		$polkadotAccountsStore.injectedAccounts = await web3Accounts();
 	});
 </script>
 
