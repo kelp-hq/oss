@@ -1,0 +1,8 @@
+changelogs:
+  extends:
+    - .install-pnpm-and-node
+  stage: lint
+  cache: {}
+  allow_failure: true
+  script:
+    - !reference [.rush:change-verify, script]

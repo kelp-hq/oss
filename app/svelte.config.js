@@ -1,4 +1,5 @@
-import adapter from '@kelp_digital/sveltekit-adapter-macula';
+import adapter from '@sveltejs/adapter-static';
+// import adapter from '@kelp_digital/sveltekit-adapter-macula';
 import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -14,14 +15,14 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			appType: 'static',
-			account: '5EDGDLw5xDmgWVTkucjdnN7u3mtAk2DiQGmfGDEHFeDjdBqE',
-			precompress: true,
-			subdomain: 'macula'
+			// appType: 'static',
+			// account: '5EDGDLw5xDmgWVTkucjdnN7u3mtAk2DiQGmfGDEHFeDjdBqE',
+			precompress: true
+			// subdomain: 'macula'
 		}),
-		prerender: {
-			default: true
-		},
+		// prerender: {
+		// 	default: true
+		// },
 		trailingSlash: 'always',
 		files: {
 			lib: 'src/components'

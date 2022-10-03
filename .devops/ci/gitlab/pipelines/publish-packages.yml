@@ -1,0 +1,12 @@
+publish-to-anagolay-registry:
+  extends:
+    - .install-pnpm-and-node
+  stage: publish
+  needs: ['is-it-pretty', 'changelogs', 'test-code']
+  # cache: {}
+  allow_failure: true
+  when: manual
+  script:
+    - !reference [.rush:install, script]
+    - !reference [.rush:build, script]
+    - node common/scripts/install-run-rush.js publish --apply --publish --include-all --target-branch "$CI_COMMIT_BRANCH" --add-commit-details --set-access-level public --registry https://npm-registry.anagolay.network --npm-auth-token $AN_NPM_AUTH_TOKEN

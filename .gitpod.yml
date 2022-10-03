@@ -25,6 +25,9 @@ ports:
     onOpen: ignore
   - port: 6379 # redis server
     onOpen: ignore
+  - port: 7777 # macula web app server
+    visibility: public
+    onOpen: ignore
 vscode:
   extensions:
     - PKief.material-icon-theme

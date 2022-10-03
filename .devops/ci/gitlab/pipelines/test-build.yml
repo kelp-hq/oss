@@ -2,8 +2,7 @@ test-code:
   extends:
     - .install-pnpm-and-node
   stage: test
-  needs: ['is-it-pretty']
+  needs: ['is-it-pretty', 'changelogs']
   script:
     - !reference [.rush:install, script]
-    # - !reference [.rush:change-verify, script]
-    - !reference [.rush:rebuild, script]
+    - !reference [.rush:build, script]

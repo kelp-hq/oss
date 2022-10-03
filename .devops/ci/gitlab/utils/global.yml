@@ -31,28 +31,32 @@
 .install-pnpm-and-node:
   before_script:
     - |
+      set -e
       curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@7
-      pnpm config set store-dir common/temp/pnpm-store
+      pnpm config set store-dir ./common/temp/pnpm-store
       node --version
       pnpm --version
       git --version
 
 .rush:install:
   script:
-    - set -e
     - echo 'Installing rush...'
     - node common/scripts/install-run-rush.js install
 
 .rush:change-verify:
   script:
-    - !reference [.rush:install, script]
-    - set -e
     - echo 'Checking for missing change logs...'
-    - node common/scripts/install-run-rush.js change -v
+    - node common/scripts/install-run-rush.js change --verify
 
 .rush:rebuild:
   script:
     - !reference [.rush:install, script]
-    - set -e
     - echo 'Building ...'
     - node common/scripts/install-run-rush.js rebuild --verbose
+
+.rush:build:
+  script:
+    - !reference [.rush:install, script]
+    - set -e
+    - echo 'Building ...'
+    - node common/scripts/install-run-rush.js build --verbose

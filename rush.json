@@ -199,9 +199,10 @@
     //    */
     "reviewCategories": [
       // Some example categories:
-      "website", // projects that ship to production
-      "production", // projects that ship to production
-      "tools", // non-shipping projects that are part of the developer toolchain
+      "service", // deployable service
+      "website", // deployable app or a website
+      "tools", // developer tool chain packages like CLIs etc ...
+      "libraries", // published as a package
       "prototypes" // experiments that should mostly be ignored by the review process
     ],
     //
@@ -272,7 +273,7 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote master branch.
      */
-    "urls": ["https://gitlab.com/kelp_digital/macula"],
+    "urls": ["https://gitlab.com/kelp_digital/oss"],
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"
@@ -305,7 +306,7 @@
     /**
      * The list of shell commands to run after the Rush build command finishes
      */
-    "postRushBuild": []
+    "postRushBuild": ["bash ./common/scripts/add-package-json-to-libs.sh"]
   },
   /**
    * Installation variants allow you to maintain a parallel set of configuration files that can be
@@ -421,26 +422,34 @@
     {
       "packageName": "@kelp_digital/macula",
       "projectFolder": "services/macula",
-      "reviewCategory": "production",
-      "shouldPublish": false
+      "reviewCategory": "service"
     },
     {
       "packageName": "@kelp_digital/ipfs-cli",
       "projectFolder": "tools/ipfs-cli",
-      "reviewCategory": "tools",
-      "shouldPublish": true
+      "reviewCategory": "tools"
+    },
+    {
+      "packageName": "@kelp_digital/ipfs-api-client",
+      "projectFolder": "tools/ipfs-api-client",
+      "reviewCategory": "libraries"
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
       "projectFolder": "tools/sveltekit-adapter-macula",
-      "reviewCategory": "tools",
+      "reviewCategory": "libraries"
+    },
+    {
+      "packageName": "@kelp_digital/web3-api-auth-token",
+      "projectFolder": "tools/web3-api-auth-token",
+      "reviewCategory": "libraries",
+      // "versionPolicyName": "unstable"
       "shouldPublish": true
     },
     {
       "packageName": "@kelp_digital/macula_app",
       "projectFolder": "app",
       "reviewCategory": "website"
-      // "shouldPublish": true
     }
   ]
 }

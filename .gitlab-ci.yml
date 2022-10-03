@@ -9,8 +9,9 @@ default:
 stages:
   - lint
   - test
+  - build
   - build-images
-  - publish-packages
+  - publish
 
 cache:
   key: $CI_COMMIT_REF_SLUG
@@ -30,9 +31,9 @@ variables:
   NODE_ENV: 'test'
 
 include:
-  - local: .devops/ci/gitlab/**/*.yml
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/License-Scanning.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
+  - local: .devops/ci/gitlab/**/*.yml

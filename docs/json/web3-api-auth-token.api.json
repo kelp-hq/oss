@@ -1,0 +1,1617 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.28.0",
+    "schemaVersion": 1008,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      },
+      "reportUnsupportedHtmlElements": false
+    }
+  },
+  "kind": "Package",
+  "canonicalReference": "@kelp_digital/web3-api-auth-token!",
+  "docComment": "/**\n * A library for creating and validating the Web3 API Auth Tokens or WAATs\n *\n * @packageDocumentation\n */\n",
+  "name": "@kelp_digital/web3-api-auth-token",
+  "preserveMemberOrder": false,
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@kelp_digital/web3-api-auth-token!",
+      "name": "",
+      "preserveMemberOrder": false,
+      "members": [
+        {
+          "kind": "Class",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy:class",
+          "docComment": "/**\n * Base strategy. New classes should extend this class and pass the payload type they with to use as the generic type `P`.\n *\n * You can pass the payload in to the constructor or later set it via setter Example\n * ```ts\n * const t = new ImplementedStrategy({iss:'me', aud:'you'});\n * // or\n * const t =  new ImplementedStrategy();\n * t.payload = {iss:'me', aud:'you'};\n * ```\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare abstract class BaseStrategy<P> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "P",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "BaseStrategy",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `BaseStrategy` class\n *\n * @param payload - Token payload\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(payload?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "P"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "payload",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#encode:member(1)",
+              "docComment": "/**\n * Encode the payload to correct output. **Asynchronously**\n *\n * @remarks\n *\n * The encoding is not async, but i left it like this in case we need to change it. No harm done!\n *\n * @returns a string\n *\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "encode(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IToken",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IToken:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [],
+              "isOptional": false,
+              "name": "encode"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#encodeSignature:member(1)",
+              "docComment": "/**\n * Implementations can override this method to suit their needs when they need to encode the signature.\n *\n * @param rawSig - RAW Signature\n *\n * @returns the R type. This return value is serialized then encoded\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "abstract encodeSignature(rawSig: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<unknown>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "rawSig",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "encodeSignature"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#make:member(1)",
+              "docComment": "/**\n * Make the token, combine the `encodedStrategy.encodedPayload.encodedPayloadSignature`. All parts are base64Url encoded.\n *\n * @param sig - Payload Signature as generic `T`\n *\n * @typeParam T - This generic is more for code understanding and future implementations. It doesn't have any impact. We suggest setting is regardless.\n *\n * @returns the token as a string in the correct format `x.xx.xxx`\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "make<T>(sig: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "T",
+                  "constraintTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "sig",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "make"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#makeWithHeader:member(1)",
+              "docComment": "/**\n * Encode the payload with the encode() then return the common authorization bearer object\n *\n * @param sig - Payload Signature as string\n *\n * @typeParam T - This generic is more for code understanding and future implementations. It doesn't have any impact. We suggest setting is regardless.\n *\n * @returns `{authorization: 'Bearer c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI='}`\n *\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "makeWithHeader<T>(sig: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "T"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITokenHeader",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "T",
+                  "constraintTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "sig",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "makeWithHeader"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy.parseToken:member(1)",
+              "docComment": "/**\n * @param token - Incoming token string in a `x.xx.xxx` format\n *\n * @typeParam P - The payload type\n *\n * @returns the Parsed token structure where the `parsed` is of the {@link ITokenStructure} with the `P` generic type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "static parseToken<P>(token: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IToken",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IToken:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IParsedToken",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IParsedToken:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<P>>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "typeParameters": [
+                {
+                  "typeParameterName": "P",
+                  "constraintTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  },
+                  "defaultTypeTokenRange": {
+                    "startIndex": 0,
+                    "endIndex": 0
+                  }
+                }
+              ],
+              "isStatic": true,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "token",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "parseToken"
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#payload:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get payload(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "P"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                },
+                {
+                  "kind": "Content",
+                  "text": "\n\nset payload(value: P);"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "payload",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#strategy:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get strategy(): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IAuthStrategy",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                },
+                {
+                  "kind": "Content",
+                  "text": "\n\nset strategy(value: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IAuthStrategy",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "strategy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy#validate:member(1)",
+              "docComment": "/**\n * Validation for this strategy\n *\n * @param token - Decoded token, {@link IToken} wrapped string\n *\n * @typeParam P - Implemented payload interface\n *\n * @returns The incoming payload if the signature verification passes, otherwise throw error.\n *\n * @public\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "abstract validate(token: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IToken",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IToken:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<P>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 5
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "token",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "validate"
+            }
+          ],
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!decode:function(1)",
+          "docComment": "/**\n * Decode the base64Url encoded string to a decoded string.\n *\n * @remarks\n *\n * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The \"URL and Filename safe\" Base 64 Alphabet\n *\n * @param d - encoded payload\n *\n * @param safe - Tell decoder that we are decoding base64Url save payload. This is default behavior.\n *\n * @returns Decoded string or fails with the error if it cannot find `atob` or `Buffer`\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function decode(d: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", safe?: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "d",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "safe",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "decode"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!encode:function(1)",
+          "docComment": "/**\n * Encode the string to Base64 URL safe\n *\n * @remarks\n *\n * More info here https://www.rfc-editor.org/rfc/rfc4648 #Table 2: The \"URL and Filename safe\" Base 64 Alphabet\n *\n * @param d - Any kind of string data\n *\n * @param safe - Tell encoder that we are decoding base64Url save payload. This is default behavior.\n *\n * @returns Encoded string or fails with the error if it cannot find `atob` or `Buffer`\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function encode(d: "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ", safe?: "
+            },
+            {
+              "kind": "Content",
+              "text": "boolean"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 5,
+            "endIndex": 6
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "d",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "safe",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": true
+            }
+          ],
+          "name": "encode"
+        },
+        {
+          "kind": "Function",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!expressV4AuthMiddleware:function(1)",
+          "docComment": "/**\n * Authentication Middleware.\n *\n * @param req - Express Request\n *\n * @param res - Express Response\n *\n * @param next - Express Next function\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function expressV4AuthMiddleware(req: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Request",
+              "canonicalReference": "@types/express!~e.Request:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", res: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Response",
+              "canonicalReference": "@types/express!~e.Response:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", next: "
+            },
+            {
+              "kind": "Reference",
+              "text": "NextFunction",
+              "canonicalReference": "@types/express!~e.NextFunction:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "Promise",
+              "canonicalReference": "!Promise:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<void>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 7,
+            "endIndex": 9
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "req",
+              "parameterTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "res",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              },
+              "isOptional": false
+            },
+            {
+              "parameterName": "next",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              },
+              "isOptional": false
+            }
+          ],
+          "name": "expressV4AuthMiddleware"
+        },
+        {
+          "kind": "Enum",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum",
+          "docComment": "/**\n * Possible Strategies. The enum values should be kept max 4 characters. There is no limitation but less is better.\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum IAuthStrategy "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IAuthStrategy",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy.substrate:member",
+              "docComment": "/**\n * Substrate strategy.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "'substrate' = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"sub\""
+                }
+              ],
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "name": "substrate"
+            }
+          ]
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!IParsedToken:interface",
+          "docComment": "/**\n * Parsed token output\n *\n * @typeParam P - is the payload type\n *\n * @returns the token structure and original, unparsed and not decoded values\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface IParsedToken<P> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "P",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "IParsedToken",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!IParsedToken#original:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "original: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "{\n        payload: string;\n        sig: string;\n        strategy: string;\n    }"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "original",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!IParsedToken#parsed:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "parsed: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ITokenStructure",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenStructure:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<P>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "parsed",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ISubstratePayload "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ISubstratePayload",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#account:member",
+              "docComment": "/**\n * Public address in valid SS58 format\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "account: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "account",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#exp:member",
+              "docComment": "/**\n * exp or TimeToLive in milliseconds. This is basically expiration of the token. After this time the token is not valid and MUST be rejected.\n *\n * @remarks\n *\n * Use this snippet to add 7 mins to the current date making the token available within 7 minutes\n * ```js\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 7); // this returns the ms\n * ```\n *\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "exp?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "exp",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#network:member",
+              "docComment": "/**\n * to which network this account belongs to.\n *\n * @remarks\n *\n * This value will not be modified, it is up to you to add this correctly.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "network: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "network",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload#prefix:member",
+              "docComment": "/**\n * SS58 prefix\n *\n * @remarks\n *\n * Full list here https://github.com/paritytech/ss58-registry/blob/main/ss58-registry.json\n *\n * The validation process will not verify the validity of the prefix\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "prefix: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "prefix",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!IToken:type",
+          "docComment": "/**\n * Encoded token, this is what it's sent over the wire This is just a wrapper so we can clearly read that the return is the Token\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type IToken = "
+            },
+            {
+              "kind": "Content",
+              "text": "string"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "IToken",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader:interface",
+          "docComment": "/**\n * Token with the Authorization header\n *\n * @remarks\n *\n * Follow the RFC https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ITokenHeader "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ITokenHeader",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenHeader#Authorization:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Authorization: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "Authorization",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenStructure:interface",
+          "docComment": "/**\n * Token structure when decoded and ready for validation\n *\n * @typeParam P - is the payload type\n *\n * @typeParam S - is the {@link IAuthStrategy}\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ITokenStructure<P> "
+            }
+          ],
+          "releaseTag": "Public",
+          "typeParameters": [
+            {
+              "typeParameterName": "P",
+              "constraintTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "ITokenStructure",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenStructure#payload:member",
+              "docComment": "/**\n * What you send\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "payload: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "P"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "payload",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenStructure#sig:member",
+              "docComment": "/**\n * Signature obtained by encode() function\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "sig: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "sig",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ITokenStructure#strategy:member",
+              "docComment": "/**\n * resolving strategy\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "strategy: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "IAuthStrategy",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "strategy",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError:class",
+          "docComment": "/**\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class StrategyValidationError extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "Error",
+              "canonicalReference": "!Error:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "StrategyValidationError",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `StrategyValidationError` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(message: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", status: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "message",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                },
+                {
+                  "parameterName": "status",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  },
+                  "isOptional": false
+                }
+              ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!StrategyValidationError#status:member",
+              "docComment": "/**\n * HTTP status code\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "status: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "number"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "status",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false,
+              "isProtected": false
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          },
+          "implementsTokenRanges": []
+        },
+        {
+          "kind": "Class",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy:class",
+          "docComment": "/**\n * You can pass the payload in to the constructor or later set it via setter Example\n * ```ts\n * const now = new Date();\n * const exp = now.setMinutes(now.getMinutes() + 5);\n * const tokenPayload = {\n *    account: 'just-normal-substrate-based-address',\n *    network: 'anagolay',\n *    prefix: 42,\n *    exp // optional, but if present then the token will not be accepted if now() is larger than this field\n * \t};\n * const t = new SubstrateStrategy(tokenPayload);\n * // or\n * const t =  new SubstrateStrategy();\n * t.payload = tokenPayload;\n * ```\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare class SubstrateStrategy extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "BaseStrategy",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!BaseStrategy:class"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ISubstratePayload",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "> "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SubstrateStrategy",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "Constructor",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy:constructor(1)",
+              "docComment": "/**\n * Constructs a new instance of the `SubstrateStrategy` class\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "constructor(payload?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ISubstratePayload",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ");"
+                }
+              ],
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "payload",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": true
+                }
+              ]
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy#encodeSignature:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "encodeSignature(rawSig: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "HexString",
+                  "canonicalReference": "@polkadot/util!HexString:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "rawSig",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "encodeSignature"
+            },
+            {
+              "kind": "Method",
+              "canonicalReference": "@kelp_digital/web3-api-auth-token!SubstrateStrategy#validate:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "validate(token: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ISubstratePayload",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!ISubstratePayload:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isStatic": false,
+              "returnTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 7
+              },
+              "releaseTag": "Public",
+              "isProtected": false,
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "token",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  },
+                  "isOptional": false
+                }
+              ],
+              "isOptional": false,
+              "name": "validate"
+            }
+          ],
+          "extendsTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          },
+          "implementsTokenRanges": []
+        }
+      ]
+    }
+  ]
+}

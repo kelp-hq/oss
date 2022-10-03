@@ -35,7 +35,18 @@
   "eslint.useESLintClass": true,
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.letterSpacing": 1,
-  "cSpell.words": ["Anagolay", "Fastify", "gpgsign", "IPFSHTTP", "pino", "rehosted"],
+  "cSpell.words": [
+    "Anagolay",
+    "Codeowner",
+    "Fastify",
+    "gpgsign",
+    "IPFSHTTP",
+    "pino",
+    "rehosted",
+    "Roadmap",
+    "sveltekit",
+    "WAAT"
+  ],
   "workbench.colorCustomizations": {
     "titleBar.activeBackground": "#36c2bb",
     "titleBar.activeForeground": "#192222"
@@ -52,5 +63,8 @@
     "**dist": true
   },
   "zenMode.hideTabs": false,
-  "zenMode.fullScreen": false
+  "zenMode.fullScreen": false,
+  "gitlens.views.repositories.branches.layout": "tree",
+  "git.autofetch": true,
+  "scm.defaultViewMode": "tree"
 }
