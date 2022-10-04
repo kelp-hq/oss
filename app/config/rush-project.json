@@ -2,7 +2,7 @@
 	"operationSettings": [
 		{
 			"operationName": "_phase:build",
-			"outputFolderNames": ["lib", "dist"]
+			"outputFolderNames": ["build"]
 		},
 		{
 			"operationName": "_phase:test",

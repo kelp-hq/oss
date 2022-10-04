@@ -23,6 +23,11 @@
     - echo 'Re-Building ...'
     - node common/scripts/install-run-rush.js rebuild --verbose
 
+.rush:retest:
+  script:
+    - echo 'Re-Building ...'
+    - node common/scripts/install-run-rush.js retest --verbose --production
+
 .rush:build:
   script:
     - echo 'Building ...'

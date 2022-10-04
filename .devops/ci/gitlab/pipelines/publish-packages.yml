@@ -2,7 +2,7 @@ publish-to-anagolay-registry:
   extends:
     - .install-pnpm-and-node
   stage: publish
-  needs: ['is-it-pretty', 'changelogs', 'build']
+  needs: ['is-it-pretty', 'changelogs', 'retest']
   # cache: {}
   allow_failure: true
   when: manual
