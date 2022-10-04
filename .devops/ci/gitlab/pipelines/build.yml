@@ -1,8 +1,12 @@
-test-code:
+build:
   extends:
     - .install-pnpm-and-node
-  stage: test
+  stage: build
   needs: ['is-it-pretty', 'changelogs']
   script:
     - !reference [.rush:install, script]
     - !reference [.rush:build, script]
+
+    - echo 'Building Macula app ...'
+    - cd ./app
+    - pnpm build:vite

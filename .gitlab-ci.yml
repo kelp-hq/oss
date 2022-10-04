@@ -23,17 +23,19 @@ cache:
 ### workflows control when to create the PIPELINE, not jobs
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" ## this is the same as $CI_MERGE_REQUEST_IID
+    - if: $FORCE_START
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_MESSAGE =~ /^.*\[mellon\].*$]/ # a friendly tag so we can test it
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" ## this is the same as $CI_MERGE_REQUEST_IID
 
 variables:
   NODE_ENV: 'test'
 
 include:
+  - local: .devops/ci/gitlab/**/*.yml
   - template: Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/License-Scanning.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/Container-Scanning.gitlab-ci.yml
-  - local: .devops/ci/gitlab/**/*.yml
