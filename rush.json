@@ -431,17 +431,17 @@
     },
     {
       "packageName": "@kelp_digital/ipfs-api-client",
-      "projectFolder": "tools/ipfs-api-client",
+      "projectFolder": "libraries/ipfs-api-client",
       "reviewCategory": "libraries"
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
-      "projectFolder": "tools/sveltekit-adapter-macula",
+      "projectFolder": "libraries/sveltekit-adapter-macula",
       "reviewCategory": "libraries"
     },
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
-      "projectFolder": "tools/web3-api-auth-token",
+      "projectFolder": "libraries/web3-api-auth-token",
       "reviewCategory": "libraries",
       // "versionPolicyName": "unstable"
       "shouldPublish": true
