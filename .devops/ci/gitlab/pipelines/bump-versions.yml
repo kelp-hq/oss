@@ -1,0 +1,14 @@
+bump-package-versions:
+  extends:
+    - .install-pnpm-and-node
+  stage: publish
+  needs: ['is-it-pretty', 'changelogs', 'retest']
+  # cache: {}
+  when: manual
+  script:
+    - set e
+
+    - git config --local user.email kelpbot@noreply.kelp.digital
+    - git config --local user.name KelpBot
+
+    - node common/scripts/install-run-rush.js version --bump --version-policy --target-branch $CI_COMMIT_REF_NAME

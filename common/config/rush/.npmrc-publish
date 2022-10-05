@@ -18,6 +18,7 @@
 #
 #   //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}
 #
-registry=https://npm-registry.anagolay.network/
+registry=https://${NPM_REGISTRY_URL}/
 always-auth=true
-//npm-registry.anagolay.network/:_authToken=${AN_NPM_AUTH_TOKEN}
+<!-- //npm-registry.anagolay.network/:_authToken=${AN_NPM_AUTH_TOKEN} -->
+//${NPM_REGISTRY_URL}/:_authToken=${AN_NPM_AUTH_TOKEN}
