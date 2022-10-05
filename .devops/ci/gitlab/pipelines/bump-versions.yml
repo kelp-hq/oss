@@ -2,7 +2,8 @@ bump-versions:
   extends:
     - .install-pnpm-and-node
   stage: publish
-  needs: ['is-it-pretty', 'changelogs', 'retest']
+  needs: ['changelogs']
+  # needs: ['is-it-pretty', 'changelogs', 'retest']
   # cache: {}
   when: manual
   variables:
@@ -14,8 +15,15 @@ bump-versions:
     # setup the ssh
     - apt-get update -y && apt-get install openssh-client -y
     - eval $(ssh-agent -s)
-    # - echo "${SSH_DEPLOY_PRIVATE_KEY}" | tr -d '\r' | ssh-add -
-    - ssh-add <(echo "$SSH_DEPLOY_KEY_BASE64" | base64 -d)
+    - ssh -V
+    - ssh-add - <<< "${SSH_DEPLOY_PRIVATE_KEY}"
+    - ssh-add -l
+    # - echo "${SSH_DEPLOY_PRIVATE_KEY}" | tr -d '\r' > private_key
+    # - chmod 600 private_key
+    # - cat private_key
+    # - ssh-add private_key
+    # - echo "${SSH_DEPLOY_PRIVATE_KEY}" | tr -d '\r' | ssh-add - > /dev/null
+    # - ssh-add <(echo "$SSH_DEPLOY_KEY_BASE64" | base64 -d)
     - mkdir -p ~/.ssh
     - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
     - chmod 700 ~/.ssh
@@ -41,3 +49,5 @@ bump-versions:
     - set e
 
     - node common/scripts/install-run-rush.js version --bump --version-policy $VERSION_POLICY --target-branch $CI_COMMIT_REF_NAME
+  after_script:
+    - rm private_key
