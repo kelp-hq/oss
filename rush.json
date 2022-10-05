@@ -273,7 +273,7 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote master branch.
      */
-    "urls": ["https://gitlab.com/kelp_digital/oss"],
+    "urls": ["git@gitlab.com:kelp_digital/oss.git", "https://gitlab.com/kelp_digital/oss"],
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"

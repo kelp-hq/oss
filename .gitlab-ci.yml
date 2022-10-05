@@ -10,15 +10,15 @@ stages:
   - lint
   - test
   - build
-  - build-images
+  - pre-publish
   - publish
 
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
     - common/temp
-    - .pnpm-store
     - app/.svelte-kit
+    - app/build
 
 ### workflows control when to create the PIPELINE, not jobs
 workflow:

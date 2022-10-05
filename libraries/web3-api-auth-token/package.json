@@ -23,14 +23,6 @@
     "./*": {
       "require": "./lib-commonjs/*.js",
       "import": "./lib/*.js"
-    },
-    "./substrate": {
-      "require": "./lib-commonjs/strategies/substrate/*.js",
-      "import": "./lib/strategies/substrate/*.js"
-    },
-    "./apiKey": {
-      "require": "./lib-commonjs/strategies/apiKey/*.js",
-      "import": "./lib/strategies/apiKey/*.js"
     }
   },
   "scripts": {

@@ -3,6 +3,6 @@ is-it-pretty:
     - .install-pnpm-and-node
   stage: lint
   script:
-    - !reference [.rush:install, script]
+    # - !reference [.rush:install, script]
     - echo 'Is our code pretty?'
     - node common/scripts/install-run-rush.js prettier:check
