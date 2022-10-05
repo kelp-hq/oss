@@ -25,7 +25,7 @@
 
 .rush:retest:
   script:
-    - echo 'Re-Building ...'
+    - echo 'Re-testing ...'
     - node common/scripts/install-run-rush.js retest --verbose --production
 
 .rush:build:
