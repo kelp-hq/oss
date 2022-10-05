@@ -9,4 +9,4 @@ retest:
 
     - echo 'Building Macula app ...'
     - cd ./app
-    - pnpm build:vite
+    - pnpm build:app

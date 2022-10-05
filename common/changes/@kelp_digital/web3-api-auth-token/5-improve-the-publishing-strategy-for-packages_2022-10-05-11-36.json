@@ -3,7 +3,7 @@
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
       "comment": "implement initial structure. Add SubstrateStrategy and add all needed test.",
-      "type": "minor"
+      "type": "patch"
     }
   ],
   "packageName": "@kelp_digital/web3-api-auth-token"
