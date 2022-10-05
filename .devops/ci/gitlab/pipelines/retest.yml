@@ -3,6 +3,10 @@ retest:
     - .install-pnpm-and-node
   stage: build
   needs: ['is-it-pretty', 'changelogs']
+  services:
+    - ipfs/kubo:master-2022-09-19-32e9a69
+  variables:
+    IPFS_PROFILE: 'server'
   script:
     - !reference [.rush:install, script]
     - !reference [.rush:retest, script]
