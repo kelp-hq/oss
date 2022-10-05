@@ -1,0 +1,17 @@
+{
+  "name": "@kelp_digital/web3-api-auth-token",
+  "entries": [
+    {
+      "version": "0.0.2",
+      "tag": "@kelp_digital/web3-api-auth-token_v0.0.2",
+      "date": "Wed, 05 Oct 2022 20:14:10 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "implement initial structure. Add SubstrateStrategy and add all needed test."
+          }
+        ]
+      }
+    }
+  ]
+}
