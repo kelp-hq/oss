@@ -6,15 +6,12 @@ publish-to-anagolay-registry:
   # cache: {}
   allow_failure: true
   when: manual
-  variable:
+  variables:
     NPM_REGISTRY_URL: npm-registry.anagolay.network
   script:
     - set e
     - !reference [.rush:install, script]
     - !reference [.rush:retest, script]
-
-    - git config --local user.email kelpbot@noreply.kelp.digital
-    - git config --local user.name KelpBot
 
     - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch $CI_COMMIT_REF_NAME --add-commit-details --set-access-level public
 

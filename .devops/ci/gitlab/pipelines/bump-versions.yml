@@ -1,14 +1,43 @@
-bump-package-versions:
+bump-versions:
   extends:
     - .install-pnpm-and-node
   stage: publish
   needs: ['is-it-pretty', 'changelogs', 'retest']
   # cache: {}
   when: manual
+  variables:
+    VERSION_POLICY: unstable
+    # CI_DEBUG_TRACE: 'true'
+    # GIT_REMOTE_SIGN_URL: 'do not enable this' # all the changes will be signed with Daniels' key DO NOT UNCOMMENT THIS
+    # GPG_SIGN_KEY: 'do not enable this' # all the changes will be signed with Daniels' key DO NOT UNCOMMENT THIS
+  before_script:
+    # setup the ssh
+    - apt-get update -y && apt-get install openssh-client -y
+    - eval $(ssh-agent -s)
+    # - echo "${SSH_DEPLOY_PRIVATE_KEY}" | tr -d '\r' | ssh-add -
+    - ssh-add <(echo "$SSH_DEPLOY_KEY_BASE64" | base64 -d)
+    - mkdir -p ~/.ssh
+    - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+    - chmod 700 ~/.ssh
+    - chmod 644 ~/.ssh/known_hosts
+
+    # setup the ssh
+
+    # setup the remote signer
+    - echo "***** Installing the Remote Signer"
+    - wget --no-verbose https://ipfs.anagolay.network/ipfs/bafybeiarhwobvpvz76iy6clqaf3ub7yc4rvvkydmimh652r2svdaznubrq -O /usr/local/bin/remote-signer
+    - chmod +x /usr/local/bin/remote-signer
+    # setup the remote signer
+
+    # setup git config to work with remote signer
+    - git config --local user.email kelpbot@noreply.kelp.digital # kelpbot will sign commits like daniel
+    - git config --local user.name KelpBot
+
+    - git config --global gpg.program "remote-signer"
+    - git config --global commit.gpgsign true
+    # setup git config to work with remote signer
+
   script:
     - set e
 
-    - git config --local user.email kelpbot@noreply.kelp.digital
-    - git config --local user.name KelpBot
-
-    - node common/scripts/install-run-rush.js version --bump --version-policy --target-branch $CI_COMMIT_REF_NAME
+    - node common/scripts/install-run-rush.js version --bump --version-policy $VERSION_POLICY --target-branch $CI_COMMIT_REF_NAME
