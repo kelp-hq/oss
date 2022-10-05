@@ -14,4 +14,4 @@ publish-to-anagolay-registry:
     - git config --local user.email kelpbot@noreply.kelp.digital
     - git config --local user.name KelpBot
 
-    - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch "$CI_COMMIT_BRANCH" --add-commit-details --set-access-level public --registry https://npm-registry.anagolay.network --npm-auth-token $AN_NPM_AUTH_TOKEN --target-branch $CI_COMMIT_REF_NAME
+    - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch $CI_COMMIT_REF_NAME --add-commit-details --set-access-level public --registry https://npm-registry.anagolay.network

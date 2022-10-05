@@ -422,22 +422,26 @@
     {
       "packageName": "@kelp_digital/macula",
       "projectFolder": "services/macula",
-      "reviewCategory": "service"
+      "reviewCategory": "service",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/ipfs-cli",
       "projectFolder": "tools/ipfs-cli",
-      "reviewCategory": "tools"
+      "reviewCategory": "tools",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/ipfs-api-client",
       "projectFolder": "libraries/ipfs-api-client",
-      "reviewCategory": "libraries"
+      "reviewCategory": "libraries",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
       "projectFolder": "libraries/sveltekit-adapter-macula",
-      "reviewCategory": "libraries"
+      "reviewCategory": "libraries",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
@@ -449,7 +453,8 @@
     {
       "packageName": "@kelp_digital/macula_app",
       "projectFolder": "app",
-      "reviewCategory": "website"
+      "reviewCategory": "website",
+      "shouldPublish": false
     }
   ]
 }
