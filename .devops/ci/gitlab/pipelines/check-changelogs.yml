@@ -6,3 +6,4 @@ changelogs:
   # allow_failure: true
   script:
     - !reference [.rush:change-verify, script]
+    - git tag -l
