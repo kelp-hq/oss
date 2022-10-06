@@ -8,6 +8,8 @@ publish-to-anagolay-registry:
   # when: manual
   variables:
     NPM_REGISTRY_URL: npm-registry.anagolay.network
+  before_script:
+    - !reference [.setup-git-and-ssh, before_script]
   script:
     - set e
     - !reference [.rush:install, script]
