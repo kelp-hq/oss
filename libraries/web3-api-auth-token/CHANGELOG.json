@@ -1,0 +1,17 @@
+{
+  "name": "@kelp_digital/web3-api-auth-token",
+  "entries": [
+    {
+      "version": "0.0.2",
+      "tag": "@kelp_digital/web3-api-auth-token_v0.0.2",
+      "date": "Thu, 06 Oct 2022 09:52:06 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "initial version"
+          }
+        ]
+      }
+    }
+  ]
+}
