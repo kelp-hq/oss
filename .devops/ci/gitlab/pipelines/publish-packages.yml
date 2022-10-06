@@ -14,6 +14,9 @@ publish-to-anagolay-registry:
     - !reference [.rush:retest, script]
 
     - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch $CI_COMMIT_REF_NAME --add-commit-details --set-access-level public
+###
+### This will not be enabled for the time being
+###
 # publish-to-npm-registry:
 #   extends:
 #     - .install-pnpm-and-node
@@ -24,9 +27,10 @@ publish-to-anagolay-registry:
 #   when: manual
 #   variables:
 #     NPM_REGISTRY_URL: registry.npmjs.org
+#     AN_NPM_AUTH_TOKEN: $NPM_ACCESS_TOKEN
 #   script:
 #     - set e
 #     - !reference [.rush:install, script]
 #     - !reference [.rush:retest, script]
 
-#     - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch $CI_COMMIT_REF_NAME --add-commit-details --set-access-level public --registry https://registry.npmjs.org/
+#     - node common/scripts/install-run-rush.js publish --apply --publish --add-commit-details --include-all --target-branch $CI_COMMIT_REF_NAME --add-commit-details --set-access-level public
