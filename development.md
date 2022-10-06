@@ -31,7 +31,7 @@ rush change
 
 If the Changelogs job fails then developer mst provide CHANGELOGS by running the `rush change` and answer the question.
 
-The job `bump-versions` is automatically triggered for now. The `publish-packages` will only publish to anagolay registry automatically when the parent task is success
+The job `bump-versions` is manually triggered for now. The `publish-packages` will only publish to anagolay registry automatically when the parent task is success
 
 # Very useful commands:
 

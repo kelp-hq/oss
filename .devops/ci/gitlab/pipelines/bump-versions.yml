@@ -4,10 +4,9 @@ bump-versions:
   stage: pre-publish
   needs: ['retest']
   cache: {}
-  # when: manual
+  when: manual
   variables:
     VERSION_POLICY: unstable
-    # GIT_STRATEGY: clone # we need fresh code so we don't add the merge config to the gitconfig
     # CI_DEBUG_TRACE: 'true'
     # GIT_REMOTE_SIGN_URL: 'do not enable this' # all the changes will be signed with Daniels' key DO NOT UNCOMMENT THIS
     # GPG_SIGN_KEY: 'do not enable this' # all the changes will be signed with Daniels' key DO NOT UNCOMMENT THIS

@@ -8,7 +8,6 @@ publish-to-anagolay-registry:
   # when: manual
   variables:
     NPM_REGISTRY_URL: npm-registry.anagolay.network
-    # GIT_STRATEGY: clone # we need fresh code so we don't add the merge config to the gitconfig
   script:
     - set e
     - !reference [.rush:install, script]
