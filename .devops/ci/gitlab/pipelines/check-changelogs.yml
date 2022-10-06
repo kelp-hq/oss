@@ -3,6 +3,7 @@ changelogs:
     - .install-pnpm-and-node
   stage: lint
   cache: {}
-  allow_failure: true
+  # allow_failure: true
   script:
     - !reference [.rush:change-verify, script]
+    - git tag -l

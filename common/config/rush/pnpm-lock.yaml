@@ -63,8 +63,8 @@ importers:
       vite-plugin-wasm: 2.1.0
       wf_cidv1_from_array: https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma
     dependencies:
-      '@kelp_digital/ipfs-api-client': link:../tools/ipfs-api-client
-      '@kelp_digital/web3-api-auth-token': link:../tools/web3-api-auth-token
+      '@kelp_digital/ipfs-api-client': link:../libraries/ipfs-api-client
+      '@kelp_digital/web3-api-auth-token': link:../libraries/web3-api-auth-token
       '@polkadot/api': 9.2.2
       '@polkadot/api-augment': 8.14.1
       '@polkadot/extension-dapp': 0.44.5_@polkadot+api@9.2.2
@@ -120,118 +120,7 @@ importers:
       vite-plugin-top-level-await: 1.1.1_vite@3.1.2
       vite-plugin-wasm: 2.1.0_vite@3.1.2
 
-  ../../services/macula:
-    specifiers:
-      '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
-      '@anagolay/utils': 0.0.1
-      '@kelp_digital/ipfs-api-client': workspace:*
-      '@kelp_digital/web3-api-auth-token': workspace:*
-      '@microsoft/api-extractor': 7.28.0
-      '@polkadot/keyring': 10.1.7
-      '@polkadot/util': 10.1.7
-      '@polkadot/util-crypto': 10.1.7
-      '@rushstack/eslint-config': 2.6.0
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-jest-plugin': 0.3.6
-      '@rushstack/heft-node-rig': 1.9.7
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
-      '@sentry/types': 7.5.1
-      '@types/compression': 1.7.2
-      '@types/cors': 2.8.12
-      '@types/express': 4.17.13
-      '@types/heft-jest': 1.0.2
-      '@types/http-proxy': 1.17.9
-      '@types/mime-types': 2.1.1
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      '@types/sharp': 0.30.4
-      '@types/slug': 5.0.3
-      axios: 0.27.2
-      compression: 1.7.4
-      cors: 2.8.5
-      env-cmd: 10.1.0
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0
-      eslint-plugin-unused-imports: 2.0.0
-      express: 4.18.1
-      fast-printf: 1.6.9
-      file-type: 16.5.3
-      helmet: 6.0.0
-      http-proxy: 1.18.1
-      ipfs-core-types: 0.11.1
-      ipfs-http-client: 56.0.0
-      it-all: 1.0.6
-      mime-types: 2.1.35
-      mongodb: 4.9.0
-      multiaddr: 10.0.1
-      node-fetch: 3.2.6
-      pino: 8.0.0
-      pino-pretty: 8.0.0
-      prettier: 2.7.1
-      ramda: 0.28.0
-      redis: 4.2.0
-      sharp: 0.30.6
-      slug: 8.0.0
-      typescript: 4.6.4
-      undici: 5.6.1
-    dependencies:
-      '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
-      '@anagolay/utils': 0.0.1
-      '@kelp_digital/ipfs-api-client': link:../../tools/ipfs-api-client
-      '@kelp_digital/web3-api-auth-token': link:../../tools/web3-api-auth-token
-      '@polkadot/keyring': 10.1.7
-      '@polkadot/util': 10.1.7
-      '@polkadot/util-crypto': 10.1.7
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
-      axios: 0.27.2
-      compression: 1.7.4
-      cors: 2.8.5
-      express: 4.18.1
-      fast-printf: 1.6.9
-      file-type: 16.5.3
-      helmet: 6.0.0
-      http-proxy: 1.18.1
-      ipfs-core-types: 0.11.1_undici@5.6.1
-      ipfs-http-client: 56.0.0_node-fetch@3.2.6
-      it-all: 1.0.6
-      mime-types: 2.1.35
-      mongodb: 4.9.0
-      multiaddr: 10.0.1_node-fetch@3.2.6
-      node-fetch: 3.2.6
-      pino: 8.0.0
-      ramda: 0.28.0
-      redis: 4.2.0
-      sharp: 0.30.6
-      slug: 8.0.0
-      undici: 5.6.1
-    devDependencies:
-      '@microsoft/api-extractor': 7.28.0
-      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-jest-plugin': 0.3.6_@rushstack+heft@0.45.6
-      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
-      '@sentry/types': 7.5.1
-      '@types/compression': 1.7.2
-      '@types/cors': 2.8.12
-      '@types/express': 4.17.13
-      '@types/heft-jest': 1.0.2
-      '@types/http-proxy': 1.17.9
-      '@types/mime-types': 2.1.1
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      '@types/sharp': 0.30.4
-      '@types/slug': 5.0.3
-      env-cmd: 10.1.0
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
-      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
-      pino-pretty: 8.0.0
-      prettier: 2.7.1
-      typescript: 4.6.4
-
-  ../../tools/ipfs-api-client:
+  ../../libraries/ipfs-api-client:
     specifiers:
       '@microsoft/api-extractor': 7.28.0
       '@rushstack/eslint-config': 2.6.0
@@ -303,6 +192,195 @@ importers:
       webpack: 5.68.0_webpack-cli@4.9.2
       webpack-cli: 4.9.2_webpack@5.68.0
       webpack-node-externals: 3.0.0
+
+  ../../libraries/sveltekit-adapter-macula:
+    specifiers:
+      '@rushstack/eslint-config': 2.6.0
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-node-rig': 1.9.7
+      '@sveltejs/kit': 1.0.0-next.484
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-unused-imports: 2.0.0
+      prettier: 2.7.1
+      ramda: 0.28.0
+      svelte: 3.50.1
+      typescript: 4.6.4
+      vite: 3.1.2
+    dependencies:
+      ramda: 0.28.0
+    devDependencies:
+      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
+      '@sveltejs/kit': 1.0.0-next.484_svelte@3.50.1+vite@3.1.2
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
+      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
+      prettier: 2.7.1
+      svelte: 3.50.1
+      typescript: 4.6.4
+      vite: 3.1.2
+
+  ../../libraries/web3-api-auth-token:
+    specifiers:
+      '@microsoft/api-extractor': 7.28.0
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      '@rushstack/eslint-config': 2.6.0
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6
+      '@rushstack/heft-node-rig': 1.9.7
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-unused-imports: 2.0.0
+      prettier: 2.7.1
+      ramda: 0.28.0
+      tslib: 2.4.0
+      typescript: 4.6.4
+      webpack-node-externals: 3.0.0
+    dependencies:
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      ramda: 0.28.0
+    devDependencies:
+      '@microsoft/api-extractor': 7.28.0
+      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6_@rushstack+heft@0.45.6
+      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
+      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
+      prettier: 2.7.1
+      tslib: 2.4.0
+      typescript: 4.6.4
+      webpack-node-externals: 3.0.0
+
+  ../../services/macula:
+    specifiers:
+      '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
+      '@anagolay/utils': 0.0.1
+      '@kelp_digital/ipfs-api-client': workspace:*
+      '@kelp_digital/web3-api-auth-token': workspace:*
+      '@microsoft/api-extractor': 7.28.0
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      '@rushstack/eslint-config': 2.6.0
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6
+      '@rushstack/heft-node-rig': 1.9.7
+      '@sentry/node': 7.6.0
+      '@sentry/tracing': 7.6.0
+      '@sentry/types': 7.5.1
+      '@types/compression': 1.7.2
+      '@types/cors': 2.8.12
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/http-proxy': 1.17.9
+      '@types/mime-types': 2.1.1
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      '@types/sharp': 0.30.4
+      '@types/slug': 5.0.3
+      axios: 0.27.2
+      compression: 1.7.4
+      cors: 2.8.5
+      env-cmd: 10.1.0
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0
+      eslint-plugin-unused-imports: 2.0.0
+      express: 4.18.1
+      fast-printf: 1.6.9
+      file-type: 16.5.3
+      helmet: 6.0.0
+      http-proxy: 1.18.1
+      ipfs-core-types: 0.11.1
+      ipfs-http-client: 56.0.0
+      it-all: 1.0.6
+      mime-types: 2.1.35
+      mongodb: 4.9.0
+      multiaddr: 10.0.1
+      node-fetch: 3.2.6
+      pino: 8.0.0
+      pino-pretty: 8.0.0
+      prettier: 2.7.1
+      ramda: 0.28.0
+      redis: 4.2.0
+      sharp: 0.30.6
+      slug: 8.0.0
+      typescript: 4.6.4
+      undici: 5.6.1
+    dependencies:
+      '@anagolay/create_cid_from_buffer': '@ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy'
+      '@anagolay/utils': 0.0.1
+      '@kelp_digital/ipfs-api-client': link:../../libraries/ipfs-api-client
+      '@kelp_digital/web3-api-auth-token': link:../../libraries/web3-api-auth-token
+      '@polkadot/keyring': 10.1.7
+      '@polkadot/util': 10.1.7
+      '@polkadot/util-crypto': 10.1.7
+      '@sentry/node': 7.6.0
+      '@sentry/tracing': 7.6.0
+      axios: 0.27.2
+      compression: 1.7.4
+      cors: 2.8.5
+      express: 4.18.1
+      fast-printf: 1.6.9
+      file-type: 16.5.3
+      helmet: 6.0.0
+      http-proxy: 1.18.1
+      ipfs-core-types: 0.11.1_undici@5.6.1
+      ipfs-http-client: 56.0.0_node-fetch@3.2.6
+      it-all: 1.0.6
+      mime-types: 2.1.35
+      mongodb: 4.9.0
+      multiaddr: 10.0.1_node-fetch@3.2.6
+      node-fetch: 3.2.6
+      pino: 8.0.0
+      ramda: 0.28.0
+      redis: 4.2.0
+      sharp: 0.30.6
+      slug: 8.0.0
+      undici: 5.6.1
+    devDependencies:
+      '@microsoft/api-extractor': 7.28.0
+      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
+      '@rushstack/heft': 0.45.6
+      '@rushstack/heft-jest-plugin': 0.3.6_@rushstack+heft@0.45.6
+      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
+      '@sentry/types': 7.5.1
+      '@types/compression': 1.7.2
+      '@types/cors': 2.8.12
+      '@types/express': 4.17.13
+      '@types/heft-jest': 1.0.2
+      '@types/http-proxy': 1.17.9
+      '@types/mime-types': 2.1.1
+      '@types/node': 18.7.13
+      '@types/ramda': 0.28.15
+      '@types/sharp': 0.30.4
+      '@types/slug': 5.0.3
+      env-cmd: 10.1.0
+      eslint: 8.23.1
+      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
+      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
+      pino-pretty: 8.0.0
+      prettier: 2.7.1
+      typescript: 4.6.4
 
   ../../tools/ipfs-cli:
     specifiers:
@@ -389,84 +467,6 @@ importers:
       typescript: 4.6.4
       webpack: 5.68.0_webpack-cli@4.9.2
       webpack-cli: 4.9.2_webpack@5.68.0
-      webpack-node-externals: 3.0.0
-
-  ../../tools/sveltekit-adapter-macula:
-    specifiers:
-      '@rushstack/eslint-config': 2.6.0
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-node-rig': 1.9.7
-      '@sveltejs/kit': 1.0.0-next.484
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0
-      eslint-plugin-unused-imports: 2.0.0
-      prettier: 2.7.1
-      ramda: 0.28.0
-      svelte: 3.50.1
-      typescript: 4.6.4
-      vite: 3.1.2
-    dependencies:
-      ramda: 0.28.0
-    devDependencies:
-      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
-      '@sveltejs/kit': 1.0.0-next.484_svelte@3.50.1+vite@3.1.2
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
-      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
-      prettier: 2.7.1
-      svelte: 3.50.1
-      typescript: 4.6.4
-      vite: 3.1.2
-
-  ../../tools/web3-api-auth-token:
-    specifiers:
-      '@microsoft/api-extractor': 7.28.0
-      '@polkadot/keyring': 10.1.7
-      '@polkadot/util': 10.1.7
-      '@polkadot/util-crypto': 10.1.7
-      '@rushstack/eslint-config': 2.6.0
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-jest-plugin': 0.3.6
-      '@rushstack/heft-node-rig': 1.9.7
-      '@types/express': 4.17.13
-      '@types/heft-jest': 1.0.2
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0
-      eslint-plugin-unused-imports: 2.0.0
-      prettier: 2.7.1
-      ramda: 0.28.0
-      tslib: 2.4.0
-      typescript: 4.6.4
-      webpack-node-externals: 3.0.0
-    dependencies:
-      '@polkadot/keyring': 10.1.7
-      '@polkadot/util': 10.1.7
-      '@polkadot/util-crypto': 10.1.7
-      ramda: 0.28.0
-    devDependencies:
-      '@microsoft/api-extractor': 7.28.0
-      '@rushstack/eslint-config': 2.6.0_3pgpbtxx6aaanl2g7t7xjqhlje
-      '@rushstack/heft': 0.45.6
-      '@rushstack/heft-jest-plugin': 0.3.6_@rushstack+heft@0.45.6
-      '@rushstack/heft-node-rig': 1.9.7_@rushstack+heft@0.45.6
-      '@types/express': 4.17.13
-      '@types/heft-jest': 1.0.2
-      '@types/node': 18.7.13
-      '@types/ramda': 0.28.15
-      eslint: 8.23.1
-      eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.1
-      eslint-plugin-unused-imports: 2.0.0_eslint@8.23.1
-      prettier: 2.7.1
-      tslib: 2.4.0
-      typescript: 4.6.4
       webpack-node-externals: 3.0.0
 
 packages:

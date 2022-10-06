@@ -273,7 +273,7 @@
      * your PR branch, and in this situation "rush change" will also automatically invoke "git fetch"
      * to retrieve the latest activity for the remote master branch.
      */
-    "urls": ["https://gitlab.com/kelp_digital/oss"],
+    "urls": ["git@gitlab.com:kelp_digital/oss.git", "https://gitlab.com/kelp_digital/oss"],
     /**
      * The default branch name. This tells "rush change" which remote branch to compare against.
      * The default value is "master"
@@ -422,34 +422,38 @@
     {
       "packageName": "@kelp_digital/macula",
       "projectFolder": "services/macula",
-      "reviewCategory": "service"
+      "reviewCategory": "service",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/ipfs-cli",
       "projectFolder": "tools/ipfs-cli",
-      "reviewCategory": "tools"
+      "reviewCategory": "tools",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/ipfs-api-client",
-      "projectFolder": "tools/ipfs-api-client",
-      "reviewCategory": "libraries"
+      "projectFolder": "libraries/ipfs-api-client",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
-      "projectFolder": "tools/sveltekit-adapter-macula",
-      "reviewCategory": "libraries"
+      "projectFolder": "libraries/sveltekit-adapter-macula",
+      "reviewCategory": "libraries",
+      "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/web3-api-auth-token",
-      "projectFolder": "tools/web3-api-auth-token",
+      "projectFolder": "libraries/web3-api-auth-token",
       "reviewCategory": "libraries",
-      // "versionPolicyName": "unstable"
-      "shouldPublish": true
+      "versionPolicyName": "unstable"
     },
     {
       "packageName": "@kelp_digital/macula_app",
       "projectFolder": "app",
-      "reviewCategory": "website"
+      "reviewCategory": "website",
+      "shouldPublish": false
     }
   ]
 }

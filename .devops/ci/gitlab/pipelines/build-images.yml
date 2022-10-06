@@ -6,11 +6,11 @@
   extends: .use-kaniko
 
 build-macula-image:
+  stage: publish
   when: manual
   extends:
     - .base-image-build
     # - .build-image:rules:macula-non-latest
-  stage: build-images
   needs: []
   variables:
     IMAGE_DOCKERFILE_PATH: '${CI_PROJECT_DIR}/.devops/docker/prod/macula.dockerfile'

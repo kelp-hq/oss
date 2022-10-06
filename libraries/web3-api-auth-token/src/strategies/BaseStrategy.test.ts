@@ -60,7 +60,7 @@ describe('[BaseStrategy] Test case', () => {
     const t = new ImplClass(payload);
     expect(await t.make(signature)).toEqual(token);
     expect(await t.makeWithHeader(signature)).toEqual({
-      authorization: 'Bearer c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI='
+      Authorization: 'Bearer c3Vi.eyJhZ2UiOjQzLCJuYW1lIjoid29zcyJ9.InNpZyI='
     });
 
     // no strategy
