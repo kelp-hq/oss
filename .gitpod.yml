@@ -21,8 +21,6 @@ ports:
     onOpen: ignore
   - port: 4001 # ipfs swarm
     onOpen: ignore
-  - port: 4226 # sccache server
-    onOpen: ignore
   - port: 6379 # redis server
     onOpen: ignore
   - port: 7777 # macula web app server

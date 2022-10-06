@@ -1,39 +1,30 @@
-.patterns-macula-dev: &patterns-macula-dev
-  - .devops/docker/prod/macula.dockerfile
-  - kelp/macula/src/**/*
+.rules-build:
+  rules:
+    # Don't run when triggered from another pipeline
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME == "main"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
 
-.build-image:rules:macula-non-latest:
+.rules-on-merge-request-event:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes: *patterns-macula-dev
-      when: manual
 
-.patterns-websocket-service-dev: &patterns-websocket-service-dev
-  - .devops/docker/prod/ws-server.dockerfile
-  - services/ws-server/src/**/*
-
-.build-image:rules:websocket-service-non-latest:
+.rule-friendly-word:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes: *patterns-websocket-service-dev
-      when: manual
+    - if: $CI_COMMIT_MESSAGE =~ /^.*\[mellon\].*$]/ # a friendly tag so we can test it
+    - if: $CI_PIPELINE_SOURCE == "pipeline"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_REF_NAME == "main"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_TAG
 
-.patterns-ipfs-api-auth-proxy-dev: &patterns-ipfs-api-auth-proxy-dev
-  - .devops/docker/prod/ipfs-api-auth-proxy.dockerfile
-  - services/ipfs-api-auth-proxy/src/**/*
-
-.build-image:rules:ipfs-api-auth-proxy-non-latest:
+.skip-merge-train:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes: *patterns-ipfs-api-auth-proxy-dev
-      when: manual
-
-.patterns-publish-service-dev: &patterns-publish-service-dev
-  - .devops/docker/prod/publish.dockerfile
-  - services/publish/src/**/*
-
-.build-image:rules:publish-service-non-latest:
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      changes: *patterns-publish-service-dev
-      when: manual
+    - if: '$CI_COMMIT_MESSAGE =~ /\[merge-train skip\]/'
+      when: never

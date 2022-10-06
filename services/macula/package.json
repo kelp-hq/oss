@@ -15,14 +15,14 @@
   "main": "./lib/start.js",
   "types": "./lib/macula.d.ts",
   "scripts": {
-    "build": "pnpm build:heft",
-    "watch": "heft test --watch",
-    "build:heft": "heft test --clean",
+    "build": "heft build --clean",
+    "test": "heft test --no-build",
+    "_phase:build": "heft build --clean",
+    "_phase:test": "heft test --no-build",
+    "test:watch": "heft test --clean --watch",
+    "watch": "heft build --clean --watch",
     "start": "heft start --clean",
-    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "serve": "node ./lib/start.js",
-    "lint": "prettier --check . && eslint .",
-    "format": "prettier --write ."
+    "serve": "node ./lib/start.js"
   },
   "dependencies": {
     "@anagolay/create_cid_from_buffer": "https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy",

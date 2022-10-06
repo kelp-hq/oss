@@ -29,9 +29,9 @@ rush change
 
 ## Publishing
 
-If the `versioningPolicy` is used there are extra steps. For now let's use the manual increase with the `rush change`
+If the Changelogs job fails then developer mst provide CHANGELOGS by running the `rush change` and answer the question.
 
-the changelog is needed.
+The job `bump-versions` is manually triggered for now. The `publish-packages` will only publish to anagolay registry automatically when the parent task is success
 
 # Very useful commands:
 

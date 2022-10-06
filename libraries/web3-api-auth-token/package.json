@@ -13,32 +13,26 @@
   "license": "AGPL3",
   "type": "module",
   "licenseFile": "./LICENSE",
-  "main": "./lib-cjs/index.js",
+  "main": "./lib-commonjs/index.js",
   "types": "./lib/web3-api-auth-token.d.ts",
   "exports": {
     ".": {
-      "require": "./lib-cjs/index.js",
+      "require": "./lib-commonjs/index.js",
       "import": "./lib/index.js"
     },
     "./*": {
-      "require": "./lib-cjs/*.js",
+      "require": "./lib-commonjs/*.js",
       "import": "./lib/*.js"
-    },
-    "./substrate": {
-      "require": "./lib-cjs/strategies/substrate/*.js",
-      "import": "./lib/strategies/substrate/*.js"
-    },
-    "./apiKey": {
-      "require": "./lib-cjs/strategies/apiKey/*.js",
-      "import": "./lib/strategies/apiKey/*.js"
     }
   },
   "scripts": {
-    "build": "heft build --clean && pnpm fix-lib",
-    "fix-lib": "node ./config/add-js-to-esm.js",
+    "build": "heft build --clean",
+    "test": "heft test --no-build",
+    "_phase:build": "heft build --clean",
+    "_phase:test": "heft test --no-build",
+    "_phase:fix-lib": "node ./config/add-js-to-esm.js",
     "test:watch": "heft test --clean --watch",
-    "watch": "heft build --clean --watch",
-    "lint:fix": "eslint ./src --ext .js,.jsx,.ts,.tsx"
+    "watch": "heft build --clean --watch"
   },
   "dependencies": {
     "ramda": "0.28.0",

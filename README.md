@@ -21,8 +21,8 @@ This repo contains the OSS from [Kelp Digital](https://kelp.digital):
 
 Important files:
 
-- [README.md](./tools/web3-api-auth-token/README.md)
-- [AGPLv3 LICENSE](./tools/web3-api-auth-token/LICENSE)
+- [README.md](./libraries/web3-api-auth-token/README.md)
+- [AGPLv3 LICENSE](./libraries/web3-api-auth-token/LICENSE)
 
 Web3 API Auth Token (**WAAT**) defines a compact and self-contained way for securely transmitting information between the parties as a base64Url encoded JSON object. the information can be verified and trusted because it is digitally signed and the signature provided as a part of the token. WAAT is completely agnostic about the way the Strategies validate the payload. Because of this design approach, the WAAT is also agnostic about the RAW type of the signature and encourages the best practices for each Strategy.
 
@@ -69,8 +69,8 @@ Custom-built CLI that can be used with the Macula authentication scheme to uploa
 
 Important files:
 
-- [README.md](./tools/ipfs-api-client/README.md)
-- [AGPLv3 LICENSE](./tools/ipfs-api-client/LICENSE)
+- [README.md](./libraries/ipfs-api-client/README.md)
+- [AGPLv3 LICENSE](./libraries/ipfs-api-client/LICENSE)
 
 Isomorphic and lightweight HTTP client for any IPFS node that comes without all the nonsense that the official package contains. This will ONLY expose the endpoints.
 
@@ -78,8 +78,8 @@ Isomorphic and lightweight HTTP client for any IPFS node that comes without all 
 
 Important files:
 
-- [README.md](./tools/sveltekit-adapter-macula/README.md)
-- [AGPLv3 LICENSE](./tools/sveltekit-adapter-macula/LICENSE)
+- [README.md](./libraries/sveltekit-adapter-macula/README.md)
+- [AGPLv3 LICENSE](./libraries/sveltekit-adapter-macula/LICENSE)
 
 Plainly put, Svelte is awesome! For that reason, we are supporting it first and also because we are using it. This adapter will create a `.macula/macula.json` file which contains everything that is needed to properly serve the website.
 [Here](https://bafybeihonkvcaf5riqp6figuoe7l2nxrc6w3spnrqlioviabkda46k4ffe.ipfs.anagolay.network/macula.json) is an example of macula.json for the [static website](https://bafybeihonkvcaf5riqp6figuoe7l2nxrc6w3spnrqlioviabkda46k4ffe.ipfs.anagolay.network).

@@ -2,7 +2,7 @@
 import type { Adapter, Builder } from '@sveltejs/kit';
 import { equals, isEmpty, isNil } from 'ramda';
 
-import { write } from './utils.js';
+import { write } from './utils.js'; // we are compiling to ESM only, so this is OK
 
 /**
  * Adapter options
