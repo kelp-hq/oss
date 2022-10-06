@@ -4,7 +4,7 @@ bump-versions:
   stage: pre-publish
   needs: ['retest']
   cache: {}
-  when: manual
+  # when: manual
   variables:
     VERSION_POLICY: unstable
     # CI_DEBUG_TRACE: 'true'
