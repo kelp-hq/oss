@@ -5,6 +5,13 @@
 
 import { IAddProgressFn, IBaseSearchParams } from './base';
 
+export interface IAddReturnFile {
+  Bytes: number;
+  Name: string;
+  Hash?: string;
+  Size?: string;
+}
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export interface IAddOptions extends IBaseSearchParams {
   /**

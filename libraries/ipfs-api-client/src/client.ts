@@ -3,7 +3,7 @@ import crossFetch from 'cross-fetch';
 import FormData from 'form-data';
 import { clone, equals, forEach, forEachObjIndexed, is, isEmpty, isNil, mergeAll } from 'ramda';
 
-import { IAddOptions } from './interfaces/add';
+import { IAddOptions, IAddReturnFile } from './interfaces/add';
 import { defaultBaseSearchParams } from './interfaces/base';
 import { parseToJson } from './utils/ndjson';
 import { toKebabCase } from './utils/toKebabCase';
@@ -17,7 +17,7 @@ export interface IEnhancedResponse extends Response {
   // /**
   //  * Parse the stream ndjson to json
   //  */
-  ndjson: () => AsyncGenerator<{ Bytes: number; Name: string; Hash?: string }>;
+  ndjson: () => AsyncGenerator<IAddReturnFile>;
   iterator: () => AsyncIterable<any>;
 }
 
@@ -110,7 +110,7 @@ class Client {
     throw new Error('Not implemented');
   }
 
-  public async *addAll(data: IEntryData[], options: IAddOptions): AsyncGenerator<unknown> {
+  public async *addAll(data: IEntryData[], options: IAddOptions): AsyncGenerator<IAddReturnFile> {
     // early check for not supported flag
     // if (prop('progress', options)) {
     //   throw new Error(
@@ -126,10 +126,10 @@ class Client {
       if (!isNil(path) && !isEmpty(path)) {
         currentOptions.wrapWithDirectory = true;
       }
-      formData.append('file', content, path);
+      formData.append('file', content, { filename: encodeURIComponent(path || '') });
     }, data);
 
-    console.log('form data', formData);
+    // console.log('form data', formData);
 
     // merge all, If a key exists in more than one object, the value from the last object it exists in will be used.
     // https://ramdajs.com/docs/#mergeAll
