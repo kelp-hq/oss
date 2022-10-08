@@ -1,6 +1,6 @@
 {
   "name": "@kelp_digital/ipfs-api-client",
-  "description": "Opinionated package for interacting with the IPFS http api using Axios in browser and node.",
+  "description": "Opinionated and dead simple package for interacting with the IPFS http api using cross-fetch.",
   "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
   "version": "0.0.1",
   "keywords": [
@@ -42,7 +42,8 @@
     "it-all": "1.0.6",
     "it-glob": "1.0.2",
     "cross-fetch": "3.1.5",
-    "debug": "4.3.4"
+    "debug": "4.3.4",
+    "form-data": "~4.0.0"
   },
   "devDependencies": {
     "multiformats": "9.8.1",
@@ -72,6 +73,7 @@
     "pkg": "5.6.0",
     "@types/ramda": "0.28.15",
     "@rushstack/heft-jest-plugin": "0.3.6",
-    "@types/byte-size": "8.1.0"
+    "@types/byte-size": "8.1.0",
+    "@types/debug": "4.1.7"
   }
 }

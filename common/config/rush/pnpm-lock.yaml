@@ -130,6 +130,7 @@ importers:
       '@rushstack/heft-webpack5-plugin': 0.5.13
       '@types/byte-size': 8.1.0
       '@types/clui': 0.3.1
+      '@types/debug': 4.1.7
       '@types/heft-jest': 1.0.2
       '@types/inquirer': 8.2.0
       '@types/node': 18.7.13
@@ -143,6 +144,7 @@ importers:
       eslint: 8.23.1
       eslint-plugin-simple-import-sort: 8.0.0
       eslint-plugin-unused-imports: 2.0.0
+      form-data: ~4.0.0
       it-all: 1.0.6
       it-glob: 1.0.2
       multiformats: 9.8.1
@@ -160,6 +162,7 @@ importers:
       byte-size: 8.1.0
       cross-fetch: 3.1.5
       debug: 4.3.4
+      form-data: 4.0.0
       it-all: 1.0.6
       it-glob: 1.0.2
       ramda: 0.28.0
@@ -172,6 +175,7 @@ importers:
       '@rushstack/heft-webpack5-plugin': 0.5.13_5blhxhwedlyuqsqfmfs6jll5jq
       '@types/byte-size': 8.1.0
       '@types/clui': 0.3.1
+      '@types/debug': 4.1.7
       '@types/heft-jest': 1.0.2
       '@types/inquirer': 8.2.0
       '@types/node': 18.7.13
@@ -2783,6 +2787,12 @@ packages:
     resolution: {integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==}
     dev: true
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -2889,6 +2899,10 @@ packages:
   /@types/minimatch/3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: false
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
+    dev: true
 
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}

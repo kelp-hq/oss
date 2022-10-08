@@ -41,6 +41,7 @@
     "Fastify",
     "gpgsign",
     "IPFSHTTP",
+    "ndjson",
     "pino",
     "rehosted",
     "Roadmap",

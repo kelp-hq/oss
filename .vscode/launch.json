@@ -13,6 +13,17 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Debug ipfs-api-client Jest tests",
+      "program": "${workspaceFolder}/libraries/ipfs-api-client/node_modules/@rushstack/heft/lib/start.js",
+      "cwd": "${workspaceFolder}/libraries/ipfs-api-client",
+      "args": ["--debug", "test", "--clean", "--watch"],
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Debug the ipfsCli",
       "env": {
         "AN_IPFS_API_URL": "https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu64.gitpod.io/ipfs_api/v0"
