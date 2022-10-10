@@ -1,8 +1,7 @@
 import { randomBytes } from 'crypto';
-import { last } from 'ramda';
+import { isNil, last } from 'ramda';
 
 import { createHttpClient } from './client';
-import { convertBytes } from './utils/convertBytes';
 
 jest.setTimeout(100000);
 
@@ -18,28 +17,25 @@ describe('Client ', () => {
 
   it('Should test addAll endpoint', async () => {
     // this data should always be there
-    // const data = await readFile(resolve(__dirname, '../../../docs/md/ipfs-api-client.api.md'));
     const c = await createHttpClient();
 
     const largeData = randomBytes(oneGb / 5);
-    console.log('largeData length', convertBytes(largeData.byteLength));
+    // console.log('largeData length', convertBytes(largeData.byteLength));
 
     let totalTrf = 0;
-    const f = c.addAll([{ content: largeData, path: '/my/path/ipfs-api-client.api.md' }], {
+    const f = c.addAll([{ content: largeData, path: '/my/path/randombytes-file' }], {
       cidVersion: 1,
       progress: (bytes) => {
         // it's already cumulative, this is the way to get the TOTAL
-        console.log('tranfsrrd', bytes);
         totalTrf = bytes;
       }
     });
 
     const fullResult = [];
+
     for await (const result of f) {
-      console.log('result in test', result);
       fullResult.push(result);
     }
-    // console.log(fullResult);
 
     /**
      * This depends on the path. If you have 2 directories and a file that will
@@ -48,8 +44,18 @@ describe('Client ', () => {
      */
     expect(fullResult.length).toEqual(4);
 
+    // console.log(fullResult);
+    const lastResult = last(fullResult);
     // expect that everything is transferred
-    expect(largeData.byteLength).toEqual(last(fullResult).Size);
+    if (!isNil(lastResult)) {
+      // this means that the last path or /
+      expect(lastResult.Name).toEqual('');
+    }
+
+    // console.log('totalTrf', totalTrf);
+    // console.log('largeData.byteLength', largeData.byteLength);
+    // console.log('lastResult', lastResult?.Size);
+
     expect(largeData.byteLength).toEqual(totalTrf);
   });
 });
