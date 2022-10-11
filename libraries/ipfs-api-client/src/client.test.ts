@@ -7,19 +7,21 @@ jest.setTimeout(100000);
 
 const oneGb = 1073741824;
 
-describe('Client ', () => {
+describe('Client class ', () => {
   // skipping the test because we cannot make it work on the CI
   it('should have methods defined', async () => {
     expect(createHttpClient).toBeDefined();
     const c = await createHttpClient();
     expect(c.add).toBeDefined();
   });
+});
 
-  it('Should test addAll endpoint', async () => {
+describe('addAll ', () => {
+  it('single file', async () => {
     // this data should always be there
     const c = await createHttpClient();
 
-    const largeData = randomBytes(oneGb / 5);
+    const largeData = randomBytes(oneGb / 10);
     // console.log('largeData length', convertBytes(largeData.byteLength));
 
     let totalTrf = 0;
@@ -57,5 +59,9 @@ describe('Client ', () => {
     // console.log('lastResult', lastResult?.Size);
 
     expect(largeData.byteLength).toEqual(totalTrf);
+  });
+  it('glob files', async () => {
+    // this data should always be there
+    const c = await createHttpClient();
   });
 });
