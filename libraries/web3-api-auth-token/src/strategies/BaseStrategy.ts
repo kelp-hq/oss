@@ -138,6 +138,10 @@ export abstract class BaseStrategy<P> {
     if (isNil(this.payload)) {
       throw new Error(`Did you forget to set the payload?`);
     }
+    // console.log('making the token for sig', sig);
+    // console.log('encode the sig', JSON.stringify(await this.encodeSignature(sig)));
+
+    // console.log(encode(JSON.stringify(await this.encodeSignature(sig))));
 
     const encodedStrategy = encode(this.strategy as unknown as string);
     const encodedPayload = encode(JSON.stringify(this.payload));
@@ -177,7 +181,18 @@ export abstract class BaseStrategy<P> {
     const strategy: IAuthStrategy = decode(s) as IAuthStrategy;
     const payload: P = JSON.parse(decode(p));
     const signature = JSON.parse(decode(sig));
-
+    // console.log({
+    //   parsed: {
+    //     payload,
+    //     sig: signature,
+    //     strategy
+    //   },
+    //   original: {
+    //     payload: p,
+    //     sig,
+    //     strategy: s
+    //   }
+    // });
     return {
       parsed: {
         payload,

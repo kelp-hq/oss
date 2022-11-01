@@ -105,7 +105,8 @@ app.get('/', (req: Request, res: Response) => {
 /**
  * Health-check route
  */
-app.get('/healthcheck', (req: Request, res: Response) => {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+app.get('/healthcheck', (_req: Request, res: Response) => {
   res.send('OK');
 });
 
@@ -121,17 +122,19 @@ app.get('/ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn', async (req: Requ
  * @remarks This shouldn't be instrumented either
  */
 app.get('/favicon.ico', async (req: Request, res: Response) => {
-  const anagolayFavicon = await axios.get(
-    `${ipfsGateway}/ipfs/QmZwm3XmwUkAb6PhAwyFPBeWLnC7f8o5hnbR3erzqVUZSd`,
-    {
+  const faviconCid = 'QmZwm3XmwUkAb6PhAwyFPBeWLnC7f8o5hnbR3erzqVUZSd';
+  try {
+    const anagolayFavicon = await axios.get(`${ipfsGateway}/ipfs/${faviconCid}`, {
       responseType: 'arraybuffer',
       headers: {}
-    }
-  );
-  res
-    .setHeader('Content-type', 'image/ico')
-    .setHeader('x-kelp-orig-cid', 'QmZwm3XmwUkAb6PhAwyFPBeWLnC7f8o5hnbR3erzqVUZSd')
-    .send(anagolayFavicon.data);
+    });
+    res
+      .setHeader('Content-type', 'image/ico')
+      .setHeader('x-kelp-orig-cid', faviconCid)
+      .send(anagolayFavicon.data);
+  } catch (error) {
+    throw new Error('Cannot retrieve favicon');
+  }
 });
 
 if (includes('image_processing', enabledRoutes)) {
@@ -168,5 +171,5 @@ app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   }
 });
 
-log.debug(`Listening on port ${port}`);
+log.debug(`Available on http://localhost:${port}`);
 app.listen(port);

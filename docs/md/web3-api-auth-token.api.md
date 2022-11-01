@@ -4,7 +4,6 @@
 
 ```ts
 
-import { HexString } from '@polkadot/util/types';
 import { NextFunction } from 'express';
 import { Request } from 'express';
 import { Response } from 'express';
@@ -35,6 +34,9 @@ export function encode(d: string, safe?: boolean): string;
 
 // @public
 export function expressV4AuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void>;
+
+// @public
+export type HexString = `0x${string}`;
 
 // @public
 export enum IAuthStrategy {
@@ -87,7 +89,7 @@ export class StrategyValidationError extends Error {
 export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
     constructor(payload?: ISubstratePayload);
     // (undocumented)
-    encodeSignature(rawSig: Uint8Array): Promise<HexString>;
+    encodeSignature(rawSig: HexString): Promise<HexString>;
     // (undocumented)
     validate(token: string): Promise<ISubstratePayload>;
 }

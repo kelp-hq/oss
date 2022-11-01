@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import Keyring from '@polkadot/keyring';
 import { KeyringPair } from '@polkadot/keyring/types';
+import { u8aToHex } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
-import { ISubstratePayload, SubstrateStrategy } from '.';
+import { HexString, ISubstratePayload, SubstrateStrategy } from '.';
 
 describe('Substrate', () => {
   beforeEach(async (): Promise<void> => {
@@ -36,8 +37,7 @@ describe('Substrate', () => {
     const signature = alice.sign(payloadToSign);
 
     // the make() expects string, we will not make any assumptions on stringification
-    const token = await t.make<Uint8Array>(signature);
-
+    const token = await t.make<HexString>(u8aToHex(signature));
     expect(token).toEqual(tokenString);
   });
 
@@ -48,7 +48,7 @@ describe('Substrate', () => {
     t.payload = tokenPayload;
 
     const signature = alice.sign(await t.encode());
-    expect(await t.make(signature)).toEqual(tokenString);
+    expect(await t.make<HexString>(u8aToHex(signature))).toEqual(tokenString);
   });
 
   it('should pass the validate token signature', async () => {
@@ -70,7 +70,7 @@ describe('Substrate', () => {
 
     const sig = alice.sign(await t.encode()); // bus signing with Alice, this MUST fail
 
-    const token = await t.make<Uint8Array>(sig);
+    const token = await t.make<HexString>(u8aToHex(sig));
     try {
       await t.validate(token);
     } catch (error) {
@@ -93,9 +93,9 @@ describe('Substrate', () => {
     const t = new SubstrateStrategy();
     t.payload = tokenPayload;
 
-    const sig = alice.sign(await t.encode()); // bus signing with Alice, this MUST fail
+    const signature = alice.sign(await t.encode()); // bus signing with Alice, this MUST fail
 
-    const token = await t.make<Uint8Array>(sig);
+    const token = await t.make<HexString>(u8aToHex(signature));
     const isValid = await t.validate(token);
     expect(isValid).toEqual(tokenPayload);
   });
@@ -113,7 +113,7 @@ describe('Substrate', () => {
 
     const sig = alice.sign(await t.encode()); // bus signing with Alice, this MUST fail
 
-    const token = await t.make<Uint8Array>(sig);
+    const token = await t.make<HexString>(u8aToHex(sig));
     try {
       await t.validate(token);
     } catch (error) {

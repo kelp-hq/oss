@@ -17,13 +17,15 @@ export async function expressV4AuthMiddleware(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  const authorization = req.get('authorization');
+  if (req.shouldSkipAuth) {
+    return next();
+  }
+  const authorization = req.get('authorization') || req.get('Authorization');
   if (isNil(authorization)) {
-    return next('Authorization header is empty. That cannot be.');
+    return next('WAAT: Authorization header is empty. That cannot be.');
   }
   // ignore the Bearer
   const [, token] = map(trim, split(' ', authorization));
-
   const {
     parsed: { strategy }
   } = await BaseStrategy.parseToken(token);
@@ -32,7 +34,7 @@ export async function expressV4AuthMiddleware(
     case 'sub':
       const t = new SubstrateStrategy();
       const user = await t.validate(token);
-      req.user = user;
+      req.user = { address: user.account };
       break;
     default:
       console.log(`The strategy is not implemented {${strategy}}, continue with next middleware ...`);

@@ -15,6 +15,10 @@
       "allowedCategories": [ "production", "service", "website" ]
     },
     {
+      "name": "@kelp_digital/sveltekit-adapter-macula",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "@kelp_digital/web3-api-auth",
       "allowedCategories": [ "production", "website" ]
     },
@@ -112,6 +116,10 @@
     },
     {
       "name": "@sveltejs/package",
+      "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@tailwindcss/forms",
       "allowedCategories": [ "website" ]
     },
     {
@@ -297,6 +305,10 @@
     {
       "name": "ramda",
       "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+    },
+    {
+      "name": "random-words",
+      "allowedCategories": [ "service" ]
     },
     {
       "name": "redis",

@@ -23,7 +23,7 @@ macula.link {
 	}
 }
 
-ipf.api.macula.link {
+ipfs.api.macula.link {
 	rewrite * /ipfs_api/{labels.2}{uri}
 	reverse_proxy http://127.0.0.1:3000
 	log {

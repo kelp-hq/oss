@@ -32,9 +32,11 @@
 		"cross-fetch": "3.1.5",
 		"slug": "8.0.0",
 		"@kelp_digital/web3-api-auth-token": "workspace:*",
-		"@kelp_digital/ipfs-api-client": "workspace:*"
+		"@kelp_digital/ipfs-api-client": "workspace:*",
+		"@kelp_digital/sveltekit-adapter-macula": "workspace:*"
 	},
 	"devDependencies": {
+		"@tailwindcss/forms": "0.5.3",
 		"@playwright/test": "1.25.2",
 		"eslint-plugin-simple-import-sort": "8.0.0",
 		"eslint-plugin-unused-imports": "2.0.0",

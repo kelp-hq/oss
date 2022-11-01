@@ -3,6 +3,7 @@ import { browser } from '$app/environment';
 
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import { stringToHex } from '@polkadot/util';
+import type { HexString } from '@polkadot/util/types';
 
 export interface SubstrateAccountsStorage {
 	selectedAccount: string;
@@ -50,7 +51,7 @@ export const polkadotAccountsStore = polkadotAccountsStoreFn();
  * @param payload -
  * @returns `0x` hex encoded string
  */
-export async function signViaExtension(account: string, payload: string): Promise<string> {
+export async function signViaExtension(account: string, payload: string): Promise<HexString> {
 	const { web3FromAddress } = await import('@polkadot/extension-dapp');
 
 	const injector = await web3FromAddress(account);
@@ -66,6 +67,7 @@ export async function signViaExtension(account: string, payload: string): Promis
 			data: payload,
 			type: 'bytes'
 		});
+
 		return signature;
 	} else {
 		throw new Error('cannot sign, signRaw does not exist');

@@ -54,7 +54,9 @@
     "mongodb": "4.9.0",
     "@polkadot/util-crypto": "10.1.7",
     "@polkadot/util": "10.1.7",
-    "@polkadot/keyring": "10.1.7"
+    "@polkadot/keyring": "10.1.7",
+    "random-words": "~1.2.0",
+    "random-word-slugs": "~0.1.6"
   },
   "devDependencies": {
     "@microsoft/api-extractor": "7.28.0",

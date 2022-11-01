@@ -3,7 +3,7 @@
 	import ThemeChange from './ThemeChange.svelte';
 </script>
 
-<div class="navbar bg-base-100">
+<div class="navbar shadow">
 	<div class="navbar-start">
 		<!-- svelte-ignore a11y-missing-attribute -->
 		<a class="btn btn-ghost normal-case text-xl" href="/">Macula</a>

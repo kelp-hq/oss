@@ -28,3 +28,12 @@ docker-compose exec ipfs ipfs bootstrap rm all &&
 sleep 5
 # add our ipfs node
 docker-compose exec ipfs ipfs swarm connect /ip4/159.69.27.167/udp/4001/quic/p2p/12D3KooWGc7qCqwQvx9r96hwtmVhJSiXKK1qMFunXP3KiccJv64w
+
+wget https://github.com/caddyserver/caddy/releases/download/v2.6.2/caddy_2.6.2_linux_amd64.tar.gz
+wget https://github.com/caddyserver/caddy/releases/download/v2.6.2/caddy_2.6.2_linux_amd64.tar.gz.sig
+tar xvf caddy_2.6.2_linux_amd64.tar.gz
+mv caddy /workspace/bin/caddy
+
+caddy version
+
+rm caddy_2.6.2_linux_amd64.tar.gz caddy_2.6.2_linux_amd64.tar.gz.sig

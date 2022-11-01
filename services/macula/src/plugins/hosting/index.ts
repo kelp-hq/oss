@@ -1,30 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable require-atomic-updates */
 import { expressV4AuthMiddleware } from '@kelp_digital/web3-api-auth-token';
-import { captureException, startTransaction } from '@sentry/node';
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { NextFunction, Request, Response, Router } from 'express';
 import http from 'http';
 import https from 'https';
 import { dissoc, isEmpty, isNil, last, mergeRight } from 'ramda';
+import { generateSlug } from 'random-word-slugs';
 
-import { ipfsApiURL, ipfsGateway } from '../../config';
-import { apiKeyMiddleware } from '../../middlewares/apiKey';
-import { getDB } from '../../mongodbClient';
-import { axiosApiProxyInstance } from '../../proxyServer';
+import { ipfsGateway } from '../../config';
 import { redisClient } from '../../redisClient';
 import { sentry } from '../../sentry';
 import { log } from '../../utils/logger';
-import {
-  collectionSubdomains,
-  findLastModificationDateForHosting,
-  findOneSubdomain,
-  findOneWebsiteByCid,
-  IHostingRecordDocument,
-  insertOneToHosting,
-  ISubdomainDocument
-} from './databaseQueries';
-import { validateBodyForAddApi } from './middlewares';
+import { findLastModificationDateForHosting, findOneSubdomain, findOneWebsiteByCid } from './databaseQueries';
+import { addVersion, myDomains } from './functions';
+import { validateBodyForAddVersion } from './middlewares';
 import {
   createCacheKey,
   extractRoute,
@@ -34,8 +24,13 @@ import {
   rootCid
 } from './utils';
 
+/**
+ * Base path for this sub-route
+ */
+const basePath: string = '/hosting';
+
 // actual Express router
-export const hostingRouter: Router = Router();
+export const hostingRouter: Router = Router({ caseSensitive: true });
 
 // Create the axios instance
 export const axiosHostingInstance: AxiosInstance = axios.create({
@@ -91,7 +86,7 @@ export interface IMaculaConfig {
   version: 1;
   source: 'sveltekit';
   account: string;
-  preredered: boolean;
+  prerendered: boolean;
   appType: 'spa' | 'static';
   fallback?: {
     file?: string;
@@ -298,7 +293,7 @@ async function initForSubdomainUrl(req: Request, res: Response, next: NextFuncti
  * this is the endpoint that serves the CID.on.kelp.digital
  */
 hostingRouter
-  .route('/hosting/withIpfs/*')
+  .route(`${basePath}/withIpfs/*`)
   .all(initForIpfsUrl)
   .all(retrieveMaculaConfig)
   .all(maculaWebsiteMiddleware)
@@ -307,7 +302,7 @@ hostingRouter
   });
 
 hostingRouter
-  .route('/hosting/withSubdomain/:subdomain/*')
+  .route(`${basePath}/withSubdomain/:subdomain/*`)
   .all(initForSubdomainUrl)
   .all(retrieveMaculaConfig)
   .all(maculaWebsiteMiddleware)
@@ -321,191 +316,206 @@ hostingRouter
     // res.set(headers).send(data);
   });
 
-/**
- * Add the CID and maybe subdomain to the macula website storage.
- */
+// /**
+//  * Add the CID and maybe subdomain to the macula website storage.
+//  */
+// hostingRouter
+//   .route(`${basePath}/api/addSubdomain`)
+//   .all(validateBodyForAddApi)
+//   // .all(apiKeyMiddleware)
+//   .all(expressV4AuthMiddleware)
+//   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
+//     const tx = startTransaction({
+//       name: 'Register IPFS cid as a wewbsite, fetch the macula.json'
+//     });
+
+//     try {
+//       const db = await getDB();
+//       const { subdomain, ipfsCid } = req.body;
+
+//       const websiteRedisKey = createCacheKey(ipfsCid);
+
+//       // if the key is not found it will throw error, so we catch it and then get the macula.json and store it
+//       const subdomainInDb = await findOneSubdomain(subdomain);
+//       const cidInDb = await findOneWebsiteByCid(ipfsCid);
+
+//       if (isNil(subdomainInDb) || isEmpty(subdomainInDb)) {
+//         const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
+
+//         log.trace('checking for macula.json %s', fullPath);
+//         const maculaRes: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
+//         log.trace('found it');
+
+//         // we are going to pin it first because it takes AGES!!!
+//         // @TODO this must be done via workers
+//         // https://docs.ipfs.tech/reference/kubo/rpc/#api-v0-pin-add
+//         const pinUrl = ipfsApiURL + `/api/v0/pin/add?arg=${ipfsCid}&recursive=true`;
+//         log.trace('pinning to the ipfs %s', pinUrl);
+
+//         await axiosApiProxyInstance({
+//           method: 'POST',
+//           url: pinUrl
+//         });
+
+//         await redisClient.json.set(websiteRedisKey, '.', maculaRes.data as any);
+
+//         if (isNil(cidInDb)) {
+//           const hostingWithCid: IHostingRecordDocument = {
+//             ownerAccount: maculaRes.data.account,
+//             ipfsCid,
+//             config: maculaRes.data,
+//             createdAt: Date.now(),
+//             pinned: true
+//           };
+
+//           await insertOneToHosting(hostingWithCid);
+//         }
+
+//         const subdomainDocument: ISubdomainDocument = {
+//           subdomain,
+//           cids: [
+//             {
+//               cid: ipfsCid,
+//               contentSize: 0, // we need to find a way to have this number, for stat purposes
+//               createdAt: Date.now()
+//             }
+//           ]
+//         };
+//         await db.collection(collectionSubdomains).insertOne(subdomainDocument);
+
+//         // query the parts of json
+//         // const val = await redisClient.json.get(websiteRedisKey, {
+//         //   path: '.account'
+//         // });
+
+//         tx.finish();
+//         res.status(201).json({
+//           success: true
+//         });
+//       } else {
+//         // we have a record
+//         res.status(501).send('not implemented, record exists');
+//       }
+//     } catch (error) {
+//       if (error.isAxiosError) {
+//         const e = error as AxiosError;
+//         const message = e.message;
+//         const status = e.response?.status as number;
+//         console.error('Request failed', message, req.url);
+
+//         captureException(error);
+//         tx.finish();
+
+//         res.status(status).json();
+//       } else {
+//         captureException(error);
+//         console.error(error);
+//         tx.finish();
+
+//         res.status(500).send({ message: error.message, traceId: tx.traceId });
+//       }
+//     }
+//   });
+
+// export interface IWebsiteAddCidBody {
+//   ipfsCid: string;
+// }
+// /**
+//  * Add the CID to the macula website storage. this will make hosting available
+//  * only for the CID rutes like this : `https://CID.on.macula.link`
+//  */
+// hostingRouter
+//   .route(`${basePath}/api/addCid`)
+//   .all(validateBodyForAddApi)
+//   // .all(apiKeyMiddleware)
+//   .all(expressV4AuthMiddleware)
+//   .post(async (req: Request<never, never, IWebsiteAddCidBody>, res: Response) => {
+//     const tx = startTransaction({
+//       name: 'Register IPFS cid as a website',
+//       description: 'store the cid to the DB with the macula.json'
+//     });
+
+//     try {
+//       const { ipfsCid } = req.body;
+//       let statusCode = 200;
+
+//       const websiteRedisKey = createCacheKey(ipfsCid);
+
+//       // this is set only in one scenario.
+//       // the record is saved in the DB first then set in the cache
+//       // this also prevents the api to hit the db
+//       const cachedResult = (await redisClient.json.get(websiteRedisKey)) as any;
+//       if (!isNil(cachedResult)) {
+//         res.status(statusCode).json({
+//           success: true
+//         });
+//       } else {
+//         const mongoModel = await findOneWebsiteByCid(ipfsCid);
+
+//         if (isNil(mongoModel) || isEmpty(mongoModel)) {
+//           const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
+
+//           log.trace('checking for macula.json %s', fullPath);
+//           const res: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
+//           log.trace('found it');
+
+//           await insertOneToHosting({
+//             // ownerAccount: res.data.account,
+//             ownerAccount: req.user.address,
+//             ipfsCid,
+//             config: res.data,
+//             createdAt: Date.now(),
+//             pinned: false
+//           });
+
+//           // set the cache
+//           await redisClient.json.set(websiteRedisKey, '.', res.data as any);
+
+//           // query the parts of json
+//           // const val = await redisClient.json.get(websiteRedisKey, {
+//           //   path: '.account'
+//           // });
+
+//           statusCode = 201;
+//         }
+
+//         tx.finish();
+//         res.status(statusCode).json({
+//           success: true
+//         });
+//       }
+//     } catch (error) {
+//       if (error.isAxiosError) {
+//         const e = error as AxiosError;
+//         const message = e.message;
+//         const status = e.response?.status as number;
+//         console.error('Request failed', message, req.url);
+
+//         captureException(error);
+//         tx.finish();
+
+//         res.status(status).json({
+//           error: true,
+//           message: 'Cannot find the CID on IPFS node'
+//         });
+//       } else {
+//         captureException(error);
+//         tx.finish();
+
+//         res.status(500).send({ message: error.message, traceId: tx.traceId });
+//       }
+//     }
+//   });
+
 hostingRouter
-  .route('/hosting/api/addSubdomain')
-  .all(validateBodyForAddApi)
+  .route(`${basePath}/api/randomWords`)
   .all(expressV4AuthMiddleware)
-  .all(apiKeyMiddleware)
-  .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
-    const tx = startTransaction({
-      name: 'Register IPFS cid as a wewbsite, fetch the macula.json'
-    });
-
-    try {
-      const db = await getDB();
-      const { subdomain, ipfsCid } = req.body;
-
-      const websiteRedisKey = createCacheKey(ipfsCid);
-
-      // if the key is not found it will throw error, so we catch it and then get the macula.json and store it
-      const subdomainInDb = await findOneSubdomain(subdomain);
-      const cidInDb = await findOneWebsiteByCid(ipfsCid);
-
-      if (isNil(subdomainInDb) || isEmpty(subdomainInDb)) {
-        const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
-
-        log.trace('checking for macula.json %s', fullPath);
-        const maculaRes: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
-        log.trace('found it');
-
-        // we are going to pin it first because it takes AGES!!!
-        // @TODO this must be done via workers
-        // https://docs.ipfs.tech/reference/kubo/rpc/#api-v0-pin-add
-        const pinUrl = ipfsApiURL + `/api/v0/pin/add?arg=${ipfsCid}&recursive=true`;
-        log.trace('pinning to the ipfs %s', pinUrl);
-
-        await axiosApiProxyInstance({
-          method: 'POST',
-          url: pinUrl
-        });
-
-        await redisClient.json.set(websiteRedisKey, '.', maculaRes.data as any);
-
-        if (isNil(cidInDb)) {
-          const hostingWithCid: IHostingRecordDocument = {
-            ownerAccount: maculaRes.data.account,
-            ipfsCid,
-            config: maculaRes.data,
-            createdAt: Date.now(),
-            pinned: true
-          };
-
-          await insertOneToHosting(hostingWithCid);
-        }
-
-        const subdomainDocument: ISubdomainDocument = {
-          subdomain,
-          cids: [
-            {
-              cid: ipfsCid,
-              contentSize: 0, // we need to find a way to have this number, for stat purposes
-              createdAt: Date.now()
-            }
-          ]
-        };
-        await db.collection(collectionSubdomains).insertOne(subdomainDocument);
-
-        // query the parts of json
-        // const val = await redisClient.json.get(websiteRedisKey, {
-        //   path: '.account'
-        // });
-
-        tx.finish();
-        res.status(201).json({
-          success: true
-        });
-      } else {
-        // we have a record
-        res.status(501).send('not implemented, record exists');
-      }
-    } catch (error) {
-      if (error.isAxiosError) {
-        const e = error as AxiosError;
-        const message = e.message;
-        const status = e.response?.status as number;
-        console.error('Request failed', message, req.url);
-
-        captureException(error);
-        tx.finish();
-
-        res.status(status).json();
-      } else {
-        captureException(error);
-        console.error(error);
-        tx.finish();
-
-        res.status(500).send({ message: error.message, traceId: tx.traceId });
-      }
-    }
+  .get((req, res) => {
+    res.json({ words: generateSlug() });
   });
-
-export interface IWerbsiteAddCidBody {
-  ipfsCid: string;
-}
-/**
- * Add the CID to the macula website storage. this will make hosting available
- * only for the CID rutes like this : `https://CID.on.macula.link`
- */
+hostingRouter.route(`${basePath}/api/myDomains`).all(expressV4AuthMiddleware).get(myDomains);
 hostingRouter
-  .route('/hosting/api/addCid')
-  .all(validateBodyForAddApi)
+  .route(`${basePath}/api/addVersion`)
+  .all(validateBodyForAddVersion)
   .all(expressV4AuthMiddleware)
-  .post(async (req: Request<never, never, IWerbsiteAddCidBody>, res: Response) => {
-    const tx = startTransaction({
-      name: 'Register IPFS cid as a website',
-      description: 'store the cid to the DB with the macula.json'
-    });
-
-    try {
-      const { ipfsCid } = req.body;
-      let statusCode = 200;
-
-      const websiteRedisKey = createCacheKey(ipfsCid);
-
-      // this is set only in one scenario.
-      // the record is saved in the DB first then set in the cache
-      // this also prevents the api to hit the db
-      const cachedResult = (await redisClient.json.get(websiteRedisKey)) as any;
-      if (!isNil(cachedResult)) {
-        res.status(statusCode).json({
-          success: true
-        });
-      } else {
-        const mongoModel = await findOneWebsiteByCid(ipfsCid);
-
-        if (isNil(mongoModel) || isEmpty(mongoModel)) {
-          const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
-
-          log.trace('checking for macula.json %s', fullPath);
-          const res: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
-          log.trace('found it');
-
-          await insertOneToHosting({
-            ownerAccount: res.data.account,
-            ipfsCid,
-            config: res.data,
-            createdAt: Date.now(),
-            pinned: false
-          });
-
-          // set the cache
-          await redisClient.json.set(websiteRedisKey, '.', res.data as any);
-
-          // query the parts of json
-          // const val = await redisClient.json.get(websiteRedisKey, {
-          //   path: '.account'
-          // });
-
-          statusCode = 201;
-        }
-
-        tx.finish();
-        res.status(statusCode).json({
-          success: true
-        });
-      }
-    } catch (error) {
-      if (error.isAxiosError) {
-        const e = error as AxiosError;
-        const message = e.message;
-        const status = e.response?.status as number;
-        console.error('Request failed', message, req.url);
-
-        captureException(error);
-        tx.finish();
-
-        res.status(status).json({
-          error: true,
-          message: 'Cannot find the CID on IPFS node'
-        });
-      } else {
-        captureException(error);
-        tx.finish();
-
-        res.status(500).send({ message: error.message, traceId: tx.traceId });
-      }
-    }
-  });
+  .post(addVersion);

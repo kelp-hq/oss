@@ -1,11 +1,16 @@
 import { u8aToHex } from '@polkadot/util';
-import { HexString } from '@polkadot/util/types';
 import { cryptoWaitReady, decodeAddress, signatureVerify } from '@polkadot/util-crypto';
 import { isEmpty, isNil } from 'ramda';
 
 import { BaseStrategy } from '../BaseStrategy';
 import { StrategyValidationError } from '../errors';
 import { IAuthStrategy } from '../strategies';
+
+/**
+ * A HEX encoded string prefixed with `0x`
+ * @public
+ */
+export declare type HexString = `0x${string}`;
 
 /**
  * @public
@@ -68,8 +73,8 @@ export class SubstrateStrategy extends BaseStrategy<ISubstratePayload> {
     this.strategy = IAuthStrategy.substrate;
   }
 
-  public encodeSignature(rawSig: Uint8Array): Promise<HexString> {
-    return new Promise((resolve) => resolve(u8aToHex(rawSig)));
+  public async encodeSignature(rawSig: HexString): Promise<HexString> {
+    return rawSig;
   }
 
   public async validate(token: string): Promise<ISubstratePayload> {

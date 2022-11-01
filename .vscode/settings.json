@@ -1,4 +1,5 @@
 {
+  "workbench.sideBar.location": "right",
   "files.associations": {
     "*.json": "jsonc",
     "package.json": "json",
@@ -37,9 +38,11 @@
   "terminal.integrated.letterSpacing": 1,
   "cSpell.words": [
     "Anagolay",
+    "cids",
     "Codeowner",
     "Fastify",
     "gpgsign",
+    "healthcheck",
     "IPFSHTTP",
     "pino",
     "rehosted",
@@ -64,7 +67,6 @@
   },
   "zenMode.hideTabs": false,
   "zenMode.fullScreen": false,
-  "gitlens.views.repositories.branches.layout": "tree",
   "git.autofetch": true,
   "scm.defaultViewMode": "tree"
 }

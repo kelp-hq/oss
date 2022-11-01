@@ -90,7 +90,7 @@ export async function maculaWebsiteMiddleware(
       log.trace('[maculaWebsiteMiddleware] Checking routes for [%s] route [%s]', appType, currentRoute);
       const { fallback } = maculaConfig;
 
-      if (maculaConfig.preredered) {
+      if (maculaConfig.prerendered) {
         //we got prerendered SPA
         log.trace('[maculaWebsiteMiddleware] we got prerendered SPA');
         const prerenderedPage = maculaConfig.pages[currentRoute];

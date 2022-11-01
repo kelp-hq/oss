@@ -1,11 +1,9 @@
-x-macula-links:
-  &macula_links
+x-macula-links: &macula_links
   links:
     - ipfs
     - redis
     - mongodb
-x-macula-dependson:
-  &macula_dependson
+x-macula-dependson: &macula_depends_on
   depends_on:
     ipfs:
       # condition: service_healthy
@@ -36,15 +34,15 @@ services:
   maculaSubdomainHosting:
     <<: *macula
     <<: *macula_links
-    <<: *macula_dependson
+    <<: *macula_depends_on
     labels:
-      caddy: "*.macula.link"
-      caddy.rewrite: "* /hosting/withSubdomain/{labels.2}{uri}}"
-      caddy.reverse_proxy.to: "{{upstreams 3000}}"
-      caddy.tls.dns: "hetzner ${HETZNER_TOKEN}"
+      caddy: '*.macula.link'
+      caddy.rewrite: '* /hosting/withSubdomain/{labels.2}{uri}}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      caddy.tls.dns: 'hetzner ${HETZNER_TOKEN}'
       # caddy.log: ""
-      caddy.log.output: "file /var/logs/macula/subdomain.log"
-      caddy.log.level: "DEBUG"
+      caddy.log.output: 'file /var/logs/macula/subdomain.log'
+      caddy.log.level: 'DEBUG'
     environment:
       - MACULA_ENABLED_ROUTES=["hosting"]
       - IPFS_GATEWAY_URL=http://ipfs:8080
@@ -62,11 +60,7 @@ services:
       - IPFS_PROFILE=server
       - IPFS_PATH=/data/ipfs
     healthcheck:
-      test:
-        [
-          'CMD-SHELL',
-          'ipfs dag stat /ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn || exit 1'
-        ]
+      test: ['CMD-SHELL', 'ipfs dag stat /ipfs/QmUNLLsPACCz1vLxQVkXqqLX5R1X345qqfHbsf67hvA3Nn || exit 1']
       interval: 30s
       timeout: 3s
       retries: 5

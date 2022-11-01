@@ -19,8 +19,8 @@ export const ipfsApiRouter: Router = Router({
 
 ipfsApiRouter
   .route('/ipfs_api/v0/*')
-  .all(expressV4AuthMiddleware)
   .all(apiKeyMiddleware)
+  .all(expressV4AuthMiddleware)
   .post(async (req: Request, res: Response) => {
     req.url = replace('ipfs_api', 'api', req.url);
     console.log('Proxying API %s', ipfsApiURL + req.url);

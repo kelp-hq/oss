@@ -44,7 +44,7 @@
 		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, await t.encode());
 		const tokenWithHeader = await t.makeWithHeader(sig);
 
-		const baseUrl = 'https://3000-kelpdigital-oss-rsg3ao46o68.ws-eu67.gitpod.io';
+		const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io';
 		const url = `${baseUrl}/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false`;
 
 		const formData = new FormData();

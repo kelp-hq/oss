@@ -878,6 +878,31 @@
           "name": "expressV4AuthMiddleware"
         },
         {
+          "kind": "TypeAlias",
+          "canonicalReference": "@kelp_digital/web3-api-auth-token!HexString:type",
+          "docComment": "/**\n * A HEX encoded string prefixed with `0x`\n *\n * @public\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type HexString = "
+            },
+            {
+              "kind": "Content",
+              "text": "`0x${string}`"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "HexString",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
           "kind": "Enum",
           "canonicalReference": "@kelp_digital/web3-api-auth-token!IAuthStrategy:enum",
           "docComment": "/**\n * Possible Strategies. The enum values should be kept max 4 characters. There is no limitation but less is better.\n *\n * @public\n */\n",
@@ -1492,8 +1517,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Uint8Array",
-                  "canonicalReference": "!Uint8Array:interface"
+                  "text": "HexString",
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!HexString:type"
                 },
                 {
                   "kind": "Content",
@@ -1511,7 +1536,7 @@
                 {
                   "kind": "Reference",
                   "text": "HexString",
-                  "canonicalReference": "@polkadot/util!HexString:type"
+                  "canonicalReference": "@kelp_digital/web3-api-auth-token!HexString:type"
                 },
                 {
                   "kind": "Content",
