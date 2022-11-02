@@ -4,7 +4,8 @@
     "*.json": "jsonc",
     "package.json": "json",
     ".sql": "sql",
-    ".devops/ci/*.gitlab-ci.yml": "yaml"
+    ".devops/ci/*.gitlab-ci.yml": "yaml",
+    ".tmux.conf.local": "properties"
   },
   "editor.codeActionsOnSave": {
     "source.fixAll": true

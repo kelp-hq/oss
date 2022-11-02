@@ -37,3 +37,9 @@ mv caddy /workspace/bin/caddy
 caddy version
 
 rm caddy_2.6.2_linux_amd64.tar.gz caddy_2.6.2_linux_amd64.tar.gz.sig
+
+if [ ! -f "$HOME/.tmux.conf.local" ]; then
+  # wget https://ipfs.anagolay.network/ipfs/QmdZFrnc6NwzKSQdxkZfxHaBXMDH3ndhtwSm7dB7L1NXvM -O $HOME/.tmux.conf
+  ln -fs "$GITPOD_REPO_ROOT"/.devops/gitpod/.tmux.conf.local "$HOME"/.tmux.conf.local
+  # cp "$GITPOD_REPO_ROOT"/.devops/gitpod/.tmux.conf.local "$HOME"/.tmux.conf.local
+fi
