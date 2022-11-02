@@ -26,7 +26,7 @@ import { createCacheKey } from './utils';
  */
 export async function myDomains(req: Request, res: Response): Promise<void> {
   const subdomains = await findMySubdomains(req.user.address);
-  res.json({ subdomains });
+  res.json(subdomains);
 }
 
 export async function addVersion(req: Request<never, never, IAddVersionApi>, res: Response): Promise<void> {

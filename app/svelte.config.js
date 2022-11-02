@@ -26,6 +26,10 @@ const config = {
 		trailingSlash: 'always',
 		files: {
 			lib: 'src/components'
+		},
+		alias: {
+			src: 'src',
+			'src/*': 'src/*'
 		}
 	}
 };

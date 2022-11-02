@@ -16,6 +16,7 @@
 - [Roadmap](#roadmap)
   - [Strategies](#strategies)
   - [Middleware](#middleware)
+  - [Similar Projects](#similar-projects)
 
 # WAAT?
 
@@ -180,3 +181,10 @@ Icon legend:
 | Status | Name                                 | Code                                                      |
 | ------ | ------------------------------------ | --------------------------------------------------------- |
 | ✅     | [express v4](https://expressjs.com/) | [middleware](./src/middleware/expressV4AuthMiddleware.ts) |
+
+## Similar Projects
+
+Projects that are not centralized and are used ( or not ) in the web3.
+
+- https://ucan.xyz/
+- https://github.com/hamidra/jw3t
