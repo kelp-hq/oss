@@ -1,9 +1,9 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
-import { stringToHex } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
+import { appStore } from 'src/appStore';
 
 export interface SubstrateAccountsStorage {
 	selectedAccount: string;
@@ -13,7 +13,7 @@ export interface SubstrateAccountsStorage {
 /**
  * actual store
  */
-function polkadotAccountsStoreFn() {
+async function polkadotAccountsStoreFn() {
 	let selectedAccountFromLocalStorage: string = '';
 
 	if (browser) {
@@ -24,18 +24,20 @@ function polkadotAccountsStoreFn() {
 		selectedAccount: selectedAccountFromLocalStorage,
 		injectedAccounts: []
 	});
+
 	return {
 		subscribe,
 		set,
 		update,
-		setSelectedAccount: (account: string) => {
+		setSelectedAccount: async (account: string) => {
 			update((currentState) => {
 				if (browser) {
 					window.localStorage.setItem('macula:selectedAccount', account);
 				}
-				currentState.selectedAccount = account;
-				return currentState;
+
+				return { ...currentState, selectedAccount: account };
 			});
+			await appStore.generateToken(account);
 		}
 	};
 }
@@ -43,7 +45,7 @@ function polkadotAccountsStoreFn() {
 /**
  * Substrate Accounts storage
  */
-export const polkadotAccountsStore = polkadotAccountsStoreFn();
+export const polkadotAccountsStore = await polkadotAccountsStoreFn();
 
 /**
  * Sign the payload using the PolkadotJS extension

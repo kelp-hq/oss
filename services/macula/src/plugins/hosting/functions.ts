@@ -44,14 +44,14 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
     const mongoModel = await findOneWebsiteByCid(ipfsVersionCid);
     // console.log('mongoModel', mongoModel);
 
+    const fullPath = `${ipfsGateway}/ipfs/${ipfsVersionCid}/macula.json`;
+
+    log.trace('checking for macula.json %s', fullPath);
+    const { data: maculaJsonData }: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
+    log.trace('found it');
+
     // we do not have the record
     if (isNil(mongoModel) || isEmpty(mongoModel)) {
-      const fullPath = `${ipfsGateway}/ipfs/${ipfsVersionCid}/macula.json`;
-
-      log.trace('checking for macula.json %s', fullPath);
-      const { data: maculaJsonData }: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
-      log.trace('found it');
-
       if (!includes(req.user.address, maculaJsonData.account)) {
         res.status(400).json({
           error: true,
@@ -73,8 +73,8 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
           cids: [
             {
               cid: ipfsVersionCid,
-              contentSize: 0, // we need to find a way to have this number, for stat purposes
-              createdAt: Date.now()
+              createdAt: Date.now(),
+              config: maculaJsonData
             }
           ],
           createdAt: Date.now()
@@ -82,20 +82,21 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
         // let's check do we have already the subdomain. it seems this is the new CID version
         const mongoModelBySubdomain = await findOneSubdomain(subdomain);
         if (!isNil(mongoModelBySubdomain) && !isEmpty(mongoModelBySubdomain)) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { _id, ...rest } = mongoModelBySubdomain;
+
           t.cids = append(
             {
               cid: ipfsVersionCid,
-              contentSize: 0,
-              createdAt: Date.now()
+              createdAt: Date.now(),
+              config: maculaJsonData
             },
             mongoModelBySubdomain.cids
           );
 
           await updateOneToHosting(mongoModelBySubdomain._id, {
-            ownerAccount: req.user.address,
-            subdomain: subdomain as string,
+            ...rest,
             updatedAt: Date.now(),
-            config: maculaJsonData,
             lastCid: ipfsVersionCid,
             pinned: true,
             ...t
@@ -105,9 +106,9 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
             ownerAccount: req.user.address,
             subdomain: subdomain as string,
             updatedAt: Date.now(),
-            config: maculaJsonData,
             lastCid: ipfsVersionCid,
             pinned: true,
+            tippingEnabled: false,
             ...t
           });
         }
@@ -139,7 +140,7 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
         const newCids = append(
           {
             cid: ipfsVersionCid,
-            contentSize: 0,
+            config: maculaJsonData,
             createdAt: Date.now()
           },
           cids

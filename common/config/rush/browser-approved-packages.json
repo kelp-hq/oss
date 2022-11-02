@@ -307,6 +307,10 @@
       "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
+      "name": "random-word-slugs",
+      "allowedCategories": [ "service" ]
+    },
+    {
       "name": "random-words",
       "allowedCategories": [ "service" ]
     },

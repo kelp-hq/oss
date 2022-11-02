@@ -1,11 +1,16 @@
-<script>
+<script lang="ts">
 	import Navbar from '../components/base/Navbar.svelte';
 	import '../app.css';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		console.log('mount layout');
+	});
 </script>
 
 <!-- <div> -->
 <Navbar />
-<div class="min-h-screen">
+<div class="min-h-screen bg-base-200">
 	<slot />
 </div>
 <!-- <div class="hero h-screen"> -->

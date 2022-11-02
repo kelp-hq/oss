@@ -10,8 +10,8 @@ export const collectionHosting: string = 'hosting';
 
 export interface ICIDRecordForDomain {
   cid: string;
+  config: IMaculaConfig;
   createdAt: number;
-  contentSize: number;
 }
 
 export interface ISubdomainDocument {
@@ -24,11 +24,11 @@ export interface ISubdomainDocument {
    * We are going to add to this list
    */
   cids: ICIDRecordForDomain[];
-  config: IMaculaConfig;
   createdAt: number;
   updatedAt: number;
   pinned: true;
   lastCid: string;
+  tippingEnabled: boolean;
 }
 
 /**

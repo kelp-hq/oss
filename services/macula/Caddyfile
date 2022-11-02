@@ -40,7 +40,7 @@ ipfs.api.macula.link {
 
 # So you’re performing a rewrite to prepend that bit from the domain to the path, and adding {uri} to preserve the rest of the URI (path + query).
 
-
+# this is for the subdomains like `anagolay.macula.link`
 *.macula.link {
 	tls {
 		dns hetzner HETZNER_TOKEN
@@ -56,6 +56,7 @@ ipfs.api.macula.link {
 	}
 }
 
+# this is used when using the CID. It's a specific version
 *.on.macula.link {
 	tls {
 		dns hetzner HETZNER_TOKEN
