@@ -2,15 +2,21 @@
 	"name": "@kelp_digital/sveltekit-adapter-macula",
 	"version": "0.1.0",
 	"description": "Build SPA and static websites with prerendering for Macula so you can host them on any IPFS node",
-	"author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
 	"keywords": [
 		"macula",
 		"sveltekit"
 	],
+	"homepage": "https://gitlab.com/kelp_digital/oss/-/tree/tools/sveltekit-adapter-macula#readme",
+	"bugs": {
+		"url": "https://gitlab.com/kelp_digital/oss/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.com/kelp_digital/oss.git",
+		"directory": "tools/sveltekit-adapter-macula"
+	},
 	"license": "Apache-2",
-	"licenseFile": "./LICENSE",
-	"types": "lib/index.d.ts",
-	"module": "lib/index.js",
+	"author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
 	"type": "module",
 	"exports": {
 		".": {
@@ -19,12 +25,14 @@
 			"types": "./lib/index.d.ts"
 		}
 	},
+	"module": "lib/index.js",
+	"types": "lib/index.d.ts",
 	"scripts": {
+		"_phase:build": "heft build --clean",
+		"_phase:fix-lib": "node ./config/add-js-to-esm.js",
+		"_phase:test": "heft test --no-build",
 		"build": "heft build --clean",
 		"test": "heft test --no-build",
-		"_phase:build": "heft build --clean",
-		"_phase:test": "heft test --no-build",
-		"_phase:fix-lib": "node ./config/add-js-to-esm.js",
 		"test:watch": "heft test --clean --watch",
 		"watch": "heft build --clean --watch"
 	},
@@ -32,30 +40,22 @@
 		"ramda": "0.28.0"
 	},
 	"devDependencies": {
-		"@sveltejs/kit": "1.0.0-next.484",
-		"svelte": "3.52.0",
-		"@types/node": "18.7.13",
-		"@types/ramda": "0.28.15",
-		"prettier": "2.7.1",
-		"typescript": "4.7.4",
-		"@rushstack/heft-node-rig": "1.9.7",
 		"@rushstack/eslint-config": "3.0.0",
 		"@rushstack/heft": "0.45.6",
+		"@rushstack/heft-node-rig": "1.9.7",
+		"@sveltejs/kit": "1.0.0-next.484",
+		"@types/node": "18.7.13",
+		"@types/ramda": "0.28.15",
 		"eslint": "8.23.1",
 		"eslint-plugin-simple-import-sort": "8.0.0",
-		"vite": "3.2.0",
-		"eslint-plugin-unused-imports": "2.0.0"
+		"eslint-plugin-unused-imports": "2.0.0",
+		"prettier": "2.7.1",
+		"svelte": "3.52.0",
+		"typescript": "4.7.4",
+		"vite": "3.2.0"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://gitlab.com/kelp_digital/oss.git",
-		"directory": "tools/sveltekit-adapter-macula"
-	},
-	"bugs": {
-		"url": "https://gitlab.com/kelp_digital/oss/issues"
-	},
-	"homepage": "https://gitlab.com/kelp_digital/oss/-/tree/tools/sveltekit-adapter-macula#readme",
 	"engines": {
 		"node": ">=14.0.0"
-	}
+	},
+	"licenseFile": "./LICENSE"
 }

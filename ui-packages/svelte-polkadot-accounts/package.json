@@ -3,37 +3,32 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "NODE_ENV=development vite --port 7778 dev",
-		"build": "exit 0;",
-		"build:app": "vite build",
-		"preview": "vite preview",
 		"_phase:build": "vite build",
 		"_phase:test": "heft test --no-build",
-		"check": "svelte-check --tsconfig ./tsconfig.json"
+		"build": "exit 0;",
+		"build:app": "vite build",
+		"check": "svelte-check --tsconfig ./tsconfig.json",
+		"dev": "NODE_ENV=development vite --port 7778 dev",
+		"preview": "vite preview"
 	},
 	"dependencies": {
-		"ramda": "0.28.0",
-		"@polkadot/extension-inject": "0.44.5",
-		"@polkadot/extension-dapp": "0.44.5",
 		"@polkadot/api": "9.2.2",
-		"@polkadot/types": "9.2.2",
 		"@polkadot/api-augment": "8.14.1",
-		"@polkadot/util": "10.1.7",
+		"@polkadot/extension-dapp": "0.44.5",
+		"@polkadot/extension-inject": "0.44.5",
+		"@polkadot/types": "9.2.2",
 		"@polkadot/types-codec": "9.2.2",
-		"debug": "4.3.4"
+		"@polkadot/util": "10.1.7",
+		"debug": "4.3.4",
+		"ramda": "0.28.0"
 	},
 	"devDependencies": {
+		"@rushstack/eslint-config": "3.0.0",
 		"@sveltejs/kit": "1.0.0-next.484",
-		"@types/ramda": "0.28.15",
 		"@sveltejs/vite-plugin-svelte": "1.1.0",
 		"@tsconfig/svelte": "3.0.0",
-		"svelte": "3.52.0",
-		"svelte-check": "2.9.2",
-		"svelte-preprocess": "4.10.7",
-		"tslib": "2.4.0",
-		"typescript": "4.7.4",
-		"vite": "3.2.0",
-		"@rushstack/eslint-config": "3.0.0",
+		"@types/debug": "4.1.7",
+		"@types/ramda": "0.28.15",
 		"@typescript-eslint/eslint-plugin": "5.37.0",
 		"@typescript-eslint/parser": "5.37.0",
 		"autoprefixer": "10.4.12",
@@ -45,7 +40,12 @@
 		"eslint-plugin-svelte3": "4.0.0",
 		"eslint-plugin-unused-imports": "2.0.0",
 		"prettier-plugin-svelte": "2.7.0",
+		"svelte": "3.52.0",
+		"svelte-check": "2.9.2",
+		"svelte-preprocess": "4.10.7",
 		"tailwindcss": "3.2.1",
-		"@types/debug": "4.1.7"
+		"tslib": "2.4.0",
+		"typescript": "4.7.4",
+		"vite": "3.2.0"
 	}
 }
