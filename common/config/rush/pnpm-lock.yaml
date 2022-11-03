@@ -23,6 +23,7 @@ importers:
       '@sveltejs/kit': 1.0.0-next.484
       '@sveltejs/package': 1.0.0-next.3
       '@tailwindcss/typography': 0.5.7
+      '@types/debug': 4.1.7
       '@types/identicon.js': 2.3.1
       '@types/ramda': 0.28.15
       '@types/slug': 5.0.3
@@ -32,6 +33,7 @@ importers:
       axios: 0.27.2
       cross-fetch: 3.1.5
       daisyui: 2.38.0
+      debug: 4.3.4
       eslint: 8.23.1
       eslint-config-prettier: 8.5.0
       eslint-plugin-simple-import-sort: 8.0.0
@@ -75,8 +77,9 @@ importers:
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
       '@silvia-odwyer/photon': 0.3.11
-      axios: 0.27.2
+      axios: 0.27.2_debug@4.3.4
       cross-fetch: 3.1.5
+      debug: 4.3.4
       exif-library: 2.0.0-alpha.0
       exifreader: 4.5.1
       node-fetch: 3.2.6
@@ -91,6 +94,7 @@ importers:
       '@sveltejs/kit': 1.0.0-next.484_svelte@3.52.0+vite@3.2.0
       '@sveltejs/package': 1.0.0-next.3_rdckpvzd6e2eohsafnlvvkm5t4
       '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1
+      '@types/debug': 4.1.7
       '@types/identicon.js': 2.3.1
       '@types/ramda': 0.28.15
       '@types/slug': 5.0.3
@@ -485,13 +489,16 @@ importers:
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
       '@rushstack/eslint-config': 3.0.0
+      '@sveltejs/kit': 1.0.0-next.484
       '@sveltejs/vite-plugin-svelte': 1.1.0
       '@tsconfig/svelte': 3.0.0
+      '@types/debug': 4.1.7
       '@types/ramda': 0.28.15
       '@typescript-eslint/eslint-plugin': 5.37.0
       '@typescript-eslint/parser': 5.37.0
       autoprefixer: 10.4.12
       daisyui: 2.38.0
+      debug: 4.3.4
       esbuild: 0.15.5
       eslint: 8.23.1
       eslint-config-prettier: 8.5.0
@@ -515,11 +522,14 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      debug: 4.3.4
       ramda: 0.28.0
     devDependencies:
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
+      '@sveltejs/kit': 1.0.0-next.484_svelte@3.52.0+vite@3.2.0
       '@sveltejs/vite-plugin-svelte': 1.1.0_svelte@3.52.0+vite@3.2.0
       '@tsconfig/svelte': 3.0.0
+      '@types/debug': 4.1.7
       '@types/ramda': 0.28.15
       '@typescript-eslint/eslint-plugin': 5.37.0_7yuior3nseb5pya2lwpwzaadte
       '@typescript-eslint/parser': 5.37.0_4brgkhw6cq4me3drk3kxrpb2mm
@@ -2867,6 +2877,12 @@ packages:
     resolution: {integrity: sha512-vt+kDhq/M2ayberEtJcIN/hxXy1Pk+59g2FV/ZQceeaTyCtCucjL2Q7FXlFjtWn4n15KCr1NE2lNNFhp0lEThw==}
     dev: true
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -2973,6 +2989,10 @@ packages:
   /@types/minimatch/3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: false
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
+    dev: true
 
   /@types/node-fetch/2.6.2:
     resolution: {integrity: sha512-DHqhlq5jeESLy19TYhLakJ07kNumXWjcDdxXsLUMJZ6ue8VZJj4kLPQVE/2mdHh3xZziNF1xppu5lwmS53HR+A==}
@@ -3843,7 +3863,6 @@ packages:
       form-data: 4.0.0
     transitivePeerDependencies:
       - debug
-    dev: true
 
   /babel-jest/27.5.1_@babel+core@7.17.9:
     resolution: {integrity: sha512-cdQ5dXjGRd0IBRATiQ4mZGlGlRE8kJpjPOixdNRdT+m3UcNqmYWN6rK6nvtXYfY3D76cb8s/O1Ss8ea24PIwcg==}
@@ -6071,7 +6090,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.4
-    dev: true
 
   /form-data/3.0.1:
     resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}

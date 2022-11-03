@@ -3,8 +3,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
+		"dev": "NODE_ENV=development vite --port 7778 dev",
+		"build": "exit 0;",
+		"build:app": "vite build",
 		"preview": "vite preview",
 		"_phase:build": "vite build",
 		"_phase:test": "heft test --no-build",
@@ -18,9 +19,11 @@
 		"@polkadot/types": "9.2.2",
 		"@polkadot/api-augment": "8.14.1",
 		"@polkadot/util": "10.1.7",
-		"@polkadot/types-codec": "9.2.2"
+		"@polkadot/types-codec": "9.2.2",
+		"debug": "4.3.4"
 	},
 	"devDependencies": {
+		"@sveltejs/kit": "1.0.0-next.484",
 		"@types/ramda": "0.28.15",
 		"@sveltejs/vite-plugin-svelte": "1.1.0",
 		"@tsconfig/svelte": "3.0.0",
@@ -42,6 +45,7 @@
 		"eslint-plugin-svelte3": "4.0.0",
 		"eslint-plugin-unused-imports": "2.0.0",
 		"prettier-plugin-svelte": "2.7.0",
-		"tailwindcss": "3.2.1"
+		"tailwindcss": "3.2.1",
+		"@types/debug": "4.1.7"
 	}
 }

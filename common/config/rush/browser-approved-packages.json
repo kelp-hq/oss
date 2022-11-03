@@ -112,7 +112,7 @@
     },
     {
       "name": "@sveltejs/kit",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
       "name": "@sveltejs/package",
@@ -180,7 +180,7 @@
     },
     {
       "name": "debug",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
       "name": "env-cmd",

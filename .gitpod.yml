@@ -26,6 +26,9 @@ ports:
   - port: 7777 # macula web app server
     visibility: public
     onOpen: ignore
+  - port: 7778 # ui components
+    visibility: public
+    onOpen: ignore
 vscode:
   extensions:
     - PKief.material-icon-theme
@@ -38,5 +41,4 @@ vscode:
     - mhutchie.git-graph
     - vscode-icons-team.vscode-icons
     - ms-azuretools.vscode-docker
-    - redhat.vscode-yaml
     - wmaurer.change-case

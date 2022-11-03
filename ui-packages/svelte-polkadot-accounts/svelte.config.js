@@ -1,7 +1,14 @@
 import sveltePreprocess from 'svelte-preprocess';
-
-export default {
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: sveltePreprocess()
+	preprocess: sveltePreprocess(),
+	kit: {
+		alias: {
+			src: 'src',
+			'src/*': 'src/*'
+		}
+	}
 };
+export default config;

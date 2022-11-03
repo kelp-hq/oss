@@ -82,3 +82,4 @@ ipfs_upload/
 deployment/
 .macula
 lib-commonjs/
+.svelte-kit
