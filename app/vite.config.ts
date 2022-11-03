@@ -13,7 +13,7 @@ const config: UserConfig = {
 	plugins: [isoImport(), sveltekit(), wasm(), topLevelAwait()],
 	resolve: {
 		alias: {
-			$src: resolve('./src')
+			src: resolve('./src')
 		}
 	},
 	optimizeDeps: {

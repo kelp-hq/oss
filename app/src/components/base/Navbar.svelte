@@ -1,5 +1,6 @@
 <script>
-	import AccountSelect from '../polkadotAccounts/AccountSelect.svelte';
+	// import AccountSelect from '../polkadotAccounts1/AccountSelect.svelte';
+	import PolkadotAccounts from '../polkadotAccounts/PolkadotAccounts.svelte';
 	import ThemeChange from './ThemeChange.svelte';
 </script>
 
@@ -16,6 +17,7 @@
 	<div class="navbar-center" />
 	<div class="navbar-end gap-2">
 		<ThemeChange />
-		<AccountSelect />
+		<!-- <AccountSelect /> -->
+		<PolkadotAccounts />
 	</div>
 </div>

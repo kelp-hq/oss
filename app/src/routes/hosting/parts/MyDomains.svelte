@@ -2,7 +2,7 @@
 	import { isEmpty } from 'ramda';
 	import { isNil } from 'ramda';
 	import { appStore } from 'src/appStore';
-	import { polkadotAccountsStore } from 'src/components/polkadotAccounts/store';
+	import { polkadotAccountsStore } from 'src/components/polkadotAccounts1/store';
 	import { myDomainsApi, type ISubdomainDocument } from 'src/maculaApi';
 	import { onMount } from 'svelte';
 	import DomainCard from './DomainCard.svelte';

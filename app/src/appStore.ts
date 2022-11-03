@@ -1,7 +1,7 @@
 import { browser } from '$app/environment';
 import { get, writable } from 'svelte/store';
 
-import { polkadotAccountsStore, signViaExtension } from '$lib/polkadotAccounts/store';
+import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts1/store';
 import { SubstrateStrategy, type ISubstratePayload } from '@kelp_digital/web3-api-auth-token';
 import { isEmpty, isNil } from 'ramda';
 import { configureTokenInterceptor, removeInterceptor } from './maculaApi';

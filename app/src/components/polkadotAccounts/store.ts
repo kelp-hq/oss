@@ -1,43 +1,60 @@
-import { get, writable } from 'svelte/store';
+import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
+import debug, { Debugger } from 'debug';
+import { type Writable, writable } from 'svelte/store';
+
 import { browser } from '$app/environment';
 
-import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
-import type { HexString } from '@polkadot/util/types';
-import { appStore } from 'src/appStore';
+export const debugName: string = 'stores:polkadotAccounts';
+const log: Debugger = debug(debugName);
 
-export interface SubstrateAccountsStorage {
-	selectedAccount: string;
+const localStorageKey: string = 'anagolayJs:selectedAccount';
+
+export interface ISubstrateAccountsStorage {
+	selectedAccount: InjectedAccountWithMeta;
 	injectedAccounts: InjectedAccountWithMeta[];
+}
+
+interface IStoreReturn extends Writable<ISubstrateAccountsStorage> {
+	setSelectedAccount: (account: InjectedAccountWithMeta) => void;
+	resetSelectedAccount: () => void;
 }
 
 /**
  * actual store
  */
-async function polkadotAccountsStoreFn() {
-	let selectedAccountFromLocalStorage: string = '';
+function polkadotAccountsStoreFn(): IStoreReturn {
+	let selectedAccountFromLocalStorage: InjectedAccountWithMeta | undefined;
 
 	if (browser) {
-		selectedAccountFromLocalStorage = window.localStorage.getItem('macula:selectedAccount') || '';
+		const storageItem = window.localStorage.getItem(localStorageKey);
+		selectedAccountFromLocalStorage = storageItem ? JSON.parse(storageItem) : undefined;
 	}
 
-	const { update, subscribe, set } = writable<SubstrateAccountsStorage>({
+	const { update, subscribe, set } = writable<ISubstrateAccountsStorage>({
 		selectedAccount: selectedAccountFromLocalStorage,
 		injectedAccounts: []
 	});
-
 	return {
 		subscribe,
 		set,
 		update,
-		setSelectedAccount: async (account: string) => {
+		resetSelectedAccount: () => {
+			window.localStorage.removeItem(localStorageKey);
+			update((currentState) => {
+				currentState.selectedAccount = undefined;
+				return currentState;
+			});
+		},
+		setSelectedAccount: (account: InjectedAccountWithMeta) => {
+			log('selecting account', account);
+
 			update((currentState) => {
 				if (browser) {
-					window.localStorage.setItem('macula:selectedAccount', account);
+					window.localStorage.setItem(localStorageKey, JSON.stringify(account));
 				}
-
-				return { ...currentState, selectedAccount: account };
+				currentState.selectedAccount = account;
+				return currentState;
 			});
-			await appStore.generateToken(account);
 		}
 	};
 }
@@ -45,7 +62,7 @@ async function polkadotAccountsStoreFn() {
 /**
  * Substrate Accounts storage
  */
-export const polkadotAccountsStore = await polkadotAccountsStoreFn();
+export const polkadotAccountsStore: IStoreReturn = polkadotAccountsStoreFn();
 
 /**
  * Sign the payload using the PolkadotJS extension
@@ -53,14 +70,14 @@ export const polkadotAccountsStore = await polkadotAccountsStoreFn();
  * @param payload -
  * @returns `0x` hex encoded string
  */
-export async function signViaExtension(account: string, payload: string): Promise<HexString> {
+export async function signViaExtension(account: string, payload: string): Promise<string> {
 	const { web3FromAddress } = await import('@polkadot/extension-dapp');
 
 	const injector = await web3FromAddress(account);
 	// this injector object has a signer and a signRaw method
 	// to be able to sign raw bytes
 	const signRaw = injector?.signer?.signRaw;
-	if (!!signRaw) {
+	if (signRaw) {
 		console.log(`Signing the payload`);
 		// after making sure that signRaw is defined
 		// we can use it to sign our message
@@ -69,7 +86,6 @@ export async function signViaExtension(account: string, payload: string): Promis
 			data: payload,
 			type: 'bytes'
 		});
-
 		return signature;
 	} else {
 		throw new Error('cannot sign, signRaw does not exist');
