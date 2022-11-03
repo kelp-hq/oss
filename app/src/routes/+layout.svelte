@@ -1,17 +1,22 @@
 <script lang="ts">
-	import Navbar from '../components/base/Navbar.svelte';
 	import '../app.css';
+	import Navbar from '../components/base/Navbar.svelte';
 	import { onMount } from 'svelte';
+	import Notifications from 'src/components/notifications/Notifications.svelte';
 
 	onMount(() => {
 		console.log('mount layout');
 	});
 </script>
 
-<!-- <div> -->
-<Navbar />
-<div class="min-h-screen bg-base-200">
-	<slot />
+<Notifications />
+<div class="flex flex-col min-h-screen bg-base-200" data-sveltekit-prefetch>
+	<Navbar />
+	<div class="md:container md:mx-auto p-4">
+		<!-- here be content -->
+		<slot />
+		<!-- here be content -->
+	</div>
 </div>
 <!-- <div class="hero h-screen"> -->
 <!-- <div class="hero-content text-center"> -->

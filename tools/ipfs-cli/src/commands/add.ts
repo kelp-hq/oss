@@ -6,9 +6,13 @@ import * as Sentry from '@sentry/node';
 import { Command } from 'commander';
 import { AddOptions } from 'ipfs-core-types/dist/src/root';
 import { IPFSHTTPClient } from 'ipfs-http-client';
+import { find, propEq } from 'ramda';
 
 import { createIPFSConnection, IIpfsResponse, uploadViaAdd, uploadViaAddAll } from '../ipfs';
 import { sentry } from '../start';
+import { cliEnvs } from './envs';
+
+const AN_IPFS_API_URL: string = (find(propEq('name', 'AN_IPFS_API_URL'), cliEnvs) as any).defaultValue;
 
 /**
  * Add subcommand
@@ -30,6 +34,7 @@ export default async function createSubCommand(): Promise<Command> {
     .option('--pin', 'pin the content', false)
     .option('--progress', 'Show the progress', false)
     .option('--onlyCid', 'Return only the CID', false)
+    .option('--ipfsBaseUrl', 'Return only the CID', AN_IPFS_API_URL)
     .action(addAction);
   return cmd;
 }
@@ -38,10 +43,11 @@ export default async function createSubCommand(): Promise<Command> {
  * Add command options
  * @public
  */
-interface IAddAction extends AddOptions {
+export interface IAddAction extends AddOptions {
   pin: boolean;
   onlyCid: boolean;
   localIpfs: boolean;
+  ipfsBaseUrl: string;
 }
 
 interface IAddActionConsoleFullResponse extends IIpfsResponse {
@@ -56,7 +62,7 @@ interface IAddActionConsoleFullResponse extends IIpfsResponse {
  * @param pathOrFile -
  * @param options -
  */
-async function addAction(pathOrFile: string, options: IAddAction): Promise<void> {
+export async function addAction(pathOrFile: string, options: IAddAction): Promise<void> {
   try {
     const startPerf = process.hrtime();
     const transaction = sentry.startTransaction({
@@ -73,7 +79,7 @@ async function addAction(pathOrFile: string, options: IAddAction): Promise<void>
       scope.setSpan(transaction);
     });
 
-    const { pin, onlyCid, progress, localIpfs } = options;
+    const { pin, onlyCid, progress, ipfsBaseUrl } = options;
     const currentPath = resolve(pathOrFile);
     const stats = await stat(currentPath);
 
@@ -85,7 +91,11 @@ async function addAction(pathOrFile: string, options: IAddAction): Promise<void>
       progress: progress || undefined
     };
 
-    const ipfs: IPFSHTTPClient = createIPFSConnection({ useLocalIpfs: localIpfs, ipfsOptions: {} });
+    const ipfs: IPFSHTTPClient = createIPFSConnection({
+      ipfsOptions: {
+        url: ipfsBaseUrl
+      }
+    });
 
     if (stats.isFile()) {
       res = await uploadViaAdd({ ipfs, ipfsPath: basename(currentPath), filePath: currentPath, opts });

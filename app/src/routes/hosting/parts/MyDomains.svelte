@@ -1,27 +1,31 @@
 <script lang="ts">
 	import { isEmpty } from 'ramda';
-	import { isNil } from 'ramda';
 	import { appStore } from 'src/appStore';
-	import { polkadotAccountsStore } from 'src/components/polkadotAccounts1/store';
+	import { polkadotAccountsStore } from 'src/components/polkadotAccounts/store';
 	import { myDomainsApi, type ISubdomainDocument } from 'src/maculaApi';
 	import { onMount } from 'svelte';
+	import NoDomains from '../components/NoSubdomains.svelte';
 	import DomainCard from './DomainCard.svelte';
 
 	let domains: ISubdomainDocument[] = [];
 
+	let loadingData: boolean = true;
+
 	async function getData() {
 		const res = await myDomainsApi();
 		domains = res.data;
-		console.log('domains', domains);
+		loadingData = false;
 	}
 
 	onMount(async () => {
 		console.log('mount Mydomains');
-		// if ($polkadotAccountsStore.selectedAccount) {
-		// 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
-		await appStore.generateToken($polkadotAccountsStore.selectedAccount, false);
-		await getData();
-		// }
+		if ($polkadotAccountsStore.selectedAccount) {
+			// 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
+			await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
+			await getData();
+		} else {
+			loadingData = false;
+		}
 	});
 	$: {
 		if ($appStore.refetchData) {
@@ -30,13 +34,14 @@
 	}
 </script>
 
-{#if !isEmpty(domains)}
-	<!-- content here -->
-	<div class="container mx-auto p-4">
+{#if loadingData}
+	loading data ...
+{:else if !loadingData && isEmpty(domains)}
+	<NoDomains />
+{:else}
+	<div class="flex flex-col">
 		{#each domains as domain}
 			<DomainCard {domain} />
 		{/each}
 	</div>
-{:else}
-	<div>you have not yet added any subdomains</div>
 {/if}

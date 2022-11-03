@@ -4,7 +4,7 @@
 	onMount(async () => {});
 </script>
 
-<div class="hero min-h-screen">
+<div class="hero min-h-[90vh]">
 	<div class="hero-content text-center">
 		<div class="max-w-md">
 			<h1 class="mb-5 text-5xl font-bold">Hello potential Macula user!</h1>

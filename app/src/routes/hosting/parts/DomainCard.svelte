@@ -3,6 +3,7 @@
 	import { takeLast } from 'ramda';
 	import { take } from 'ramda';
 	import { isNil } from 'ramda';
+	import FrostBox from 'src/components/base/FrostBox.svelte';
 	import type { ISubdomainDocument } from 'src/maculaApi';
 
 	export let domain: ISubdomainDocument;
@@ -44,7 +45,7 @@
 	}
 </script>
 
-<div class="card bg-base-100">
+<div class="card shadow">
 	<div class="card-body">
 		<span class="card-title">
 			<a rel="noreferrer" href={makeSubdomainLink(domain.subdomain)} class="link" target="_blank">
@@ -58,7 +59,10 @@
 		<label class="cursor-pointer label">
 			<div class="flex flex-row content-start items-center w-full text-start">
 				<span class="text flex-1">Tipping</span>
-				<div class="tooltip" data-tip="By enabling this, you will be able to recieve tokens.">
+				<div
+					class="tooltip tooltip-left"
+					data-tip="By enabling this, you will be able to recieve tokens."
+				>
 					<input
 						type="checkbox"
 						class="toggle toggle-primary {saving && 'animate-pulse'}"

@@ -6,6 +6,7 @@
 	import { polkadotAccountsStore } from '../store';
 	import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 	import { fade } from 'svelte/transition';
+	import { notifications } from 'src/components/notifications/stores';
 
 	let classNames: string = '';
 	export { classNames as class };
@@ -58,7 +59,9 @@
 	 */
 	async function copyToClipboard(address: string) {
 		await navigator.clipboard.writeText(address);
-		alert('Address copied.');
+		notifications.addNew({
+			text: 'Address copied.'
+		});
 	}
 
 	/**

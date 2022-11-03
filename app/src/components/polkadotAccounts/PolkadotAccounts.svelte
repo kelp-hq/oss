@@ -6,6 +6,8 @@
 	import { polkadotAccountsStore } from './store';
 	import DropdownView from './views/DropdownView.svelte';
 	import { fade } from 'svelte/transition';
+	import { notifications } from '../notifications/stores';
+	import SkeletonLoader from '../base/SkeletonLoader.svelte';
 
 	let classNames: string = '';
 	export { classNames as class };
@@ -35,26 +37,22 @@
 		// set to the storage
 		const accounts = await web3Accounts();
 		$polkadotAccountsStore.injectedAccounts = accounts;
+		console.log('accounts', accounts);
+		if (isEmpty(accounts)) {
+			notifications.addNew({
+				text: `PolkadotJS extension is not loaded. Please enable it or install it.`,
+				infoLevel: 'warning',
+				autoclose: { close: false },
+				showSpinner: true
+			});
+		}
 	});
 </script>
 
 <div class={classNames}>
 	{#if isEmpty($polkadotAccountsStore.injectedAccounts)}
-		<div
-			class="alert alert-warning shadow-lg w-full"
-			transition:fade={{ delay: 250, duration: 300 }}
-		>
-			<div>
-				<span
-					>Polkadot JS extension is not loaded. Please enable it or install it using <a
-						class="link"
-						href={storeLink()}
-						target="_blank"
-					>
-						extension/addon.
-					</a></span
-				>
-			</div>
+		<div class="animate-pulse flex-1 bg-base-300 p-4 text-center font-mono">
+			Waiting for the accounts ...
 		</div>
 	{/if}
 	{#if !isEmpty($polkadotAccountsStore.injectedAccounts)}

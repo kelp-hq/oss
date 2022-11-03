@@ -9,11 +9,10 @@ import { sentry } from './start';
 
 export let ipfsClient: IPFSHTTPClient;
 
-let ipfsApiUrl: string = 'http://localhost:5001/api/v0';
-
 const { AN_IPFS_GATEWAY_HOSTNAME, AN_IPFS_PIN, AN_IPFS_API_KEY, AN_IPFS_API_URL, AN_IPFS_AUTH_METHOD } =
   process.env;
 
+const ipfsApiUrl: string = AN_IPFS_API_URL || 'http://localhost:5001/api/v0';
 let pin: boolean = false;
 
 if (!isNil(AN_IPFS_PIN) && !isEmpty(AN_IPFS_PIN)) {
@@ -32,7 +31,6 @@ export const ipfsOptions: AddOptions = {
 };
 
 export interface IClientConnectionOptions {
-  useLocalIpfs: boolean;
   ipfsOptions: Options;
 }
 
@@ -41,16 +39,10 @@ export interface IClientConnectionOptions {
  * @returns
  */
 export function createIPFSConnection(
-  options: IClientConnectionOptions = { useLocalIpfs: false, ipfsOptions: {} }
+  options: IClientConnectionOptions = { ipfsOptions: {} }
 ): IPFSHTTPClient {
   if (ipfsClient) {
     return ipfsClient;
-  }
-
-  if (!options.useLocalIpfs) {
-    if (!isNil(AN_IPFS_API_URL) && !isEmpty(AN_IPFS_API_URL)) {
-      ipfsApiUrl = AN_IPFS_API_URL;
-    }
   }
 
   const headers: Record<string, string> = {};
@@ -66,11 +58,10 @@ export function createIPFSConnection(
       throw new Error(`AN_IPFS_API_KEY must be set properly for current Bearer auth method.`);
     }
 
-    headers.Authentication = `Bearer ${AN_IPFS_API_KEY}`;
+    headers.Authorization = `Bearer ${AN_IPFS_API_KEY}`;
   } else {
     throw new Error(`Unsupported auth method, ${AN_IPFS_AUTH_METHOD}`);
   }
-
   const opts: Options = {
     url: ipfsApiUrl,
     headers,

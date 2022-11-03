@@ -12,7 +12,7 @@
     },
     {
       "name": "@kelp_digital/ipfs-api-client",
-      "allowedCategories": [ "production", "service", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
       "name": "@kelp_digital/sveltekit-adapter-macula",
@@ -153,6 +153,10 @@
     {
       "name": "byte-size",
       "allowedCategories": [ "libraries", "tools" ]
+    },
+    {
+      "name": "chalk",
+      "allowedCategories": [ "tools" ]
     },
     {
       "name": "clui",

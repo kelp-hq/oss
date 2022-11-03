@@ -16,6 +16,7 @@ import { Command } from 'commander';
 import addCmd from './commands/add';
 import envsCmd from './commands/envs';
 import getCmd from './commands/get';
+import maculaCmd from './commands/macula';
 import pinCmd from './commands/pin';
 
 Sentry.init({
@@ -44,12 +45,12 @@ async function main(): Promise<void> {
   cmd.addCommand(await getCmd());
   cmd.addCommand(await envsCmd());
   cmd.addCommand(await pinCmd());
+  cmd.addCommand(await maculaCmd());
 
   await cmd.parseAsync(process.argv);
 }
 
 main().catch((error) => {
-  console.log('main error', error);
   console.error(error);
   Sentry.captureException(error);
 });

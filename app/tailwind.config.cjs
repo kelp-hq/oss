@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {},
-	plugins: [require('daisyui')],
+	plugins: [require('@tailwindcss/typography'), require('daisyui')],
 	daisyui: {
 		styled: true,
 		themes: true,

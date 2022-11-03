@@ -1,7 +1,10 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
-import { get } from 'svelte/store';
-import { appStore } from './appStore';
+import { isNil } from 'ramda';
+
+/**
+ *
+ */
 const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io';
 
 let cachedApiInstance: AxiosInstance;
@@ -43,15 +46,17 @@ export async function connectToApi(opts?: AxiosRequestConfig): Promise<AxiosInst
 	}
 }
 
-export function removeInterceptor(removeId: number) {
-	connectToApi().then((api) => {
-		api.interceptors.request.eject(removeId);
-	});
+export function removeInterceptor(removeId: number | undefined) {
+	if (!isNil(removeId)) {
+		connectToApi().then((api) => {
+			api.interceptors.request.eject(removeId);
+		});
+	}
 }
 
 export async function configureTokenInterceptor(token: string): Promise<number> {
 	const api = await connectToApi();
-
+	console.log('interceptor', token);
 	const interceptorID = api.interceptors.request.use(
 		(config) => {
 			config.headers = {
@@ -74,6 +79,7 @@ export async function myDomainsApi(
 ): Promise<AxiosResponse<ISubdomainDocument[]>> {
 	const api = await connectToApi(opts);
 
+	console.log('myDomainsApi', api.interceptors.request);
 	try {
 		const res = await api.get('/hosting/api/myDomains');
 		return res;

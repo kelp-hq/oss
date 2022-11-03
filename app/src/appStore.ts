@@ -1,7 +1,7 @@
 import { browser } from '$app/environment';
 import { get, writable } from 'svelte/store';
 
-import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts1/store';
+import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts/store';
 import { SubstrateStrategy, type ISubstratePayload } from '@kelp_digital/web3-api-auth-token';
 import { isEmpty, isNil } from 'ramda';
 import { configureTokenInterceptor, removeInterceptor } from './maculaApi';
@@ -11,7 +11,7 @@ interface IDefaultState {
 	currentToken: string;
 	currentTokenHeader: Record<string, string>;
 	refetchData: boolean;
-	interceptorId: number;
+	interceptorId?: number;
 }
 
 /**
@@ -51,8 +51,7 @@ function appStoreFn() {
 		tokens,
 		currentTokenHeader: {},
 		currentToken: '',
-		refetchData: false,
-		interceptorId: 0
+		refetchData: false
 	};
 
 	const { subscribe, set, update } = writable(defaultState);

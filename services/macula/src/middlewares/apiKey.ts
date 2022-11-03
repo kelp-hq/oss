@@ -5,9 +5,12 @@ import { includes, isEmpty, isNil } from 'ramda';
 import { forwardedHostAllowed, referrerAllowed } from '../plugins/ipfsApi/utils';
 import { getEnv } from '../utils/env';
 
-export function apiKeyMiddleware(request: Request, reply: Response, next: NextFunction): void {
+export function apiKeyMiddleware(req: Request, res: Response, next: NextFunction): void {
+  if (req.shouldSkipAuth) {
+    return next();
+  }
   const ENABLE_API_KEY_SUPPORT = getEnv('ENABLE_API_KEY_SUPPORT', false);
-  const { headers, url } = request;
+  const { headers, url } = req;
   console.log('api enabled %s', ENABLE_API_KEY_SUPPORT, headers);
 
   if (
@@ -33,13 +36,13 @@ export function apiKeyMiddleware(request: Request, reply: Response, next: NextFu
         }
 
         if (!includes(apiKeyFromHeader, allowedApiKeys)) {
-          reply.status(401).send(`Your API KEY is not allowed!`);
+          res.status(401).send(`Your API KEY is not allowed!`);
         }
       }
     } else {
       console.warn('API SUPPORT IS DISABLED, BE CAREFUL NOT TO EXPOSE THIS TO THE PUBLIC!');
     }
   }
-  request.shouldSkipAuth = true;
+  req.shouldSkipAuth = true;
   return next();
 }

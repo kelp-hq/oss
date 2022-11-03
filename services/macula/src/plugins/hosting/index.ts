@@ -214,7 +214,7 @@ async function retrieveMaculaConfig(req: Request, res: Response, next: NextFunct
     if (isNil(fromMongo)) {
       next(`This CID is not registered in Macula system. macula.json doesn't is not exist in the DB`);
     } else {
-      maculaConfig = fromMongo.config;
+      maculaConfig = last(fromMongo.cids)?.config;
     }
   } else {
     maculaConfig = fromRedis;

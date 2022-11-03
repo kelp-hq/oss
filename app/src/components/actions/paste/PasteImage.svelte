@@ -10,7 +10,7 @@
 
 	import { dump as pixDump, insert as pixInsert, TagValues, type IExifElement } from 'exif-library';
 
-	import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts1/store';
+	import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts/store';
 	import { isEmpty } from 'ramda';
 	import { stringToHex } from '@polkadot/util';
 	import type { ISubstratePayload } from '@kelp_digital/web3-api-auth-token';
