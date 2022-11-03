@@ -47,7 +47,7 @@
 <div class="card bg-base-100">
 	<div class="card-body">
 		<span class="card-title">
-			<a href={makeSubdomainLink(domain.subdomain)} class="link" target="_blank">
+			<a rel="noreferrer" href={makeSubdomainLink(domain.subdomain)} class="link" target="_blank">
 				{makeSubdomainLink(domain.subdomain)}
 			</a>
 			<div class="tooltip" data-tip="Verified">
@@ -94,7 +94,7 @@
 										</div>
 										<div>
 											<div class="font-bold">
-												<a href={makeVersionLink(cid)} target="_blank" class="">
+												<a rel="noreferrer" href={makeVersionLink(cid)} target="_blank" class="">
 													{truncate(cid)}
 												</a>
 											</div>

@@ -36,19 +36,19 @@
     },
     {
       "name": "@polkadot/api",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/api-augment",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/extension-dapp",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/extension-inject",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/keyring",
@@ -56,15 +56,15 @@
     },
     {
       "name": "@polkadot/types",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/types-codec",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/util",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "@polkadot/util-crypto",
@@ -72,7 +72,7 @@
     },
     {
       "name": "@rushstack/eslint-config",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage" ]
     },
     {
       "name": "@rushstack/heft",
@@ -119,6 +119,10 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "@sveltejs/vite-plugin-svelte",
+      "allowedCategories": [ "uiPackage" ]
+    },
+    {
       "name": "@tailwindcss/forms",
       "allowedCategories": [ "website" ]
     },
@@ -127,16 +131,20 @@
       "allowedCategories": [ "website" ]
     },
     {
+      "name": "@tsconfig/svelte",
+      "allowedCategories": [ "uiPackage" ]
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@typescript-eslint/parser",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "autoprefixer",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "axios",
@@ -168,7 +176,7 @@
     },
     {
       "name": "daisyui",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "debug",
@@ -179,24 +187,28 @@
       "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
+      "name": "esbuild",
+      "allowedCategories": [ "uiPackage" ]
+    },
+    {
       "name": "eslint",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "eslint-config-prettier",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "eslint-plugin-simple-import-sort",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "eslint-plugin-svelte3",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "eslint-plugin-unused-imports",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "exif-library",
@@ -300,11 +312,11 @@
     },
     {
       "name": "prettier-plugin-svelte",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "ramda",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "random-word-slugs",
@@ -328,15 +340,15 @@
     },
     {
       "name": "svelte",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
       "name": "svelte-check",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "svelte-preprocess",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "svelte-seo",
@@ -344,7 +356,7 @@
     },
     {
       "name": "tailwindcss",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "theme-change",
@@ -356,11 +368,11 @@
     },
     {
       "name": "tslib",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
       "name": "typescript",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "undici",
@@ -368,7 +380,7 @@
     },
     {
       "name": "vite",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
       "name": "vite-plugin-externals",

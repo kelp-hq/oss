@@ -27,6 +27,9 @@ const config = {
 		files: {
 			lib: 'src/components'
 		},
+		prerender: {
+			concurrency: 10
+		},
 		alias: {
 			src: 'src',
 			'src/*': 'src/*'

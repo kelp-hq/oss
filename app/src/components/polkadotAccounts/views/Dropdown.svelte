@@ -48,19 +48,21 @@
 			{truncateAddress($polkadotAccountsStore.selectedAccount) || 'Select account'}
 		</div>
 		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<label tabindex="0" class="btn btn-ghost btn-circle avatar p-1">
 			<img class="rounded-full" alt="Identicon" src="data:image/png;base64,{identiconImage}" />
 		</label>
 	</div>
 
 	{#if !isEmpty($polkadotAccountsStore.injectedAccounts)}
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 		<ul
 			tabindex="0"
 			class="bg-base-100 mt-3 p-2 shadow-lg drop-shadow-lg menu menu-compact dropdown-content"
 		>
 			{#each $polkadotAccountsStore.injectedAccounts as account}
 				<li>
-					<span
+					<button
 						class="m-2 flex flex-col justify-start items-start {equals(
 							account.address,
 							$polkadotAccountsStore.selectedAccount
@@ -71,7 +73,7 @@
 					>
 						<span class="text-lg">{account.meta.name}</span>
 						<span class="text-xs">{account.address}</span>
-					</span>
+					</button>
 				</li>
 			{/each}
 		</ul>
