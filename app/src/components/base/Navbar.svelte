@@ -1,5 +1,7 @@
 <script>
-	import PolkadotAccounts from '../polkadotAccounts/PolkadotAccounts.svelte';
+	// import PolkadotAccounts from '@kelp_digital/svelte-ui-components/polkadot/Accounts.svelte';
+	import PolkadotAccounts from '$lib/polkadot/Accounts.svelte';
+	import { appStore } from 'src/appStore';
 	import Link from './Link.svelte';
 	import ThemeChange from './ThemeChange.svelte';
 </script>
@@ -15,12 +17,11 @@
 		</ul>
 	</div>
 	<div class="navbar-center" />
-	<div class="navbar-end gap-2">
+	<div class="navbar-end gap-2 items-end justify-end">
 		<ul class="menu menu-horizontal p-0">
 			<li><Link href="/docs">Docs</Link></li>
 		</ul>
 		<ThemeChange />
-		<!-- <AccountSelect /> -->
-		<PolkadotAccounts />
+		<PolkadotAccounts tokenGenerationFunction={appStore.generateToken} />
 	</div>
 </div>

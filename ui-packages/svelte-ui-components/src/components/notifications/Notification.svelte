@@ -1,13 +1,15 @@
 <script lang="ts">
-	import MaterialIcon from 'src/components/base/MaterialIcon.svelte';
 	import type { INotification } from './store';
+	import Icon from 'svelte-awesome/components/Icon.svelte';
+	import CloseIcon from 'svelte-awesome/icons/close';
+
 	import { fade } from 'svelte/transition';
 	import CircleSpinner from './CircleSpinner.svelte';
 
 	let classNames: string = '';
 	export { classNames as class };
 
-	export let infoLevel: 'info' | 'success' | 'warning' | 'error' | '' = '';
+	export let infoLevel: 'info' | 'success' | 'warning' | 'error' = 'info';
 
 	export let data: INotification;
 
@@ -15,25 +17,11 @@
 
 	let notificationsCss: string;
 
-	$: notificationsCss = infoLevel !== '' ? `alert-${infoLevel}` : '';
+	$: notificationsCss = `alert-${infoLevel}`;
 	$: disableButton = data.showSpinner;
 </script>
 
-{#if infoLevel === ''}
-	<div class="alert shadow-lg fixed w-fit bottom-7 right-7 {classNames}" transition:fade>
-		<div>
-			{#if data.showSpinner}
-				<CircleSpinner />
-			{/if}
-			<span>{data.text}</span>
-		</div>
-		{#if !data.showSpinner}
-			<button on:click={data.closeFn}>
-				<MaterialIcon iconName="cancel" />
-			</button>
-		{/if}
-	</div>
-{:else if infoLevel === 'info'}
+{#if infoLevel === 'info'}
 	<div class="alert alert-info shadow-lg fixed w-fit bottom-7 right-7 {classNames}" transition:fade>
 		<div>
 			{#if data.showSpinner}
@@ -43,7 +31,7 @@
 		</div>
 		{#if !data.showSpinner}
 			<button on:click={data.closeFn}>
-				<MaterialIcon iconName="cancel" />
+				<Icon data={CloseIcon} />
 			</button>
 		{/if}
 	</div>
@@ -60,7 +48,7 @@
 		</div>
 		{#if !data.showSpinner}
 			<button on:click={data.closeFn}>
-				<MaterialIcon iconName="cancel" />
+				<Icon data={CloseIcon} />
 			</button>
 		{/if}
 	</div>
@@ -77,7 +65,7 @@
 		</div>
 		{#if !data.showSpinner}
 			<button on:click={data.closeFn}>
-				<MaterialIcon iconName="cancel" />
+				<Icon data={CloseIcon} />
 			</button>
 		{/if}
 	</div>
@@ -94,7 +82,7 @@
 		</div>
 		{#if !data.showSpinner}
 			<button on:click={data.closeFn}>
-				<MaterialIcon iconName="cancel" />
+				<Icon data={CloseIcon} />
 			</button>
 		{/if}
 	</div>

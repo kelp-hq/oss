@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { isEmpty } from 'ramda';
 	import { appStore } from 'src/appStore';
-	import { polkadotAccountsStore } from 'src/components/polkadotAccounts/store';
+	import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
 	import { myDomainsApi, type ISubdomainDocument } from 'src/maculaApi';
 	import { onMount } from 'svelte';
 	import NoDomains from '../components/NoSubdomains.svelte';

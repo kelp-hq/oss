@@ -10,12 +10,21 @@ import { resolve } from 'path';
 
 const config: UserConfig = {
 	logLevel: 'info',
-	plugins: [isoImport(), sveltekit(), wasm(), topLevelAwait()],
+	plugins: [isoImport(), wasm(), topLevelAwait(), sveltekit()],
 	resolve: {
 		alias: {
-			src: resolve('./src')
+			src: resolve('./src'),
+			'@kelp_digital/svelte-ui-components': resolve(
+				__dirname,
+				'../ui-packages/svelte-ui-components/lib'
+			),
+			'@kelp_digital/svelte-ui-components/*': resolve(
+				__dirname,
+				'../ui-packages/svelte-ui-components/lib/*'
+			)
 		}
 	},
+
 	optimizeDeps: {
 		esbuildOptions: {
 			target: 'es2020',

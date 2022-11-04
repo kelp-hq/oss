@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
+		"build": "exit 0;",
 		"build:app": "vite build",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -14,6 +15,7 @@
 		"upload": "ipfsCli macula addVersion .macula"
 	},
 	"dependencies": {
+		"@kelp_digital/svelte-ui-components": "workspace:*",
 		"@kelp_digital/ipfs-api-client": "workspace:*",
 		"@kelp_digital/sveltekit-adapter-macula": "workspace:*",
 		"@kelp_digital/web3-api-auth-token": "workspace:*",
@@ -41,7 +43,6 @@
 		"@playwright/test": "1.25.2",
 		"@sveltejs/adapter-static": "1.0.0-next.43",
 		"@sveltejs/kit": "1.0.0-next.484",
-		"@sveltejs/package": "1.0.0-next.3",
 		"@tailwindcss/typography": "0.5.7",
 		"@types/debug": "4.1.7",
 		"@types/identicon.js": "2.3.1",

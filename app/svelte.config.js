@@ -32,7 +32,9 @@ const config = {
 		},
 		alias: {
 			src: 'src',
-			'src/*': 'src/*'
+			'src/*': 'src/*',
+			$lib: 'src/components',
+			'$lib/*': 'src/components/*'
 		}
 	}
 };

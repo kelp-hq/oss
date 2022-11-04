@@ -5,7 +5,7 @@ import { isNil } from 'ramda';
 /**
  *
  */
-const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io';
+const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu74.gitpod.io';
 
 let cachedApiInstance: AxiosInstance;
 

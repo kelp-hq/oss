@@ -9,8 +9,11 @@
 	import { pasteImageStore } from './store';
 
 	import { dump as pixDump, insert as pixInsert, TagValues, type IExifElement } from 'exif-library';
+	import {
+		polkadotAccountsStore,
+		signViaExtension
+	} from '@kelp_digital/svelte-ui-components/polkadot/store';
 
-	import { polkadotAccountsStore, signViaExtension } from 'src/components/polkadotAccounts/store';
 	import { isEmpty } from 'ramda';
 	import { stringToHex } from '@polkadot/util';
 	import type { ISubstratePayload } from '@kelp_digital/web3-api-auth-token';
@@ -34,14 +37,17 @@
 		const { SubstrateStrategy } = await import('@kelp_digital/web3-api-auth-token');
 
 		const tokenPayload: ISubstratePayload = {
-			account: $polkadotAccountsStore.selectedAccount,
+			account: $polkadotAccountsStore.selectedAccount?.address as string,
 			network: 'anagolay',
 			prefix: 42,
 			exp: 6000
 		};
 
 		const t = new SubstrateStrategy(tokenPayload);
-		const sig = await signViaExtension($polkadotAccountsStore.selectedAccount, await t.encode());
+		const sig = await signViaExtension(
+			$polkadotAccountsStore.selectedAccount?.address as string,
+			await t.encode()
+		);
 		const tokenWithHeader = await t.makeWithHeader(sig);
 
 		const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io';

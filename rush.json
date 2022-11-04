@@ -457,8 +457,8 @@
       "shouldPublish": false
     },
     {
-      "packageName": "@kelp_digital/svelte-polkadot-accounts",
-      "projectFolder": "ui-packages/svelte-polkadot-accounts",
+      "packageName": "@kelp_digital/svelte-ui-components",
+      "projectFolder": "ui-packages/svelte-ui-components",
       "reviewCategory": "uiPackage",
       "shouldPublish": false
     }

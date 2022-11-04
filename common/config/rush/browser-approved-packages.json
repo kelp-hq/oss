@@ -15,8 +15,12 @@
       "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },
     {
-      "name": "@kelp_digital/sveltekit-adapter-macula",
+      "name": "@kelp_digital/svelte-ui-components",
       "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "@kelp_digital/sveltekit-adapter-macula",
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@kelp_digital/web3-api-auth",
@@ -116,7 +120,7 @@
     },
     {
       "name": "@sveltejs/package",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "@sveltejs/vite-plugin-svelte",
@@ -244,7 +248,7 @@
     },
     {
       "name": "identicon.js",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "inquirer",
@@ -284,7 +288,7 @@
     },
     {
       "name": "nanoid",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "node-fetch",
@@ -347,6 +351,10 @@
       "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
     },
     {
+      "name": "svelte-awesome",
+      "allowedCategories": [ "uiPackage" ]
+    },
+    {
       "name": "svelte-check",
       "allowedCategories": [ "uiPackage", "website" ]
     },
@@ -388,19 +396,19 @@
     },
     {
       "name": "vite-plugin-externals",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "vite-plugin-iso-import",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "vite-plugin-top-level-await",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "vite-plugin-wasm",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "webpack",

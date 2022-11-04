@@ -1,9 +1,10 @@
 <script lang="ts">
 	import '../app.css';
 	import Navbar from '../components/base/Navbar.svelte';
-	import { onMount } from 'svelte';
-	import Notifications from 'src/components/notifications/Notifications.svelte';
+	import Notifications from '$lib/notifications/Notifications.svelte';
+	// import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
 
+	import { onMount } from 'svelte';
 	onMount(() => {
 		console.log('mount layout');
 	});
