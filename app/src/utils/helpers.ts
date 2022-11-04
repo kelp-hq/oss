@@ -6,27 +6,27 @@ import wasm from 'wf_cidv1_from_array/wf_cidv1_from_array_bg.wasm?url';
  * @returns
  */
 export async function calculateCid(data: string | Uint8Array): Promise<string> {
-	console.time('[an-wf:wasm-init]');
-	await init(wasm);
-	console.timeEnd('[an-wf:wasm-init]');
+  console.time('[an-wf:wasm-init]');
+  await init(wasm);
+  console.timeEnd('[an-wf:wasm-init]');
 
-	let input: Uint8Array;
+  let input: Uint8Array;
 
-	/**
-	 * Here we create our workflow and calc the cid in ~1 ms
-	 */
-	const start = new Date().getTime();
-	const wf = new Workflow();
-	if (typeof data === 'string') {
-		const te = new TextEncoder();
-		input = te.encode(data);
-	} else {
-		input = data;
-	}
+  /**
+   * Here we create our workflow and calc the cid in ~1 ms
+   */
+  const start = new Date().getTime();
+  const wf = new Workflow();
+  if (typeof data === 'string') {
+    const te = new TextEncoder();
+    input = te.encode(data);
+  } else {
+    input = data;
+  }
 
-	const { output } = await wf.next([input]);
-	const elapsedTime = new Date().getTime() - start + ' ms';
-	console.log('cid calculation: %s -> %s', output, elapsedTime);
+  const { output } = await wf.next([input]);
+  const elapsedTime = new Date().getTime() - start + ' ms';
+  console.log('cid calculation: %s -> %s', output, elapsedTime);
 
-	return output;
+  return output;
 }

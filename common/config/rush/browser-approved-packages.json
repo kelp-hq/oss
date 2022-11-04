@@ -76,7 +76,7 @@
     },
     {
       "name": "@rushstack/eslint-config",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage" ]
+      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },
     {
       "name": "@rushstack/heft",

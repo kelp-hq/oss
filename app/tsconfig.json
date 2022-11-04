@@ -1,20 +1,20 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
-	"compilerOptions": {
-		"allowJs": true,
-		"checkJs": true,
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"strict": true,
-		"baseUrl": ".",
-		"paths": {
-			"$lib": ["src/components"],
-			"$lib/*": ["src/components/*"],
-			"@kelp_digital/svelte-ui-components": ["../ui-packages/svelte-ui-components/lib"],
-			"@kelp_digital/svelte-ui-components/*": ["../ui-packages/svelte-ui-components/lib/*"]
-		}
-	}
+  "extends": "./.svelte-kit/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "$lib": ["src/components"],
+      "$lib/*": ["src/components/*"],
+      "@kelp_digital/svelte-ui-components": ["../ui-packages/svelte-ui-components/lib"],
+      "@kelp_digital/svelte-ui-components/*": ["../ui-packages/svelte-ui-components/lib/*"]
+    }
+  }
 }

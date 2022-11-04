@@ -1,12 +1,12 @@
 {
-	"operationSettings": [
-		{
-			"operationName": "_phase:build",
-			"outputFolderNames": ["build"]
-		},
-		{
-			"operationName": "_phase:test",
-			"outputFolderNames": ["temp/coverage", "temp/jest-reports"]
-		}
-	]
+  "operationSettings": [
+    {
+      "operationName": "_phase:build",
+      "outputFolderNames": ["build"]
+    },
+    {
+      "operationName": "_phase:test",
+      "outputFolderNames": ["temp/coverage", "temp/jest-reports"]
+    }
+  ]
 }

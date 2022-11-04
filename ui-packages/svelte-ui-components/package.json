@@ -3,24 +3,24 @@
   "version": "0.0.1",
   "description": "Various UI component for Svelte.",
   "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
-  "type": "module",
   "sideEffects": false,
-  "svelte": "index.js",
+  "type": "module",
   "exports": {
     ".": "./index.js"
   },
+  "svelte": "index.js",
   "scripts": {
     "_phase:build": "svelte-kit sync && svelte-package",
+    "_phase:code-quality": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "_phase:test": "exit 0;",
-    "dev": "NODE_ENV=development vite --port 7778 dev",
     "build": "svelte-kit sync && svelte-package",
-    "build:demo": "vite build",
-    "watch": "svelte-package --watch",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "build:app": "vite build",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "dev": "NODE_ENV=development vite --port 7778 dev",
     "format": "prettier --plugin-search-dir . --write .",
-    "preview": "vite preview"
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "preview": "vite preview",
+    "watch": "svelte-package --watch"
   },
   "dependencies": {
     "@kelp_digital/sveltekit-adapter-macula": "workspace:*",
@@ -31,10 +31,10 @@
     "@polkadot/types": "9.2.2",
     "@polkadot/types-codec": "9.2.2",
     "@polkadot/util": "10.1.7",
-    "nanoid": "4.0.0",
     "debug": "4.3.4",
-    "ramda": "0.28.0",
     "identicon.js": "2.3.3",
+    "nanoid": "4.0.0",
+    "ramda": "0.28.0",
     "svelte-awesome": "3.0.0"
   },
   "devDependencies": {
@@ -50,10 +50,6 @@
     "autoprefixer": "10.4.12",
     "daisyui": "2.38.0",
     "esbuild": "0.15.5",
-    "vite-plugin-externals": "0.5.1",
-    "vite-plugin-iso-import": "0.1.3",
-    "vite-plugin-top-level-await": "1.1.1",
-    "vite-plugin-wasm": "2.1.0",
     "eslint": "8.23.1",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-simple-import-sort": "8.0.0",
@@ -66,6 +62,10 @@
     "tailwindcss": "3.2.1",
     "tslib": "2.4.0",
     "typescript": "4.7.4",
-    "vite": "3.2.0"
+    "vite": "3.2.0",
+    "vite-plugin-externals": "0.5.1",
+    "vite-plugin-iso-import": "0.1.3",
+    "vite-plugin-top-level-await": "1.1.1",
+    "vite-plugin-wasm": "2.1.0"
   }
 }

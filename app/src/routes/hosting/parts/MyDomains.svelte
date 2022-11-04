@@ -1,47 +1,48 @@
 <script lang="ts">
-	import { isEmpty } from 'ramda';
-	import { appStore } from 'src/appStore';
-	import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
-	import { myDomainsApi, type ISubdomainDocument } from 'src/maculaApi';
-	import { onMount } from 'svelte';
-	import NoDomains from '../components/NoSubdomains.svelte';
-	import DomainCard from './DomainCard.svelte';
+import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
+import { isEmpty } from 'ramda';
+import { appStore } from 'src/appStore';
+import { type ISubdomainDocument, myDomainsApi } from 'src/maculaApi';
+import { onMount } from 'svelte';
 
-	let domains: ISubdomainDocument[] = [];
+import NoDomains from '../components/NoSubdomains.svelte';
+import DomainCard from './DomainCard.svelte';
 
-	let loadingData: boolean = true;
+let domains: ISubdomainDocument[] = [];
 
-	async function getData() {
-		const res = await myDomainsApi();
-		domains = res.data;
-		loadingData = false;
-	}
+let loadingData = true;
 
-	onMount(async () => {
-		console.log('mount Mydomains');
-		if ($polkadotAccountsStore.selectedAccount) {
-			// 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
-			await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
-			await getData();
-		} else {
-			loadingData = false;
-		}
-	});
-	$: {
-		if ($appStore.refetchData) {
-			getData();
-		}
-	}
+async function getData() {
+  const res = await myDomainsApi();
+  domains = res.data;
+  loadingData = false;
+}
+
+onMount(async () => {
+  console.log('mount Mydomains');
+  if ($polkadotAccountsStore.selectedAccount) {
+    // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
+    await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
+    await getData();
+  } else {
+    loadingData = false;
+  }
+});
+$: {
+  if ($appStore.refetchData) {
+    getData();
+  }
+}
 </script>
 
 {#if loadingData}
-	loading data ...
+  loading data ...
 {:else if !loadingData && isEmpty(domains)}
-	<NoDomains />
+  <NoDomains />
 {:else}
-	<div class="flex flex-col">
-		{#each domains as domain}
-			<DomainCard {domain} />
-		{/each}
-	</div>
+  <div class="flex flex-col">
+    {#each domains as domain}
+      <DomainCard domain="{domain}" />
+    {/each}
+  </div>
 {/if}

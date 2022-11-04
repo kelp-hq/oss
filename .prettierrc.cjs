@@ -14,5 +14,14 @@ module.exports = {
   // to use them for arrays only
   trailingComma: 'none',
   semi: true,
-  bracketSpacing: true
+  bracketSpacing: true,
+  // overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
+  plugins: [
+    './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-svelte',
+    './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-packagejson'
+  ],
+  svelteSortOrder: 'options-styles-scripts-markup',
+  svelteStrictMode: true,
+  svelteAllowShorthand: false,
+  svelteIndentScriptAndStyle: false
 };

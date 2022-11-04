@@ -19,6 +19,7 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      '@rushstack/eslint-config': 3.0.0
       '@silvia-odwyer/photon': 0.3.11
       '@sveltejs/adapter-static': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.484
@@ -91,6 +92,7 @@ importers:
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
       '@playwright/test': 1.25.2
+      '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
       '@sveltejs/adapter-static': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.484_svelte@3.52.0+vite@3.2.0
       '@tailwindcss/typography': 0.5.7_tailwindcss@3.2.1

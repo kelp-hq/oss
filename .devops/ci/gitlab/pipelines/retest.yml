@@ -6,3 +6,4 @@ retest:
   script:
     - !reference [.rush:install, script]
     - !reference [.rush:retest, script]
+    - node common/scripts/install-run-rush.js code-quality

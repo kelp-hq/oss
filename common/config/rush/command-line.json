@@ -44,6 +44,14 @@
       },
       "ignoreMissingScript": true,
       "allowWarningsOnSuccess": false
+    },
+    {
+      "name": "_phase:code-quality",
+      "dependencies": {
+        "self": ["_phase:build"]
+      },
+      "ignoreMissingScript": true,
+      "allowWarningsOnSuccess": false
     }
   ],
   /**
@@ -52,6 +60,14 @@
    * "rush my-global-command --help".
    */
   "commands": [
+    {
+      "commandKind": "phased",
+      "name": "code-quality",
+      "summary": "runs code quality commands.",
+      "phases": ["_phase:code-quality"],
+      "enableParallelism": true,
+      "incremental": true
+    },
     {
       "commandKind": "phased",
       "name": "build",

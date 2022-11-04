@@ -16,6 +16,7 @@ const config = {
       subdomain: 'svelte-ui-components-kelp'
     }),
     trailingSlash: 'always',
+    prerender: {},
     files: {
       lib: 'src/components'
     },

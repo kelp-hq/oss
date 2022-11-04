@@ -1,23 +1,24 @@
 <script lang="ts">
-	import '../app.css';
-	import Navbar from '../components/base/Navbar.svelte';
-	import Notifications from '$lib/notifications/Notifications.svelte';
-	// import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
+import '../app.css';
 
-	import { onMount } from 'svelte';
-	onMount(() => {
-		console.log('mount layout');
-	});
+// import Notifications from '$lib/notifications/Notifications.svelte';
+import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
+import { onMount } from 'svelte';
+
+import Navbar from '../components/base/Navbar.svelte';
+onMount(() => {
+  console.log('mount layout');
+});
 </script>
 
 <Notifications />
 <div class="flex flex-col min-h-screen bg-base-200" data-sveltekit-prefetch>
-	<Navbar />
-	<div class="md:container md:mx-auto p-4">
-		<!-- here be content -->
-		<slot />
-		<!-- here be content -->
-	</div>
+  <Navbar />
+  <div class="md:container md:mx-auto p-4">
+    <!-- here be content -->
+    <slot />
+    <!-- here be content -->
+  </div>
 </div>
 <!-- <div class="hero h-screen"> -->
 <!-- <div class="hero-content text-center"> -->
