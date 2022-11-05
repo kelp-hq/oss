@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/typedef */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from 'axios';
 import { isNil } from 'ramda';
@@ -5,7 +9,7 @@ import { isNil } from 'ramda';
 /**
  *
  */
-const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu74.gitpod.io';
+const baseUrl: string = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu74.gitpod.io';
 
 let cachedApiInstance: AxiosInstance;
 

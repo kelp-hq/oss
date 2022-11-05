@@ -1,5 +1,5 @@
 <script lang="ts">
-import { polkadotAccountsStore, signViaExtension } from '@kelp_digital/svelte-ui-components/polkadot/store';
+import { polkadotAccountsStore, signViaExtension } from '$lib/polkadot/store';
 import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
 import axios from 'axios';
 

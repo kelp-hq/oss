@@ -53,7 +53,9 @@ importers:
       ramda: 0.28.0
       slug: 8.0.0
       svelte: 3.52.0
+      svelte-awesome: 3.0.0
       svelte-check: 2.9.2
+      svelte-french-toast: ~1.0.3
       svelte-preprocess: 4.10.7
       svelte-seo: 1.4.1
       tailwindcss: 3.2.1
@@ -88,6 +90,8 @@ importers:
       piexifjs: 1.0.6
       ramda: 0.28.0
       slug: 8.0.0
+      svelte-awesome: 3.0.0_svelte@3.52.0
+      svelte-french-toast: 1.0.3_svelte@3.52.0
       theme-change: 2.2.0
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
@@ -544,7 +548,6 @@ importers:
       identicon.js: 2.3.3
       nanoid: 4.0.0
       ramda: 0.28.0
-      svelte-awesome: 3.0.0_svelte@3.52.0
     devDependencies:
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
       '@sveltejs/kit': 1.0.0-next.484_svelte@3.52.0+vite@3.2.0
@@ -565,6 +568,7 @@ importers:
       eslint-plugin-unused-imports: 2.0.0_aycu25ebzxq3ptk7zxntnrmsdq
       prettier-plugin-svelte: 2.7.0_lrllcp5xtrkmmdzifit4hd52ze
       svelte: 3.52.0
+      svelte-awesome: 3.0.0_svelte@3.52.0
       svelte-check: 2.9.2_vidagnlh55bt6yxji7dk5y5wla
       svelte-preprocess: 4.10.7_uaveyrkcjlmxydkg2lx5hz6lhu
       tailwindcss: 3.2.1
@@ -9819,7 +9823,6 @@ packages:
       svelte: ^3.43.1
     dependencies:
       svelte: 3.52.0
-    dev: false
 
   /svelte-check/2.9.2_babojanpsi3snmlrzo2qzzrioy:
     resolution: {integrity: sha512-DRi8HhnCiqiGR2YF9ervPGvtoYrheE09cXieCTEqeTPOTJzfoa54Py8rovIBv4bH4n5HgZYIyTQ3DDLHQLl2uQ==}
@@ -9876,6 +9879,14 @@ packages:
       - stylus
       - sugarss
     dev: true
+
+  /svelte-french-toast/1.0.3_svelte@3.52.0:
+    resolution: {integrity: sha512-HBdutlqUx5FroucvcmMJstmTJDedXayiOSXubBYW6iL5x1PdHp+bOflGx5NxsOa6+EQckJnnVv1vJYgGsg7ngQ==}
+    dependencies:
+      svelte-writable-derived: 2.1.5_svelte@3.52.0
+    transitivePeerDependencies:
+      - svelte
+    dev: false
 
   /svelte-hmr/0.15.0_svelte@3.52.0:
     resolution: {integrity: sha512-Aw21SsyoohyVn4yiKXWPNCSW2DQNH/76kvUnE9kpt4h9hcg9tfyQc6xshx9hzgMfGF0kVx0EGD8oBMWSnATeOg==}
@@ -9997,6 +10008,14 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
+
+  /svelte-writable-derived/2.1.5_svelte@3.52.0:
+    resolution: {integrity: sha512-g26/W1iWj7FlLwaggNwXxHwMSf70/bHAYcpBT/EijijjakCSU9/PXmn31fL/kw2P1SzVEU6ayyCFuNYqTY3RUw==}
+    peerDependencies:
+      svelte: ^3.2.1
+    dependencies:
+      svelte: 3.52.0
+    dev: false
 
   /svelte/3.52.0:
     resolution: {integrity: sha512-FxcnEUOAVfr10vDU5dVgJN19IvqeHQCS1zfe8vayTfis9A2t5Fhx+JDe5uv/C3j//bB1umpLJ6quhgs9xyUbCQ==}

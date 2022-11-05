@@ -1,5 +1,5 @@
 <script lang="ts">
-import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
+import { polkadotAccountsStore } from '$lib/polkadot/store';
 import { isEmpty } from 'ramda';
 import { appStore } from 'src/appStore';
 import { type ISubdomainDocument, myDomainsApi } from 'src/maculaApi';

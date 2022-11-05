@@ -352,11 +352,15 @@
     },
     {
       "name": "svelte-awesome",
-      "allowedCategories": [ "uiPackage" ]
+      "allowedCategories": [ "uiPackage", "website" ]
     },
     {
       "name": "svelte-check",
       "allowedCategories": [ "uiPackage", "website" ]
+    },
+    {
+      "name": "svelte-french-toast",
+      "allowedCategories": [ "website" ]
     },
     {
       "name": "svelte-preprocess",

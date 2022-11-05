@@ -5,7 +5,6 @@
   "scripts": {
     "_phase:build": "vite build",
     "_phase:code-quality": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "_phase:test": "playwright  test",
     "build": "vite build",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "NODE_ENV=development vite --port 7777",
@@ -38,6 +37,8 @@
     "piexifjs": "1.0.6",
     "ramda": "0.28.0",
     "slug": "8.0.0",
+    "svelte-awesome": "3.0.0",
+    "svelte-french-toast": "~1.0.3",
     "theme-change": "2.2.0",
     "wf_cidv1_from_array": "https://ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma"
   },

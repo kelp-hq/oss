@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { stat } from 'node:fs/promises';
 import { basename, resolve } from 'node:path';
 

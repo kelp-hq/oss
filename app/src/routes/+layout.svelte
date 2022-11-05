@@ -2,7 +2,7 @@
 import '../app.css';
 
 // import Notifications from '$lib/notifications/Notifications.svelte';
-import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
+import Notifications from '$lib/notifications/Notifications.svelte';
 import { onMount } from 'svelte';
 
 import Navbar from '../components/base/Navbar.svelte';

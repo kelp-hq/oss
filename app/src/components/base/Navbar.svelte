@@ -1,8 +1,7 @@
 <script>
-import PolkadotAccounts from '@kelp_digital/svelte-ui-components/polkadot/Accounts.svelte';
+import PolkadotAccounts from '$lib/polkadot/Accounts.svelte';
+import { appStore } from 'src/appStore';
 
-// import PolkadotAccounts from '$lib/polkadot/Accounts.svelte';
-// import { appStore } from 'src/appStore';
 import Link from './Link.svelte';
 import ThemeChange from './ThemeChange.svelte';
 </script>
@@ -23,7 +22,6 @@ import ThemeChange from './ThemeChange.svelte';
       <li><Link href="/docs">Docs</Link></li>
     </ul>
     <ThemeChange />
-    <!-- <PolkadotAccounts tokenGenerationFunction={appStore.generateToken} /> -->
-    <PolkadotAccounts />
+    <PolkadotAccounts tokenGenerationFunction="{appStore.generateToken}" />
   </div>
 </div>
