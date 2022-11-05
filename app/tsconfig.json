@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
+    "importHelpers": true,
     "baseUrl": ".",
     "paths": {
       "$lib": ["src/components"],

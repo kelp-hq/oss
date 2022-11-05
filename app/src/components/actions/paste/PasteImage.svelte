@@ -2,17 +2,16 @@
 import fetch from 'cross-fetch';
 import { type IExifElement, dump as pixDump, insert as pixInsert, TagValues } from 'exif-library';
 import ExifReader from 'exifreader';
-import { isNil } from 'ramda';
-import { isEmpty } from 'ramda';
+
 import { onMount } from 'svelte';
 
 import Spinner from '$lib/base/Spinner.svelte';
 
 import { pasteImageStore } from './store';
+import { isNil, isEmpty } from 'ramda';
 
 let loadingBlob = false;
 
-// let encrypt: boolean = false;
 /**
  * WE keep our image here
  */

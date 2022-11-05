@@ -53,8 +53,8 @@ const config: UserConfig = {
   }
   // // this is only for prod build
   // ssr: {
-  //   noExternal: true,
-  // },
+  //   noExternal: true
+  // }
 };
 
 export default config;

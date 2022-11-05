@@ -193,7 +193,6 @@ export default function (incomingOption: IAnagolayAdapterOptions): Adapter {
 			];
 
 			const prerenderedPages: Record<string, { file: string }> = {};
-			// console.log(builder.prerendered.pages);
 
 			/**
 			 * We are doing follwing here:
