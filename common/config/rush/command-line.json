@@ -433,12 +433,12 @@
       "associatedPhases": ["_phase:test"],
       "associatedCommands": ["test", "retest"]
     },
-    {
-      "longName": "--production",
-      "parameterKind": "flag",
-      "description": "Perform a production build, including minification and localization steps",
-      "associatedPhases": ["_phase:build", "_phase:test"],
-      "associatedCommands": ["build", "rebuild", "test", "retest"]
-    }
+    // {
+    //   "longName": "--production",
+    //   "parameterKind": "flag",
+    //   "description": "Perform a production build, including minification and localization steps",
+    //   "associatedPhases": ["_phase:build", "_phase:test"],
+    //   "associatedCommands": ["build", "rebuild", "test", "retest"]
+    // }
   ]
 }

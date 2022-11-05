@@ -42,3 +42,4 @@ vscode:
     - vscode-icons-team.vscode-icons
     - ms-azuretools.vscode-docker
     - wmaurer.change-case
+    - ms-playwright.playwright
