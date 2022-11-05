@@ -1,3 +1,5 @@
+// import 'vite/modulepreload-polyfill';
+
 import { sveltekit } from '@sveltejs/kit/vite';
 import { resolve } from 'path';
 import type { UserConfig } from 'vite';
@@ -6,7 +8,7 @@ import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
 
 const config: UserConfig = {
-  logLevel: 'info',
+  logLevel: 'silent',
   plugins: [isoImport(), wasm(), topLevelAwait(), sveltekit()],
   resolve: {
     alias: {
@@ -22,15 +24,14 @@ const config: UserConfig = {
       define: {
         global: 'globalThis'
       }
-      // plugins: []
     }
-    // include: ['@anagolay/utils']
-    // exclude: ['@polkadot/wasm-crypto-wasm', '@polkadot/*']
-    // exclude: ['ipfs-http-client', 'electron-fetch']
   },
   build: {
     // warn on chunks above 1MB
-    chunkSizeWarningLimit: 1024
+    chunkSizeWarningLimit: 1024,
+    modulePreload: {
+      polyfill: true
+    }
     // rollupOptions: {
     // 	plugins: []
     // }
