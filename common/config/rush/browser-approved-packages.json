@@ -95,12 +95,16 @@
       "allowedCategories": [ "libraries", "tools" ]
     },
     {
+      "name": "@sentry/browser",
+      "allowedCategories": [ "website" ]
+    },
+    {
       "name": "@sentry/node",
       "allowedCategories": [ "production", "service", "tools" ]
     },
     {
       "name": "@sentry/tracing",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": [ "production", "service", "tools", "website" ]
     },
     {
       "name": "@sentry/types",

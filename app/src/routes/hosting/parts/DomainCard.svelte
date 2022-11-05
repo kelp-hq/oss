@@ -1,8 +1,5 @@
 <script lang="ts">
-import { isEmpty } from 'ramda';
-import { takeLast } from 'ramda';
-import { take } from 'ramda';
-import { isNil } from 'ramda';
+import { isEmpty, takeLast, take, isNil } from 'ramda';
 import type { ISubdomainDocument } from 'src/maculaApi';
 
 export let domain: ISubdomainDocument;

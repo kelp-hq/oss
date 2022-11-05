@@ -33,8 +33,8 @@
   "dependencies": {
     "@anagolay/utils": "0.0.1",
     "@kelp_digital/ipfs-api-client": "workspace:*",
-    "@sentry/node": "7.6.0",
-    "@sentry/tracing": "7.6.0",
+    "@sentry/node": "7.17.2",
+    "@sentry/tracing": "7.17.2",
     "axios": "0.27.2",
     "byte-size": "8.1.0",
     "chalk": "4.1.2",

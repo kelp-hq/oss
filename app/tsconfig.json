@@ -12,9 +12,9 @@
     "baseUrl": ".",
     "paths": {
       "$lib": ["src/components"],
-      "$lib/*": ["src/components/*"],
-      "@kelp_digital/svelte-ui-components": ["../ui-packages/svelte-ui-components/lib"],
-      "@kelp_digital/svelte-ui-components/*": ["../ui-packages/svelte-ui-components/lib/*"]
+      "$lib/*": ["src/components/*"]
+      // "@kelp_digital/svelte-ui-components": ["../ui-packages/svelte-ui-components/lib"],
+      // "@kelp_digital/svelte-ui-components/*": ["../ui-packages/svelte-ui-components/lib/*"]
     }
   }
 }

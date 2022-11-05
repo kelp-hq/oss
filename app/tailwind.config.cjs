@@ -10,8 +10,8 @@
     logs: true,
     rtl: false,
     prefix: '',
-    darkTheme: 'dark'
+    darkTheme: 'dark',
     // darkTheme: 'macula',
-    // themes: ['dark']
+    themes: ['dark']
   }
 };

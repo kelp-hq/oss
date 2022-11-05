@@ -1,11 +1,14 @@
 <script lang="ts">
 import '../app.css';
 
-// import Notifications from '$lib/notifications/Notifications.svelte';
 import Notifications from '$lib/notifications/Notifications.svelte';
 import { onMount } from 'svelte';
 
 import Navbar from '../components/base/Navbar.svelte';
+import { initSentry } from 'src/sentry';
+
+initSentry();
+
 onMount(() => {
   console.log('mount layout');
 });

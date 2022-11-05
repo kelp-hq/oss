@@ -20,6 +20,8 @@ importers:
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
       '@rushstack/eslint-config': 3.0.0
+      '@sentry/browser': 7.17.2
+      '@sentry/tracing': 7.17.2
       '@silvia-odwyer/photon': 0.3.11
       '@sveltejs/adapter-static': 1.0.0-next.43
       '@sveltejs/kit': 1.0.0-next.484
@@ -55,7 +57,6 @@ importers:
       svelte: 3.52.0
       svelte-awesome: 3.0.0
       svelte-check: 2.9.2
-      svelte-french-toast: ~1.0.3
       svelte-preprocess: 4.10.7
       svelte-seo: 1.4.1
       tailwindcss: 3.2.1
@@ -80,6 +81,8 @@ importers:
       '@polkadot/types': 9.2.2
       '@polkadot/types-codec': 9.2.2
       '@polkadot/util': 10.1.7
+      '@sentry/browser': 7.17.2
+      '@sentry/tracing': 7.17.2
       '@silvia-odwyer/photon': 0.3.11
       axios: 0.27.2_debug@4.3.4
       cross-fetch: 3.1.5
@@ -91,7 +94,6 @@ importers:
       ramda: 0.28.0
       slug: 8.0.0
       svelte-awesome: 3.0.0_svelte@3.52.0
-      svelte-french-toast: 1.0.3_svelte@3.52.0
       theme-change: 2.2.0
       wf_cidv1_from_array: '@ipfs.anagolay.network/ipfs/bafybeiaaybkhln6hvfzh3cacos3km6bjqdmk4scfe2wite4g357owx5tma'
     devDependencies:
@@ -297,8 +299,8 @@ importers:
       '@rushstack/heft': 0.45.6
       '@rushstack/heft-jest-plugin': 0.3.6
       '@rushstack/heft-node-rig': 1.9.7
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
+      '@sentry/node': 7.17.2
+      '@sentry/tracing': 7.17.2
       '@sentry/types': 7.5.1
       '@types/compression': 1.7.2
       '@types/cors': 2.8.12
@@ -348,8 +350,8 @@ importers:
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
+      '@sentry/node': 7.17.2
+      '@sentry/tracing': 7.17.2
       axios: 0.27.2
       compression: 1.7.4
       cors: 2.8.5
@@ -408,8 +410,8 @@ importers:
       '@rushstack/heft-jest-plugin': 0.3.6
       '@rushstack/heft-node-rig': 1.9.7
       '@rushstack/heft-webpack5-plugin': 0.5.13
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
+      '@sentry/node': 7.17.2
+      '@sentry/tracing': 7.17.2
       '@types/byte-size': 8.1.0
       '@types/clui': 0.3.1
       '@types/heft-jest': 1.0.2
@@ -447,8 +449,8 @@ importers:
     dependencies:
       '@anagolay/utils': 0.0.1
       '@kelp_digital/ipfs-api-client': link:../../libraries/ipfs-api-client
-      '@sentry/node': 7.6.0
-      '@sentry/tracing': 7.6.0
+      '@sentry/node': 7.17.2
+      '@sentry/tracing': 7.17.2
       axios: 0.27.2
       byte-size: 8.1.0
       chalk: 4.1.2
@@ -2407,6 +2409,25 @@ packages:
     resolution: {integrity: sha512-ZxOhsSyxYwLJj3pLZCefNitxsj093tb2vq90mp2txoYeBqbcjDjqFhyM8eUjq/uFm6zJ+mUuqxlS2FkuSY1MTA==}
     dev: false
 
+  /@sentry/browser/7.17.2:
+    resolution: {integrity: sha512-LICJvwnES+Jp7ShN7zkmTFYIQB9jWOg/s9U58CQWfwrkMTwE4zKylojF3OTtyNaMmekVv/y/1JjeS5KAK3IrHQ==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.17.2
+      '@sentry/types': 7.17.2
+      '@sentry/utils': 7.17.2
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/core/7.17.2:
+    resolution: {integrity: sha512-mBFjngWJPN3V1A/tz/qa1jkQvmZtU07hhlWg+kmajD0nFulPHUWEvZhsi8NFveGcxMxc/wmaSSLcEOpKq5L29g==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.17.2
+      '@sentry/utils': 7.17.2
+      tslib: 1.14.1
+    dev: false
+
   /@sentry/core/7.6.0:
     resolution: {integrity: sha512-vXIuUZbHVSAXh2xZ3NyXYXqVvVQSbGEpgtQxLutwocvD88JFK6aZqO+WQG69GY1b1fKSeE9faEDDS6WGAi46mQ==}
     engines: {node: '>=8'}
@@ -2426,6 +2447,21 @@ packages:
       tslib: 1.14.1
     dev: false
 
+  /@sentry/node/7.17.2:
+    resolution: {integrity: sha512-dMHff7C3MgKpIlbLkrEEtq1nX8o1Tiax/DWOtj5dLrPMsjQyivMs906GeS3GJkX7YeMMfy93j8gC+qIK54gqFw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.17.2
+      '@sentry/types': 7.17.2
+      '@sentry/utils': 7.17.2
+      cookie: 0.4.2
+      https-proxy-agent: 5.0.1
+      lru_map: 0.3.3
+      tslib: 1.14.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@sentry/node/7.6.0:
     resolution: {integrity: sha512-B6DAle4xMUnmY1SlEyO+zAnS+HHae75GiD4zliYMA8plhd3+UcsYN3LpmhgYSfxvckYBjG/YcqQl9HWJV+s3tw==}
     engines: {node: '>=8'}
@@ -2442,6 +2478,16 @@ packages:
       - supports-color
     dev: false
 
+  /@sentry/tracing/7.17.2:
+    resolution: {integrity: sha512-j9I/g6SMkQjMPrBdzYQJSDk0qc30LJ9wZl6uKXes7dpfASq+IPcRdkPyRc5ZZX6HD/iUAlaCrBKNmYsK4+I5aw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/core': 7.17.2
+      '@sentry/types': 7.17.2
+      '@sentry/utils': 7.17.2
+      tslib: 1.14.1
+    dev: false
+
   /@sentry/tracing/7.6.0:
     resolution: {integrity: sha512-ydlIk8FpuXiQm3Y0cLwXMOUYv5UtniP8ylWw3ix0sF5sTpJWSaC/g8P8yrzkYV+pm28kde5qfE3nocGhpwxZcA==}
     engines: {node: '>=8'}
@@ -2452,6 +2498,11 @@ packages:
       tslib: 1.14.1
     dev: false
 
+  /@sentry/types/7.17.2:
+    resolution: {integrity: sha512-zxhNQ8Xt/hfP8bFZEV66ovJZK7aUqok5w1wjsHgkUz/S6/gkiMrDYT3OtRCRuY3mfQu9KmeBniM0xZkaxREJ1w==}
+    engines: {node: '>=8'}
+    dev: false
+
   /@sentry/types/7.5.1:
     resolution: {integrity: sha512-+OHxQL4lXCEsUA31qlhcPABOjxtbuL+VTpgamXJjxEpQQDPUPyPK0pu7c+uTc7x4Re96Ss3pwUYE9tl3WW3xIg==}
     engines: {node: '>=8'}
@@ -2460,6 +2511,14 @@ packages:
   /@sentry/types/7.6.0:
     resolution: {integrity: sha512-POimbDwr9tmHSKksJTXe5VQpvjkFO4/UWUptigwqf8684rkS7Ie2BT2uyp5GD2EgYFf0BwUOWi98FTYTvUGT+Q==}
     engines: {node: '>=8'}
+    dev: false
+
+  /@sentry/utils/7.17.2:
+    resolution: {integrity: sha512-l8t6qzyi+UUzD0a/oOYn4i+Eii+Ei29/TVwj/+9ogfJzBk6dSwSLvXievsyCRpcN3tftpWP0cHREcbZN64ZOWw==}
+    engines: {node: '>=8'}
+    dependencies:
+      '@sentry/types': 7.17.2
+      tslib: 1.14.1
     dev: false
 
   /@sentry/utils/7.6.0:
@@ -9880,14 +9939,6 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-french-toast/1.0.3_svelte@3.52.0:
-    resolution: {integrity: sha512-HBdutlqUx5FroucvcmMJstmTJDedXayiOSXubBYW6iL5x1PdHp+bOflGx5NxsOa6+EQckJnnVv1vJYgGsg7ngQ==}
-    dependencies:
-      svelte-writable-derived: 2.1.5_svelte@3.52.0
-    transitivePeerDependencies:
-      - svelte
-    dev: false
-
   /svelte-hmr/0.15.0_svelte@3.52.0:
     resolution: {integrity: sha512-Aw21SsyoohyVn4yiKXWPNCSW2DQNH/76kvUnE9kpt4h9hcg9tfyQc6xshx9hzgMfGF0kVx0EGD8oBMWSnATeOg==}
     engines: {node: ^12.20 || ^14.13.1 || >= 16}
@@ -10008,14 +10059,6 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
-
-  /svelte-writable-derived/2.1.5_svelte@3.52.0:
-    resolution: {integrity: sha512-g26/W1iWj7FlLwaggNwXxHwMSf70/bHAYcpBT/EijijjakCSU9/PXmn31fL/kw2P1SzVEU6ayyCFuNYqTY3RUw==}
-    peerDependencies:
-      svelte: ^3.2.1
-    dependencies:
-      svelte: 3.52.0
-    dev: false
 
   /svelte/3.52.0:
     resolution: {integrity: sha512-FxcnEUOAVfr10vDU5dVgJN19IvqeHQCS1zfe8vayTfis9A2t5Fhx+JDe5uv/C3j//bB1umpLJ6quhgs9xyUbCQ==}
