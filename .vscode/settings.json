@@ -11,9 +11,9 @@
     "source.fixAll": true
   },
   "editor.formatOnSave": true,
-  "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
-  },
+  // "[svelte]": {
+  //   "editor.defaultFormatter": "svelte.svelte-vscode"
+  // },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -48,6 +48,7 @@
     "gpgsign",
     "healthcheck",
     "IPFSHTTP",
+    "kleur",
     "pino",
     "polkadot",
     "rehosted",

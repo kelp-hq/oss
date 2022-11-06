@@ -2,10 +2,10 @@ import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-import chalk from 'chalk';
 import { Command } from 'commander';
 import { AddOptions } from 'ipfs-core-types/dist/src/root';
 import { IPFSHTTPClient } from 'ipfs-http-client';
+import kleur from 'kleur';
 import { find, propEq } from 'ramda';
 
 import { createIPFSConnection, uploadViaAddAll } from '../../../ipfs';
@@ -77,8 +77,8 @@ async function action(pathOrFile: string, options: IOptions): Promise<void> {
   const versionUrl = `https://${cid}.on.macula.link`;
   const subdomainUrl = `https://${subdomain}.macula.link`;
 
-  console.log(`Pinned %s`, chalk.blue(pinned));
-  console.log(`Size %s bytes`, chalk.blue(size));
-  console.log(`Version is available on %s`, chalk.blue(versionUrl));
-  console.log(`Subdomain is available on %s`, chalk.green(subdomainUrl));
+  console.log(`Pinned %s`, kleur.blue(`${pinned}`));
+  console.log(`Size %s bytes`, kleur.blue(size));
+  console.log(`Version is available on %s`, kleur.blue(versionUrl));
+  console.log(`Subdomain is available on %s`, kleur.green(subdomainUrl));
 }

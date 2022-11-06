@@ -28,13 +28,13 @@ const config: UserConfig = {
   },
   build: {
     // warn on chunks above 1MB
-    // chunkSizeWarningLimit: 1024,
-    // modulePreload: {
-    // polyfill: true
-    // }
-    // rollupOptions: {
-    // 	plugins: []
-    // }
+    chunkSizeWarningLimit: 1024,
+    modulePreload: {
+      polyfill: true
+    },
+    rollupOptions: {
+      plugins: []
+    }
   },
   server: {
     fs: {
@@ -51,6 +51,17 @@ const config: UserConfig = {
         }
       : true
   }
+  // // https://vitejs.dev/guide/build.html#public-base-path
+  // experimental: {
+  //   renderBuiltUrl: (filename: string, { hostType }: { hostType: 'js' | 'css' | 'html' }) => {
+  //     console.log({ filename, hostType });
+  //     if (hostType === 'js') {
+  //       return { runtime: `window.__toCdnUrl(${JSON.stringify(filename)})` };
+  //     } else {
+  //       return { relative: true };
+  //     }
+  //   }
+  // }
   // // this is only for prod build
   // ssr: {
   //   noExternal: true
@@ -58,6 +69,7 @@ const config: UserConfig = {
 };
 
 export default defineConfig(({ mode }) => {
+  let conf = config;
   // const { command, mode, ssrBuild } = opts;
   // if (command === 'serve') {
   // 	return {
@@ -69,8 +81,9 @@ export default defineConfig(({ mode }) => {
   // 	//   // build specific config
   // 	// }
   // }
+
   if (mode === 'production') {
-    return { ...config, logLevel: 'error' };
+    conf.logLevel = 'error';
   }
-  return config;
+  return conf;
 });

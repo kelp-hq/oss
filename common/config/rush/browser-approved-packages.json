@@ -275,6 +275,10 @@
       "allowedCategories": [ "libraries", "tools" ]
     },
     {
+      "name": "kleur",
+      "allowedCategories": [ "tools" ]
+    },
+    {
       "name": "mime-types",
       "allowedCategories": [ "production", "service" ]
     },
