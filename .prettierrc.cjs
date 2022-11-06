@@ -19,9 +19,9 @@ module.exports = {
   plugins: [
     './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-svelte',
     './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-packagejson'
-  ],
-  svelteSortOrder: 'options-styles-scripts-markup',
-  svelteStrictMode: true,
-  svelteAllowShorthand: false,
-  svelteIndentScriptAndStyle: false
+  ]
+  // svelteSortOrder: 'options-styles-scripts-markup',
+  // svelteStrictMode: true,
+  // svelteAllowShorthand: false,
+  // svelteIndentScriptAndStyle: false
 };

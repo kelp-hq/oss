@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { writable } from 'svelte/store';
 export interface IPasteStoreInterface {
   src: string;
@@ -9,7 +10,7 @@ export interface IPasteStoreInterface {
   width: number;
 }
 
-function PasteImageStoreFn() {
+function pasteImageStoreFn(): any {
   const defaultState: IPasteStoreInterface = {
     src: '',
     imageBuffer: new Uint8Array(),
@@ -31,4 +32,4 @@ function PasteImageStoreFn() {
 /**
  * Main store for this route
  */
-export const pasteImageStore = PasteImageStoreFn();
+export const pasteImageStore: any = pasteImageStoreFn();

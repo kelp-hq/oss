@@ -1,7 +1,7 @@
 <script>
-import SvelteSeo from 'svelte-seo';
+  import SvelteSeo from 'svelte-seo';
 
-import MyDomains from './parts/MyDomains.svelte';
+  import MyDomains from './parts/MyDomains.svelte';
 </script>
 
 <SvelteSeo

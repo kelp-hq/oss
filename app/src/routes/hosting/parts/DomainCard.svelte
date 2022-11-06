@@ -1,54 +1,54 @@
 <script lang="ts">
-import { isEmpty, takeLast, take, isNil } from 'ramda';
-import type { ISubdomainDocument } from 'src/maculaApi';
+  import { isEmpty, isNil, take, takeLast } from 'ramda';
+  import type { ISubdomainDocument } from 'src/maculaApi';
 
-export let domain: ISubdomainDocument;
-let tippingEnabled = false;
-let saving = false;
+  export let domain: ISubdomainDocument;
+  let tippingEnabled = false;
+  let saving = false;
 
-function makeSubdomainLink(subdomain: string) {
-  return `https://${subdomain}.macula.link`;
-}
-
-function makeVersionLink(versionCid: string) {
-  return `https://${versionCid}.on.macula.link`;
-}
-
-/**
- * Truncate the value showing first X and last Y joined with the `...`
- * @param value -
- */
-function truncate(value: string): string | boolean {
-  if (isNil(value) || isEmpty(value)) {
-    return false;
+  function makeSubdomainLink(subdomain: string) {
+    return `https://${subdomain}.macula.link`;
   }
-  // take first 7
-  const start = take(7, value);
 
-  // and take last 7
-  const end = takeLast(7, value);
+  function makeVersionLink(versionCid: string) {
+    return `https://${versionCid}.on.macula.link`;
+  }
 
-  return `${start}...${end}`;
-}
+  /**
+   * Truncate the value showing first X and last Y joined with the `...`
+   * @param value -
+   */
+  function truncate(value: string): string | boolean {
+    if (isNil(value) || isEmpty(value)) {
+      return false;
+    }
+    // take first 7
+    const start = take(7, value);
 
-function toggleTipping() {
-  tippingEnabled = !tippingEnabled;
-  console.log('enable tipping', tippingEnabled);
-  saving = true;
-  setTimeout(() => {
-    saving = false;
-  }, 1000);
-}
+    // and take last 7
+    const end = takeLast(7, value);
+
+    return `${start}...${end}`;
+  }
+
+  function toggleTipping() {
+    tippingEnabled = !tippingEnabled;
+    console.log('enable tipping', tippingEnabled);
+    saving = true;
+    setTimeout(() => {
+      saving = false;
+    }, 1000);
+  }
 </script>
 
 <div class="card shadow">
   <div class="card-body">
     <span class="card-title">
-      <a rel="noreferrer" href="{makeSubdomainLink(domain.subdomain)}" class="link" target="_blank">
+      <a rel="noreferrer" href={makeSubdomainLink(domain.subdomain)} class="link" target="_blank">
         {makeSubdomainLink(domain.subdomain)}
       </a>
       <div class="tooltip" data-tip="Verified">
-        <div class="badge badge-success"></div>
+        <div class="badge badge-success" />
       </div>
     </span>
     <!-- TIPPING PART -->
@@ -59,16 +59,16 @@ function toggleTipping() {
           <input
             type="checkbox"
             class="toggle toggle-primary {saving && 'animate-pulse'}"
-            indeterminate="{saving}"
-            on:change="{toggleTipping}"
-            disabled="{saving}"
-            bind:checked="{tippingEnabled}"
+            indeterminate={saving}
+            on:change={toggleTipping}
+            disabled={saving}
+            bind:checked={tippingEnabled}
           />
         </div>
       </div>
     </label>
     <!-- TIPPING PART -->
-    <div class="divider"></div>
+    <div class="divider" />
     <!-- VERSIONS PART -->
     <div class="flex flex-col gap-2">
       <span class="text-lg">Latest versions:</span>
@@ -87,11 +87,11 @@ function toggleTipping() {
                 <td>
                   <div class="flex items-center space-x-3">
                     <div class="avatar">
-                      <div class="mask mask-circle w-12 h-12 bg-success"></div>
+                      <div class="mask mask-circle w-12 h-12 bg-success" />
                     </div>
                     <div>
                       <div class="font-bold">
-                        <a rel="noreferrer" href="{makeVersionLink(cid)}" target="_blank" class="">
+                        <a rel="noreferrer" href={makeVersionLink(cid)} target="_blank" class="">
                           {truncate(cid)}
                         </a>
                       </div>

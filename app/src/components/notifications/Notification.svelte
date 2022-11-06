@@ -1,24 +1,21 @@
 <script lang="ts">
-import type { INotification } from './store';
-import Icon from 'svelte-awesome/components/Icon.svelte';
-import CloseIcon from 'svelte-awesome/icons/close';
+  import { fade } from 'svelte/transition';
+  import Icon from 'svelte-awesome/components/Icon.svelte';
+  import CloseIcon from 'svelte-awesome/icons/close';
 
-import { fade } from 'svelte/transition';
-import CircleSpinner from './CircleSpinner.svelte';
+  import CircleSpinner from './CircleSpinner.svelte';
+  import type { INotification } from './store';
 
-let classNames: string = '';
-export { classNames as class };
+  let classNames = '';
+  export { classNames as class };
 
-export let infoLevel: 'info' | 'success' | 'warning' | 'error' = 'info';
+  export let infoLevel: 'info' | 'success' | 'warning' | 'error' = 'info';
 
-export let data: INotification;
+  export let data: INotification;
 
-let disableButton: boolean = false;
+  let notificationsCss: string;
 
-let notificationsCss: string;
-
-$: notificationsCss = `alert-${infoLevel}`;
-$: disableButton = data.showSpinner;
+  $: notificationsCss = `alert-${infoLevel}`;
 </script>
 
 {#if infoLevel === 'info'}
@@ -30,8 +27,8 @@ $: disableButton = data.showSpinner;
       <span>{data.text}</span>
     </div>
     {#if !data.showSpinner}
-      <button on:click="{data.closeFn}">
-        <Icon data="{CloseIcon}" />
+      <button on:click={data.closeFn}>
+        <Icon data={CloseIcon} />
       </button>
     {/if}
   </div>
@@ -44,8 +41,8 @@ $: disableButton = data.showSpinner;
       <span>{data.text}</span>
     </div>
     {#if !data.showSpinner}
-      <button on:click="{data.closeFn}">
-        <Icon data="{CloseIcon}" />
+      <button on:click={data.closeFn}>
+        <Icon data={CloseIcon} />
       </button>
     {/if}
   </div>
@@ -61,8 +58,8 @@ $: disableButton = data.showSpinner;
       <span>{data.text}</span>
     </div>
     {#if !data.showSpinner}
-      <button on:click="{data.closeFn}">
-        <Icon data="{CloseIcon}" />
+      <button on:click={data.closeFn}>
+        <Icon data={CloseIcon} />
       </button>
     {/if}
   </div>
@@ -78,8 +75,8 @@ $: disableButton = data.showSpinner;
       <span>{data.text}</span>
     </div>
     {#if !data.showSpinner}
-      <button on:click="{data.closeFn}">
-        <Icon data="{CloseIcon}" />
+      <button on:click={data.closeFn}>
+        <Icon data={CloseIcon} />
       </button>
     {/if}
   </div>

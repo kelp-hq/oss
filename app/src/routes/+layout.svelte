@@ -1,17 +1,18 @@
 <script lang="ts">
-import '../app.css';
+  import '../app.css';
 
-import Notifications from '$lib/notifications/Notifications.svelte';
-import { onMount } from 'svelte';
+  import { initSentry } from 'src/sentry';
+  import { onMount } from 'svelte';
 
-import Navbar from '../components/base/Navbar.svelte';
-import { initSentry } from 'src/sentry';
+  import Notifications from '$lib/notifications/Notifications.svelte';
 
-initSentry();
+  import Navbar from '../components/base/Navbar.svelte';
 
-onMount(() => {
-  console.log('mount layout');
-});
+  initSentry();
+
+  onMount(() => {
+    console.log('mount layout');
+  });
 </script>
 
 <Notifications />

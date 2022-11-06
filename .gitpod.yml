@@ -5,7 +5,7 @@ tasks:
       pnpm env use --global 18.4.0
       node $GITPOD_REPO_ROOT/common/scripts/install-run-rush.js update
       node $GITPOD_REPO_ROOT/common/scripts/install-run-rush.js build
-      exit
+    command: exit
   - name: Start stuff
     command: bash $GITPOD_REPO_ROOT/.devops/gitpod/start-cmd.sh && exit
 

@@ -1,38 +1,39 @@
 <script lang="ts">
-import { polkadotAccountsStore } from '$lib/polkadot/store';
-import { isEmpty } from 'ramda';
-import { appStore } from 'src/appStore';
-import { type ISubdomainDocument, myDomainsApi } from 'src/maculaApi';
-import { onMount } from 'svelte';
+  import { isEmpty } from 'ramda';
+  import { appStore } from 'src/appStore';
+  import { type ISubdomainDocument, myDomainsApi } from 'src/maculaApi';
+  import { onMount } from 'svelte';
 
-import NoDomains from '../components/NoSubdomains.svelte';
-import DomainCard from './DomainCard.svelte';
+  import { polkadotAccountsStore } from '$lib/polkadot/store';
 
-let domains: ISubdomainDocument[] = [];
+  import NoDomains from '../components/NoSubdomains.svelte';
+  import DomainCard from './DomainCard.svelte';
 
-let loadingData = true;
+  let domains: ISubdomainDocument[] = [];
 
-async function getData() {
-  const res = await myDomainsApi();
-  domains = res.data;
-  loadingData = false;
-}
+  let loadingData = true;
 
-onMount(async () => {
-  console.log('mount Mydomains');
-  if ($polkadotAccountsStore.selectedAccount) {
-    // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
-    await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
-    await getData();
-  } else {
+  async function getData() {
+    const res = await myDomainsApi();
+    domains = res.data;
     loadingData = false;
   }
-});
-$: {
-  if ($appStore.refetchData) {
-    getData();
+
+  onMount(async () => {
+    console.log('mount Mydomains');
+    if ($polkadotAccountsStore.selectedAccount) {
+      // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
+      await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
+      await getData();
+    } else {
+      loadingData = false;
+    }
+  });
+  $: {
+    if ($appStore.refetchData) {
+      getData();
+    }
   }
-}
 </script>
 
 {#if loadingData}
@@ -42,7 +43,7 @@ $: {
 {:else}
   <div class="flex flex-col">
     {#each domains as domain}
-      <DomainCard domain="{domain}" />
+      <DomainCard {domain} />
     {/each}
   </div>
 {/if}

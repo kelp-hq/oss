@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
 import { isEmpty, isNil } from 'ramda';
 import { writable } from 'svelte/store';

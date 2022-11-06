@@ -25,7 +25,6 @@ export interface IStoreReturn extends Writable<ISubstrateAccountsStorage> {
 
 /**
  *
- * @param tokenGenerationFunction -
  * @returns
  */
 async function polkadotAccountsStoreFn(): Promise<IStoreReturn> {

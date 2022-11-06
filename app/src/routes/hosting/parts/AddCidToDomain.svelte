@@ -1,84 +1,84 @@
 <script lang="ts">
-import { polkadotAccountsStore, signViaExtension } from '$lib/polkadot/store';
-import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
-import axios from 'axios';
+  import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
+  import axios from 'axios';
 
-import { browser } from '$app/environment';
+  import { browser } from '$app/environment';
+  import { polkadotAccountsStore, signViaExtension } from '$lib/polkadot/store';
 
-const hostingAPIUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io/hosting/api';
+  const hostingAPIUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io/hosting/api';
 
-let websiteCid = 'bafybeigeurtsjr7scmhufyy5zxxgneexmow7rswfoucofyarhxtt6em4ba';
-let sendingRequest = false;
-let token: string[];
-let encodedToken: string;
-let encodedPayload: string;
-let sig: string;
-let errors: any;
+  let websiteCid = 'bafybeigeurtsjr7scmhufyy5zxxgneexmow7rswfoucofyarhxtt6em4ba';
+  let sendingRequest = false;
+  let token: string[];
+  let encodedToken: string;
+  let encodedPayload: string;
+  let sig: string;
+  let errors: any;
 
-async function makeToken() {
-  const tokenPayload: ISubstratePayload = {
-    account: $polkadotAccountsStore.selectedAccount?.address as string,
-    network: 'anagolay',
-    prefix: 42
-    // exp: 86400000
-  };
+  async function makeToken() {
+    const tokenPayload: ISubstratePayload = {
+      account: $polkadotAccountsStore.selectedAccount?.address as string,
+      network: 'anagolay',
+      prefix: 42
+      // exp: 86400000
+    };
 
-  const t = new SubstrateStrategy(tokenPayload);
-  encodedPayload = await t.encode();
-  sig = await signViaExtension($polkadotAccountsStore.selectedAccount?.address as string, encodedPayload);
+    const t = new SubstrateStrategy(tokenPayload);
+    encodedPayload = await t.encode();
+    sig = await signViaExtension($polkadotAccountsStore.selectedAccount?.address as string, encodedPayload);
 
-  encodedToken = await t.make(sig);
+    encodedToken = await t.make(sig);
 
-  token = decode(encodedToken);
-  console.log('token valid?', await t.validate(encodedToken));
-  window.localStorage.setItem('waat', encodedToken);
-  return token;
-}
-
-async function addCid() {
-  let tokenFromStorage;
-  if (browser) {
-    tokenFromStorage = window.localStorage.getItem('waat') || makeToken();
-  } else {
-    tokenFromStorage = makeToken();
+    token = decode(encodedToken);
+    console.log('token valid?', await t.validate(encodedToken));
+    window.localStorage.setItem('waat', encodedToken);
+    return token;
   }
 
-  sendingRequest = true;
+  async function addCid() {
+    let tokenFromStorage;
+    if (browser) {
+      tokenFromStorage = window.localStorage.getItem('waat') || makeToken();
+    } else {
+      tokenFromStorage = makeToken();
+    }
 
-  try {
-    // just a smoke test before we call api
+    sendingRequest = true;
 
-    const res = await axios.post(
-      `${hostingAPIUrl}/addCid`,
-      {
-        ipfsCid: websiteCid
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${tokenFromStorage}`
+    try {
+      // just a smoke test before we call api
+
+      const res = await axios.post(
+        `${hostingAPIUrl}/addCid`,
+        {
+          ipfsCid: websiteCid
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenFromStorage}`
+          }
         }
-      }
-    );
-    console.log(res);
-    sendingRequest = false;
-  } catch (error) {
-    console.log(error);
-    errors = [(error as any).message, (error as any).response.data];
+      );
+      console.log(res);
+      sendingRequest = false;
+    } catch (error) {
+      console.log(error);
+      errors = [(error as any).message, (error as any).response.data];
+    }
   }
-}
 
-function decode(token: string) {
-  return token.split('.').map((t) => atob(t));
-}
+  function decode(token: string) {
+    return token.split('.').map((t) => atob(t));
+  }
 </script>
 
 <div class="m-4 w-96 bg-primary text-primary-content shadow-xl rounded-md p-2">
   <h2 class="text-xl p-4">Add Cid to domain</h2>
   <div class="form-control p-4">
     <div class="input-group ">
-      <input type="text" bind:value="{websiteCid}" placeholder="CID" class="input w-full" />
+      <input type="text" bind:value={websiteCid} placeholder="CID" class="input w-full" />
       <button
-        on:click="{addCid}"
+        on:click={addCid}
         class="btn  w-24 {sendingRequest ? 'loading' : ''} {websiteCid ? '' : 'btn-disabled'}">ADD</button
       >
     </div>
