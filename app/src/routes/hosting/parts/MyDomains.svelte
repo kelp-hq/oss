@@ -1,7 +1,7 @@
 <script lang="ts">
   import { isEmpty } from 'ramda';
   import { appStore } from 'src/appStore';
-  import { type ISubdomainDocument, myDomainsApi } from 'src/maculaApi';
+  import type { ISubdomainDocument } from 'src/maculaApi';
   import { onMount } from 'svelte';
 
   import { polkadotAccountsStore } from '$lib/polkadot/store';
@@ -14,13 +14,14 @@
   let loadingData = true;
 
   async function getData() {
-    const res = await myDomainsApi();
+    const res = await $appStore.maculaApi.hostingMyDomains();
     domains = res.data;
     loadingData = false;
   }
 
   onMount(async () => {
     console.log('mount Mydomains');
+
     if ($polkadotAccountsStore.selectedAccount) {
       // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
       await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);

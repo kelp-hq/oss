@@ -94,9 +94,6 @@
   }
 </script>
 
-/** eslint-disable @typescript-eslint/no-explicit-any */ /** eslint-disable @typescript-eslint/no-explicit-any
-*/ /** eslint-disable @typescript-eslint/no-explicit-any */ /** eslint-disable
-@typescript-eslint/no-unsafe-assignment */ /** eslint-disable @typescript-eslint/no-unsafe-assignment */
 <!-- <div class="dropdown dropdown-end dropdown-open {classNames}"> -->
 <div class="dropdown dropdown-end {classNames}">
   <div class="flex items-center gap-2">

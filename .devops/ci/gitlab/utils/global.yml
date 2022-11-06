@@ -67,7 +67,7 @@
 .rush:retest:
   script:
     - echo 'Re-testing ...'
-    - node common/scripts/install-run-rush.js retest --verbose
+    - node common/scripts/install-run-rush.js retest
 
 .rush:build:
   script:

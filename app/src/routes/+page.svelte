@@ -1,3 +1,9 @@
+<script>
+  import SvelteSeo from 'svelte-seo';
+</script>
+
+<SvelteSeo title="Image processing on the fly and IPFS on steroids!" description="" />
+
 <div class="hero min-h-[90vh]">
   <div class="hero-content text-center">
     <div class="max-w-md">

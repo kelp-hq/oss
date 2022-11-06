@@ -3,12 +3,13 @@ import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-ap
 import { isEmpty, isNil } from 'ramda';
 import { writable } from 'svelte/store';
 
-import { browser } from '$app/environment';
+import { browser, dev } from '$app/environment';
 import { signViaExtension } from '$lib/polkadot/store';
 
-import { configureTokenInterceptor, removeInterceptor } from './maculaApi';
+import { type MaculaApi, baseUrl as baseMaculaApiUrl, initMaculaApi } from './maculaApi';
 
 interface IDefaultState {
+  maculaApi: MaculaApi;
   tokens: Record<string, string>;
   currentToken: string;
   currentTokenHeader: Record<string, string>;
@@ -43,13 +44,19 @@ export async function makeToken(account: string) {
 
 function appStoreFn() {
   let tokens: Record<string, string> = {};
+  let maculaApiUrl: string = baseMaculaApiUrl;
 
   if (browser) {
     const t = window.localStorage.getItem('waat');
     tokens = !isNil(t) ? JSON.parse(t) : {};
+    if (dev) {
+      maculaApiUrl = window.location.origin.replace('7777', '3000');
+    }
   }
+  const maculaApi = initMaculaApi(maculaApiUrl);
 
   const defaultState: IDefaultState = {
+    maculaApi,
     tokens,
     currentTokenHeader: {},
     currentToken: '',
@@ -81,7 +88,7 @@ function appStoreFn() {
         encodedToken = selectedTokenFromLocalStorage;
       }
 
-      const interceptorId = await configureTokenInterceptor(encodedToken);
+      const interceptorId = await defaultState.maculaApi.configureTokenInterceptor(encodedToken);
 
       update((oldState) => {
         const tokens = { ...oldState.tokens, [selectedAccount]: encodedToken };
@@ -99,7 +106,7 @@ function appStoreFn() {
         };
         if (refetch) {
           // this is OLD STATE
-          removeInterceptor(oldState.interceptorId);
+          defaultState.maculaApi.removeInterceptor(oldState.interceptorId);
         }
 
         return newState;
