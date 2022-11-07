@@ -333,9 +333,10 @@ tmux_conf_copy_to_os_clipboard=true
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
 
-bind n swap-pane -D # swap current pane with the next one
-bind p swap-pane -U # swap current pane with the previous one
-
+# unbind C-h
+# unbind C-l
+# bind -r p previous-window # select previous window
+# bind -r n next-window     # select next window
 # increase history size
 #set -g history-limit 10000
 

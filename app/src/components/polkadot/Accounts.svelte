@@ -43,6 +43,7 @@
     // set to the storage
     const accounts = await web3Accounts();
     $polkadotAccountsStore.injectedAccounts = accounts;
+    console.debug('accounts', accounts);
 
     if (isEmpty(accounts)) {
       notificationsStore.addNew({

@@ -6,12 +6,10 @@
   import SvelteSeo from 'svelte-seo/';
 
   import { polkadotAccountsStore } from '$lib/polkadot/store';
+  import { tokenReady, waatStore } from '$lib/waat/store';
 
-  import type { PageData } from './$types';
   import NoSubdomains from './components/NoSubdomains.svelte';
   import DomainCard from './parts/DomainCard.svelte';
-
-  export let data: PageData;
 
   let domains: ISubdomainDocument[] = [];
 
@@ -26,16 +24,15 @@
   onMount(async () => {
     console.log('mount Mydomains');
 
-    if ($polkadotAccountsStore.selectedAccount) {
+    if ($tokenReady) {
       // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
-      await appStore.generateToken($polkadotAccountsStore.selectedAccount.address, false);
+      await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
       await getData();
     } else {
       loadingData = false;
     }
   });
   $: {
-    console.log('data', data);
     if ($appStore.refetchData) {
       getData();
     }

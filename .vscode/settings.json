@@ -11,9 +11,9 @@
     "source.fixAll": true
   },
   "editor.formatOnSave": true,
-  // "[svelte]": {
-  //   "editor.defaultFormatter": "svelte.svelte-vscode"
-  // },
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

@@ -24,23 +24,27 @@ export async function expressV4AuthMiddleware(
   if (isNil(authorization)) {
     next('WAAT: Authorization header is empty. That cannot be.');
   } else {
-    // ignore the Bearer
-    const [, token] = map(trim, split(' ', authorization));
-    const {
-      parsed: { strategy }
-    } = await BaseStrategy.parseToken(token);
+    try {
+      // ignore the Bearer
+      const [, token] = map(trim, split(' ', authorization));
+      const {
+        parsed: { strategy }
+      } = await BaseStrategy.parseToken(token);
 
-    switch (strategy) {
-      case 'sub':
-        const t = new SubstrateStrategy();
-        const user = await t.validate(token);
-        req.user = { address: user.account };
-        break;
-      default:
-        console.log(`The strategy is not implemented {${strategy}}, continue with next middleware ...`);
+      switch (strategy) {
+        case 'sub':
+          const t = new SubstrateStrategy();
+          const user = await t.validate(token);
+          req.user = { address: user.account };
+          break;
+        default:
+          console.log(`The strategy is not implemented {${strategy}}, continue with next middleware ...`);
+      }
+
+      next();
+    } catch (error) {
+      next(error);
     }
-
-    next();
   }
 }
 

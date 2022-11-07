@@ -36,6 +36,14 @@ export interface ISubdomainDocument {
 
 export class MaculaApi {
   private _api: AxiosInstance;
+  private _interceptorId: number;
+
+  public get interceptorId(): number {
+    return this._interceptorId;
+  }
+  public set interceptorId(value: number) {
+    this._interceptorId = value;
+  }
   connectedUrl: string;
 
   public get api(): AxiosInstance {
@@ -63,14 +71,14 @@ export class MaculaApi {
     throw new Error(error as any);
   }
 
-  public removeInterceptor(removeId: number | undefined) {
-    if (!isNil(removeId)) {
-      this.api.interceptors.request.eject(removeId);
+  public removeInterceptor() {
+    if (!isNil(this.interceptorId)) {
+      this.api.interceptors.request.eject(this.interceptorId);
     }
   }
 
-  public async configureTokenInterceptor(token: string): Promise<number> {
-    const interceptorID = this.api.interceptors.request.use(
+  public async configureTokenInterceptor(token: string): Promise<void> {
+    this.interceptorId = this.api.interceptors.request.use(
       (config) => {
         config.headers = {
           ...config.headers,
@@ -84,7 +92,6 @@ export class MaculaApi {
         return Promise.reject(error);
       }
     );
-    return interceptorID;
   }
 
   /**

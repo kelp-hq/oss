@@ -2,7 +2,6 @@
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import type { HexString } from '@polkadot/util/types';
 import debugPkg, { type Debugger } from 'debug';
-import { isNil } from 'ramda';
 import { type Writable, get, writable } from 'svelte/store';
 
 import { browser } from '$app/environment';
@@ -63,9 +62,9 @@ async function polkadotAccountsStoreFn(): Promise<IStoreReturn> {
 
       const state = get(polkadotAccountsStore);
 
-      if (!isNil(state.tokenGenerationFunction)) {
-        await state.tokenGenerationFunction(account.address);
-      }
+      // if (!isNil(state.tokenGenerationFunction)) {
+      //   await state.tokenGenerationFunction(account.address);
+      // }
     }
   };
 }
