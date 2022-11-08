@@ -81,8 +81,8 @@ temp
 
 # Rush files
 common/changes/
-common/scripts/
-common/config/
+# common/scripts/
+# common/config/
 CHANGELOG.*
 
 # Package manager files
@@ -97,5 +97,11 @@ lib
 .pnpm-store
 
 # do not format the md in docs, breaks the build
-docs/md/*.md
+*.md
 .macula
+binaries/
+tsconfig.tsbuildinfo
+**/.svelte-kit/
+build/
+lib-*/
+lib/

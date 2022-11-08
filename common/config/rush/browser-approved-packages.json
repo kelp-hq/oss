@@ -4,443 +4,443 @@
   "packages": [
     {
       "name": "@anagolay/create_cid_from_buffer",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "@anagolay/utils",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "@kelp_digital/ipfs-api-client",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "website"]
     },
     {
       "name": "@kelp_digital/svelte-ui-components",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@kelp_digital/sveltekit-adapter-macula",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@kelp_digital/web3-api-auth",
-      "allowedCategories": [ "production", "website" ]
+      "allowedCategories": ["production", "website"]
     },
     {
       "name": "@kelp_digital/web3-api-auth-token",
-      "allowedCategories": [ "production", "service", "website" ]
+      "allowedCategories": ["production", "service", "website"]
     },
     {
       "name": "@microsoft/api-extractor",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "@playwright/test",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@polkadot/api",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/api-augment",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/extension-dapp",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/extension-inject",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/keyring",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "@polkadot/types",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/types-codec",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@polkadot/util",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "@polkadot/util-crypto",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "@rushstack/eslint-config",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "@rushstack/heft",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "website"]
     },
     {
       "name": "@rushstack/heft-jest-plugin",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "@rushstack/heft-node-rig",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "website"]
     },
     {
       "name": "@rushstack/heft-webpack5-plugin",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "@sentry/browser",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@sentry/node",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "@sentry/tracing",
-      "allowedCategories": [ "production", "service", "tools", "website" ]
+      "allowedCategories": ["production", "service", "tools", "website"]
     },
     {
       "name": "@sentry/types",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "@silvia-odwyer/photon",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@sveltejs/adapter-static",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@sveltejs/kit",
-      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "tools", "uiPackage", "website"]
     },
     {
       "name": "@sveltejs/package",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@sveltejs/vite-plugin-svelte",
-      "allowedCategories": [ "uiPackage" ]
+      "allowedCategories": ["uiPackage"]
     },
     {
       "name": "@tailwindcss/forms",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@tailwindcss/typography",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "@tsconfig/svelte",
-      "allowedCategories": [ "uiPackage" ]
+      "allowedCategories": ["uiPackage"]
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "@typescript-eslint/parser",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "autoprefixer",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "axios",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "website"]
     },
     {
       "name": "byte-size",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "chalk",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     },
     {
       "name": "clui",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     },
     {
       "name": "commander",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     },
     {
       "name": "compression",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "cors",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "cross-fetch",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": ["libraries", "tools", "website"]
     },
     {
       "name": "daisyui",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "debug",
-      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "tools", "uiPackage", "website"]
     },
     {
       "name": "env-cmd",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "esbuild",
-      "allowedCategories": [ "uiPackage" ]
+      "allowedCategories": ["uiPackage"]
     },
     {
       "name": "eslint",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "eslint-config-prettier",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "eslint-plugin-simple-import-sort",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "eslint-plugin-svelte3",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "eslint-plugin-unused-imports",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "exif-library",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "exifreader",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "express",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "fast-printf",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "file-type",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "helmet",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "http-proxy",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "identicon.js",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "inquirer",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     },
     {
       "name": "ipfs-core-types",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "ipfs-http-client",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "it-all",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "it-glob",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "kleur",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     },
     {
       "name": "mime-types",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "mongodb",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "multiaddr",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "multiformats",
-      "allowedCategories": [ "libraries", "tools", "website" ]
+      "allowedCategories": ["libraries", "tools", "website"]
     },
     {
       "name": "nanoid",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "node-fetch",
-      "allowedCategories": [ "production", "service", "tools", "website" ]
+      "allowedCategories": ["production", "service", "tools", "website"]
     },
     {
       "name": "piexifjs",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "pino",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "pino-pretty",
-      "allowedCategories": [ "libraries", "production", "service", "tools" ]
+      "allowedCategories": ["libraries", "production", "service", "tools"]
     },
     {
       "name": "pkg",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "postcss",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "prettier",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "website"]
     },
     {
       "name": "prettier-plugin-svelte",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "ramda",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "random-word-slugs",
-      "allowedCategories": [ "service" ]
+      "allowedCategories": ["service"]
     },
     {
       "name": "random-words",
-      "allowedCategories": [ "service" ]
+      "allowedCategories": ["service"]
     },
     {
       "name": "redis",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "sharp",
-      "allowedCategories": [ "production", "service" ]
+      "allowedCategories": ["production", "service"]
     },
     {
       "name": "slug",
-      "allowedCategories": [ "production", "service", "website" ]
+      "allowedCategories": ["production", "service", "website"]
     },
     {
       "name": "svelte",
-      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "tools", "uiPackage", "website"]
     },
     {
       "name": "svelte-awesome",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "svelte-check",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "svelte-french-toast",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "svelte-preprocess",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "svelte-seo",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "tailwindcss",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "theme-change",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "ts-loader",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "tslib",
-      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "tools", "uiPackage", "website"]
     },
     {
       "name": "typescript",
-      "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "production", "service", "tools", "uiPackage", "website"]
     },
     {
       "name": "undici",
-      "allowedCategories": [ "production", "service", "tools" ]
+      "allowedCategories": ["production", "service", "tools"]
     },
     {
       "name": "vite",
-      "allowedCategories": [ "libraries", "tools", "uiPackage", "website" ]
+      "allowedCategories": ["libraries", "tools", "uiPackage", "website"]
     },
     {
       "name": "vite-plugin-externals",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "vite-plugin-iso-import",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "vite-plugin-top-level-await",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "vite-plugin-wasm",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": ["uiPackage", "website"]
     },
     {
       "name": "webpack",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "webpack-cli",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "webpack-node-externals",
-      "allowedCategories": [ "libraries", "tools" ]
+      "allowedCategories": ["libraries", "tools"]
     },
     {
       "name": "wf_cidv1_from_array",
-      "allowedCategories": [ "website" ]
+      "allowedCategories": ["website"]
     },
     {
       "name": "yaml",
-      "allowedCategories": [ "tools" ]
+      "allowedCategories": ["tools"]
     }
   ]
 }

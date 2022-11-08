@@ -16,9 +16,7 @@
    * If the main project should include other unrelated Rush projects, add it to the "projectSettings" section,
    * and then specify those projects in the "additionalProjectsToInclude" list.
    */
-  "deploymentProjectNames": [
-    "@kelp_digital/macula"
-  ],
+  "deploymentProjectNames": ["@kelp_digital/macula"],
   /**
    * When deploying a local Rush project, the package.json "devDependencies" are normally excluded.
    * If you want to include them, set "includeDevDependencies" to true.
