@@ -83,3 +83,4 @@ deployment/
 .macula
 lib-commonjs/
 .svelte-kit
+*.cjs
