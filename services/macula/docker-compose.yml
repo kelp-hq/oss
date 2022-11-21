@@ -52,7 +52,7 @@ services:
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
 
   ipfs:
-    image: ipfs/kubo:latest
+    image: ipfs/kubo:master-2022-09-19-32e9a69
     restart: unless-stopped
     networks:
       - macula
@@ -74,7 +74,7 @@ services:
       - ipns_fuse:/ipns
     command: daemon --enable-namesys-pubsub
   redis:
-    image: docker.io/redis:alpine
+    image: redislabs/redismod:latest
     networks:
       - macula
     command: redis-server
@@ -91,7 +91,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=123456
-      # - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     volumes:
       - mongodb_data:/data/db
     ports:
