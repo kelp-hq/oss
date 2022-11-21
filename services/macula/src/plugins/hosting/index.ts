@@ -156,7 +156,6 @@ async function retrieveFilesFromIpfs(req: Request, res: Response): Promise<void>
         responseType: 'arraybuffer'
       });
 
-      // const finalHeaders = mergeRight(dissoc('x-ipfs-roots', headers), allHeaders);
       const lastModificationDate = await findLastModificationDateForHosting(req.hostingCtx.baseCid);
 
       const finalHeaders = returnCorrectHeaders(
@@ -243,7 +242,7 @@ async function initForIpfsUrl(req: Request, res: Response, next: NextFunction): 
     baseCid: cid,
     currentRoute,
     /**
-     * this is in the format `/CID/feature/fetures-a/` or `/CID/_app/immutable/some-javascript.js`. This is added to the gateway
+     * this is in the format `/CID/feature/features-a/` or `/CID/_app/immutable/some-javascript.js`. This is added to the gateway
      */
     ipfsItemPath
   };
@@ -290,7 +289,7 @@ async function initForSubdomainUrl(req: Request, res: Response, next: NextFuncti
 }
 
 /**
- * this is the endpoint that serves the CID.on.kelp.digital
+ * this is the endpoint that serves the CID.on.macula.link
  */
 hostingRouter
   .route(`${basePath}/withIpfs/*`)
@@ -301,6 +300,9 @@ hostingRouter
     await retrieveFilesFromIpfs(req, res);
   });
 
+/**
+ * this is the endpoint that serves the `anagolay|$SUBDOMAIN.macula.link`
+ */
 hostingRouter
   .route(`${basePath}/withSubdomain/:subdomain/*`)
   .all(initForSubdomainUrl)
@@ -315,197 +317,6 @@ hostingRouter
     await retrieveFilesFromIpfs(req, res);
     // res.set(headers).send(data);
   });
-
-// /**
-//  * Add the CID and maybe subdomain to the macula website storage.
-//  */
-// hostingRouter
-//   .route(`${basePath}/api/addSubdomain`)
-//   .all(validateBodyForAddApi)
-//   // .all(apiKeyMiddleware)
-//   .all(expressV4AuthMiddleware)
-//   .post(async (req: Request<never, never, { subdomain: string; ipfsCid: string }>, res: Response) => {
-//     const tx = startTransaction({
-//       name: 'Register IPFS cid as a wewbsite, fetch the macula.json'
-//     });
-
-//     try {
-//       const db = await getDB();
-//       const { subdomain, ipfsCid } = req.body;
-
-//       const websiteRedisKey = createCacheKey(ipfsCid);
-
-//       // if the key is not found it will throw error, so we catch it and then get the macula.json and store it
-//       const subdomainInDb = await findOneSubdomain(subdomain);
-//       const cidInDb = await findOneWebsiteByCid(ipfsCid);
-
-//       if (isNil(subdomainInDb) || isEmpty(subdomainInDb)) {
-//         const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
-
-//         log.trace('checking for macula.json %s', fullPath);
-//         const maculaRes: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
-//         log.trace('found it');
-
-//         // we are going to pin it first because it takes AGES!!!
-//         // @TODO this must be done via workers
-//         // https://docs.ipfs.tech/reference/kubo/rpc/#api-v0-pin-add
-//         const pinUrl = ipfsApiURL + `/api/v0/pin/add?arg=${ipfsCid}&recursive=true`;
-//         log.trace('pinning to the ipfs %s', pinUrl);
-
-//         await axiosApiProxyInstance({
-//           method: 'POST',
-//           url: pinUrl
-//         });
-
-//         await redisClient.json.set(websiteRedisKey, '.', maculaRes.data as any);
-
-//         if (isNil(cidInDb)) {
-//           const hostingWithCid: IHostingRecordDocument = {
-//             ownerAccount: maculaRes.data.account,
-//             ipfsCid,
-//             config: maculaRes.data,
-//             createdAt: Date.now(),
-//             pinned: true
-//           };
-
-//           await insertOneToHosting(hostingWithCid);
-//         }
-
-//         const subdomainDocument: ISubdomainDocument = {
-//           subdomain,
-//           cids: [
-//             {
-//               cid: ipfsCid,
-//               contentSize: 0, // we need to find a way to have this number, for stat purposes
-//               createdAt: Date.now()
-//             }
-//           ]
-//         };
-//         await db.collection(collectionSubdomains).insertOne(subdomainDocument);
-
-//         // query the parts of json
-//         // const val = await redisClient.json.get(websiteRedisKey, {
-//         //   path: '.account'
-//         // });
-
-//         tx.finish();
-//         res.status(201).json({
-//           success: true
-//         });
-//       } else {
-//         // we have a record
-//         res.status(501).send('not implemented, record exists');
-//       }
-//     } catch (error) {
-//       if (error.isAxiosError) {
-//         const e = error as AxiosError;
-//         const message = e.message;
-//         const status = e.response?.status as number;
-//         console.error('Request failed', message, req.url);
-
-//         captureException(error);
-//         tx.finish();
-
-//         res.status(status).json();
-//       } else {
-//         captureException(error);
-//         console.error(error);
-//         tx.finish();
-
-//         res.status(500).send({ message: error.message, traceId: tx.traceId });
-//       }
-//     }
-//   });
-
-// export interface IWebsiteAddCidBody {
-//   ipfsCid: string;
-// }
-// /**
-//  * Add the CID to the macula website storage. this will make hosting available
-//  * only for the CID rutes like this : `https://CID.on.macula.link`
-//  */
-// hostingRouter
-//   .route(`${basePath}/api/addCid`)
-//   .all(validateBodyForAddApi)
-//   // .all(apiKeyMiddleware)
-//   .all(expressV4AuthMiddleware)
-//   .post(async (req: Request<never, never, IWebsiteAddCidBody>, res: Response) => {
-//     const tx = startTransaction({
-//       name: 'Register IPFS cid as a website',
-//       description: 'store the cid to the DB with the macula.json'
-//     });
-
-//     try {
-//       const { ipfsCid } = req.body;
-//       let statusCode = 200;
-
-//       const websiteRedisKey = createCacheKey(ipfsCid);
-
-//       // this is set only in one scenario.
-//       // the record is saved in the DB first then set in the cache
-//       // this also prevents the api to hit the db
-//       const cachedResult = (await redisClient.json.get(websiteRedisKey)) as any;
-//       if (!isNil(cachedResult)) {
-//         res.status(statusCode).json({
-//           success: true
-//         });
-//       } else {
-//         const mongoModel = await findOneWebsiteByCid(ipfsCid);
-
-//         if (isNil(mongoModel) || isEmpty(mongoModel)) {
-//           const fullPath = `${ipfsGateway}/ipfs/${ipfsCid}/macula.json`;
-
-//           log.trace('checking for macula.json %s', fullPath);
-//           const res: AxiosResponse<IMaculaConfig> = await axiosHostingInstance.get(fullPath);
-//           log.trace('found it');
-
-//           await insertOneToHosting({
-//             // ownerAccount: res.data.account,
-//             ownerAccount: req.user.address,
-//             ipfsCid,
-//             config: res.data,
-//             createdAt: Date.now(),
-//             pinned: false
-//           });
-
-//           // set the cache
-//           await redisClient.json.set(websiteRedisKey, '.', res.data as any);
-
-//           // query the parts of json
-//           // const val = await redisClient.json.get(websiteRedisKey, {
-//           //   path: '.account'
-//           // });
-
-//           statusCode = 201;
-//         }
-
-//         tx.finish();
-//         res.status(statusCode).json({
-//           success: true
-//         });
-//       }
-//     } catch (error) {
-//       if (error.isAxiosError) {
-//         const e = error as AxiosError;
-//         const message = e.message;
-//         const status = e.response?.status as number;
-//         console.error('Request failed', message, req.url);
-
-//         captureException(error);
-//         tx.finish();
-
-//         res.status(status).json({
-//           error: true,
-//           message: 'Cannot find the CID on IPFS node'
-//         });
-//       } else {
-//         captureException(error);
-//         tx.finish();
-
-//         res.status(500).send({ message: error.message, traceId: tx.traceId });
-//       }
-//     }
-//   });
 
 hostingRouter
   .route(`${basePath}/api/randomWords`)

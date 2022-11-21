@@ -10,6 +10,7 @@ link {
 
 # reverse_proxy 127.0.0.1:3000
 
+
 macula.link {
 	# respond / "Hi, thanks for stopping by. Please leave :)"
 	#  URI will always add a last / as a part of the redirect! very useful fr the /dir -> /dir/ redirects 

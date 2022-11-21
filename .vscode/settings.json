@@ -49,6 +49,7 @@
     "healthcheck",
     "IPFSHTTP",
     "kleur",
+    "middlewares",
     "pino",
     "polkadot",
     "rehosted",
