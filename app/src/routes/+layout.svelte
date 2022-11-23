@@ -1,10 +1,10 @@
 <script lang="ts">
   import '../app.css';
 
+  import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
   import { initSentry } from 'src/sentry';
   import { onMount } from 'svelte';
 
-  import Notifications from '$lib/notifications/Notifications.svelte';
   import WithWaat from '$lib/waat/WithWaat.svelte';
 
   import Navbar from '../components/base/Navbar.svelte';

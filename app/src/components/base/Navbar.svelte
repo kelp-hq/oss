@@ -3,7 +3,6 @@
   import { appStore } from 'src/appStore';
 
   import Link from './Link.svelte';
-  import ThemeChange from './ThemeChange.svelte';
 </script>
 
 <div class="navbar shadow">
@@ -21,7 +20,7 @@
     <ul class="menu menu-horizontal p-0">
       <li><Link href="/docs">Docs</Link></li>
     </ul>
-    <ThemeChange />
+    <!-- <ThemeChange /> -->
     <PolkadotAccounts tokenGenerationFunction={appStore.generateToken} />
   </div>
 </div>

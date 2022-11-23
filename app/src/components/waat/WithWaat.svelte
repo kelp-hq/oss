@@ -1,8 +1,7 @@
 <script lang="ts">
+  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { isNil } from 'ramda';
   import { onMount } from 'svelte';
-
-  import { polkadotAccountsStore } from '$lib/polkadot/store';
 
   let modalOpened: boolean = false;
 

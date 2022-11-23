@@ -5,7 +5,7 @@
   import { onMount } from 'svelte';
   import SvelteSeo from 'svelte-seo/';
 
-  import { polkadotAccountsStore } from '$lib/polkadot/store';
+  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { tokenReady, waatStore } from '$lib/waat/store';
 
   import NoSubdomains from './components/NoSubdomains.svelte';

@@ -13,6 +13,13 @@
      */
     "allowJs": true,
     "checkJs": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": {
+      "$lib": ["src/components"],
+      "$lib/*": ["src/components/*"],
+      "@kelp_digital/svelte-ui-components": ["src/components"],
+      "@kelp_digital/svelte-ui-components/*": ["src/components/*"]
+    }
   }
 }

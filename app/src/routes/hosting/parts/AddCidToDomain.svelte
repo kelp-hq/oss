@@ -3,7 +3,7 @@
   import axios from 'axios';
 
   import { browser } from '$app/environment';
-  import { polkadotAccountsStore, signViaExtension } from '$lib/polkadot/store';
+  import { polkadotAccountsStore, signViaExtension } from '@kelp_digital/svelte-ui-components/polkadot/store';
 
   const hostingAPIUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io/hosting/api';
 

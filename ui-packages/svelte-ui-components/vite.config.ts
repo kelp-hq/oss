@@ -4,8 +4,14 @@ import { type UserConfig, defineConfig } from 'vite';
 import topLevelAwait from 'vite-plugin-top-level-await';
 const config: UserConfig = {
   logLevel: 'info',
-  plugins: [topLevelAwait(), , sveltekit()],
-
+  plugins: [topLevelAwait(), sveltekit()],
+  resolve: {
+    alias: {
+      src: resolve('./src'),
+      '@kelp_digital/svelte-ui-components': resolve(__dirname, './src/components/'),
+      '@kelp_digital/svelte-ui-components/*': resolve(__dirname, './src/components/*')
+    }
+  },
   optimizeDeps: {
     esbuildOptions: {
       target: 'es2020',
