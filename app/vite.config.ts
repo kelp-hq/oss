@@ -12,9 +12,9 @@ const config: UserConfig = {
   plugins: [isoImport(), wasm(), topLevelAwait(), sveltekit()],
   resolve: {
     alias: {
-      src: resolve('./src')
-      // '@kelp_digital/svelte-ui-components': resolve(__dirname, '../ui-packages/svelte-ui-components/lib'),
-      // '@kelp_digital/svelte-ui-components/*': resolve(__dirname, '../ui-packages/svelte-ui-components/lib/*')
+      src: resolve('./src'),
+      '@kelp_digital/svelte-ui-components': resolve(__dirname, '../ui-packages/svelte-ui-components/lib'),
+      '@kelp_digital/svelte-ui-components/*': resolve(__dirname, '../ui-packages/svelte-ui-components/lib/*')
     }
   },
 

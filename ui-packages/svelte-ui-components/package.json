@@ -10,7 +10,7 @@
   },
   "svelte": "index.js",
   "scripts": {
-    "build:app": "vite build",
+    "build": "vite build",
     "build:package": "svelte-kit sync && svelte-package",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "NODE_ENV=development vite --port 7778 dev",
@@ -18,7 +18,7 @@
     "postinstall": "svelte-kit sync",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "preview": "vite preview",
-    "watch": "svelte-package --watch"
+    "watch": "svelte-kit sync && svelte-package --watch"
   },
   "dependencies": {
     "@kelp_digital/sveltekit-adapter-macula": "workspace:*",
