@@ -10,7 +10,7 @@ PRODUCT="${1:-}"
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 IMAGE_VERSION=$(git rev-parse --short HEAD)
 
-FULL_PRODUCT="anagolay/$PRODUCT:$IMAGE_VERSION"
+FULL_PRODUCT="kelpdigital/$PRODUCT:$IMAGE_VERSION"
 
 echo "Building $FULL_PRODUCT"
 

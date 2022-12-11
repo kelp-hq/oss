@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { isEmpty } from 'ramda';
   import { appStore } from 'src/appStore';
   import type { ISubdomainDocument } from 'src/maculaApi';
   import { onMount } from 'svelte';
   import SvelteSeo from 'svelte-seo/';
 
-  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { tokenReady, waatStore } from '$lib/waat/store';
 
   import NoSubdomains from './components/NoSubdomains.svelte';

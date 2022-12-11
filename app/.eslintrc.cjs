@@ -22,6 +22,7 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
     'unused-imports/no-unused-imports': 'error',
+    'css-unused-selector': 'off',
     'unused-imports/no-unused-vars': [
       'warn',
       {

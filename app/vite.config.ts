@@ -2,12 +2,24 @@
 
 import { sveltekit } from '@sveltejs/kit/vite';
 import { resolve } from 'path';
-import { type UserConfig, defineConfig } from 'vite';
+import { type UserConfig, createLogger, defineConfig } from 'vite';
 import { isoImport } from 'vite-plugin-iso-import';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import wasm from 'vite-plugin-wasm';
 
+const logger = createLogger('warn');
+
+const originalWarning = logger.warn;
+logger.warn = (msg, options) => {
+  //https://github.com/vitejs/vite/pull/10108
+  console.log('msg', msg);
+
+  // if (msg.includes('vite:css') && msg.includes(' is empty')) return;
+  // originalWarning(msg, options);
+};
+
 const config: UserConfig = {
+  customLogger: logger,
   logLevel: 'info',
   plugins: [isoImport(), wasm(), topLevelAwait(), sveltekit()],
   resolve: {

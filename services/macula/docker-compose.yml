@@ -3,7 +3,7 @@ x-macula-links: &macula_links
     - ipfs
     - redis
     - mongodb
-x-macula-dependson: &macula_depends_on
+x-macula-depends_on: &macula_depends_on
   depends_on:
     ipfs:
       # condition: service_healthy
@@ -12,9 +12,7 @@ x-macula-dependson: &macula_depends_on
       condition: service_started
     mongodb:
       condition: service_started
-x-macula:
-  # image: registry.gitlab.com/kelp_digital/oss/macula:d48f7379
-  &macula
+x-macula: &macula
   image: docker.io/node:18.4.0-bullseye
   restart: unless-stopped
   working_dir: /app
@@ -23,7 +21,13 @@ x-macula:
   networks:
     - macula
     - caddy
-  command: bash startMacula.sh
+  environment:
+    - IPFS_GATEWAY_URL=http://ipfs:8080
+    - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+    - REDIS_URL=redis://redis
+    - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+    - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+
 ####################
 ####################
 ####################
@@ -31,10 +35,45 @@ x-macula:
 ####################
 version: '3'
 services:
-  maculaSubdomainHosting:
+  macula_website:
     <<: *macula
     <<: *macula_links
     <<: *macula_depends_on
+    labels:
+      caddy: 'macula.link'
+      caddy.rewrite: '* /hosting/withSubdomain/macula{uri}}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      caddy.log.output: 'file /var/logs/macula/link.sub.log'
+      caddy.log.level: 'DEBUG'
+
+  macula_ipfs_api:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_depends_on
+    environment:
+      - MACULA_ENABLED_ROUTES='["ipfs_api"]'
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - REDIS_URL=redis://redis
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+    labels:
+      caddy: 'ipfs.api.macula.link'
+      caddy.rewrite: '* /ipfs_api/{labels.2}{uri}}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      caddy.log.output: 'file /var/logs/macula/ipfs_api.log'
+      caddy.log.level: 'DEBUG'
+
+  macula_subdomain_star:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_depends_on
+    environment:
+      - MACULA_ENABLED_ROUTES='["hosting"]'
+      - IPFS_GATEWAY_URL=http://ipfs:8080
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - REDIS_URL=redis://redis
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     labels:
       caddy: '*.macula.link'
       caddy.rewrite: '* /hosting/withSubdomain/{labels.2}{uri}}'
@@ -43,13 +82,26 @@ services:
       # caddy.log: ""
       caddy.log.output: 'file /var/logs/macula/subdomain.log'
       caddy.log.level: 'DEBUG'
+
+  macula_cid_star:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_depends_on
     environment:
-      - MACULA_ENABLED_ROUTES=["hosting"]
+      - MACULA_ENABLED_ROUTES='["hosting"]'
       - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
       - REDIS_URL=redis://redis
       - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+    labels:
+      caddy: '*.on.macula.link'
+      caddy.rewrite: '* /hosting/withIpfs/{labels.2}{uri}}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      caddy.tls.dns: 'hetzner ${HETZNER_TOKEN}'
+      # caddy.log: ""
+      caddy.log.output: 'file /var/logs/macula/cid_star.log'
+      caddy.log.level: 'DEBUG'
 
   ipfs:
     image: ipfs/kubo:master-2022-09-19-32e9a69
@@ -82,8 +134,8 @@ services:
       - redis_data:/var/lib/redis
     environment:
       - REDIS_REPLICATION_MODE=master
-    ports:
-      - 6379:6379
+    # ports:
+    # - 6379:6379
   mongodb:
     image: docker.io/mongo:latest
     networks:
@@ -94,11 +146,11 @@ services:
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     volumes:
       - mongodb_data:/data/db
-    ports:
-      - 27017:27017
+    # ports:
+    # - 27017:27017
 networks:
   macula:
-    driver: bridge
+    internal: true
   caddy:
     external: true
 volumes:

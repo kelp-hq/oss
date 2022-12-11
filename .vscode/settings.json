@@ -75,5 +75,6 @@
   "zenMode.hideTabs": false,
   "zenMode.fullScreen": false,
   "git.autofetch": true,
-  "scm.defaultViewMode": "tree"
+  "scm.defaultViewMode": "tree",
+  "terminal.integrated.defaultProfile.linux": "zsh"
 }

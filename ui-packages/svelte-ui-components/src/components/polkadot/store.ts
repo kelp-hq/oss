@@ -1,8 +1,7 @@
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import type { HexString } from '@polkadot/util/types';
 import debugPkg, { type Debugger } from 'debug';
-import { isNil } from 'ramda';
-import { type Writable, get, writable } from 'svelte/store';
+import { type Writable, writable } from 'svelte/store';
 
 import { browser } from '$app/environment';
 
@@ -14,7 +13,6 @@ const localStorageKey = 'anagolayJs:selectedAccount';
 export interface ISubstrateAccountsStorage {
   selectedAccount: InjectedAccountWithMeta | undefined;
   injectedAccounts: InjectedAccountWithMeta[];
-  tokenGenerationFunction: (address: string) => Promise<void> | undefined;
 }
 
 export interface IStoreReturn extends Writable<ISubstrateAccountsStorage> {
@@ -37,8 +35,7 @@ async function polkadotAccountsStoreFn(): Promise<IStoreReturn> {
 
   const { update, subscribe, set } = writable<ISubstrateAccountsStorage>({
     selectedAccount: selectedAccountFromLocalStorage,
-    injectedAccounts: [],
-    tokenGenerationFunction: undefined
+    injectedAccounts: []
   });
 
   return {
@@ -62,11 +59,11 @@ async function polkadotAccountsStoreFn(): Promise<IStoreReturn> {
         return { ...currentState, selectedAccount: account };
       });
 
-      const state = get(polkadotAccountsStore);
+      // const state = get(polkadotAccountsStore);
 
-      if (!isNil(state.tokenGenerationFunction)) {
-        await state.tokenGenerationFunction(account.address);
-      }
+      // if (!isNil(state.tokenGenerationFunction)) {
+      //   await state.tokenGenerationFunction(account.address);
+      // }
     }
   };
 }

@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { resolve } from 'path';
 import { type UserConfig, defineConfig } from 'vite';
 import topLevelAwait from 'vite-plugin-top-level-await';
+
 const config: UserConfig = {
   logLevel: 'info',
   plugins: [topLevelAwait(), sveltekit()],

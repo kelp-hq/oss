@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { polkadotAccountsStore, signViaExtension } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
   import axios from 'axios';
 
   import { browser } from '$app/environment';
-  import { polkadotAccountsStore, signViaExtension } from '@kelp_digital/svelte-ui-components/polkadot/store';
 
   const hostingAPIUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io/hosting/api';
 

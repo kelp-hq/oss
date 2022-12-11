@@ -68,10 +68,11 @@ common/autoinstallers/*/.npmrc
 .heft
 
 # Building
-.git/
+.git
 dist/
 binaries/
 lib/
+docs/
 temp/
 .pnpm-store/
 node_modules/
@@ -80,4 +81,3 @@ assets/
 ipfs_upload/
 .rush
 deployment/
-common/temp/

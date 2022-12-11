@@ -3,14 +3,13 @@ export HISTIGNORE='DOPPLER_*'
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel)
 
+cd "$PROJECT_ROOT" || exit
+
 pnpm env use --global 18.4.0
 
-pnpm add --global @microsoft/rush
+brew install romkatv/powerlevel10k/powerlevel10k
 
-ln -fs "$GITPOD_REPO_ROOT"/.devops/gitpod/.bash_aliases "$HOME"/.bash_aliases
-bash "$GITPOD_REPO_ROOT"/.devops/gitpod/prep-doppler.sh
-
-cd "$PROJECT_ROOT" || exit
+bash "$PROJECT_ROOT"/.devops/gitpod/prep-doppler.sh
 
 wget https://github.com/jsontypedef/json-typedef-codegen/releases/download/v0.4.1/x86_64-unknown-linux-musl.zip
 unzip -o x86_64-unknown-linux-musl.zip -d ../bin/
@@ -43,12 +42,14 @@ cd ../
 
 rm -rf caddy_2.6.2_linux_amd64.tar.gz caddy_2.6.2_linux_amd64.tar.gz.sig caddy
 
+ln -fs "$PROJECT_ROOT"/.devops/gitpod/.bash_aliases "$HOME"/.bash_aliases
+ln -fs "$PROJECT_ROOT"/.devops/gitpod/.zshrc "$HOME"/.zshrc
+ln -fs "$PROJECT_ROOT"/.devops/gitpod/.p10k.zsh "$HOME"/.p10k.zsh
+
 rm -rf ~/.tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -sf ~/.tmux/.tmux.conf ~/.tmux.conf
 
 if [ ! -f "$HOME/.tmux.conf.local" ]; then
-  # wget https://ipfs.anagolay.network/ipfs/QmdZFrnc6NwzKSQdxkZfxHaBXMDH3ndhtwSm7dB7L1NXvM -O $HOME/.tmux.conf
-  ln -fs "$GITPOD_REPO_ROOT"/.devops/gitpod/.tmux.conf.local "$HOME"/.tmux.conf.local
-  # cp "$GITPOD_REPO_ROOT"/.devops/gitpod/.tmux.conf.local "$HOME"/.tmux.conf.local
+  ln -fs "$PROJECT_ROOT"/.devops/gitpod/.tmux.conf.local "$HOME"/.tmux.conf.local
 fi

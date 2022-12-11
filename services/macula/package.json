@@ -49,6 +49,7 @@
     "multiaddr": "10.0.1",
     "node-fetch": "3.2.6",
     "pino": "8.0.0",
+    "pino-pretty": "8.0.0",
     "ramda": "0.28.0",
     "random-word-slugs": "~0.1.6",
     "random-words": "~1.2.0",
@@ -78,7 +79,6 @@
     "eslint": "8.23.1",
     "eslint-plugin-simple-import-sort": "8.0.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "pino-pretty": "8.0.0",
     "prettier": "2.7.1",
     "typescript": "4.7.4"
   },
