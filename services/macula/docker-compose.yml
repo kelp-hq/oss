@@ -13,7 +13,7 @@ x-macula-depends_on: &macula_depends_on
     mongodb:
       condition: service_started
 x-macula: &macula
-  image: docker.io/node:18.4.0-bullseye
+  image: registry.gitlab.com/kelp_digital/oss/macula:39d22195
   restart: unless-stopped
   working_dir: /app
   volumes:

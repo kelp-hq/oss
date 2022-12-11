@@ -22,10 +22,9 @@ WORKDIR /build
 
 COPY . .
 
-RUN node common/scripts/install-run-rush.js install \
-  && node common/scripts/install-run-rush.js update \
+RUN node common/scripts/install-run-rush.js update \
   && node common/scripts/install-run-rush.js build --timeline --verbose --from @kelp_digital/macula \
-  && mkdir deployment \
+  && mkdir -p deployment \
   && node common/scripts/install-run-rush.js deploy --overwrite --project @kelp_digital/macula --target-folder ./deployment/
 
 

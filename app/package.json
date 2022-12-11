@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "_phase:build": "pnpm build",
-    "build": "svelte-kit sync && vite build",
+    "build": "exit 0;",
+    "build:vite": "svelte-kit sync && vite build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "NODE_ENV=development vite --port 7777",

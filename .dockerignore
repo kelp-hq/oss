@@ -72,7 +72,6 @@ common/autoinstallers/*/.npmrc
 dist/
 binaries/
 lib/
-docs/
 temp/
 .pnpm-store/
 node_modules/
