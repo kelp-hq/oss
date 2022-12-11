@@ -1,7 +1,7 @@
 {
   "name": "@kelp_digital/macula",
-  "version": "0.0.0",
-  "description": "On the fly image processing",
+  "version": "0.1.0",
+  "description": "On the fly image processing and hosting",
   "keywords": [
     "ipfs",
     "image",
@@ -11,6 +11,7 @@
   ],
   "license": "GPL3",
   "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
+  "type": "commonjs",
   "main": "./lib/start.js",
   "types": "./lib/macula.d.ts",
   "scripts": {
@@ -59,11 +60,13 @@
     "undici": "5.6.1"
   },
   "devDependencies": {
+    "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu",
+    "@kelp_digital/heft-library-rig": "https://ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a",
     "@microsoft/api-extractor": "7.28.0",
     "@rushstack/eslint-config": "3.0.0",
-    "@rushstack/heft": "0.45.6",
-    "@rushstack/heft-jest-plugin": "0.3.6",
-    "@rushstack/heft-node-rig": "1.9.7",
+    "@rushstack/heft": "0.47.3",
+    "@rushstack/heft-jest-plugin": "0.3.25",
+    "@rushstack/heft-node-rig": "1.10.2",
     "@sentry/types": "7.5.1",
     "@types/compression": "1.7.2",
     "@types/cors": "2.8.12",

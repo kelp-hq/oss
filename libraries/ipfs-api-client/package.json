@@ -25,7 +25,6 @@
   "types": "./lib/ipfs-api-client.d.ts",
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:fix-lib": "node ./config/add-js-to-esm.js",
     "_phase:test": "heft test --no-build",
     "build": "heft build --clean",
     "test": "heft test --no-build",
@@ -41,12 +40,14 @@
     "ramda": "0.28.0"
   },
   "devDependencies": {
+    "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu",
+    "@kelp_digital/heft-library-rig": "https://ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a",
     "@microsoft/api-extractor": "7.28.0",
     "@rushstack/eslint-config": "3.0.0",
-    "@rushstack/heft": "0.45.6",
-    "@rushstack/heft-jest-plugin": "0.3.6",
-    "@rushstack/heft-node-rig": "1.9.7",
-    "@rushstack/heft-webpack5-plugin": "0.5.13",
+    "@rushstack/heft": "0.47.3",
+    "@rushstack/heft-jest-plugin": "0.3.25",
+    "@rushstack/heft-node-rig": "1.10.2",
+    "@rushstack/heft-webpack5-plugin": "0.5.40",
     "@types/byte-size": "8.1.0",
     "@types/clui": "0.3.1",
     "@types/heft-jest": "1.0.2",

@@ -11,6 +11,14 @@
       "allowedCategories": [ "production", "service", "tools" ]
     },
     {
+      "name": "@kelp_digital/heft-esm-transform-plugin",
+      "allowedCategories": [ "libraries", "service" ]
+    },
+    {
+      "name": "@kelp_digital/heft-library-rig",
+      "allowedCategories": [ "libraries", "service" ]
+    },
+    {
       "name": "@kelp_digital/ipfs-api-client",
       "allowedCategories": [ "libraries", "production", "service", "tools", "website" ]
     },

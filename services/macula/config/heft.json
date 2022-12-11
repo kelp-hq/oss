@@ -1,8 +1,24 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/heft/heft.schema.json",
+  "eventActions": [
+    {
+      "actionKind": "deleteGlobs",
+      "heftEvent": "clean",
+      "actionId": "defaultClean",
+      "globsToDelete": ["dist", "lib"]
+    }
+  ],
   "heftPlugins": [
     {
       "plugin": "@rushstack/heft-jest-plugin"
+    },
+    {
+      "plugin": "@kelp_digital/heft-esm-transform-plugin",
+      "options": {
+        "addPackageJsonFiles": true,
+        "esmDirectory": "lib-esm",
+        "commonJsDirectory": "lib"
+      }
     }
   ]
 }

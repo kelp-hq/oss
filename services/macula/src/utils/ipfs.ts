@@ -45,7 +45,7 @@ export function createIPFSConnection(options: IClientConnectionOptions): IPFSHTT
 
   const { apiKey, ipfsOptions } = options;
 
-  const headers: Record<string, string> = ipfsOptions.headers;
+  const headers: Record<string, string> = ipfsOptions.headers as any;
   if (!isNil(apiKey) && !isEmpty(apiKey)) {
     headers['x-api-key'] = apiKey;
     headers.authentication = `Bearer ${apiKey}`;

@@ -6,6 +6,14 @@
     },
     {
       "plugin": "@rushstack/heft-jest-plugin"
+    },
+    {
+      "plugin": "@kelp_digital/heft-esm-transform-plugin",
+      "options": {
+        "addPackageJsonFiles": true,
+        "esmDirectory": "lib",
+        "commonJsDirectory": "lib-commonjs"
+      }
     }
   ]
 }
