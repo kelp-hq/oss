@@ -32,6 +32,7 @@
     "@polkadot/keyring": "10.1.7",
     "@polkadot/util": "10.1.7",
     "@polkadot/util-crypto": "10.1.7",
+    "@redis/json": "~1.0.4",
     "@sentry/node": "7.17.2",
     "@sentry/tracing": "7.17.2",
     "axios": "0.27.2",
@@ -60,7 +61,7 @@
     "undici": "5.6.1"
   },
   "devDependencies": {
-    "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu",
+    "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova",
     "@kelp_digital/heft-library-rig": "https://ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a",
     "@microsoft/api-extractor": "7.28.0",
     "@rushstack/eslint-config": "3.0.0",

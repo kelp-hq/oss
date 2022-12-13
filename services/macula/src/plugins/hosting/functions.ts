@@ -1,10 +1,11 @@
+import { RedisJSON } from '@redis/json/dist/commands';
 import { captureException, startTransaction } from '@sentry/node';
 import { AxiosError, AxiosResponse } from 'axios';
 import { Request, Response } from 'express';
 import { append, find, includes, isEmpty, isNil, propEq } from 'ramda';
 
 import { ipfsApiURL, ipfsGateway } from '../../config';
-import { axiosApiProxyInstance } from '../../proxyServer';
+import { axiosApiInstance } from '../../proxyServer';
 import { redisClient } from '../../redisClient';
 import { log } from '../../utils/logger';
 import { axiosHostingInstance, IMaculaConfig } from '.';
@@ -18,6 +19,15 @@ import {
 } from './databaseQueries';
 import { IAddVersionApi } from './middlewares';
 import { createCacheKey } from './utils';
+
+/**
+ * The record struct for redis cache
+ * @internal
+ */
+export interface IRedisCacheRecord {
+  subdomain: string;
+  config: IMaculaConfig;
+}
 
 /**
  * Return the domains for the user. The user is added via the token
@@ -64,7 +74,8 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
         const pinUrl = ipfsApiURL + `/api/v0/pin/add?arg=${ipfsVersionCid}&recursive=true`;
         log.trace('pinning to the ipfs %s', pinUrl);
 
-        await axiosApiProxyInstance({
+        // not that intuitive fetching
+        await axiosApiInstance({
           method: 'POST',
           url: pinUrl
         });
@@ -112,12 +123,15 @@ export async function addVersion(req: Request<never, never, IAddVersionApi>, res
             ...t
           });
         }
-        // set the cache
-        await redisClient.json.set(websiteRedisKey, '.', {
+
+        const redisCacheRecord: IRedisCacheRecord = {
           subdomain: subdomain as string,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           config: maculaJsonData as IMaculaConfig as any
-        });
+        };
+
+        // set the cache
+        await redisClient.json.set(websiteRedisKey, '.', redisCacheRecord as unknown as RedisJSON);
 
         // query the parts of json
         // const val = await redisClient.json.get(websiteRedisKey, {

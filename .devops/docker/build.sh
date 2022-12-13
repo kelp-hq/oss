@@ -21,5 +21,5 @@ DOCKER_BUILDKIT=0 docker build \
 if [[ "${2}" =~ "run" ]]; then
   echo "$2"
   # docker run --rm -it --env-file="$PROJECT_ROOT"/.env "$FULL_PRODUCT"
-  docker run --rm -it "$FULL_PRODUCT"
+  docker run --env-file "$PROJECT_ROOT"/.env --rm -it "$FULL_PRODUCT"
 fi

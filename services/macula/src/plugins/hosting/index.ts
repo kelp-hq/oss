@@ -13,7 +13,7 @@ import { redisClient } from '../../redisClient';
 import { sentry } from '../../sentry';
 import { log } from '../../utils/logger';
 import { findLastModificationDateForHosting, findOneSubdomain, findOneWebsiteByCid } from './databaseQueries';
-import { addVersion, myDomains } from './functions';
+import { addVersion, IRedisCacheRecord, myDomains } from './functions';
 import { validateBodyForAddVersion } from './middlewares';
 import {
   createCacheKey,
@@ -204,7 +204,7 @@ async function retrieveMaculaConfig(req: Request, res: Response, next: NextFunct
   let maculaConfig;
   const { baseCid } = req.hostingCtx;
   const redisKey = createCacheKey(baseCid);
-  const fromRedis = (await redisClient.json.get(redisKey)) as unknown as IMaculaConfig;
+  const fromRedis = (await redisClient.json.get(redisKey)) as unknown as IRedisCacheRecord;
 
   // if it's not in the cache
   if (isNil(fromRedis)) {
@@ -216,7 +216,7 @@ async function retrieveMaculaConfig(req: Request, res: Response, next: NextFunct
       maculaConfig = last(fromMongo.cids)?.config;
     }
   } else {
-    maculaConfig = fromRedis;
+    maculaConfig = fromRedis.config;
   }
   req.hostingCtx.maculaConfig = maculaConfig;
   next();

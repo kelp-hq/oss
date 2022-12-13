@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import { get, writable } from 'svelte/store';
+import { isEmpty, isNil } from 'ramda';
+import { type Writable, get, writable } from 'svelte/store';
 
 import { browser, dev } from '$app/environment';
 import { waatStore } from '$lib/waat/store';
@@ -8,20 +9,26 @@ import { type MaculaApi, baseUrl as baseMaculaApiUrl, initMaculaApi } from './ma
 
 interface IDefaultState {
   maculaApi: MaculaApi;
-  refetchData: boolean;
 }
+
+export const refetchData: Writable<boolean> = writable(false);
 
 function appStoreFn() {
   let maculaApiUrl: string = baseMaculaApiUrl;
 
   if (browser && dev) {
-    maculaApiUrl = window.location.origin.replace('7777', '3000');
+    const ls = window.localStorage.getItem('macula_api');
+    if (!isNil(ls) && !isEmpty(ls)) {
+      maculaApiUrl = ls;
+    } else {
+      maculaApiUrl = window.location.origin.replace('7777', '3000');
+    }
   }
+
   const maculaApi = initMaculaApi(maculaApiUrl);
 
   const defaultState: IDefaultState = {
-    maculaApi,
-    refetchData: false
+    maculaApi
   };
 
   const { subscribe, set, update } = writable(defaultState);

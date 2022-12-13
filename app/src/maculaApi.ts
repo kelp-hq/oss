@@ -6,7 +6,7 @@ import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } fro
 import axios from 'axios';
 import { isNil } from 'ramda';
 
-export const baseUrl: string = 'https://macula.link';
+export const baseUrl: string = 'https://api.macula.link';
 
 /**
  *
@@ -78,6 +78,7 @@ export class MaculaApi {
   }
 
   public async configureTokenInterceptor(token: string): Promise<void> {
+    console.log('configuring token for ', token);
     this.interceptorId = this.api.interceptors.request.use(
       (config) => {
         config.headers = {
@@ -101,15 +102,16 @@ export class MaculaApi {
    */
   public async hostingApiAddVersion(payload: { ipfsVersionCid: string; subdomain: string }) {
     try {
-      const res = await this.api.post('/hosting/api/addVersion', payload);
+      const res = await this.api.post('/addVersion', payload);
       return res;
     } catch (error) {
       this.handleError(error);
     }
   }
   public async hostingMyDomains(): Promise<AxiosResponse<ISubdomainDocument[]>> {
+    console.log(this.api.defaults);
     try {
-      const res = await this.api.get('/hosting/api/myDomains');
+      const res = await this.api.get('/myDomains');
       return res;
     } catch (error) {
       // this.handleError(error);
@@ -121,5 +123,6 @@ export class MaculaApi {
 }
 
 export function initMaculaApi(url: string = baseUrl) {
+  console.debug('creating MaculaApi for %s', url);
   return new MaculaApi(url);
 }

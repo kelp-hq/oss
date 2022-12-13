@@ -22,10 +22,13 @@
   let ctx: CanvasRenderingContext2D;
 
   async function uploadImage() {
+    alert('This is not implemented');
     await convertImage();
 
-    const baseUrl = 'https://3000-kelpdigital-oss-ho9j4wluaxj.ws-eu73.gitpod.io';
-    const url = `${baseUrl}/ipfs_api/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false`;
+    const baseUrl = 'https://api.ipfs.macula.link';
+    const url = `${baseUrl}/v0/add?stream-channels=true&cid-version=1&progress=false&pin=false`;
+
+    // const token = await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
 
     const formData = new FormData();
 
@@ -33,8 +36,10 @@
 
     const res = await fetch(url, {
       method: 'POST',
-      body: formData,
-      headers: {}
+      body: formData
+      // headers: {
+      //   Authorization: `Bearer ${token}`
+      // }
     });
     const addedCid = await res.json();
     alert(addedCid.Hash);

@@ -23,7 +23,13 @@ const config: UserConfig = {
   },
   build: {
     // warn on chunks above 1MB
-    chunkSizeWarningLimit: 1024
+    chunkSizeWarningLimit: 1024,
+    modulePreload: {
+      polyfill: true
+    },
+    rollupOptions: {
+      plugins: []
+    }
   },
   server: {
     fs: {
@@ -47,7 +53,9 @@ const config: UserConfig = {
 };
 
 export default defineConfig((opts) => {
-  const { command, mode, ssrBuild } = opts;
+  const { mode } = opts;
+  // eslint-disable-next-line prefer-const
+  let conf = config;
   // if (command === 'serve') {
   // 	return {
   // 		// dev specific config
@@ -58,5 +66,8 @@ export default defineConfig((opts) => {
   // 	//   // build specific config
   // 	// }
   // }
+  if (mode === 'production') {
+    conf.logLevel = 'error';
+  }
   return config;
 });

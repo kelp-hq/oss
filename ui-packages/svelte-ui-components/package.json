@@ -10,9 +10,9 @@
   },
   "svelte": "index.js",
   "scripts": {
-    "build": "exit 0;",
+    "build": "pnpm build:package",
     "build:package": "svelte-kit sync && svelte-package",
-    "build:vite": "vite build",
+    "build:vite": "svelte-kit sync && vite build",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "dev": "NODE_ENV=development vite --port 7778 dev",
     "format": "prettier --plugin-search-dir . --write .",

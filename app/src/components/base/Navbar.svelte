@@ -21,6 +21,6 @@
       <li><Link href="/docs">Docs</Link></li>
     </ul>
     <!-- <ThemeChange /> -->
-    <PolkadotAccounts tokenGenerationFunction={appStore.generateToken} />
+    <PolkadotAccounts tokenGenerationFunction={appStore.generateToken} applicationName="macula.js" />
   </div>
 </div>

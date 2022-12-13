@@ -1,7 +1,9 @@
+import { signViaExtension } from '@kelp_digital/svelte-ui-components/polkadot/store';
 import { type ISubstratePayload, SubstrateStrategy } from '@kelp_digital/web3-api-auth-token';
 import type { InjectedAccountWithMeta } from '@polkadot/extension-inject/types';
 import { isEmpty, isNil } from 'ramda';
-import { type Writable, writable } from 'svelte/store';
+import { appStore } from 'src/appStore';
+import { type Writable, get, writable } from 'svelte/store';
 
 import { browser } from '$app/environment';
 
@@ -31,12 +33,11 @@ export async function makeToken(account: string) {
   };
 
   const t = new SubstrateStrategy(tokenPayload);
-  // const sig = await signViaExtension(account, await t.encode());
+  const sig = await signViaExtension(account, await t.encode());
 
-  // const encodedToken = await t.make(sig);
+  const encodedToken = await t.make(sig);
 
-  // return encodedToken;
-  return '';
+  return encodedToken;
 }
 
 export interface IStoreReturn extends Writable<IDefaultState> {
@@ -62,6 +63,8 @@ function waatStoreFn() {
     set,
     update,
     generateToken: async (account: string) => {
+      const $appStore = get(appStore);
+
       // const { selectedAccount } = get(polkadotAccountsStore);
       const selectedAccount = account;
       let encodedToken: string;
@@ -80,6 +83,9 @@ function waatStoreFn() {
         encodedToken = selectedTokenFromLocalStorage;
       }
 
+      console.log('encodedToken', encodedToken);
+      await $appStore.maculaApi.configureTokenInterceptor(encodedToken);
+
       update((oldState) => {
         const tokens = { ...oldState.tokens, [selectedAccount]: encodedToken };
         window.localStorage.setItem('waat', JSON.stringify(tokens));
@@ -95,6 +101,7 @@ function waatStoreFn() {
 
         return newState;
       });
+      return encodedToken;
     }
   };
 }

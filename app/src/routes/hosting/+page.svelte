@@ -1,7 +1,7 @@
 <script lang="ts">
   import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
   import { isEmpty } from 'ramda';
-  import { appStore } from 'src/appStore';
+  import { appStore, refetchData } from 'src/appStore';
   import type { ISubdomainDocument } from 'src/maculaApi';
   import { onMount } from 'svelte';
   import SvelteSeo from 'svelte-seo/';
@@ -22,10 +22,10 @@
   }
 
   onMount(async () => {
-    console.log('mount Mydomains');
+    console.log('token ready', $tokenReady);
 
     if ($tokenReady) {
-      // 	console.log('account changed', $polkadotAccountsStore.selectedAccount);
+      console.log('account changed', $polkadotAccountsStore.selectedAccount);
       await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
       await getData();
     } else {
@@ -33,7 +33,7 @@
     }
   });
   $: {
-    if ($appStore.refetchData) {
+    if ($refetchData) {
       getData();
     }
   }

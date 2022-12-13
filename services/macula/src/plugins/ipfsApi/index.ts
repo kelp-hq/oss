@@ -50,7 +50,7 @@ ipfsApiRouter
       });
 
       /// maybe this will help https://github.com/axios/axios/issues/3971#issuecomment-1159556428
-      // const { headers, data, status } = await axiosApiProxyInstance({
+      // const { headers, data, status } = await axiosApiInstance({
       //   method: 'post',
       //   url: req.url,
       //   // responseType: 'stream',

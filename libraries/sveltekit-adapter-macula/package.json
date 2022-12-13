@@ -29,7 +29,6 @@
 	"types": "lib/index.d.ts",
 	"scripts": {
 		"_phase:build": "heft build --clean",
-		"_phase:fix-lib": "node ./config/add-js-to-esm.js",
 		"_phase:test": "heft test --no-build",
 		"build": "heft build --clean",
 		"test": "heft test --no-build",
@@ -40,6 +39,7 @@
 		"ramda": "0.28.0"
 	},
 	"devDependencies": {
+		"@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova",
 		"@rushstack/eslint-config": "3.0.0",
 		"@rushstack/heft": "0.47.3",
 		"@rushstack/heft-node-rig": "1.10.2",

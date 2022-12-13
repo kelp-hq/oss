@@ -1,4 +1,13 @@
 {
 	"$schema": "https://developer.microsoft.com/json-schemas/heft/heft.schema.json",
-	"heftPlugins": []
+	"heftPlugins": [
+		{
+			"plugin": "@kelp_digital/heft-esm-transform-plugin",
+			"options": {
+				"addPackageJsonFiles": true,
+				"esmDirectory": "lib",
+				"commonJsDirectory": null
+			}
+		}
+	]
 }

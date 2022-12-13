@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "_phase:build": "pnpm build",
-    "build": "exit 0;",
+    "build": "pnpm build:vite",
     "build:vite": "svelte-kit sync && vite build",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -14,15 +14,14 @@
     "lint": "prettier --ignore-path ../.gitignore --check --plugin-search-dir=. . && eslint --config ./.eslintrc.cjs --ignore-path ../.gitignore .",
     "pkg": "svelte-kit sync && svelte-package",
     "test": "playwright test",
-    "upload": "ipfsCli macula addVersion .macula"
+    "upload": "ipfsCli macula addVersion .macula",
+    "vite": "vite"
   },
   "dependencies": {
     "@kelp_digital/ipfs-api-client": "workspace:*",
     "@kelp_digital/svelte-ui-components": "workspace:*",
     "@kelp_digital/sveltekit-adapter-macula": "workspace:*",
     "@kelp_digital/web3-api-auth-token": "workspace:*",
-    "@polkadot/api": "9.2.2",
-    "@polkadot/api-augment": "8.14.1",
     "@polkadot/extension-dapp": "0.44.5",
     "@polkadot/extension-inject": "0.44.5",
     "@polkadot/types": "9.2.2",

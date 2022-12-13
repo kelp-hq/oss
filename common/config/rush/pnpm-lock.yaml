@@ -12,8 +12,6 @@ importers:
       '@kelp_digital/sveltekit-adapter-macula': workspace:*
       '@kelp_digital/web3-api-auth-token': workspace:*
       '@playwright/test': 1.25.2
-      '@polkadot/api': 9.2.2
-      '@polkadot/api-augment': 8.14.1
       '@polkadot/extension-dapp': 0.44.5
       '@polkadot/extension-inject': 0.44.5
       '@polkadot/types': 9.2.2
@@ -75,8 +73,6 @@ importers:
       '@kelp_digital/svelte-ui-components': link:../ui-packages/svelte-ui-components
       '@kelp_digital/sveltekit-adapter-macula': link:../libraries/sveltekit-adapter-macula
       '@kelp_digital/web3-api-auth-token': link:../libraries/web3-api-auth-token
-      '@polkadot/api': 9.2.2
-      '@polkadot/api-augment': 8.14.1
       '@polkadot/extension-dapp': 0.44.5_@polkadot+api@9.2.2
       '@polkadot/extension-inject': 0.44.5_@polkadot+api@9.2.2
       '@polkadot/types': 9.2.2
@@ -138,7 +134,7 @@ importers:
 
   ../../libraries/ipfs-api-client:
     specifiers:
-      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu
+      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova
       '@kelp_digital/heft-library-rig': https://ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a
       '@microsoft/api-extractor': 7.28.0
       '@rushstack/eslint-config': 3.0.0
@@ -182,7 +178,7 @@ importers:
       it-glob: 1.0.2
       ramda: 0.28.0
     devDependencies:
-      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu'
+      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova'
       '@kelp_digital/heft-library-rig': '@ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a_@rushstack+heft@0.47.3'
       '@microsoft/api-extractor': 7.28.0
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
@@ -215,6 +211,7 @@ importers:
 
   ../../libraries/sveltekit-adapter-macula:
     specifiers:
+      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova
       '@rushstack/eslint-config': 3.0.0
       '@rushstack/heft': 0.47.3
       '@rushstack/heft-node-rig': 1.10.2
@@ -232,6 +229,7 @@ importers:
     dependencies:
       ramda: 0.28.0
     devDependencies:
+      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova'
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
       '@rushstack/heft': 0.47.3
       '@rushstack/heft-node-rig': 1.10.2_@rushstack+heft@0.47.3
@@ -248,7 +246,7 @@ importers:
 
   ../../libraries/web3-api-auth-token:
     specifiers:
-      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu
+      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova
       '@microsoft/api-extractor': 7.28.0
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
@@ -275,7 +273,7 @@ importers:
       '@polkadot/util-crypto': 10.1.7
       ramda: 0.28.0
     devDependencies:
-      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu'
+      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova'
       '@microsoft/api-extractor': 7.28.0
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
       '@rushstack/heft': 0.47.3
@@ -297,7 +295,7 @@ importers:
     specifiers:
       '@anagolay/create_cid_from_buffer': https://ipfs.anagolay.network/ipfs/bafybeibfmv4r4nnc3nsgkrkuayf2pssygg27gipvbrlavbdis5pja26zpy
       '@anagolay/utils': 0.0.1
-      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu
+      '@kelp_digital/heft-esm-transform-plugin': https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova
       '@kelp_digital/heft-library-rig': https://ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a
       '@kelp_digital/ipfs-api-client': workspace:*
       '@kelp_digital/web3-api-auth-token': workspace:*
@@ -305,6 +303,7 @@ importers:
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
+      '@redis/json': ~1.0.4
       '@rushstack/eslint-config': 3.0.0
       '@rushstack/heft': 0.47.3
       '@rushstack/heft-jest-plugin': 0.3.25
@@ -360,6 +359,7 @@ importers:
       '@polkadot/keyring': 10.1.7
       '@polkadot/util': 10.1.7
       '@polkadot/util-crypto': 10.1.7
+      '@redis/json': 1.0.4_@redis+client@1.2.0
       '@sentry/node': 7.17.2
       '@sentry/tracing': 7.17.2
       axios: 0.27.2
@@ -387,7 +387,7 @@ importers:
       slug: 8.0.0
       undici: 5.6.1
     devDependencies:
-      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu'
+      '@kelp_digital/heft-esm-transform-plugin': '@ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova'
       '@kelp_digital/heft-library-rig': '@ipfs.anagolay.network/ipfs/bafybeiaczeebskjlgd2b7eukucgmx24vccas7mhlutvqrh6cwfqw7y4k2a_@rushstack+heft@0.47.3'
       '@microsoft/api-extractor': 7.28.0
       '@rushstack/eslint-config': 3.0.0_4brgkhw6cq4me3drk3kxrpb2mm
@@ -2361,6 +2361,14 @@ packages:
 
   /@redis/json/1.0.3_@redis+client@1.2.0:
     resolution: {integrity: sha512-4X0Qv0BzD9Zlb0edkUoau5c1bInWSICqXAGrpwEltkncUwcxJIGEcVryZhLgb0p/3PkKaLIWkjhHRtLe9yiA7Q==}
+    peerDependencies:
+      '@redis/client': ^1.0.0
+    dependencies:
+      '@redis/client': 1.2.0
+    dev: false
+
+  /@redis/json/1.0.4_@redis+client@1.2.0:
+    resolution: {integrity: sha512-LUZE2Gdrhg0Rx7AN+cZkb1e6HjoSKaeeW8rYnt89Tly13GBI5eP4CwDVr+MY8BAYfCg4/N15OUrtLoona9uSgw==}
     peerDependencies:
       '@redis/client': ^1.0.0
     dependencies:
@@ -11303,8 +11311,8 @@ packages:
     version: 0.0.1
     dev: false
 
-  '@ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu':
-    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeibnnttz26ekbfgamyegscapqmmrog6oq6cuuc7d7nn7rokmp4tevu}
+  '@ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova':
+    resolution: {tarball: https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova}
     name: '@kelp_digital/heft-esm-transform-plugin'
     version: 0.1.0
     dependencies:

@@ -83,6 +83,10 @@
       "allowedCategories": [ "libraries", "production", "service", "tools" ]
     },
     {
+      "name": "@redis/json",
+      "allowedCategories": [ "service" ]
+    },
+    {
       "name": "@rushstack/eslint-config",
       "allowedCategories": [ "libraries", "production", "service", "tools", "uiPackage", "website" ]
     },

@@ -2,9 +2,12 @@
   import '../app.css';
 
   import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
+  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
+  import { refetchData } from 'src/appStore';
   import { initSentry } from 'src/sentry';
   import { onMount } from 'svelte';
 
+  import { waatStore } from '$lib/waat/store';
   import WithWaat from '$lib/waat/WithWaat.svelte';
 
   import Navbar from '../components/base/Navbar.svelte';
@@ -13,6 +16,13 @@
 
   onMount(() => {
     console.log('mount layout');
+    console.log('maybe all app loaded');
+    async function run() {
+      await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
+
+      refetchData.set(true);
+    }
+    run();
   });
 </script>
 

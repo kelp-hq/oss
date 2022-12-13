@@ -35,7 +35,6 @@
   }
 
   onMount(async () => {
-    $polkadotAccountsStore.tokenGenerationFunction = tokenGenerationFunction;
     // import { web3Accounts, web3Enable } from '@polkadot/extension-dapp?client';
     const { web3Accounts, web3Enable } = await import('@polkadot/extension-dapp');
 

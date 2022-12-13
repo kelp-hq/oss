@@ -1,22 +1,20 @@
 <script lang="ts">
-  import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
-  import { isNil } from 'ramda';
   import { onMount } from 'svelte';
 
   let modalOpened: boolean = false;
 
   onMount(() => {
     console.log('mounting the WAAT context');
-    if (!isNil($polkadotAccountsStore.selectedAccount)) {
-      console.log('trigger the auth calc', modalOpened, $polkadotAccountsStore.selectedAccount);
-    }
+    // if (!isNil($polkadotAccountsStore.selectedAccount)) {
+    //   console.debug('trigger the auth calc', modalOpened, $polkadotAccountsStore.selectedAccount);
+    // }
   });
 
-  $: {
-    if (!isNil($polkadotAccountsStore.selectedAccount)) {
-      console.log('trigger the auth calc', modalOpened, $polkadotAccountsStore.selectedAccount);
-    }
-  }
+  // $: {
+  //   if (!isNil($polkadotAccountsStore.selectedAccount)) {
+  //     console.debug('trigger the auth calc', modalOpened, $polkadotAccountsStore.selectedAccount);
+  //   }
+  // }
 </script>
 
 <div>

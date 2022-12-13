@@ -13,20 +13,12 @@ x-macula-depends_on: &macula_depends_on
     mongodb:
       condition: service_started
 x-macula: &macula
-  image: registry.gitlab.com/kelp_digital/oss/macula:39d22195
+  image: kelpdigital/macula:a0532dd
+  # image: registry.gitlab.com/kelp_digital/oss/macula:39d22195
   restart: unless-stopped
-  working_dir: /app
-  volumes:
-    - ../../:/app
   networks:
-    - macula
+    - macula_ipfs
     - caddy
-  environment:
-    - IPFS_GATEWAY_URL=http://ipfs:8080
-    - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
-    - REDIS_URL=redis://redis
-    - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
-    - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
 
 ####################
 ####################
@@ -36,31 +28,66 @@ x-macula: &macula
 version: '3'
 services:
   macula_website:
-    <<: *macula
-    <<: *macula_links
+    image: kelpdigital/macula:a0532dd
+    restart: unless-stopped
+    networks:
+      - macula_ipfs
+      - caddy
     <<: *macula_depends_on
+    links:
+      - ipfs
+      - redis
+      - mongodb
     labels:
       caddy: 'macula.link'
-      caddy.rewrite: '* /hosting/withSubdomain/macula{uri}}'
+      caddy.rewrite: '* /hosting/withSubdomain/macula{uri}'
       caddy.reverse_proxy.to: '{{upstreams 3000}}'
-      caddy.log.output: 'file /var/logs/macula/link.sub.log'
+      caddy.log.output: 'file /var/logs/macula/macula.link.log'
       caddy.log.level: 'DEBUG'
+    environment:
+      - MACULA_ENABLED_ROUTES=["hosting"]
+      - IPFS_GATEWAY_URL=http://ipfs:8080
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - REDIS_URL=redis://redis:6379
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
 
   macula_ipfs_api:
     <<: *macula
     <<: *macula_links
     <<: *macula_depends_on
     environment:
-      - MACULA_ENABLED_ROUTES='["ipfs_api"]'
+      - MACULA_ENABLED_ROUTES=["ipfs_api"]
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - IPFS_API_URL=http://ipfs:5001
+      - REDIS_URL=redis://redis
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+    labels:
+      caddy: 'api.ipfs.macula.link'
+      caddy.rewrite: '* /ipfs_api{uri}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      # caddy.reverse_proxy.flush_interval: "-1"
+      caddy.reverse_proxy.buffer_requests: '1'
+      caddy.log.output: 'file /var/logs/macula/ipfs_api.log'
+      caddy.log.level: 'DEBUG'
+
+  macula_ipfs_image_processing_and_gateway:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_depends_on
+    environment:
+      - MACULA_ENABLED_ROUTES=["image_processing"]
+      - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
       - REDIS_URL=redis://redis
       - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     labels:
-      caddy: 'ipfs.api.macula.link'
-      caddy.rewrite: '* /ipfs_api/{labels.2}{uri}}'
+      caddy: 'ipfs.macula.link'
+      # caddy.rewrite: '* /ipfs/{labels.2}{uri}}'
       caddy.reverse_proxy.to: '{{upstreams 3000}}'
-      caddy.log.output: 'file /var/logs/macula/ipfs_api.log'
+      caddy.log.output: 'file /var/logs/macula/ipfs_gateway.log'
       caddy.log.level: 'DEBUG'
 
   macula_subdomain_star:
@@ -68,7 +95,7 @@ services:
     <<: *macula_links
     <<: *macula_depends_on
     environment:
-      - MACULA_ENABLED_ROUTES='["hosting"]'
+      - MACULA_ENABLED_ROUTES=["hosting"]
       - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
       - REDIS_URL=redis://redis
@@ -76,10 +103,9 @@ services:
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     labels:
       caddy: '*.macula.link'
-      caddy.rewrite: '* /hosting/withSubdomain/{labels.2}{uri}}'
+      caddy.rewrite: '* /hosting/withSubdomain/{labels.2}{uri}'
       caddy.reverse_proxy.to: '{{upstreams 3000}}'
       caddy.tls.dns: 'hetzner ${HETZNER_TOKEN}'
-      # caddy.log: ""
       caddy.log.output: 'file /var/logs/macula/subdomain.log'
       caddy.log.level: 'DEBUG'
 
@@ -88,7 +114,7 @@ services:
     <<: *macula_links
     <<: *macula_depends_on
     environment:
-      - MACULA_ENABLED_ROUTES='["hosting"]'
+      - MACULA_ENABLED_ROUTES=["hosting"]
       - IPFS_GATEWAY_URL=http://ipfs:8080
       - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
       - REDIS_URL=redis://redis
@@ -96,18 +122,47 @@ services:
       - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
     labels:
       caddy: '*.on.macula.link'
-      caddy.rewrite: '* /hosting/withIpfs/{labels.2}{uri}}'
+      caddy.rewrite: '* /hosting/withIpfs/{labels.3}{uri}'
       caddy.reverse_proxy.to: '{{upstreams 3000}}'
       caddy.tls.dns: 'hetzner ${HETZNER_TOKEN}'
-      # caddy.log: ""
       caddy.log.output: 'file /var/logs/macula/cid_star.log'
       caddy.log.level: 'DEBUG'
 
+  macula_hosting_api:
+    <<: *macula
+    <<: *macula_links
+    <<: *macula_depends_on
+    environment:
+      - MACULA_ENABLED_ROUTES=["hosting"]
+      - IPFS_GATEWAY_URL=http://ipfs:8080
+      - IPFS_CACHE_API_URL=http://ipfs:5001/api/v0
+      - IPFS_API_URL=http://ipfs:5001
+      - REDIS_URL=redis://redis
+      - DOPPLER_TOKEN=$DOPPLER_MACULA_TOKEN_STAGING
+      - MONGODB_CONNSTRING_WITH_DB=mongodb://admin:123456@mongodb:27017/macula?authSource=admin
+    labels:
+      caddy: 'api.macula.link'
+      caddy.rewrite: '* /hosting/api{uri}'
+      caddy.reverse_proxy.to: '{{upstreams 3000}}'
+      caddy.log.output: 'file /var/logs/macula/hosting_api.log'
+      caddy.log.level: 'DEBUG'
+
+  redis:
+    image: redislabs/redismod:latest
+    networks:
+      - macula_ipfs
+    volumes:
+      - redis_data:/data
+      # - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
   ipfs:
     image: ipfs/kubo:master-2022-09-19-32e9a69
-    restart: unless-stopped
+    # image: ipfs/go-ipfs:latest
     networks:
-      - macula
+      - macula_ipfs
+      - external_ipfs
+    restart: unless-stopped
     environment:
       - IPFS_PROFILE=server
       - IPFS_PATH=/data/ipfs
@@ -124,22 +179,12 @@ services:
       - ipfs_data:/data/ipfs
       - ipfs_fuse:/ipfs
       - ipns_fuse:/ipns
+      - ./ipfs_data_upload:/data/upload
     command: daemon --enable-namesys-pubsub
-  redis:
-    image: redislabs/redismod:latest
-    networks:
-      - macula
-    command: redis-server
-    volumes:
-      - redis_data:/var/lib/redis
-    environment:
-      - REDIS_REPLICATION_MODE=master
-    # ports:
-    # - 6379:6379
   mongodb:
     image: docker.io/mongo:latest
     networks:
-      - macula
+      - macula_ipfs
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=123456
@@ -148,9 +193,13 @@ services:
       - mongodb_data:/data/db
     # ports:
     # - 27017:27017
+
 networks:
-  macula:
+  external_ipfs:
+    driver: bridge
+  macula_ipfs:
     internal: true
+    # driver: bridge
   caddy:
     external: true
 volumes:
