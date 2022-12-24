@@ -156,11 +156,11 @@
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": [ "libraries", "uiPackage", "website" ]
     },
     {
       "name": "@typescript-eslint/parser",
-      "allowedCategories": [ "uiPackage", "website" ]
+      "allowedCategories": [ "libraries", "uiPackage", "website" ]
     },
     {
       "name": "autoprefixer",
@@ -212,7 +212,7 @@
     },
     {
       "name": "esbuild",
-      "allowedCategories": [ "uiPackage" ]
+      "allowedCategories": [ "libraries", "uiPackage" ]
     },
     {
       "name": "eslint",

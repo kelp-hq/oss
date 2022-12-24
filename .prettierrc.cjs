@@ -15,7 +15,7 @@ module.exports = {
   trailingComma: 'none',
   semi: true,
   bracketSpacing: true,
-  // overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
+  overrides: [{ files: '*.svelte', options: { parser: 'svelte' } }],
   plugins: [
     './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-svelte',
     './common/autoinstallers/rush-prettier/node_modules/prettier-plugin-packagejson'

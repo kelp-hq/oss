@@ -8,7 +8,7 @@ import { write } from './utils.js'; // we are compiling to ESM only, so this is 
  * Adapter options
  * @internal
  */
-interface IAnagolayAdapterOptions {
+interface IAdapterOptions {
 	fallback?: string;
 	appType: 'spa' | 'static';
 	subdomain?: string;
@@ -130,7 +130,7 @@ interface IAnagolayAdapterOptions {
  * @public
  * @returns
  */
-export default function (incomingOption: IAnagolayAdapterOptions): Adapter {
+export default function (incomingOption: IAdapterOptions): Adapter {
 	const adapter: Adapter = {
 		name: 'sveltekit-adapter-macula',
 		async adapt(builder: Builder) {

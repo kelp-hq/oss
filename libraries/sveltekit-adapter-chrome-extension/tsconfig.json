@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/@rushstack/heft-node-rig/profiles/default/tsconfig-base.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "types": ["node"],
+    "lib": ["dom", "es5", "scripthost", "ES2021.String"],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "declaration": false,
+    "declarationMap": false
+  }
+}

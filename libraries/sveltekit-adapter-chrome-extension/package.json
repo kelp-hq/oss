@@ -1,0 +1,67 @@
+{
+  "name": "@kelp_digital/sveltekit-adapter-chrome-extension",
+  "version": "0.1.0",
+  "description": "Chrome extension adapter. Bundle and transpile the code from manifest",
+  "keywords": [
+    "macula",
+    "sveltekit"
+  ],
+  "homepage": "https://gitlab.com/kelp_digital/oss/-/tree/tools/sveltekit-adapter-chrome-extension#readme",
+  "bugs": {
+    "url": "https://gitlab.com/kelp_digital/oss/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/kelp_digital/oss.git",
+    "directory": "tools/sveltekit-adapter-chrome-extension"
+  },
+  "license": "Apache-2",
+  "author": "did:substrate:5Fn9SNUE8LihCm7Lq5dpPgBebGy5D7ZKWESDsWbdjsfV37d4",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js",
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
+  },
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "_phase:build": "heft build --clean",
+    "_phase:test": "heft test --no-build",
+    "build": "heft build --clean",
+    "test": "heft test --no-build",
+    "test:watch": "heft test --clean --watch",
+    "watch": "heft build --clean --watch"
+  },
+  "dependencies": {
+    "ramda": "0.28.0"
+  },
+  "devDependencies": {
+    "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova",
+    "@rushstack/eslint-config": "3.0.0",
+    "@rushstack/heft": "0.47.3",
+    "@rushstack/heft-node-rig": "1.10.2",
+    "@sveltejs/kit": "1.0.1",
+    "@types/node": "18.7.13",
+    "@types/ramda": "0.28.15",
+    "@typescript-eslint/eslint-plugin": "5.37.0",
+    "@typescript-eslint/parser": "5.37.0",
+    "esbuild": "0.16.10",
+    "eslint": "8.23.1",
+    "eslint-plugin-simple-import-sort": "8.0.0",
+    "eslint-plugin-unused-imports": "2.0.0",
+    "prettier": "2.7.1",
+    "svelte": "3.55.0",
+    "typescript": "4.7.4",
+    "vite": "4.0.3"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "1.0.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "licenseFile": "./LICENSE"
+}

@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "author": "Daniel Maricic <daniel@woss.io>",
+  "name": "Anagolay web wallet",
+  "description": "Anagolay web wallet",
+  "short_name": "anagolay{.js}",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "anagolay{.js} web wallet",
+    "default_popup": "src/html/popup.html"
+  },
+  "background": {
+    "service_worker": "src/extensionFiles/serviceWorker.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": ["src/extensionFiles/contentScript.ts"],
+      "matches": ["http://*/*", "https://*/*"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/extensionFiles/anagolayInjectedPage.js"],
+      "matches": ["http://*/*", "https://*/*"],
+      "use_dynamic_url": true
+    }
+  ],
+  "permissions": ["unlimitedStorage", "storage", "activeTab", "scripting"],
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "64": "assets/icon-64.png",
+    "128": "assets/icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval' ; object-src 'self'"
+  }
+}
