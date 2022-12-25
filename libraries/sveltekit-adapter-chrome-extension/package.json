@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "Chrome extension adapter. Bundle and transpile the code from manifest",
   "keywords": [
-    "macula",
+    "adapter",
+    "crx",
+    "crhome-extension",
     "sveltekit"
   ],
   "homepage": "https://gitlab.com/kelp_digital/oss/-/tree/tools/sveltekit-adapter-chrome-extension#readme",
@@ -36,14 +38,19 @@
     "watch": "heft build --clean --watch"
   },
   "dependencies": {
-    "ramda": "0.28.0"
+    "cheerio": "1.0.0-rc.12",
+    "ramda": "0.28.0",
+    "tiny-glob": "0.2.9"
   },
   "devDependencies": {
     "@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova",
     "@rushstack/eslint-config": "3.0.0",
     "@rushstack/heft": "0.47.3",
+    "@rushstack/heft-jest-plugin": "0.3.25",
     "@rushstack/heft-node-rig": "1.10.2",
     "@sveltejs/kit": "1.0.1",
+    "@types/chrome": "0.0.206",
+    "@types/heft-jest": "1.0.2",
     "@types/node": "18.7.13",
     "@types/ramda": "0.28.15",
     "@typescript-eslint/eslint-plugin": "5.37.0",

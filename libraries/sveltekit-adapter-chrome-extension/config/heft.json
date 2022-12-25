@@ -2,6 +2,9 @@
   "$schema": "https://developer.microsoft.com/json-schemas/heft/heft.schema.json",
   "heftPlugins": [
     {
+      "plugin": "@rushstack/heft-jest-plugin"
+    },
+    {
       "plugin": "@kelp_digital/heft-esm-transform-plugin",
       "options": {
         "addPackageJsonFiles": true,

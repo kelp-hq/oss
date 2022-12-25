@@ -20,7 +20,6 @@ const config = {
       precompress: true,
       subdomain: 'macula'
     }),
-    trailingSlash: 'always',
     files: {
       lib: 'src/components'
     },

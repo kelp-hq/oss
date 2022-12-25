@@ -21,15 +21,14 @@
 	"exports": {
 		".": {
 			"default": "./lib/index.js",
-			"import": "./lib/index.js",
-			"types": "./lib/index.d.ts"
+			"import": "./lib/index.js"
 		}
 	},
 	"module": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"types": "lib/sveltekit-adapter-macula.d.ts",
 	"scripts": {
-		"_phase:build": "heft build --clean",
-		"_phase:test": "heft test --no-build",
+		"_phase:build": "pnpm build",
+		"_phase:test": "pnpm test",
 		"build": "heft build --clean",
 		"test": "heft test --no-build",
 		"test:watch": "heft test --clean --watch",
@@ -41,9 +40,12 @@
 	"devDependencies": {
 		"@kelp_digital/heft-esm-transform-plugin": "https://ipfs.anagolay.network/ipfs/bafybeid2la5atzl4bvmoy4g3ok3qpdp6rriyd2j2w7pxh72rwvwkbdzova",
 		"@rushstack/eslint-config": "3.0.0",
+		"@microsoft/api-extractor": "7.28.0",
 		"@rushstack/heft": "0.47.3",
 		"@rushstack/heft-node-rig": "1.10.2",
+		"@types/heft-jest": "1.0.2",
 		"@sveltejs/kit": "1.0.1",
+		"@rushstack/heft-jest-plugin": "0.3.25",
 		"@types/node": "18.7.13",
 		"@types/ramda": "0.28.15",
 		"eslint": "8.23.1",
@@ -55,7 +57,7 @@
 		"vite": "4.0.3"
 	},
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=16.0.0"
 	},
 	"licenseFile": "./LICENSE"
 }

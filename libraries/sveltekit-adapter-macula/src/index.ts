@@ -134,13 +134,12 @@ export default function (incomingOption: IAdapterOptions): Adapter {
 	const adapter: Adapter = {
 		name: 'sveltekit-adapter-macula',
 		async adapt(builder: Builder) {
-			const { account, appType, fallback, subdomain, precompress } = incomingOption;
+			const { account, appType, fallback = 'index.html', subdomain, precompress } = incomingOption;
 
 			if (isNil(account) || isEmpty(account)) {
 				builder.log.error('account must be set to any substrate based account');
 				return;
 			}
-			const kitConfig = builder.config.kit;
 			const dir = `.macula`;
 
 			const tmp = builder.getBuildDirectory('macula-tmp');
@@ -153,25 +152,17 @@ export default function (incomingOption: IAdapterOptions): Adapter {
 
 			builder.log(`Processing ${appType}`);
 
-			let fallbackInternal = undefined;
-
 			if (equals(appType, 'static')) {
-				if (!equals(kitConfig.trailingSlash, 'always')) {
-					builder.log.error(
-						'trailingSlash is not set to always. Static sites MUST have trailingSlash=always'
-					);
-					return;
-				}
-			} else if (equals(appType, 'spa')) {
-				if (isNil(fallback)) {
-					fallbackInternal = 'index.html';
-				}
+				builder.log.warn(
+					'You are building static app, please ensure that the trailingSlash is set to true in the +layout.ts'
+				);
 			} else {
 				throw new Error(`This appType is not supported: ${appType}`);
 			}
 
 			builder.writeClient(assets);
-			builder.writePrerendered(pages, { fallback: fallbackInternal });
+			builder.writePrerendered(pages);
+			builder.generateFallback(fallback);
 
 			const prerenderedRedirects = Array.from(builder.prerendered.redirects, ([src, redirect]) => ({
 				src,
@@ -278,18 +269,21 @@ export default function (incomingOption: IAdapterOptions): Adapter {
 				version: 1,
 				account: `urn:anagolay:${account}`,
 				fallback: {
-					file: fallbackInternal,
+					file: fallback,
 					route: '/'
 				},
 				appType,
-				preredered: builder.config.kit.prerender.default,
+				preredered: true,
 				source: 'sveltekit',
-				compressedFor: builder.config.kit.prerender.default ? ['gz', 'br'] : [],
+				// eslint-disable-next-line no-constant-condition
+				compressedFor: true ? ['gz', 'br'] : [],
 				routes,
 				pages: prerenderedPages,
 				subdomain
 			};
 			write(`${dir}/macula.json`, JSON.stringify(maculaJson));
+
+			console.log(builder);
 		}
 	};
 

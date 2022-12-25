@@ -179,6 +179,10 @@
       "allowedCategories": [ "tools" ]
     },
     {
+      "name": "cheerio",
+      "allowedCategories": [ "libraries" ]
+    },
+    {
       "name": "clui",
       "allowedCategories": [ "tools" ]
     },
@@ -409,6 +413,10 @@
     {
       "name": "theme-change",
       "allowedCategories": [ "website" ]
+    },
+    {
+      "name": "tiny-glob",
+      "allowedCategories": [ "libraries" ]
     },
     {
       "name": "ts-loader",
