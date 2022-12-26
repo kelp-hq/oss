@@ -443,12 +443,14 @@
       "packageName": "@kelp_digital/sveltekit-adapter-macula",
       "projectFolder": "libraries/sveltekit-adapter-macula",
       "reviewCategory": "libraries",
+      "versionPolicyName": "unstable",
       "shouldPublish": false
     },
     {
       "packageName": "@kelp_digital/sveltekit-adapter-chrome-extension",
       "projectFolder": "libraries/sveltekit-adapter-chrome-extension",
       "reviewCategory": "libraries",
+      "versionPolicyName": "unstable",
       "shouldPublish": false
     },
     {

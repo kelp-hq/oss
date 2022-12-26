@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@kelp_digital/sveltekit-adapter-macula",
+      "comment": "stable sveltekit, fix the code to reflect the changes",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@kelp_digital/sveltekit-adapter-macula"
+}

@@ -1,0 +1,10 @@
+{
+  "changes": [
+    {
+      "packageName": "@kelp_digital/sveltekit-adapter-chrome-extension",
+      "comment": "init the extension",
+      "type": "minor"
+    }
+  ],
+  "packageName": "@kelp_digital/sveltekit-adapter-chrome-extension"
+}
