@@ -30,7 +30,7 @@
 		"_phase:build": "pnpm build",
 		"_phase:test": "pnpm test",
 		"build": "heft build --clean",
-		"test": "heft test --no-build",
+		"test": "heft test",
 		"test:watch": "heft test --clean --watch",
 		"watch": "heft build --clean --watch"
 	},

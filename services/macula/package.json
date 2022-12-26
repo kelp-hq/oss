@@ -16,11 +16,11 @@
   "types": "./lib/macula.d.ts",
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:test": "heft test --no-build",
+    "_phase:test": "heft test",
     "build": "heft build --clean",
     "serve": "node ./lib/start.js",
     "start": "heft start --clean",
-    "test": "heft test --no-build",
+    "test": "heft test",
     "test:watch": "heft test --clean --watch",
     "watch": "heft build --clean --watch"
   },

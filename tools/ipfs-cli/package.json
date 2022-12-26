@@ -18,7 +18,7 @@
   },
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:test": "heft test --no-build",
+    "_phase:test": "heft test",
     "build": "heft build --clean",
     "build:all": "pnpm build && pnpm build:bin",
     "build:bin": "pkg --compress Brotli  --targets node17-linux ./dist/ipfsCli.js --out-path binaries",
@@ -26,7 +26,7 @@
     "link:bin": "sudo ln -sf $PWD/dist/ipfsCli.js /usr/local/bin/ipfsCli-dev && sudo chmod +x /usr/local/bin/ipfsCli-dev",
     "rm:bin": "sudo rm -f /usr/local/bin/ipfsCli-dev",
     "start": "heft start --clean",
-    "test": "heft test --no-build",
+    "test": "heft test",
     "test:watch": "heft test --clean --watch",
     "watch": "heft build --clean --watch"
   },
