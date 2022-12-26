@@ -17,8 +17,10 @@ cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
     - common/temp
-    - app/.svelte-kit
-    - app/build
+    # - app/.svelte-kit
+    # - app/.macula
+    # - .rush
+    # - .heft
 
 ### workflows control when to create the PIPELINE, not jobs
 workflow:

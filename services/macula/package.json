@@ -16,7 +16,7 @@
   "types": "./lib/macula.d.ts",
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:test": "heft test",
+    "_phase:test": "heft test --no-build",
     "build": "heft build --clean",
     "serve": "node ./lib/start.js",
     "start": "heft start --clean",

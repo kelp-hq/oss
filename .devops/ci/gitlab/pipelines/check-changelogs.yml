@@ -2,8 +2,14 @@ changelogs:
   extends:
     - .install-pnpm-and-node
   stage: lint
-  cache: {}
   allow_failure: true
+  cache: {}
+  variables:
+    GIT_DEPTH: 40
+    GIT_STRATEGY: clone
+
   script:
+    - git status
+    - git fetch --deepen=40
     - !reference [.rush:change-verify, script]
-    - git tag -l
+    # - git tag -l

@@ -18,7 +18,7 @@
   },
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:test": "heft test",
+    "_phase:test": "heft test --no-build",
     "build": "heft build --clean",
     "build:all": "pnpm build && pnpm build:bin",
     "build:bin": "pkg --compress Brotli  --targets node17-linux ./dist/ipfsCli.js --out-path binaries",

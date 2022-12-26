@@ -2,11 +2,11 @@
   "operationSettings": [
     {
       "operationName": "_phase:build",
-      "outputFolderNames": ["lib", "dist"]
+      "outputFolderNames": ["lib", "lib-esm", ".rush"]
     },
     {
       "operationName": "_phase:test",
-      "outputFolderNames": ["temp/coverage", "temp/jest-reports"]
+      "outputFolderNames": ["temp/coverage", "temp/jest-reports", ".heft"]
     }
   ]
 }

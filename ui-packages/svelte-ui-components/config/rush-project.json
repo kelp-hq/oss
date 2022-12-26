@@ -2,7 +2,7 @@
   "operationSettings": [
     {
       "operationName": "_phase:build",
-      "outputFolderNames": [".macula", ".svelte-kit", ".rush"]
+      "outputFolderNames": [".macula", ".svelte-kit", ".rush", "lib"]
     }
   ]
 }

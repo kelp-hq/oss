@@ -26,7 +26,7 @@
   "types": "./lib/web3-api-auth-token.d.ts",
   "scripts": {
     "_phase:build": "heft build --clean",
-    "_phase:test": "heft test",
+    "_phase:test": "heft test --no-build",
     "build": "heft build --clean",
     "test": "heft test",
     "test:watch": "heft test --clean --watch",
