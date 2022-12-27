@@ -8,6 +8,7 @@ import { isEmpty, isNil, startsWith } from 'ramda';
 import { ManifestV3 } from './manifest-v3.js';
 import {
   adaptInlineScript,
+  adaptLinksInHtmlFiles,
   adaptManifestFile,
   compileContentScripts,
   compileServiceWorker,
@@ -27,6 +28,7 @@ interface IAdapterOptions {
   baseDirectory: string;
   outDirectory?: string;
   esbuildOptions?: BuildOptions;
+  trailingSlash: 'never' | 'always';
 }
 
 /**
@@ -46,10 +48,11 @@ export default function (incomingOption: IAdapterOptions): Adapter {
 
       const {
         manifest,
-        precompress = false,
+        precompress = true,
         outDirectory = 'dist',
         baseDirectory,
-        esbuildOptions = {}
+        esbuildOptions = {},
+        trailingSlash = 'never'
       } = incomingOption;
 
       if (isNil(manifest) || isEmpty(manifest)) {
@@ -79,6 +82,10 @@ export default function (incomingOption: IAdapterOptions): Adapter {
 
       builder.writeClient(outDirectory);
       builder.writePrerendered(outDirectory);
+
+      // console.log('builder.config.kit.files', builder.config.kit.files);
+
+      // builder.generateFallback('index.html');
 
       if (precompress) {
         log.minor('Compressing assets and pages');
@@ -121,6 +128,8 @@ export default function (incomingOption: IAdapterOptions): Adapter {
       }
 
       await adaptManifestFile(outDirectory, manifestImport, manifestOverrides);
+
+      await adaptLinksInHtmlFiles(outDirectory, trailingSlash, log);
 
       await adaptInlineScript(outDirectory, log);
 

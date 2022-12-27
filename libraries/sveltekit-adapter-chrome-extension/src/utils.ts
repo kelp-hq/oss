@@ -2,11 +2,24 @@
 import { Builder } from '@sveltejs/kit';
 import { Logger } from '@sveltejs/kit/types/private';
 import { load } from 'cheerio';
+import { createHash } from 'crypto';
 import esbuild, { BuildOptions } from 'esbuild';
 import { readFileSync, writeFileSync } from 'fs';
 import { mkdir } from 'fs/promises';
 import { dirname, resolve } from 'path';
-import { compose, equals, flatten, isEmpty, isNil, join, last, mergeDeepRight, replace, split } from 'ramda';
+import {
+  compose,
+  equals,
+  flatten,
+  isEmpty,
+  isNil,
+  join,
+  last,
+  mergeDeepRight,
+  replace,
+  split,
+  startsWith
+} from 'ramda';
 import glob from 'tiny-glob';
 import { fileURLToPath } from 'url';
 
@@ -44,6 +57,57 @@ export async function write(file: string, data: string): Promise<void> {
 }
 
 /**
+ * Adapt the a.href links and turn them into the actual links with .html if you are not building the SPA ( setting the `export const csr = true;` )
+ *
+ * This manipulates cheerio object and stores the html.
+ *
+ * @param directory - where wo look for the html files
+ * @param trailingSlash - 'never' or 'always'
+ * @param log - svelte kit builder logger
+ */
+export async function adaptLinksInHtmlFiles(
+  directory: string,
+  trailingSlash: 'never' | 'always',
+  log: Logger
+): Promise<void> {
+  log.minor(' Adapting Links in HTML files');
+  const files = await glob('**/*.{html}', {
+    cwd: directory,
+    dot: true,
+    filesOnly: true,
+    absolute: true
+  });
+
+  await Promise.all(
+    files.map(async (file) => {
+      const fileName = last(split('/')(file)) as string;
+      const f = readFileSync(file);
+
+      const $ = load(f.toString());
+      const $nodes = $('a[href]:not(a[href^="#"])');
+
+      $nodes.map((i, e) => {
+        if (!startsWith('http', e.attribs.href)) {
+          if (equals(trailingSlash, 'never')) {
+            // home route
+            if (equals(e.attribs.href, '/')) {
+              e.attribs.href = `/index.html`;
+            } else {
+              e.attribs.href = `${e.attribs.href}.html`;
+            }
+          } else if (equals(trailingSlash, 'always')) {
+            e.attribs.href = `${e.attribs.href}index.html`;
+          }
+        }
+      });
+
+      await write(file, $.html());
+      log.minor(`   Rewrote ${fileName}`);
+    })
+  );
+}
+
+/**
  * Adapt inline script to be an external script
  * @param directory - where wo look for the html files
  * @param log - svelte kit builder logger
@@ -59,7 +123,11 @@ export async function adaptInlineScript(directory: string, log: Logger): Promise
 
   await Promise.all(
     files.map(async (file) => {
+      const fileName = last(split('/')(file)) as string;
       const f = readFileSync(file);
+
+      await write(file.replace('.html', '-orig.html'), f.toString());
+
       const $ = load(f.toString());
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,14 +147,16 @@ export async function adaptInlineScript(directory: string, log: Logger): Promise
         (a, c) => a + `${c}="${node.attribs[c]}" `,
         ''
       );
-      const inlineScriptHash = node.attribs['data-sveltekit-hydrate'];
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const innerScript = (node.children[0] as any).data;
+
       const fullTag = $('script[type="module"]').toString();
 
+      const inlineScriptHash = createHash('sha256', {}).update(innerScript, 'utf-8').digest('hex');
+
       //get new filename
-      const inlineScriptAsFile = `/script-${inlineScriptHash}.js`;
+      const inlineScriptAsFile = `/script-${replace('.html', '', fileName)}-${inlineScriptHash}.js`;
 
       //remove from orig html file and replace with new script tag
       const newHtml = f
@@ -94,11 +164,11 @@ export async function adaptInlineScript(directory: string, log: Logger): Promise
         .replace(fullTag, `<script ${originalAttributes} src="${inlineScriptAsFile}"></script>`);
 
       await write(file, newHtml);
-      log.minor(`   Rewrote ${file}`);
+      log.minor(`   Rewrote ${fileName}`);
 
       const htmlFile = `${directory}${inlineScriptAsFile}`;
       await write(htmlFile, innerScript);
-      log.minor(`   Inline script extracted and saved at: ${htmlFile}`);
+      log.minor(`   Inline script extracted and saved at: ${inlineScriptAsFile}`);
     })
   );
 }
@@ -135,14 +205,17 @@ export async function compileServiceWorker(opts: IManifestCompilation): Promise<
   const swFileNameAsJs = swFileName.replace('.ts', '.js');
   const outFilePath = resolve(outDirectory, swFileNameAsJs);
 
-  await esbuild.build({
+  const buildOptions: BuildOptions = {
     ...defaultEsbuildOptions,
     format: equals(type, 'module') ? 'esm' : 'cjs',
     ...esbuildOptions,
     // so somebody doesn't override this
     entryPoints: [swPath],
     outfile: outFilePath
-  });
+  };
+
+  await esbuild.build(buildOptions);
+
   builder.log.minor(`   ✓ Compiled service worker`);
   return {
     ...background,
