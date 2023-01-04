@@ -14,16 +14,20 @@
 
   initSentry();
 
+  async function run() {
+    await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
+
+    refetchData.set(true);
+  }
+
   onMount(() => {
     console.log('mount layout');
     console.log('maybe all app loaded');
-    async function run() {
-      await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
-
-      refetchData.set(true);
-    }
-    run();
   });
+
+  $: if ($polkadotAccountsStore.selectedAccount) {
+    run();
+  }
 </script>
 
 <WithWaat>
