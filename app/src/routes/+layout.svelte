@@ -3,6 +3,7 @@
 
   import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
   import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
+  import { isNil } from 'ramda';
   import { refetchData } from 'src/appStore';
   import { initSentry } from 'src/sentry';
   import { onMount } from 'svelte';
@@ -25,7 +26,7 @@
     console.log('maybe all app loaded');
   });
 
-  $: if ($polkadotAccountsStore.selectedAccount) {
+  $: if (!isNil($polkadotAccountsStore.selectedAccount)) {
     run();
   }
 </script>
