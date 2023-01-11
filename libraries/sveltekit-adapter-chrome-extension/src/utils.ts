@@ -34,11 +34,12 @@ const defaultEsbuildOptions: BuildOptions = {
   bundle: true,
   minify: true,
   platform: 'browser',
-  sourcemap: 'linked',
+  // sourcemap: 'linked',
   target: 'esnext',
   format: 'esm',
   splitting: false,
-  plugins: []
+  plugins: [],
+  treeShaking: true
 };
 
 /**
