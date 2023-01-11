@@ -3,6 +3,7 @@
 
   import Notifications from '@kelp_digital/svelte-ui-components/notifications/Notifications.svelte';
   import { polkadotAccountsStore } from '@kelp_digital/svelte-ui-components/polkadot/store';
+  import { isNil } from 'ramda';
   import { refetchData } from 'src/appStore';
   import { initSentry } from 'src/sentry';
   import { onMount } from 'svelte';
@@ -14,16 +15,20 @@
 
   initSentry();
 
+  async function run() {
+    await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
+
+    refetchData.set(true);
+  }
+
   onMount(() => {
     console.log('mount layout');
     console.log('maybe all app loaded');
-    async function run() {
-      await waatStore.generateToken($polkadotAccountsStore.selectedAccount.address);
-
-      refetchData.set(true);
-    }
-    run();
   });
+
+  $: if (!isNil($polkadotAccountsStore.selectedAccount)) {
+    run();
+  }
 </script>
 
 <WithWaat>
